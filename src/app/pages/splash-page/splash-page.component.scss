@@ -1,0 +1,28 @@
+.splash-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+}
+
+.left-div,
+.right-div {
+  flex: 1;
+  transition: all 3s ease-in-out;
+}
+
+.left-div {
+  background-image: url("../../../assets/images/test-porteg.jpg");
+  background-size: cover;
+  object-fit: cover;
+  background-repeat: no-repeat;
+}
+
+.right-div {
+  background-image: url("../../../assets/images/test-ported\ \(3\).jpg");
+  background-size: cover;
+  object-fit: cover;
+  background-repeat: no-repeat;
+}

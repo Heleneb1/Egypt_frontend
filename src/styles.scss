@@ -1,1 +1,35 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import url("https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Inter+Tight&display=swap");
+
+html,
+body {
+  height: 100%;
+  background-color: var(--blue);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 8px 0;
+}
+
+p {
+  margin: 0;
+}
+
+:root {
+  --blue: #152131;
+  --sun: #fc9900;
+  --blue-e: #182034, #0d193af2;
+  --white: #ffffff;
+  --title: "Kaushan Script", cursive;
+  --text: "Inter Tight", sans-serif;
+}
