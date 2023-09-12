@@ -1,6 +1,35 @@
-<p>search works!</p>
-<div *ngFor="let article of articles">
+<!-- <div *ngFor="let article of articles">
   <h2>{{ article.title }}</h2>
   <p>{{ article.content }}</p>
-  <!-- Ajoutez d'autres balises HTML pour afficher les autres détails de l'article -->
+</div> -->
+<div class="sub-title"><h2>Les Mystères de l’Égypte Antique</h2></div>
+<div class="search-container">
+  <label for="authorSearch">Rechercher par nom d'auteur :</label>
+  <input type="text" id="authorSearch" [(ngModel)]="author" />
+  <button (click)="onAuthorSearchChange()">Rechercher</button>
+</div>
+<div class="search-container">
+  <label for="titleSearch">Rechercher par titre :</label>
+  <input type="text" id="titleSearch" [(ngModel)]="title" />
+  <button (click)="onTitleSearchChange()">Rechercher</button>
+</div>
+<div class="search-container">
+  <label for="tagSearch">Rechercher par contenu :</label>
+  <input type="text" id="tagSearch" [(ngModel)]="tag" />
+  <button (click)="onTagSearchChange()">Rechercher</button>
+</div>
+<div class="name-search">
+  <label for="theme"></label>
+  <input type="text" id="theme" placeholder="Rechercher" [(ngModel)]="author" />
+  <button (click)="onAuthorSearchChange()">
+    <i class="fas fa-search"></i>
+  </button>
+</div>
+
+<div class="image">
+  <img [src]="'../../../assets/images/Gizeah.jpg'" alt="" />
+</div>
+<div class="text-container">
+  Faîtes une recherche par mot-clé, ou utilisez notre filtre en fonction de vos
+  envies
 </div>
