@@ -9,7 +9,10 @@
         [(ngModel)]="user.email"
         (input)="checkEmail()"
       />
-      <label>Email</label>
+      <div class="input-title">
+        <h3>Email</h3>
+      </div>
+
       <div *ngIf="myForm.submitted && !isEmailValid" class="error">
         <span *ngIf="email.errors?.['required']">Email requis</span>
         <div class="error" *ngIf="myForm.submitted && !isEmailValid">
@@ -25,13 +28,17 @@
         required="true"
         [(ngModel)]="user.password"
       />
-      <label>Mot de passe</label>
+      <div class="input-title">
+        <h3>Mot de passe</h3>
+      </div>
       <div *ngIf="myForm.submitted && password.errors" class="error">
         <span *ngIf="password.errors?.['required']">Mot de passe requis</span>
       </div>
     </div>
-    <div class="button-container">
-      <button type="submit" class="button">Connexion</button>
+    <div class="button">
+      <div class="button-container">
+        <button type="submit" class="button">Connexion</button>
+      </div>
     </div>
   </form>
 </div>

@@ -38,7 +38,7 @@ export class LoginComponent {
         .subscribe(
           (response) => {
             if (response.status === 200) {
-              this.router.navigate(['/dashboard']);
+              this.router.navigate(['/article']);
             }
           },
           () => {

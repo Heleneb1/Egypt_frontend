@@ -22,6 +22,8 @@ import { AnimationComponent } from './components/animation/animation.component';
 import { SearchComponent } from './pages/search/search.component';
 import { ConnectionComponent } from './pages/connection/connection.component';
 import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -33,8 +35,18 @@ import { LoginComponent } from './components/login/login.component';
     SearchComponent,
     ConnectionComponent,
     LoginComponent,
+    RegisterComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+
+    FormsModule,
+    RouterModule,
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+  ],
   providers: [
     CookieService,
     AuthGuard,

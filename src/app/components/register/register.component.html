@@ -1,0 +1,71 @@
+<div class="register-box">
+  <form #myForm="ngForm" (ngSubmit)="myForm.valid && onSubmit()">
+    <div class="user-box">
+      <input type="text" name="lastname" [(ngModel)]="user.lastname" required />
+      <div class="input-title">
+        <h3>Nom</h3>
+      </div>
+    </div>
+    <div class="user-box">
+      <input
+        type="text"
+        name="firstname"
+        [(ngModel)]="user.firstname"
+        required
+      />
+      <div class="input-title">
+        <h3>Prénom</h3>
+      </div>
+    </div>
+    <div class="user-box">
+      <input
+        type="text"
+        name="email"
+        required
+        [(ngModel)]="user.email"
+        (input)="checkEmail()"
+      />
+      <div class="input-title">
+        <h3>Email</h3>
+      </div>
+      <div class="error" *ngIf="formSubmitted && !isEmailValid">
+        L'email n'est pas valide.
+      </div>
+    </div>
+    <div class="user-box">
+      <input
+        type="password"
+        [(ngModel)]="user.password"
+        name="password"
+        required
+        (input)="verifyPasswordStrength(); verifyPassword()"
+      />
+      <div class="input-title">
+        <h3>Mot de passe</h3>
+      </div>
+      <div class="error" *ngIf="formSubmitted && !passwordStrong">
+        Le mot de passe doit comporter au moins 8 caractères.
+      </div>
+    </div>
+    <div class="user-box">
+      <input
+        type="password"
+        name="confirmPassword"
+        required
+        (input)="verifyPassword()"
+        [(ngModel)]="confirmationPassword"
+      />
+      <div class="input-title">
+        <h3>Confirmation du mot de passe</h3>
+      </div>
+      <div class="error" *ngIf="formSubmitted && !passwordMatch">
+        Mots de passe différents.
+      </div>
+    </div>
+    <div class="button">
+      <div class="button-container">
+        <button type="submit" class="button">S'inscrire</button>
+      </div>
+    </div>
+  </form>
+</div>

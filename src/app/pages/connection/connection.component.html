@@ -1,11 +1,12 @@
-<p>connection works!</p>
+<div class="sub-title"><h2>Les Mystères de l’Égypte Antique</h2></div>
 <section class="main-informations-container">
-  <div class="logo-container">
-    <img src="../../../../assets/images/logo.svg" alt="Logo" />
+  <div class="image">
+    <img [src]="'../../../assets/images/Gizeah.jpg'" alt="" />
   </div>
-  <div class="informations-text-container"></div>
-</section>
-<section class="security-container">
+  <div class="text-container">
+    Inscrivez-vous et bénéficiez des toutes dernières informations disponibles,
+    jouez et gagnez des badges
+  </div>
   <div class="top-bar-form-container">
     <div class="top-bar-form" (click)="selectTab($event)">
       <div
@@ -15,7 +16,6 @@
       >
         <p class="top-bar-form-item-text">Connexion</p>
       </div>
-      <span class="top-bar-form-separator"></span>
       <div
         class="top-bar-form-item-register"
         [class.top-bar-form-item-selected]="selectedTab === 'register'"
@@ -25,7 +25,9 @@
       </div>
     </div>
   </div>
-  <div class="form-container">
+</section>
+<section class="select-container">
+  <div class="connection-container">
     <div
       class="info-submitted-validation"
       *ngIf="formSubmitted || errorMessage"
@@ -50,9 +52,10 @@
       *ngIf="selectedTab === 'login'"
     ></app-login>
     <div *ngIf="selectedTab === 'register'">
-      <!-- <app-register
+      <app-register
+        class="register-form-container"
         (registrationStatus)="onRegistrationStatus($event)"
-      ></app-register> -->
+      ></app-register>
     </div>
   </div>
 </section>
