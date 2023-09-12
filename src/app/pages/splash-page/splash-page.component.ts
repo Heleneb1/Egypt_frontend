@@ -9,21 +9,22 @@ import { Router } from '@angular/router';
 export class SplashPageComponent implements OnInit {
   constructor(private router: Router) {}
 
+  shakeDoors = false;
+  openDoors = false;
+  fogEffect = false;
+
   ngOnInit(): void {
     setTimeout(() => {
-      const leftDiv = document.querySelector('.left-div');
-      const rightDiv = document.querySelector('.right-div');
-
-      if (leftDiv instanceof HTMLElement) {
-        leftDiv.style.transform = 'translateX(-100%)';
-      }
-
-      if (rightDiv instanceof HTMLElement) {
-        rightDiv.style.transform = 'translateX(100%)';
-      }
+      this.shakeDoors = true;
+    }, 1000);
+    setTimeout(() => {
+      this.openDoors = true;
     }, 2000);
+
+    this.fogEffect = true;
+
     setTimeout(() => {
       this.router.navigate(['/home']);
-    }, 4000);
+    }, 3000);
   }
 }

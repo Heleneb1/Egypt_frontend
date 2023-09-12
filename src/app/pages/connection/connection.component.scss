@@ -1,0 +1,87 @@
+.main-informations-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+}
+
+.logo-container {
+  margin-right: 20px;
+}
+
+.logo-container img {
+  max-width: 100px;
+  height: auto;
+}
+
+.security-container {
+  background: linear-gradient(to bottom, var(--blue-e));
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+.top-bar-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.top-bar-form {
+  display: flex;
+  background-color: var(--blue);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.top-bar-form-item-connection,
+.top-bar-form-item-register {
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.top-bar-form-item-text {
+  margin: 0;
+  font-weight: bold;
+  font-size: 16px;
+  color: var(--white);
+}
+
+.top-bar-form-item-selected {
+  background-color: var(--sun);
+}
+
+.top-bar-form-separator {
+  width: 2px;
+  height: 30px;
+  background-color: var(--blue);
+}
+
+.form-container {
+  padding: 20px;
+}
+
+.info-submitted-validation {
+  text-align: center;
+}
+
+.info-submitted-validation-text {
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.info-submitted-validation-valid {
+  color: var(--sun);
+  background-color: var(--white);
+}
+
+.info-submitted-validation-error {
+  color: red;
+  background-color: var(--blue);
+}
+
+.login-form-container {
+  /* Styles spécifiques pour le formulaire de connexion */
+}

@@ -1,0 +1,62 @@
+.login-box {
+  width: 70vw;
+}
+
+.user-box {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.user-box input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: var(--white);
+  border: none;
+  border-bottom: 1px solid rgba(111, 66, 193, 0.64);
+  outline: none;
+  background: transparent;
+}
+
+.user-box label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #6f42c1;
+  pointer-events: none;
+  transition: 0.5s;
+}
+
+.user-box input:focus ~ label,
+.user-box input:valid ~ label {
+  top: -20px;
+  left: 0;
+  color: #6e42c1ab;
+  font-size: 12px;
+}
+
+.button {
+  width: 100%;
+  margin: 10px 0 20px;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+  padding: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #000;
+  background: #6f42c1;
+  box-shadow: 0px 4px 4px 0px #9b7ed0;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+  max-width: 100%;
+}

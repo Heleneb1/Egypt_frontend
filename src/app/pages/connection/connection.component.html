@@ -1,0 +1,58 @@
+<p>connection works!</p>
+<section class="main-informations-container">
+  <div class="logo-container">
+    <img src="../../../../assets/images/logo.svg" alt="Logo" />
+  </div>
+  <div class="informations-text-container"></div>
+</section>
+<section class="security-container">
+  <div class="top-bar-form-container">
+    <div class="top-bar-form" (click)="selectTab($event)">
+      <div
+        class="top-bar-form-item-connection"
+        [class.top-bar-form-item-selected]="selectedTab === 'login'"
+        [class.unselected]="selectedTab !== 'login'"
+      >
+        <p class="top-bar-form-item-text">Connexion</p>
+      </div>
+      <span class="top-bar-form-separator"></span>
+      <div
+        class="top-bar-form-item-register"
+        [class.top-bar-form-item-selected]="selectedTab === 'register'"
+        [class.unselected]="selectedTab !== 'register'"
+      >
+        <p class="top-bar-form-item-text">Inscription</p>
+      </div>
+    </div>
+  </div>
+  <div class="form-container">
+    <div
+      class="info-submitted-validation"
+      *ngIf="formSubmitted || errorMessage"
+    >
+      <p
+        class="info-submitted-validation-text"
+        [class.info-submitted-validation-valid]="registrationSuccessful"
+        [class.info-submitted-validation-error]="
+          !registrationSuccessful || errorMessage
+        "
+      >
+        {{
+          registrationSuccessful
+            ? registrationPhrase.success
+            : errorMessage || registrationPhrase.failure
+        }}
+      </p>
+    </div>
+    <app-login
+      (loginError)="handleLoginError($event)"
+      class="login-form-container"
+      *ngIf="selectedTab === 'login'"
+    ></app-login>
+    <div *ngIf="selectedTab === 'register'">
+      <!-- <app-register
+        (registrationStatus)="onRegistrationStatus($event)"
+      ></app-register> -->
+    </div>
+  </div>
+</section>

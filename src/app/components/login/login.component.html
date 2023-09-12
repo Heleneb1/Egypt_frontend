@@ -1,0 +1,37 @@
+<div class="login-box">
+  <form #myForm="ngForm" (ngSubmit)="myForm.valid && onSubmit()">
+    <div class="user-box">
+      <input
+        type="email"
+        #email="ngModel"
+        name="email"
+        required="true"
+        [(ngModel)]="user.email"
+        (input)="checkEmail()"
+      />
+      <label>Email</label>
+      <div *ngIf="myForm.submitted && !isEmailValid" class="error">
+        <span *ngIf="email.errors?.['required']">Email requis</span>
+        <div class="error" *ngIf="myForm.submitted && !isEmailValid">
+          L'email n'est pas valide.
+        </div>
+      </div>
+    </div>
+    <div class="user-box">
+      <input
+        type="password"
+        name="password"
+        #password="ngModel"
+        required="true"
+        [(ngModel)]="user.password"
+      />
+      <label>Mot de passe</label>
+      <div *ngIf="myForm.submitted && password.errors" class="error">
+        <span *ngIf="password.errors?.['required']">Mot de passe requis</span>
+      </div>
+    </div>
+    <div class="button-container">
+      <button type="submit" class="button">Connexion</button>
+    </div>
+  </form>
+</div>

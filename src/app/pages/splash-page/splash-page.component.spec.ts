@@ -8,7 +8,7 @@ describe('SplashPageComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [SplashPageComponent]
+      declarations: [SplashPageComponent],
     });
     fixture = TestBed.createComponent(SplashPageComponent);
     component = fixture.componentInstance;
