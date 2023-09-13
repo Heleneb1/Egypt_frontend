@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { Article } from '../models/Article';
-import { Observable } from 'rxjs';
+import { Article } from '../models/article';
+import { Observable, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -10,13 +10,14 @@ import { Observable } from 'rxjs';
 export class ArticlesService {
   private articlesDataUrl = environment.apiUrl + '/articles';
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
   getArticles() {
     return this.httpClient.get(this.articlesDataUrl);
   }
   getArticleById(id: string) {
     return this.httpClient.get(this.articlesDataUrl + '/' + id);
   }
+
   getArticlesByAuthor(author: string): Observable<Article[]> {
     return this.httpClient.get<Article[]>(
       `${this.articlesDataUrl}/byAuthor/${author}`
@@ -32,4 +33,36 @@ export class ArticlesService {
       `${this.articlesDataUrl}/byTitle/${title}`
     );
   }
+  getUniqueTags(): Observable<string[]> {
+    return this.httpClient.get<Article[]>(this.articlesDataUrl).pipe(
+      map((articles: Article[]) => {
+        const uniqueTag = new Set<string>();
+
+        articles.forEach((article: Article) => {
+          const individualTag = article.tag.split(',').map(t => t.trim());
+          individualTag.forEach(t => uniqueTag.add(t));
+        });
+
+        // Convertion du Set en tableau
+        return Array.from(uniqueTag);
+      })
+    );
+  }
+  getTitle(): Observable<string[]> {
+    return this.httpClient.get<Article[]>(this.articlesDataUrl).pipe(
+      map((articles: Article[]) => {
+        const uniqueTitle = new Set<string>();
+
+        articles.forEach((article: Article) => {
+          const title = article.title.split(',').map(t => t.trim());
+          title.forEach(t => uniqueTitle.add(t));
+        });
+
+        // Convertion du Set en tableau
+        return Array.from(uniqueTitle);
+      })
+    );
+  }
+
+
 }

@@ -1,0 +1,20 @@
+<div class="result-card">
+    <div *ngFor="let article of filteredArticle">
+      <div class="result-container">
+        <h3 class="result-name">{{ article?.title }}</h3>
+        <p class="result-tag">{{ article?.tag }}</p>
+        <p class="result-content">{{ article?.content }}</p>
+        
+        <div class="details" *ngIf="showDetails && selectedArticle === article">
+          <!-- <span class="result-city">{{ article?.commune }}</span>
+          <div class="result-site">
+            <a [href]="article?.site_web" target="_blank">{{ article?.site_web }}</a>
+          </div> -->
+        </div>
+      </div>
+      
+      <!-- Afficher les détails lorsque l'article est sélectionné -->
+      <button class="show-details-button" (click)="toggleDetails(article)">Afficher les détails</button>
+    </div>
+  </div>
+  

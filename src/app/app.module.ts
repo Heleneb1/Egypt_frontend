@@ -24,6 +24,7 @@ import { ConnectionComponent } from './pages/connection/connection.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { RouterModule } from '@angular/router';
+import { ResultCardComponent } from './components/result-card/result-card.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { RouterModule } from '@angular/router';
     ConnectionComponent,
     LoginComponent,
     RegisterComponent,
+    ResultCardComponent,
   ],
   imports: [
     BrowserModule,
