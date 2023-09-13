@@ -1,0 +1,110 @@
+.main-informations-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.image img {
+  width: 100vw;
+}
+
+.text-container {
+  position: relative;
+  bottom: 20rem;
+  width: 20rem;
+  height: 12rem;
+  background: rgba(0, 0, 0, 0.48);
+  color: #fdfdfd;
+  text-align: center;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-family: Kaushan Script;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.connection-container {
+  height: 40rem;
+  padding: 20px;
+  // display: flex;
+  // justify-content: center;
+}
+.login-form-container,
+.register-form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.top-bar-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.top-bar-form {
+  display: flex;
+  background-color: var(--blue);
+  border-radius: 5px;
+  overflow: hidden;
+  font-family: var(--title);
+}
+
+.top-bar-form-item-connection,
+.top-bar-form-item-register {
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.top-bar-form-item-text {
+  margin: 0;
+  font-weight: bold;
+  font-size: 1.3rem;
+  color: var(--white);
+}
+
+.top-bar-form-item-selected {
+  background-color: var(--sun);
+}
+
+// .top-bar-form-separator {
+//   width: 2px;
+//   height: 30px;
+//   background-color: var(--blue);
+// }
+
+.form-container {
+  padding: 20px;
+}
+
+.info-submitted-validation {
+  text-align: center;
+}
+
+.info-submitted-validation-text {
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.info-submitted-validation-valid {
+  color: var(--sun);
+  background-color: var(--white);
+}
+
+.info-submitted-validation-error {
+  color: var(--sun);
+  background-color: var(--blue);
+}
+
+@media (min-width: 768px) {
+  .text-container {
+    position: relative;
+    bottom: 30rem;
+    width: 45rem;
+    font-size: 2rem;
+  }
+}
