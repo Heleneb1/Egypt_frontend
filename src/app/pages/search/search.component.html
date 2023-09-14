@@ -1,31 +1,50 @@
-<!-- <div *ngFor="let article of articles">
-  <h2>{{ article.title }}</h2>
-  <p>{{ article.content }}</p>
-</div> -->
 <div class="sub-title"><h2>Les Mystères de l’Égypte Antique</h2></div>
-<!-- <div class="search-container">
-  <label for="authorSearch">Rechercher par nom d'auteur :</label>
-  <input type="text" id="authorSearch" [(ngModel)]="author" />
-  <button (click)="onAuthorSearchChange()">Rechercher</button>
-</div>
-<app-result-card [authorArticle]="articles"></app-result-card>
-<div class="search-container">
-  <label for="titleSearch">Rechercher par titre :</label>
-  <input type="text" id="titleSearch" [(ngModel)]="title" />
-  <button (click)="onTitleSearchChange()">Rechercher</button>
-</div>
-<div class="search-container">
-  <label for="tagSearch">Rechercher par contenu :</label>
-  <input type="text" id="tagSearch" [(ngModel)]="tag" />
-  <button (click)="onTagSearchChange()">Rechercher</button>
-</div> -->
+<section class="search">
+  
 <div class="name-search">
   <label for="theme"></label>
   <input type="text" id="theme" placeholder="Rechercher" [(ngModel)]="author" />
-  <button (click)="onAuthorSearchChange()">
+  <button (click)="onAuthorSearchChange(articleAuthor); onTagSearchChange(articleTag); onTitleSearchChange(articleTitle)">
     <i class="fas fa-search"></i>
   </button>
+  </div>
+<div class="filter-container">
+  <label for="tagSearh"></label>
+      <select class="option" [(ngModel)]="articleTag" (change)="onTagSearchChange(articleTag)">
+        <option value="">Tag</option>
+        <option
+          class="filter-option"
+          *ngFor="let tag of tagOptions"
+          [value]="tag"
+        >
+          {{ tag }}
+        </option>
+      </select>
+      <label for="titleSearch"></label>
+      <select class="option" [(ngModel)]="articleTitle" (change)="onTitleSearchChange(articleTitle)">
+        <option value="">Titre</option>
+        <option
+          class="filter-option"
+          *ngFor="let title of titleOptions"
+          [value]="title"
+        >
+          {{ title }}
+        </option>
+      </select>
+      <label for="authorSearch"></label>
+      <select class="option" [(ngModel)]="articleAuthor" (change)="onAuthorSearchChange(articleAuthor)">
+        <option value="">Auteur</option>
+        <option
+          class="filter-option"
+          *ngFor="let author of authorOptions"
+          [value]="author"
+        >
+          {{ author }}
+        </option>
+      </select>
+
 </div>
+<app-result-card [filteredArticle]="articles"></app-result-card>
 
 <div class="image">
   <img [src]="'../../../assets/images/Gizeah.jpg'" alt="" />
@@ -34,26 +53,3 @@
   Faîtes une recherche par mot-clé, ou utilisez notre filtre en fonction de vos
   envies
 </div>
-<label for="tagSearh"></label>
-    <select class="option" [(ngModel)]="articleTag" (change)="onTagSearchChange()">
-      <option value="">Tag</option>
-      <option
-        class="filter-option"
-        *ngFor="let tag of tagOptions"
-        [value]="tag"
-      >
-        {{ tag }}
-      </option>
-    </select>
-    <label for="titleSearch"></label>
-    <select class="option" [(ngModel)]="articleTitle" (change)="onTitleSearchChange()">
-      <option value="">Titre</option>
-      <option
-        class="filter-option"
-        *ngFor="let title of titleOptions"
-        [value]="title"
-      >
-        {{ title }}
-      </option>
-    </select>
-    <app-result-card [filteredArticle]="articles"></app-result-card>

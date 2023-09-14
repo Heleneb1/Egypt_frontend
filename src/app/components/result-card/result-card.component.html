@@ -6,15 +6,17 @@
         <p class="result-content">{{ article?.content }}</p>
         
         <div class="details" *ngIf="showDetails && selectedArticle === article">
-          <!-- <span class="result-city">{{ article?.commune }}</span>
-          <div class="result-site">
-            <a [href]="article?.site_web" target="_blank">{{ article?.site_web }}</a>
-          </div> -->
         </div>
       </div>
-      
+      <button class="museum-image" (click)="toggleDetails(article)">
+        <img
+          class="result-image"
+          [src]="'/assets/images/Gizeh.jpg' "
+          alt="{{ article?.title }}"
+        />
+      </button>
       <!-- Afficher les détails lorsque l'article est sélectionné -->
-      <button class="show-details-button" (click)="toggleDetails(article)">Afficher les détails</button>
+      <!-- <button class="show-details-button" (click)="toggleDetails(article)">Afficher les détails</button> -->
     </div>
   </div>
   

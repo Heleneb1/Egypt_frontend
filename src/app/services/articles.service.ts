@@ -63,6 +63,23 @@ export class ArticlesService {
       })
     );
   }
+  getUniqueAuthors(): Observable<string[]> {
+    return this.httpClient.get<Article[]>(this.articlesDataUrl).pipe(
+      map((articles: Article[]) => {
+        const uniqueAuthor = new Set<string>();
+  
+        articles.forEach((article: Article) => {
+          if (article.author) {
+            const individualAuthor = article.author.split(',').map(t => t.trim());
+            individualAuthor.forEach(t => uniqueAuthor.add(t));
+          }
+        });
+  
+        // Conversion du Set en tableau
+        return Array.from(uniqueAuthor);
+      })
+    );
+  }
+    }
 
 
-}

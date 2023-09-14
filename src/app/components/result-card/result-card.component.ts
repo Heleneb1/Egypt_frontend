@@ -11,7 +11,7 @@ export class ResultCardComponent {
   @Input() filteredArticle: Article[] = [];
   selectedArticle: Article | null = null;
   showDetails = false;
-
+isOpen = false;
   constructor(private router: Router) {}
 
   toggleDetails(selectedArticle: Article) {
@@ -20,7 +20,8 @@ export class ResultCardComponent {
     } else {
       this.selectedArticle = selectedArticle;
     }
-    this.showDetails = !!this.selectedArticle; 
+    this.showDetails = !this.selectedArticle; 
+    return this.selectedArticle;
   }
 
   goToArticleDetails() {

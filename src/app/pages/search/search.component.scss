@@ -47,6 +47,64 @@ button:active {
   align-items: center;
   justify-content: center;
 }
+.filter-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .filter-container label {
+    font-size: 1.5rem;
+  }
+}
+
+select,
+option {
+  appearance: none;
+  font-size: 1rem;
+}
+.option {
+  font-size: 1rem;
+}
+.filter-container select {
+  width: 16rem;
+  height: 3rem;
+  background: var(--white);
+  color: var(--blue);
+  padding: 0.5rem;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+}
+
+.filter-option {
+  text-align: left;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  width: 10rem;
+}
+
+input[type="text"]::placeholder {
+  color: var(--blue);
+}
+.filter-container {
+  margin-bottom: 3rem;
+}
+.filter-container select:first-of-type {
+  border-top-left-radius: 2rem;
+  border-bottom-left-radius: 2rem;
+}
+
+.filter-container select:last-child {
+  border-top-right-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+}
+
+.result-card {
+  display: flex;
+  justify-content: center;
+}
+
 @media (min-width: 768px) {
   #theme {
     width: 45rem;
@@ -57,4 +115,58 @@ button:active {
     justify-content: center;
     height: 35rem;
   }
+  .fas {
+    font-weight: 900;
+    font-size: 2rem;
+  }
+  
 }
+@media (max-width: 768px) {
+  .fa-search:before {
+    content: "\f002";
+}
+#theme {
+  width: 94%;
+}
+
+  .filter-container select {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 0.5rem;
+    height: 2rem;
+  }
+
+  .filter-container select:first-of-type {
+    border-top-left-radius: 2rem;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 2rem;
+  }
+
+  .filter-container select:last-child {
+    border-top-right-radius: 2rem;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 2rem;
+  }
+
+  button {
+    left: 40%;
+    bottom: 4.7rem;
+  }
+  .option {
+    width: 80%;
+
+    .filter-option {
+      font-size: 1rem;
+    }
+  }
+}
+// .selected {
+//   p {
+//     width: 20rem;
+//     font-size: 1rem;
+//     padding: 0.5rem;
+//     .color {
+//       color: var(--turquoise);
+//     }
+//   }
+// }

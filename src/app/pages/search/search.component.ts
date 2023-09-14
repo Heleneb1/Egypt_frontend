@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticlesService } from '../../services/articles.service';
 import { Article } from '../../models/article';
+import { reduce } from 'rxjs';
 
 @Component({
   selector: 'app-search',
@@ -10,19 +11,19 @@ import { Article } from '../../models/article';
 export class SearchComponent implements OnInit {
   articles: any[] = [];
   articleSearch = '';
-  articleData!: Article[];
   author!: string;
-  authors: string[] = [];
-  tag!: string;
-  tags: string[] = [];
   title!: string;
   filteredArticles: Article[] = [];
-  selectedTag: string = '';
+  selectedTag: string[] = [];
+  selectedTitle: string[] = [];
+  selectedAuthor: string[] = [];
   articleTag="";
-  selectedAuthor="";
   articleTitle="";
   tagOptions!: string[];
   titleOptions!: string[];
+  articleAuthor="";
+  authorOptions!: string[];
+
   constructor(private articlesService: ArticlesService) {}
   getArticles(): void {
     this.articlesService.getArticles().subscribe((articles: any) => {
@@ -30,15 +31,16 @@ export class SearchComponent implements OnInit {
     });
   }
   ngOnInit(): void {
-    this.articlesService.getArticles().subscribe((articles: any) => {
-      this.articles = articles;
-    });
     this.loadTags();
     this.loadTitle();
+    this.loadAuthors();
   }
 
-  onAuthorSearchChange() {
-    this.articlesService.getArticlesByAuthor(this.selectedAuthor).subscribe(
+  onAuthorSearchChange(selectedAuthor: string) {
+    this.resetOtherFilters("author"); // Réinitialise les autres filtres sauf le filtre par auteur
+  
+    // Appelez le service pour récupérer les articles par auteur
+    this.articlesService.getArticlesByAuthor(selectedAuthor).subscribe(
       (articles: Article[]) => {
         this.articles = articles;
       },
@@ -47,26 +49,14 @@ export class SearchComponent implements OnInit {
       }
     );
   }
-  loadTags() {
-    // Appelez votre service pour récupérer les options du menu déroulant ici
-    this.articlesService.getUniqueTags().subscribe(
-      (tags: string[]) => {
-        this.tagOptions = tags;
-      },
-      (error) => {
-        console.error("Une erreur s'est produite lors du chargement des tags :", error);
-      }
-    );
-  }
-
-  onTagSearchChange() {
-    // Utilisez this.selectedTag pour accéder à la valeur sélectionnée par l'utilisateur
+  
+  
+  onTagSearchChange(selectedTag: string) {
+this.resetOtherFilters("tag");
     console.log('Tag sélectionné :', this.selectedTag);
 
-    // Appelez votre service pour récupérer les articles par tag ici
-    this.articlesService.getArticlesByTag(this.selectedTag).subscribe(
+    this.articlesService.getArticlesByTag(selectedTag).subscribe(
       (articles: Article[]) => {
-        // Mettez à jour la liste des articles en fonction du tag sélectionné
         this.articles = articles;
       },
       (error) => {
@@ -76,7 +66,6 @@ export class SearchComponent implements OnInit {
   }
 
   loadTitle() {
-    // Appelez votre service pour récupérer les options du menu déroulant ici
     this.articlesService.getTitle().subscribe(
       (titles: string[]) => {
         this.titleOptions = titles;
@@ -87,12 +76,32 @@ export class SearchComponent implements OnInit {
     );
   }
 
+  loadAuthors() {
+    this.articlesService.getUniqueAuthors().subscribe(
+      (authors: string[]) => {  
+        this.authorOptions = authors;
+      },
+      (error) => {
+        console.error("Une erreur s'est produite lors du chargement des auteurs :", error);
+      }
+    );
+  }
+  
+loadTags() {
+  this.articlesService.getUniqueTags().subscribe(
+    (tags: string[]) => {
+      this.tagOptions = tags;
+    },
+    (error) => {
+      console.error("Une erreur s'est produite lors du chargement des tags :", error);
+    }
+  );
+}
 
 
-
-
-  onTitleSearchChange() {
-    this.articlesService.getArticlesByTitle(this.title).subscribe(
+  onTitleSearchChange(selectedTitle: string) {
+    this.resetOtherFilters("title");
+    this.articlesService.getArticlesByTitle(selectedTitle).subscribe(
       (articles: Article[]) => {
         this.articles = articles;
       },
@@ -101,27 +110,20 @@ export class SearchComponent implements OnInit {
       }
     );
   }
+  resetOtherFilters(filter: string) {
+    if (filter !== "tag") {
+      this.articleTag = "";
+      this.selectedTag = [];
+    }
+    if (filter !== "title") {
+      this.articleTitle = "";
+      this.selectedTitle = [];
+    }
+    if (filter !== "author") {
+      this.articleAuthor = "";
+      this.selectedAuthor = [];
+    }
+    
+  }
 }
-// getMuseumByLabel(label: string): Museums[] {
-//   const filteredMuseumLabel: Museums[] = [];
 
-//   this.museumData.forEach((museumData) => {
-//     const museum: Museums = museumData.fields;
-//     museum.recordid = museumData.recordid;
-//     if (museum.labels && museum.labels.includes(label)) {
-//       filteredMuseumLabel.push(museum);
-//     }
-//   });
-//   this.animate = true;
-//   setTimeout(() => {
-//     this.animate = false;
-//   }, 5000);
-//   return filteredMuseumLabel;
-// }
-
-// onLabelChange() {
-//   this.resetOtherFilters("label");
-//   this.selectedLabel = this.museumLabel;
-//   this.labelMuseums = this.getMuseumByLabel(this.museumLabel).slice(0, 2);
-//   this.showSeeMore = true;
-// }
