@@ -1,5 +1,10 @@
+<div  *ngIf="filteredArticle.length > 0" class="result-title">
+  <h2 class="title">Résultats</h2>
+</div>
+
 <div class="result-card">
-    <div *ngFor="let article of filteredArticle">
+    <div class="card" *ngFor="let article of filteredArticle">
+      
       <div class="result-container">
         <h3 class="result-name">{{ article?.title }}</h3>
         <p class="result-tag">{{ article?.tag }}</p>

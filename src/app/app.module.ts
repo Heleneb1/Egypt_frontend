@@ -25,6 +25,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { RouterModule } from '@angular/router';
 import { ResultCardComponent } from './components/result-card/result-card.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { ResultCardComponent } from './components/result-card/result-card.compon
     LoginComponent,
     RegisterComponent,
     ResultCardComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,

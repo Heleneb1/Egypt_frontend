@@ -4,9 +4,10 @@
 <div class="name-search">
   <label for="theme"></label>
   <input type="text" id="theme" placeholder="Rechercher" [(ngModel)]="author" />
-  <button (click)="onAuthorSearchChange(articleAuthor); onTagSearchChange(articleTag); onTitleSearchChange(articleTitle)">
+  <button (click)="searchArticles()">
     <i class="fas fa-search"></i>
   </button>
+  <!-- <app-result-card [filteredArticle]="articles"></app-result-card> -->
   </div>
 <div class="filter-container">
   <label for="tagSearh"></label>
@@ -44,10 +45,11 @@
       </select>
 
 </div>
+
 <app-result-card [filteredArticle]="articles"></app-result-card>
 
 <div class="image">
-  <img [src]="'../../../assets/images/Gizeah.jpg'" alt="" />
+  <img [src]="'assets/images/Gizeah.jpg'" alt="" />
 </div>
 <div class="text-container">
   Faîtes une recherche par mot-clé, ou utilisez notre filtre en fonction de vos

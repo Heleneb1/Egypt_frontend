@@ -80,6 +80,35 @@ export class ArticlesService {
       })
     );
   }
-    }
+  // getArticlesByAuthor(author: string): Observable<Article[]> {
+  //   return this.httpClient.get<Article[]>(
+  //     `${this.articlesDataUrl}/byAuthor/${author}`
+  //   );
+  // }
 
+  getArticlesByAuthorTitleTag(articleAuthor?: string, articleTitle?: string, articleTag?: string): Observable<Article[]> {
+    // Construct the URL based on the provided parameters
+    let searchUrl = this.articlesDataUrl + '/search';
+  
+    // Build the query parameters
+    const queryParams = [];
+    if (articleAuthor) {
+      queryParams.push(`author=${encodeURIComponent(articleAuthor)}`);
+    }
+    if (articleTitle) {
+      queryParams.push(`title=${encodeURIComponent(articleTitle)}`);
+    }
+    if (articleTag) {
+      queryParams.push(`tag=${encodeURIComponent(articleTag)}`);
+    }
+  
+    // Add the query parameters to the URL if any are provided
+    if (queryParams.length > 0) {
+      searchUrl += '?' + queryParams.join('&');
+    }
+  
+    // Specify the response type as Article[]
+    return this.httpClient.get<Article[]>(searchUrl);
+  }
+}  
 

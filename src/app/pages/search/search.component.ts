@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticlesService } from '../../services/articles.service';
 import { Article } from '../../models/article';
-import { reduce } from 'rxjs';
+
 
 @Component({
   selector: 'app-search',
@@ -9,7 +9,7 @@ import { reduce } from 'rxjs';
   styleUrls: ['./search.component.scss'],
 })
 export class SearchComponent implements OnInit {
-  articles: any[] = [];
+  articles: Article[] = [];
   articleSearch = '';
   author!: string;
   title!: string;
@@ -35,8 +35,30 @@ export class SearchComponent implements OnInit {
     this.loadTitle();
     this.loadAuthors();
   }
-
-  onAuthorSearchChange(selectedAuthor: string) {
+  //TODO revoir la fonction
+  searchArticles() {
+    
+    this.resetOtherFilters("tag");
+    this.resetOtherFilters("title");
+    this.resetOtherFilters("author");
+  
+   
+    this.articlesService.getArticlesByAuthorTitleTag(
+      this.articleAuthor ||
+      this.articleTitle ||
+      this.articleTag
+    ).subscribe(
+      (response: Article[]) => {
+        this.articles = response;
+      },
+      (error) => {
+        console.error("An error occurred:", error);
+      }
+    );
+  
+    this.articleTag = '';
+  }
+     onAuthorSearchChange(selectedAuthor: string) {
     this.resetOtherFilters("author"); // Réinitialise les autres filtres sauf le filtre par auteur
   
     // Appelez le service pour récupérer les articles par auteur
