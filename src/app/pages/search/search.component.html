@@ -1,6 +1,54 @@
-<p>search works!</p>
-<div *ngFor="let article of articles">
-  <h2>{{ article.title }}</h2>
-  <p>{{ article.content }}</p>
-  <!-- Ajoutez d'autres balises HTML pour afficher les autres détails de l'article -->
+<div class="sub-title">
+  <h2>Les Mystères de l’Égypte Antique</h2>
 </div>
+<section class="search">
+
+  <div class="name-search">
+    <label for="theme"></label>
+    <input type="text" id="theme" placeholder="Rechercher" [(ngModel)]="author" />
+    <button (click)="searchArticles()">
+      <i class="fas fa-search"></i>
+    </button>
+    <!-- <app-result-card [filteredArticle]="articles"></app-result-card> -->
+  </div>
+  <div class="filter-container">
+    <label for="tagSearh"></label>
+    <select class="option" [(ngModel)]="articleTag" (change)="onTagSearchChange(articleTag)">
+      <option value="">Tag</option>
+      <option class="filter-option" *ngFor="let tag of tagOptions" [value]="tag">
+        {{ tag }}
+      </option>
+    </select>
+    <label for="titleSearch"></label>
+    <select class="option" [(ngModel)]="articleTitle" (change)="onTitleSearchChange(articleTitle)">
+      <option value="">Titre</option>
+      <option class="filter-option" *ngFor="let title of titleOptions" [value]="title">
+        {{ title }}
+      </option>
+    </select>
+    <label for="authorSearch"></label>
+    <select class="option" [(ngModel)]="articleAuthor" (change)="onAuthorSearchChange(articleAuthor)">
+      <option value="">Auteur</option>
+      <option class="filter-option" *ngFor="let author of authorOptions" [value]="author">
+        {{ author }}
+      </option>
+    </select>
+
+  </div>
+
+  <app-result-card [filteredArticle]="articles"></app-result-card>
+  <div class="Search-all">
+    <div class="search-image">
+
+      <div class="image">
+        <img [src]="'assets/images/Gizeah.jpg'" alt="" />
+        <app-scroll-to-top></app-scroll-to-top>
+      </div>
+      <div class="text-container">
+        Faîtes une recherche par mot-clé, ou utilisez notre filtre en fonction de vos
+        envies
+      </div>
+
+    </div>
+
+  </div>

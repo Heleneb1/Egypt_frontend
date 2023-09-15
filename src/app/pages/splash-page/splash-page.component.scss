@@ -10,12 +10,7 @@
 .left-div,
 .right-div {
   flex: 1;
-  transition: all 3s ease-in-out;
-}
-.left-div,
-.right-div {
-  flex: 1;
-  transition: all 3s ease-in-out;
+  transition: all 2s ease-in-out;
 }
 
 .left-div {
@@ -48,7 +43,7 @@
 }
 /* style.css */
 .shake-animation {
-  animation-delay: 1s; /* Commence après 1 seconde */
+  animation-delay: 1.5s; /* Commence après 1 seconde */
   animation: shake 0.1s ease-in-out infinite;
 }
 .open-doorL {
@@ -112,6 +107,9 @@
 @keyframes fogAnimation {
   0% {
     opacity: 0;
+  }
+  75% {
+    opacity: 0.3;
   }
   100% {
     opacity: 1;
