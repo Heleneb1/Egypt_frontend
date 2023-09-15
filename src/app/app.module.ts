@@ -28,6 +28,7 @@ import { ResultCardComponent } from './components/result-card/result-card.compon
 import { HeaderComponent } from './components/header/header.component';
 import { CreateQuizComponent } from './components/create-quiz/create-quiz.component';
 import { QuillModule } from 'ngx-quill';
+import { ScrollToTopComponent } from './components/scroll-to-top/scroll-to-top.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { QuillModule } from 'ngx-quill';
     ResultCardComponent,
     HeaderComponent,
     CreateQuizComponent,
+    ScrollToTopComponent,
   ],
   imports: [
     BrowserModule,

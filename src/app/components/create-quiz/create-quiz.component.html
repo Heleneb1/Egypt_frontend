@@ -1,37 +1,57 @@
-<div class="all-fields">
-    <div class="quiz">
-        <div class="label-style">
-            <label for="title">Titre:</label>
-            <input type="text" id="title" name="title" [(ngModel)]="textValue" placeholder="Entrez le titre du quiz" />
-        </div>
+<div class="createQuiz">
+    <div class="sub-title">
+        <h2>Les Mystères de l’Égypte Antique</h2>
     </div>
-    <div class="quiz">
-        <div class="label-style">
-            <label for="tag">Tag:</label>
-            <input type="text" id="tag" name="tag" [(ngModel)]="tag" placeholder="Entrez le tag du quiz" />
+    <div class="main-image">
+        <div class="image">
+            <img [src]="'assets/images/Gizeah.jpg'" alt="Gizeh" />
         </div>
-    </div>
-    <div class="quiz">
 
-        <div class="label-style">
-            <label for="difficulty">Niveau:</label>
-            <input type="text" id="difficulty" name="difficulty" [(ngModel)]="difficulty"
-                placeholder="Entrez le niveau du quiz" />
-        </div>
+        <div class="text-container">
+            Vous avez la possibilité de créez votre propre quiz.
+            Après un contrôle de notre scribe il sera présenté à l’ensemble de nos abonnés </div>
     </div>
-    <div class="quiz">
+    <div class="sub-title">
+        <h2>Créer un quiz</h2>
+        <div class="all-fields">
 
-        <div class="label-style">
-            <label for="image">Image:</label>
-            <input type="text" id="image" name="image" [(ngModel)]="picture" placeholder="Entrez le lien de l'image" />
+            <div class="quiz">
+                <div class="label-style">
+                    <label for="title">Titre:</label>
+                    <input type="text" id="title" name="title" [(ngModel)]="textValue"
+                        placeholder="Entrez le titre du quiz" />
+                </div>
+            </div>
+            <div class="quiz">
+                <div class="label-style">
+                    <label for="tag">Tag:</label>
+                    <input type="text" id="tag" name="tag" [(ngModel)]="tag" placeholder="Entrez le tag du quiz" />
+                </div>
+            </div>
+            <div class="quiz">
+
+                <div class="label-style">
+                    <label for="difficulty">Niveau:</label>
+                    <input type="text" id="difficulty" name="difficulty" [(ngModel)]="difficulty"
+                        placeholder="Entrez le niveau du quiz" />
+                </div>
+            </div>
+            <div class="quiz">
+
+                <div class="label-style">
+                    <label for="image">Image:</label>
+                    <input type="text" id="image" name="image" [(ngModel)]="picture"
+                        placeholder="Entrez le lien de l'image" />
+                </div>
+            </div>
+            <div id="editor"></div>
+        </div>
+        <div class="Send">
+            <div class="button">
+                <div class="button-container">
+                    <button type="submit" class="button" (click)="createQuiz()">Soumettre</button>
+                </div>
+            </div>
         </div>
     </div>
-    <div id="editor"></div>
-</div>
-<div class="Send">
-    <div class="button">
-        <div class="button-container">
-            <button type="submit" class="button" (click)="createQuiz()">Soumettre</button>
-        </div>
-    </div>
-</div>
+    <app-scroll-to-top></app-scroll-to-top>

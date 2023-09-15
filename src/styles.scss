@@ -106,7 +106,7 @@ p {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 1rem;
+    margin: 2rem;
   }
 }
 
@@ -116,6 +116,7 @@ p {
   box-sizing: border-box;
   font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
   padding: 8px;
+
   width: 100%;
   background-color: rgba(255, 255, 255, 0.7);
   margin: 0 3rem;
@@ -142,4 +143,33 @@ p {
 
 span.ql-picker-label {
   color: var(--blue);
+}
+
+.main-image {
+  height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  .image img {
+    width: 100vw;
+  }
+
+  .text-container {
+    padding: 2rem;
+    width: 50%;
+    position: relative;
+    bottom: 22rem;
+    height: 12rem;
+    background: rgba(0, 0, 0, 0.48);
+    color: #fdfdfd;
+    text-align: center;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: Kaushan Script;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
