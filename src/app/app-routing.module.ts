@@ -37,6 +37,7 @@ import { ConnectionComponent } from './pages/connection/connection.component';
 import { HomeComponent } from './pages/home/home.component';
 import { SplashPageComponent } from './pages/splash-page/splash-page.component';
 import { SearchComponent } from './pages/search/search.component';
+import { CreateQuizComponent } from './components/create-quiz/create-quiz.component';
 // import { AdminComponent } from './pages/admin/admin.component'; // Supposez que vous avez une page d'administration
 
 // Importez votre AdminAuthGuardService
@@ -55,6 +56,11 @@ const routes: Routes = [
     path: 'article',
     component: SearchComponent,
   },
+  {
+    path: 'create-quiz',
+    component: CreateQuizComponent,
+  },
+
   {
     path: 'authentication',
     component: ConnectionComponent,

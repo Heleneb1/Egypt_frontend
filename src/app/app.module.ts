@@ -26,6 +26,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { RouterModule } from '@angular/router';
 import { ResultCardComponent } from './components/result-card/result-card.component';
 import { HeaderComponent } from './components/header/header.component';
+import { CreateQuizComponent } from './components/create-quiz/create-quiz.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { HeaderComponent } from './components/header/header.component';
     RegisterComponent,
     ResultCardComponent,
     HeaderComponent,
+    CreateQuizComponent,
   ],
   imports: [
     BrowserModule,

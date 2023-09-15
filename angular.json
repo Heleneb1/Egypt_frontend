@@ -16,7 +16,13 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
+          
           "options": {
+            "allowedCommonJsDependencies": [
+              "quill",
+              "quill-emoji/dist/quill-emoji.js",
+              "quill-image-resize-module"
+          ],
             "outputPath": "dist/frontend-egypt",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -94,6 +100,7 @@
             ],
             "styles": [
               "src/styles.scss"
+              
             ],
             "scripts": []
           }

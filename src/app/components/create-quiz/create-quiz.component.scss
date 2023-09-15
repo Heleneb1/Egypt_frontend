@@ -1,0 +1,60 @@
+#editor {
+    margin: 1rem auto;
+    width: 90%;
+    height: 30rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+  }
+  .ql-toolbar {
+    position: relative; /* Ajustez la position au besoin */
+    top: 0; /* Ajustez la valeur top pour déplacer la barre d'outils vers le haut ou le bas */
+  }
+.promotion {
+    margin: 1.5rem 1.5rem;
+    display: flex;
+    justify-content: center;
+  }
+  .all-fields {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .promotion {
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    label {
+      width: 20%;
+    }
+  }
+  
+  #toolbar {
+    display: flex;
+    justify-content: center;
+    background-color: #f5f5f5;
+    padding: 10px;
+  }
+  input {
+    margin-left: 0.5rem;
+    border-color: #6f42c1;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+  }
+  .Button {
+    display: flex;
+    justify-content: center;
+  
+    .PromoButton {
+      border-radius: 0.5rem;
+      background-color: #6f42c1;
+      color: white;
+      width: 140px;
+      height: 30px;
+      margin: 2rem;
+    }
+  }

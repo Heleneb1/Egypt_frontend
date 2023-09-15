@@ -1,0 +1,44 @@
+<div class="all-fields">
+    <div class="promotion">
+        <label for="title">Titre:</label>
+        <input
+            type="text"
+            id="title"
+            name="title"
+            [(ngModel)]="textValue"
+            placeholder="Entrez le titre de la promotion"
+        />
+    </div>
+    <div class="promotion">
+        <label for="tag">Tag:</label>
+        <input type="text" id="tag" name="tag" [(ngModel)]="tag" placeholder="Entrez le tag de la promotion" />
+    </div>
+    <div class="promotion">
+        <label for="difficulty">Niveau:</label>
+        <input
+            type="text"
+            id="difficulty"
+            name="difficulty"
+            [(ngModel)]="difficulty"
+            placeholder="Entrez le niveau de la promotion"
+        />
+    </div>
+    <div class="promotion">
+      
+    </div>
+    <div class="promotion">
+        <label for="image">Image:</label>
+        <input type="text" id="image" name="image" [(ngModel)]="picture" placeholder="Entrez le lien de l'image" />
+    </div>
+    <div class="promotion">
+        <label for="link">Type :</label>
+        <input type="text" id="link" name="type" [(ngModel)]="type" placeholder="Entrez le lien type" />
+    </div>
+</div>
+<div class="addParticipants">
+    <div id="editor"></div>
+
+    <div class="Button">
+        <button class="PromoButton" (click)="createQuiz()">Envoyer</button>
+    </div>
+</div>
