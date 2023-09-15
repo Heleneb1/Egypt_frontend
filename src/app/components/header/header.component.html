@@ -1,5 +1,6 @@
 <nav class="header-container">
     <div class="header-content">
+        
         <div class="menu-burger" [ngClass]="{ open: isMenuOpen }" (click)="toggleMenu()">
             <div class="line"></div>
             <div class="line"></div>
@@ -29,5 +30,10 @@
         </a>
         <div class="icon"><i class="fa fa-envelope"></i></div>
         <div class="icon"><i class="fa fa-bell"></i></div>
+        
     </div>
+    <div class="logo">
+        <img [src]="'assets/images/logo-bleu.svg'" alt="logo"  />
+    </div>
+
 </nav>

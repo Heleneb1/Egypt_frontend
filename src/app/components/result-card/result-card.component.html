@@ -13,13 +13,13 @@
         <div class="details" *ngIf="showDetails && selectedArticle === article">
         </div>
       </div>
-      <button class="museum-image" (click)="toggleDetails(article)">
+      <div class="result-image" (click)="toggleDetails(article)">
         <img
           class="result-image"
           [src]="'/assets/images/Gizeh.jpg' "
           alt="{{ article?.title }}"
         />
-      </button>
+      </div>
       <!-- Afficher les détails lorsque l'article est sélectionné -->
       <!-- <button class="show-details-button" (click)="toggleDetails(article)">Afficher les détails</button> -->
     </div>

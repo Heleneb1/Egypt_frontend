@@ -122,16 +122,19 @@ nav.header-container {
   .icon {
     margin-left: 20px;
     margin-right: 20px;
-    color: white;
+    color: var(--sun);
     font-size: 20px;
     cursor: pointer;
   }
   
+  
   @media (min-width: 768px) {
     .menu-burger {
       display: none;
+   
+    
+    
     }
-  
     .header-content {
       display: flex;
       justify-content: space-between;
@@ -176,5 +179,9 @@ nav.header-container {
     }
     .menu-image {
       display: none;
+    }
+    .icons {
+      display: none;
+      
     }
   }
