@@ -1,0 +1,70 @@
+<div class="quiz-count">
+    <p>
+        Actuellement,
+        <span class="number">{{ quizzes.length }} </span>
+        quiz sont disponibles
+    </p>
+</div>
+<div class="create-quiz">
+    <button>
+        <a class="create-quiz-button" [routerLink]="['/create-quiz']">
+            <p>Créez un quiz</p>
+            <!-- <img [src]="'assets/images/svg/right-arrow.svg'" alt="arrow" height="100" width="100" /> -->
+        </a>
+    </button>
+</div>
+<div class="quiz-card-container">
+    <div class="quiz-card" *ngFor="let quiz of quizzes">
+
+        <div class="quiz-card">
+            <div class="header-card">
+                <!-- <img src="{{ quiz.picture }}" /> -->
+                <img [src]="quiz.picture ? quiz.picture : 'assets/images/Gizeah.jpg'" alt="Image du quiz" />
+            </div>
+            <div class="body-card">
+                <h3>{{ quiz.title }}</h3>
+                <div class="quiz-detail-container">
+                    <div class="footer">
+                        <div>
+                            <p>note: {{ quiz.rating? quiz.rating: "3.5" }}</p>
+                            <p>niveau: {{ quiz.difficulty? quiz.difficulty: "facile" }}</p>
+                        </div>
+                        <div>
+                            <div class="rating">
+                                <app-star-rating [totalStars]="5" [rating]="quiz.rating"
+                                    (ratingChanged)="onRatingChanged($event)"></app-star-rating>
+
+
+                                <button class="update-button" *ngIf="isVoteModified" (click)="saveVote()">Enregistrer le
+                                    vote</button>
+                            </div>
+
+                            <!-- <a
+              class="quiz-detail-button"
+              [routerLink]="['/quiz', quiz.id]"
+              (click)="selectquizById(quiz.id)"
+            >
+              <p>Details</p>
+              
+              <img [src]="'assets/images/svg/right-arrow.svg'" alt="arrow" height="100" width="100" />
+            </a> -->
+                            <!-- <a class="quiz-detail-button" [routerLink]="['/quiz', quiz.id]">
+                <p>Details</p>
+                <img [src]="'assets/images/svg/right-arrow.svg'" alt="arrow" height="100" width="100" />
+            </a> -->
+
+                        </div>
+                    </div>
+                    <ng-template #loader>
+                        <div class="loader-container" [@fadeInOut]>
+                            <p>Loading...</p>
+                        </div>
+                    </ng-template>
+                    <div *ngIf="!quizzes">
+                        <p>quiz not found.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

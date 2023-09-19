@@ -11,8 +11,11 @@ import { environment } from 'src/environments/environment.development';
 export class LoginComponent {
   user = new loginUser();
   isEmailValid = false;
+
+  showPassword: boolean = false;
+
   @Output() loginError = new EventEmitter<string>();
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) { }
 
   checkEmail() {
     if (this.user.email !== undefined || this.user.email !== '') {
@@ -38,7 +41,7 @@ export class LoginComponent {
         .subscribe(
           (response) => {
             if (response.status === 200) {
-              this.router.navigate(['/article']);
+              this.router.navigate(['/profile']);
             }
           },
           () => {
@@ -50,7 +53,13 @@ export class LoginComponent {
       return false;
     }
   }
+  click() {
+    this.showPassword = !this.showPassword;
+  }
+
+
 }
+
 
 export class loginUser {
   email: string;
@@ -60,4 +69,5 @@ export class loginUser {
     this.email = '';
     this.password = '';
   }
+
 }

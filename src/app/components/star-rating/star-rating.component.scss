@@ -1,0 +1,16 @@
+.star-rating {
+    .star {
+        font-size: 24px;
+        color: rgb(243, 205, 17);
+        cursor: pointer;
+        transition: color 0.2s ease-in-out;
+
+        &.fa-star-half::before {
+            content: '\f089';
+            position: absolute;
+            width: 50%;
+            overflow: hidden;
+            color: rgb(243, 205, 17);
+        }
+    }
+}

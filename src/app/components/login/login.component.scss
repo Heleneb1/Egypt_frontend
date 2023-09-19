@@ -1,8 +1,25 @@
 .login-box {
   width: 80vw;
 }
+
 @media (min-width: 768px) {
   .login-box {
     width: 60vw;
   }
+}
+
+.add-icon {
+  width: 60vw;
+  height: 2rem;
+  margin-right: 0.5rem;
+  cursor: pointer;
+}
+
+.show-password {
+  width: 2rem;
+  display: flex;
+  font-size: 18px;
+  cursor: pointer;
+  border: none;
+  background: transparent;
 }

@@ -1,0 +1,46 @@
+<div class="container">
+    <div class="user-info-container">
+        <div class="image-container">
+            <img [src]="avatarUrl" alt="ad" />
+            <div class="add-avatar">
+                <input class="add-avatar-button" type="file" (change)="onFileSelected($event)" id="file" />
+                <label class="add-avatar-label" for="file"><strong>+</strong></label>
+            </div>
+        </div>
+        <i class="fas fa-feather"></i>
+
+        <div class="name-container">
+            <p>{{ userData.firstname }} {{ userData.lastname }}</p>
+        </div>
+        <!-- <div class="stats-container">
+            <div class="stats-background">
+                <div class="stats-text-container">
+                    <p class="count-stat">4</p>
+                    <p class="title-stat">Resources Partagées</p>
+                </div>
+                <div class="stats-text-container">
+                    <p class="count-stat">10</p>
+                    <p class="title-stat">Réponses</p>
+                </div>
+                <div class="stats-text-container">
+                    <p class="count-stat">10</p>
+                    <p class="title-stat">Sujets créés</p>
+                </div>
+            </div>
+        </div> -->
+    </div>
+    <div class="user-sub-info-container">
+        <div class="bio-container">
+            <div class="bio-editing-button" (click)="cancelUpdatedBiography()">
+                <img class="edit-button" [src]="isEditingBiography ? closeEditIcon : editIcon" alt="edit" />
+            </div>
+            <p *ngIf="!isEditingBiography">
+                {{ userData.biography }}
+            </p>
+            <div class="bio-form" *ngIf="isEditingBiography">
+                <textarea name="bio" id="bio" [(ngModel)]="inputBiography" class="input-text-area-bio"></textarea>
+                <div (click)="onUpdateBio()" class="update-bio-button">Valider</div>
+            </div>
+        </div>
+    </div>
+</div>
