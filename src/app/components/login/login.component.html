@@ -1,14 +1,8 @@
 <div class="login-box">
   <form #myForm="ngForm" (ngSubmit)="myForm.valid && onSubmit()">
     <div class="user-box">
-      <input
-        type="email"
-        #email="ngModel"
-        name="email"
-        required="true"
-        [(ngModel)]="user.email"
-        (input)="checkEmail()"
-      />
+      <input type="email" #email="ngModel" name="email" required="true" [(ngModel)]="user.email"
+        (input)="checkEmail()" />
       <div class="input-title">
         <h3>Email</h3>
       </div>
@@ -21,19 +15,29 @@
       </div>
     </div>
     <div class="user-box">
-      <input
-        type="password"
-        name="password"
-        #password="ngModel"
-        required="true"
-        [(ngModel)]="user.password"
-      />
+      <input type="password" name="password" #password="ngModel" required="true" [(ngModel)]="user.password"
+        [type]="showPassword ? 'text' : 'password'" />
       <div class="input-title">
         <h3>Mot de passe</h3>
       </div>
       <div *ngIf="myForm.submitted && password.errors" class="error">
         <span *ngIf="password.errors?.['required']">Mot de passe requis</span>
+
       </div>
+      <button type="button" class="show-password" (click)="click()"
+        style="color: var(--sun); background-color: var(--white);">
+        <div class="eye">
+          <i [class]="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+        </div>
+      </button>
+
+      <!-- <div class="button-scroll">
+        <button [ngClass]="{'button-scroll-to-top--show': showScroll}" (click)="scrollToTop()" class="button-scroll-to-top">
+            <div class="arrow-icon">
+                <i class="fas fa -solid fa-arrow-up " style="color: var(--white); background-color: var(--sun);"></i>
+            </div>
+        </button>
+    </div> -->
     </div>
     <div class="button">
       <div class="button-container">

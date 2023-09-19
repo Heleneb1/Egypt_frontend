@@ -38,6 +38,9 @@ import { HomeComponent } from './pages/home/home.component';
 import { SplashPageComponent } from './pages/splash-page/splash-page.component';
 import { SearchComponent } from './pages/search/search.component';
 import { CreateQuizComponent } from './components/create-quiz/create-quiz.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { AuthGuard } from './services/auth-guard.service';
+import { QuizViewComponent } from './pages/quiz-view/quiz-view.component';
 // import { AdminComponent } from './pages/admin/admin.component'; // Supposez que vous avez une page d'administration
 
 // Importez votre AdminAuthGuardService
@@ -65,6 +68,15 @@ const routes: Routes = [
     path: 'authentication',
     component: ConnectionComponent,
   },
+  {
+    path: 'profile',
+    component: UserProfileComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'quiz',
+    component: QuizViewComponent,
+  },
   // {
   //   path: 'admin',
   //   component: AdminComponent, // Page d'administration
@@ -76,4 +88,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

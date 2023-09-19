@@ -29,7 +29,27 @@ import { HeaderComponent } from './components/header/header.component';
 import { CreateQuizComponent } from './components/create-quiz/create-quiz.component';
 import { QuillModule } from 'ngx-quill';
 import { ScrollToTopComponent } from './components/scroll-to-top/scroll-to-top.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { UserInfoComponent } from './components/user-info/user-info.component';
+import { NgcCookieConsentModule, NgcCookieConsentConfig } from 'ngx-cookieconsent';
+import { QuizViewComponent } from './pages/quiz-view/quiz-view.component';
+import { StarRatingComponent } from './components/star-rating/star-rating.component';
 
+const cookieConfig: NgcCookieConsentConfig = {
+  cookie: {
+    domain: 'localhost' // or 'your.domain.com' // it is mandatory to set a domain, for cookies to work properly (see https://goo.gl/S2Hy2A)
+  },
+  palette: {
+    popup: {
+      background: 'var(--sun)',
+    },
+    button: {
+      background: 'var(--blue)',
+    }
+  },
+  theme: 'edgeless',
+  type: 'opt-out'
+};
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,12 +65,16 @@ import { ScrollToTopComponent } from './components/scroll-to-top/scroll-to-top.c
     HeaderComponent,
     CreateQuizComponent,
     ScrollToTopComponent,
+    UserProfileComponent,
+    UserInfoComponent,
+    QuizViewComponent,
+    StarRatingComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     QuillModule.forRoot(),
-
+    NgcCookieConsentModule.forRoot(cookieConfig),
     FormsModule,
     RouterModule,
     AppRoutingModule,
@@ -66,4 +90,4 @@ import { ScrollToTopComponent } from './components/scroll-to-top/scroll-to-top.c
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

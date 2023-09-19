@@ -1,6 +1,6 @@
 <nav class="header-container">
     <div class="header-content">
-        
+
         <div class="menu-burger" [ngClass]="{ open: isMenuOpen }" (click)="toggleMenu()">
             <div class="line"></div>
             <div class="line"></div>
@@ -12,14 +12,15 @@
                 <ul>
                     <li><a routerLink="/home">Accueil</a></li>
                     <li><a routerLink="/article">Articles</a></li>
-                    <li><a routerLink="/create-quiz">Quiz</a></li>
+                    <li><a routerLink="/quiz">Quiz</a></li>
+                    <li><a routerLink="/profile">Profil</a></li>
                     <li><a routerLink="/authentication">Connexion</a></li>
-                   <li> <a (click)="logout()">Déconnexion</a></li>
+                    <li> <a (click)="logout()">Déconnexion</a></li>
                     <!-- <img src="assets/images/Brain.png" alt="Image 2" class="menu-image" /> -->
                 </ul>
                 <div class="menu-image">
-                <img [src]="'assets/images/logo-bleu.svg'" alt="logo" class="menu-image" />
-            </div>
+                    <img [src]="'assets/images/logo-bleu.svg'" alt="logo" class="menu-image" />
+                </div>
             </div>
         </div>
     </div>
@@ -30,10 +31,10 @@
         </a>
         <div class="icon"><i class="fa fa-envelope"></i></div>
         <div class="icon"><i class="fa fa-bell"></i></div>
-        
+
     </div>
     <div class="logo">
-        <img [src]="'assets/images/logo-bleu.svg'" alt="logo"  />
+        <img [src]="'assets/images/logo-bleu.svg'" alt="logo" />
     </div>
 
 </nav>

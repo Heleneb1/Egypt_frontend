@@ -43,11 +43,13 @@ export class CreateQuizComponent implements AfterViewInit, OnInit {
 
   ngAfterViewInit() {
     const toolbarOptions = [
-      ['bold', 'italic', 'underline', 'strike', 'blockquote', 'code-block', 'script', 'header', 'indent', 'list', 'direction', 'align', 'clean'],
-      ['emoji', 'link', 'image', 'video', 'formula', 'checklist', 'chart', 'code', 'table', 'fullscreen'],
+      ['bold', 'italic', 'underline', 'strike', 'blockquote', 'code-block', 'script', 'header',
+        'indent', 'list', 'direction', 'align', 'clean'],
+      ['emoji', 'link', 'image', 'video', 'formula', 'code', 'table'],
       [{ color: [] }, { background: [] }],
       ['clean'],
       [{ size: ['small', false, 'large', 'huge'] }],
+
     ];
 
 
@@ -60,39 +62,33 @@ export class CreateQuizComponent implements AfterViewInit, OnInit {
       },
       theme: 'snow',
     });
-
-    const emojiButton: any = this.quill.getModule('emoji-toolbar'); // Type should be defined
-    emojiButton.initToolbar();
+    // const emojiButton: any = this.quill.getModule('emoji-toolbar'); // Type should be defined
+    // emojiButton.initToolbar();
   }
 
   createQuiz(): void {
     const descriptionText = this.quill.root.innerHTML;
-
     const userId = this.userConnected.id;
-    const url = environment.apiUrl + `/quizzes/${userId}`;
+    const url = environment.apiUrl + `/quizzes/create/${userId}`;
+    console.log(url);
 
     const data = {
-      description: descriptionText,
-      name: this.textValue,
+      content: descriptionText,
+      title: this.textValue,
       picture: this.picture,
       tag: this.tag,
-      type: this.type,
       difficulty: this.difficulty,
     };
 
-    // Use the HttpClient to send a POST request with the 'data' to the 'url'
-    // Uncomment and modify this code based on your API endpoint and data structure
-    // this.http.post(url, data).subscribe(
-    //   (response: any) => {
-    //     const createdquizzeId = response.id;
-    //     localStorage.setItem('createdquizzeId', createdquizzeId);
-    //     alert('La quizze est créée avec succès !');
-    //     this.createdQuizId = createdquizzeId;
-    //     this.showModal = true;
-    //   },
-    //   (error) => {
-    //     console.error('Failed to create quizze', error);
-    //   }
-    // );
+    this.http.post(url, data).subscribe(
+      (response: any) => {
+        alert('Le quiz est créé avec succès !');
+      },
+      (error) => {
+        console.error('Failed to create quiz', error);
+        console.log(data);
+
+      }
+    );
   }
 }
