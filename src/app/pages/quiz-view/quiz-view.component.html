@@ -1,7 +1,7 @@
 <div class="quiz-count">
     <p>
         Actuellement,
-        <span class="number">{{ quizzes.length }}</span>
+        <span class="number">{{ quizzes.length }} </span>
         quiz sont disponibles
     </p>
 </div>
@@ -30,6 +30,15 @@
                             <p>niveau: {{ quiz.difficulty? quiz.difficulty: "facile" }}</p>
                         </div>
                         <div>
+                            <div class="rating">
+                                <app-star-rating [totalStars]="5" [rating]="quiz.rating"
+                                    (ratingChanged)="onRatingChanged($event)"></app-star-rating>
+
+
+                                <button class="update-button" *ngIf="isVoteModified" (click)="saveVote()">Enregistrer le
+                                    vote</button>
+                            </div>
+
                             <!-- <a
               class="quiz-detail-button"
               [routerLink]="['/quiz', quiz.id]"

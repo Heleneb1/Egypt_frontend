@@ -1,7 +1,7 @@
 .star-rating {
     .star {
         font-size: 24px;
-        color: white;
+        color: rgb(243, 205, 17);
         cursor: pointer;
         transition: color 0.2s ease-in-out;
 
@@ -10,7 +10,7 @@
             position: absolute;
             width: 50%;
             overflow: hidden;
-            color: white;
+            color: rgb(243, 205, 17);
         }
     }
 }

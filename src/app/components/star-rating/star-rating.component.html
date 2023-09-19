@@ -8,7 +8,7 @@
 </div> -->
 
 <div class="star-rating">
-    <span *ngFor="let star of stars" class="star" (click)="rate(star)">
-        <i class="fa" [ngClass]="getStarClass(star)"></i>
-    </span>
+  <span *ngFor="let star of stars" class="star" (click)="rate(star)">
+    <i class="fas fa" [ngClass]="getStarClass(star)"></i>
+  </span>
 </div>

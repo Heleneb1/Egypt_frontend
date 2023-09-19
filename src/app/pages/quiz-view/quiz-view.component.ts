@@ -10,6 +10,10 @@ import { QuizService } from 'src/app/services/quiz.service';
 export class QuizViewComponent implements OnInit {
   quizzes: any[] = [];
   quizData: any;
+  currentRating!: number;
+  isVoteModified: boolean = false;
+  quiz: any;
+  quizId: any;
   constructor(private quizService: QuizService, private router: Router) { }
 
   ngOnInit(): void {
@@ -23,5 +27,18 @@ export class QuizViewComponent implements OnInit {
       this.quizzes = quizzes;
     });
   }
+  saveVote() {
+    if (this.currentRating >= 0 && this.currentRating <= 5) {
+      this.quizService.addRating(this.quizId, this.currentRating);
+      this.isVoteModified = false;
+      this.quiz.rating = this.currentRating;
 
+      alert(`Vous avez évalué cette promotion à ${this.currentRating} étoiles`);
+    }
+  }
+  onRatingChanged(rating: number) {
+    this.currentRating = rating;
+    this.isVoteModified = true;
+
+  }
 }
