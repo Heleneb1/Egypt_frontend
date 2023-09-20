@@ -117,7 +117,7 @@ p {
   font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
   padding: 8px;
 
-  width: 100%;
+  width: 75%;
   background-color: rgba(255, 255, 255, 0.7);
   margin: 0 3rem;
   // background-color: var(--violet);
@@ -153,7 +153,10 @@ span.ql-picker-label {
   flex-direction: column;
 
   .image img {
+    margin-top: 14rem;
     width: 100vw;
+    height: 50vh;
+    object-fit: cover;
   }
 
   .text-container {

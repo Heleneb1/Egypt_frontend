@@ -44,7 +44,11 @@ export class UserService {
     }
   }
 
-  updateBio(id: string, user: any) {
-    return this.httpClient.put<any>(environment.apiUrl + `/users/${id}`, user);
+  updateBio(userId: string, updatedBiography: string) {
+    const url = environment.apiUrl + `/users/${userId}`;
+    console.log(url);
+
+    return this.httpClient.put(url, { biography: updatedBiography });
   }
+
 }

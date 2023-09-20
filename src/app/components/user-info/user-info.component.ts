@@ -16,8 +16,11 @@ export class UserInfoComponent {
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWje_gjVcmi-wks5nTRnW_xv5W2l3MVnk7W1QDcZuhNg&s';
   isEditingBiography = false;
   inputBiography = '';
-  editIcon = 'assets/images/pencil.svg';
-  closeEditIcon = 'assets/images/cross.svg';
+  editIcon = 'fa fa-pencil';
+  closeEditIcon = 'fa fa-times';
+  newBio = '';
+  user: any = [];
+  biography = '';
 
   constructor(private userService: UserService, private sanitizer: DomSanitizer) { }
 
@@ -29,9 +32,16 @@ export class UserInfoComponent {
   private objectURL: string | undefined;
 
   ngOnInit(): void {
+
+
+    if (this.userData.biography !== null) {
+      this.inputBiography = this.userData.biography; // Initialise inputBiography avec la valeur de la bio
+
+    }
     if (this.userData.avatar !== null) {
       this.loadAvatar();
     }
+
   }
 
   ngOnDestroy(): void {
@@ -55,24 +65,38 @@ export class UserInfoComponent {
     });
   }
 
+
   cancelUpdatedBiography() {
     if (this.isEditingBiography) {
-      if (this.userData.Biography !== this.inputBiography) {
-        this.inputBiography = this.userData.Biography;
+      if (this.user.biography !== this.newBio) {
+        this.newBio = this.user.biography;
         this.isEditingBiography = false;
       } else {
         this.isEditingBiography = false;
       }
     } else {
-      this.inputBiography = this.userData.Biography;
+      this.newBio = this.user.biography;
       this.isEditingBiography = !this.isEditingBiography;
     }
   }
 
+
   onUpdateBio() {
-    this.userData.biography = this.inputBiography;
-    this.userService.updateBio(this.userData.id, this.userData).subscribe(() => {
-      this.isEditingBiography = false;
-    });
+    this.userService.updateBio(this.userData.id, this.inputBiography).subscribe(
+      () => {
+        this.isEditingBiography = false;
+        this.user.biography = this.inputBiography;
+
+      },
+      (error) => {
+        console.error('Erreur lors de la mise à jour de la biographie :', error);
+      }
+    );
   }
+
+  startEditingbiography() {
+    this.isEditingBiography = true;
+    this.inputBiography = this.userData.biography;
+  }
+
 }

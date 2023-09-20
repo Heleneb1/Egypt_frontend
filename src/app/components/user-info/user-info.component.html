@@ -7,7 +7,7 @@
                 <label class="add-avatar-label" for="file"><strong>+</strong></label>
             </div>
         </div>
-        <i class="fas fa-feather"></i>
+
 
         <div class="name-container">
             <p>{{ userData.firstname }} {{ userData.lastname }}</p>
@@ -32,8 +32,9 @@
     <div class="user-sub-info-container">
         <div class="bio-container">
             <div class="bio-editing-button" (click)="cancelUpdatedBiography()">
-                <img class="edit-button" [src]="isEditingBiography ? closeEditIcon : editIcon" alt="edit" />
+                <i [class]="isEditingBiography ? closeEditIcon : editIcon"></i>
             </div>
+
             <p *ngIf="!isEditingBiography">
                 {{ userData.biography }}
             </p>

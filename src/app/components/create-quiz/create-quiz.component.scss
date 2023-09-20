@@ -5,12 +5,19 @@
 .all-fields {
   background: url("/assets/images/background.svg") no-repeat;
   background-size: cover;
-  width: 100vw;
+  // height: 100vh;
+  // width: 100vw;
+
+  // img {
+  //   width: 100vw;
+  //   height: 100vh;
+  //   object-fit: cover;
+  // }
 }
 
 #editor {
   margin: 1rem auto;
-  width: 90%;
+  width: 75%;
   height: 30rem;
   border: 2px solid;
   border-color: var(--blue);
@@ -75,7 +82,7 @@
 }
 
 input {
-  width: 30rem;
+  // width: 30em;
   margin-left: 0.5rem;
   border-color: var(--sun);
   color: var(--blue);
