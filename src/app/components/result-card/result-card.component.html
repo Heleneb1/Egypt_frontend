@@ -9,14 +9,16 @@
       <h3 class="result-name">{{ article?.title }}</h3>
       <p class="result-tag">{{ article?.tag }}</p>
       <p class="result-content">{{ article?.content }}</p>
-
-      <div class="details" *ngIf="showDetails && selectedArticle === article">
+      <div class="result-image" (click)="toggleDetails(article)">
+        <button class="show-details-button" (click)=" goToArticleDetails()">Détails</button>
       </div>
+      <!-- <div class="details" *ngIf="showDetails && selectedArticle === article">
+      </div> -->
     </div>
-    <div class="result-image" (click)="toggleDetails(article)">
-      <img class="result-image" [src]="'/assets/images/Gizeh.jpg' " alt="{{ article?.title }}" />
-    </div>
+
+    <!-- <img class="result-image" [src]="'/assets/images/' + article?.image " alt="{{ article?.title }}" /> -->
+    <img class="result-image" [src]="'/assets/images/Gizeh.jpg' " alt="{{ article?.title }}" />
+
     <!-- Afficher les détails lorsque l'article est sélectionné -->
-    <button class="show-details-button" (click)=" goToArticleDetails()">Afficher les détails</button>
   </div>
 </div>
