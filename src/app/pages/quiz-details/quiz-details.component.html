@@ -1,0 +1,36 @@
+<div class="quiz-details">
+
+    <!-- Empecher l'affichage des balises html dans le contenu du quiz innerHTML-->
+    <p><strong>Contenu:</strong> <span [innerHTML]="quiz.content"></span></p>
+
+    <p><strong>Difficulté:</strong> {{ quiz.difficulty }}</p>
+    <p><strong>Date de création:</strong> {{ formatDate(quiz.creationDate) }}</p>
+    <p><strong>Article:</strong> {{ quiz.article }}</p>
+    <p><strong>Image:</strong></p>
+    <img [src]="quiz.picture" alt="Image du quiz" />
+
+    <p><strong>Rating:</strong> {{ quiz.rating }}</p>
+    <p><strong>Archivé:</strong> {{ quiz.archive ? 'Oui' : 'Non' }}</p>
+
+    <div class="author-info">
+        <h3>Auteur</h3>
+        <p><strong>Nom:</strong> {{ quiz.author.lastname }}</p>
+        <p><strong>Prénom:</strong> {{ quiz.author.firstname }}</p>
+
+    </div>
+
+    <h3>Badges</h3>
+    <ul>
+        <li *ngFor="let badge of quiz.badge">{{ badge.name }}</li>
+    </ul>
+
+    <h3>Articles associés</h3>
+    <ul>
+        <li *ngFor="let article of quiz.articles">{{ article.title }}</li>
+    </ul>
+
+    <h3>Commentaires</h3>
+    <ul>
+        <li *ngFor="let comment of quiz.comments">{{ comment.text }}</li>
+    </ul>
+</div>

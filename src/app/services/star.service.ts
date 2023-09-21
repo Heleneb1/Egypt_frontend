@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class StarService {
-  private _votedRating: number = 0;
+  private _votedRating!: number;
 
   get votedRating(): number {
     return this._votedRating;

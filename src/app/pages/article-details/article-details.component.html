@@ -1,0 +1,36 @@
+<div class="article-details">
+
+    <!-- Empecher l'affichage des balises html dans le contenu du quiz innerHTML-->
+    <p><strong>Contenu:</strong> <span [innerHTML]="article.content"></span></p>
+
+    <p><strong>Thème:</strong> {{ article.tag }}</p>
+    <p><strong>Date de création:</strong> {{ formatDate(article.creationDate) }}</p>
+    <p><strong>Quiz:</strong> {{ article.quiz }}</p>
+    <p><strong>Image:</strong></p>
+    <img [src]="article.picture" alt="Image du article" />
+
+    <p><strong>Rating:</strong> {{ article.rating }}</p>
+    <p><strong>Archivé:</strong> {{ article.archive ? 'Oui' : 'Non' }}</p>
+
+    <div class="author-info">
+
+        <p><strong>Auteur:</strong> {{ article.author}}</p>
+
+
+    </div>
+
+    <h3>Badges</h3>
+    <ul>
+        <li *ngFor="let badge of article.badge">{{ badge.name }}</li>
+    </ul>
+
+    <h3>Articles associés</h3>
+    <ul>
+        <li *ngFor="let article of article.articles">{{ article.title }}</li>
+    </ul>
+
+    <h3>Commentaires</h3>
+    <ul>
+        <li *ngFor="let comment of article.comments">{{ comment.text }}</li>
+    </ul>
+</div>

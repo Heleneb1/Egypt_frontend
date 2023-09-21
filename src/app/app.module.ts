@@ -34,6 +34,9 @@ import { UserInfoComponent } from './components/user-info/user-info.component';
 import { NgcCookieConsentModule, NgcCookieConsentConfig } from 'ngx-cookieconsent';
 import { QuizViewComponent } from './pages/quiz-view/quiz-view.component';
 import { StarRatingComponent } from './components/star-rating/star-rating.component';
+import { QuizDetailsComponent } from './pages/quiz-details/quiz-details.component';
+import { DatePipe } from '@angular/common';
+import { ArticleDetailsComponent } from './pages/article-details/article-details.component';
 
 const cookieConfig: NgcCookieConsentConfig = {
   cookie: {
@@ -69,6 +72,8 @@ const cookieConfig: NgcCookieConsentConfig = {
     UserInfoComponent,
     QuizViewComponent,
     StarRatingComponent,
+    QuizDetailsComponent,
+    ArticleDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -82,6 +87,7 @@ const cookieConfig: NgcCookieConsentConfig = {
     ReactiveFormsModule,
   ],
   providers: [
+    DatePipe,
     CookieService,
     AuthGuard,
     LoginAuthGuardService,

@@ -11,8 +11,8 @@ export class ResultCardComponent {
   @Input() filteredArticle: Article[] = [];
   selectedArticle: Article | null = null;
   showDetails = false;
-isOpen = false;
-  constructor(private router: Router) {}
+  isOpen = false;
+  constructor(private router: Router) { }
 
   toggleDetails(selectedArticle: Article) {
     if (this.selectedArticle === selectedArticle) {
@@ -20,18 +20,24 @@ isOpen = false;
     } else {
       this.selectedArticle = selectedArticle;
     }
-    this.showDetails = !this.selectedArticle; 
+    this.showDetails = !this.selectedArticle;
     return this.selectedArticle;
   }
 
   goToArticleDetails() {
     if (this.selectedArticle) {
+      console.log(this.selectedArticle.id);
+
       // Vous pouvez utiliser le router pour naviguer vers la page des détails de l'article ici.
-      // Exemple : this.router.navigate(['/article', this.selectedArticle.id]);
+      this.router.navigate(['/article', this.selectedArticle.id]);
     }
   }
 }
-
+// selectedArticleById(id: string) {
+//   this.articleId = id;
+//   console.log(id);
+//   this.router.navigate(['/article', id]);
+// }
 //card result for SearchComponent
 //   @Output() favoriteAdded: EventEmitter<Museums> = new EventEmitter<Museums>();
 //   @Output() historyAdded: EventEmitter<Museums> = new EventEmitter<Museums>();

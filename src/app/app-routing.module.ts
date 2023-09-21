@@ -41,6 +41,8 @@ import { CreateQuizComponent } from './components/create-quiz/create-quiz.compon
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { AuthGuard } from './services/auth-guard.service';
 import { QuizViewComponent } from './pages/quiz-view/quiz-view.component';
+import { QuizDetailsComponent } from './pages/quiz-details/quiz-details.component';
+import { ArticleDetailsComponent } from './pages/article-details/article-details.component';
 // import { AdminComponent } from './pages/admin/admin.component'; // Supposez que vous avez une page d'administration
 
 // Importez votre AdminAuthGuardService
@@ -60,6 +62,10 @@ const routes: Routes = [
     component: SearchComponent,
   },
   {
+    path: 'article/:id',
+    component: ArticleDetailsComponent,
+  },
+  {
     path: 'create-quiz',
     component: CreateQuizComponent,
   },
@@ -77,6 +83,10 @@ const routes: Routes = [
     path: 'quiz',
     component: QuizViewComponent,
   },
+  {
+    path: 'quiz/:id',
+    component: QuizDetailsComponent,
+  }
   // {
   //   path: 'admin',
   //   component: AdminComponent, // Page d'administration

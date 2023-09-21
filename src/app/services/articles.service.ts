@@ -8,6 +8,18 @@ import { Observable, map } from 'rxjs';
   providedIn: 'root',
 })
 export class ArticlesService {
+  addRating(articleId: string, userRating: number) {
+    const url = `${this.articlesDataUrl}/${articleId}/rating`;
+    this.httpClient.put<any>(url, { rating: userRating }).subscribe(
+      updatedArticle => {
+        console.log('Quiz mis à jour avec le vote :', updatedArticle);
+      },
+      error => {
+        console.error('Erreur lors de la mise à jour du quiz :', error);
+      }
+    );
+  }
+
   private articlesDataUrl = environment.apiUrl + '/articles';
 
   constructor(private httpClient: HttpClient) { }
@@ -67,14 +79,14 @@ export class ArticlesService {
     return this.httpClient.get<Article[]>(this.articlesDataUrl).pipe(
       map((articles: Article[]) => {
         const uniqueAuthor = new Set<string>();
-  
+
         articles.forEach((article: Article) => {
           if (article.author) {
             const individualAuthor = article.author.split(',').map(t => t.trim());
             individualAuthor.forEach(t => uniqueAuthor.add(t));
           }
         });
-  
+
         // Conversion du Set en tableau
         return Array.from(uniqueAuthor);
       })
@@ -89,7 +101,7 @@ export class ArticlesService {
   getArticlesByAuthorTitleTag(articleAuthor?: string, articleTitle?: string, articleTag?: string): Observable<Article[]> {
     // Construct the URL based on the provided parameters
     let searchUrl = this.articlesDataUrl + '/search';
-  
+
     // Build the query parameters
     const queryParams = [];
     if (articleAuthor) {
@@ -101,14 +113,14 @@ export class ArticlesService {
     if (articleTag) {
       queryParams.push(`tag=${encodeURIComponent(articleTag)}`);
     }
-  
+
     // Add the query parameters to the URL if any are provided
     if (queryParams.length > 0) {
       searchUrl += '?' + queryParams.join('&');
     }
-  
+
     // Specify the response type as Article[]
     return this.httpClient.get<Article[]>(searchUrl);
   }
-}  
+}
 

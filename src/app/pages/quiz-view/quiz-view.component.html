@@ -47,15 +47,12 @@
                                     vote</button>
                             </div>
 
-                            <!-- <a
-              class="quiz-detail-button"
-              [routerLink]="['/quiz', quiz.id]"
-              (click)="selectquizById(quiz.id)"
-            >
-              <p>Details</p>
-              
-              <img [src]="'assets/images/svg/right-arrow.svg'" alt="arrow" height="100" width="100" />
-            </a> -->
+                            <a class="quiz-detail-button" [routerLink]="['/quiz', quiz.id]"
+                                (click)="selectedQuizById(quiz.id)">
+                                <p>Details</p>
+
+
+                            </a>
                             <!-- <a class="quiz-detail-button" [routerLink]="['/quiz', quiz.id]">
                 <p>Details</p>
                 <img [src]="'assets/images/svg/right-arrow.svg'" alt="arrow" height="100" width="100" />

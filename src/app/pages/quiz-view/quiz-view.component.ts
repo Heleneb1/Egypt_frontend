@@ -27,6 +27,15 @@ export class QuizViewComponent implements OnInit {
       this.quizzes = quizzes;
     });
   }
+  selectedQuizById(id: string) {
+    this.quizId = id;
+    console.log(id);
+    this.router.navigate(['/quiz', id]);
+  }
+  // selectPromotionById(promoId: string): void {
+  //   this.selectedPromotionId = promoId;
+  // }
+
   saveVote() {
     if (this.currentRating >= 0 && this.currentRating <= 5) {
       this.quizService.addRating(this.quizId, this.currentRating);
@@ -36,6 +45,15 @@ export class QuizViewComponent implements OnInit {
       alert(`Vous avez évalué cette promotion à ${this.currentRating} étoiles`);
     }
   }
+  // saveVote() {
+  //   if (this.currentRating >= 0 && this.currentRating <= 5) {
+  //     this.promotionsService.addRating(this.promotionId, this.currentRating, this.authorId);
+  //     this.isVoteModified = false;
+  //     this.promotion.rating = this.currentRating;
+
+  //     alert(`Vous avez évalué cette promotion à ${this.currentRating} étoiles`);
+  //   }
+  // }
   onRatingChanged(rating: number) {
     this.currentRating = rating;
     this.isVoteModified = true;
