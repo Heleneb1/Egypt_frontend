@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ArticlesService } from 'src/app/services/articles.service';
 import { QuizService } from 'src/app/services/quiz.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -18,8 +19,13 @@ export class QuizDetailsComponent {
   isVoteModified: boolean = false;
   currentRating: number = 3.5;
   authorName: any;
+  questionTitles: any = [];
+  questionsMap: any = [];
+  articlesMap: any = [];
+
   constructor(
     private quizService: QuizService,
+    private articlesService: ArticlesService,
     private userService: UserService,
     private route: ActivatedRoute,
     private router: Router,
@@ -40,22 +46,40 @@ export class QuizDetailsComponent {
       this.quizService.getQuizById(this.quizId).subscribe((quiz) => {
         this.quiz = quiz;
         console.log(this.quiz);
-        this.userService.getUserName(this.quiz.authorId).subscribe((authorData) => {
+        //   this.userService.getUserName(this.quiz.authorId).subscribe((authorData) => {
 
-          this.authorName = authorData;
+        //     this.authorName = authorData;
+        //     console.log('Auteur', this.quiz.authorId);
+
+        //   });
+        //   this.loadQuestionTitles();
+        this.quiz.article = this.articlesService.getArticleContent(this.quiz.articleId);
+        console.log(this.quiz.article);
+
+        this.quiz.questionsIds.forEach((questionId: string) => {
+          this.quizService.getQuestionContent(questionId).subscribe((question: any) => {
+            this.questionsMap.push(question);
+          });
+          console.log("Hello", this.questionsMap);
+
         });
-      });
+      },
+      );
     });
   }
-  //   ngOnInit() {
-  //     this.route.paramMap.subscribe((params) => {
-  //       this.promotionId = params.get('id');
+  // getQuestion(questionId: string) {
+  //   this.quizService.getQuestionByTitle(questionId).subscribe((questionData) => {
+  //     this.quiz.question_title = questionData;
+  //   });
+  // }
+  // loadQuestionTitles(questionId?: any) {
+  //   this.quizService.getQuestionByTitle(questionId).subscribe((questionData) => {
+  //     // Stockez les titres des questions dans l'objet questionTitles avec l'ID de la question comme clé
+  //     this.questionTitles = questionData;
+  //     console.log("Hello", this.questionTitles);
 
-  //       this.promotionsService.getPromoById(this.promotionId).subscribe(
-  //         (promotion) => {
-  //           this.promotion = promotion;
-  // this.promotion.description=this.promotion.description.replace(/<img[^>]*>/g,"");
-  //           this.authorId = this.promotion.authorId;)}
+  //   });
+  // }
 
   onRatingChanged(rating: number) {
     this.currentRating = rating;

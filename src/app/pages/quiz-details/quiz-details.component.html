@@ -5,32 +5,60 @@
 
     <p><strong>Difficulté:</strong> {{ quiz.difficulty }}</p>
     <p><strong>Date de création:</strong> {{ formatDate(quiz.creationDate) }}</p>
-    <p><strong>Article:</strong> {{ quiz.article }}</p>
-    <p><strong>Image:</strong></p>
-    <img [src]="quiz.picture" alt="Image du quiz" />
+    <p><strong>Titre de l'article:</strong> {{ quiz.article.title }}</p>
 
-    <p><strong>Rating:</strong> {{ quiz.rating }}</p>
-    <p><strong>Archivé:</strong> {{ quiz.archive ? 'Oui' : 'Non' }}</p>
+    <!-- <ul>
+        <li *ngFor="let article of articlesMap">
+            <p><strong>Titre de l'article:</strong> {{ quiz.article.title }}</p>
 
+        </li>
+    </ul> -->
+    <!-- <p><strong>Article:</strong> {{ quiz.questionsIds }}</p> -->
     <div class="author-info">
+
+        <p><strong>Auteur:</strong> {{ quiz.author}}</p>
+
+        <ul>
+            <li *ngFor="let question of questionsMap">
+                <p><strong>Contenu de la question:</strong> {{ question.content }}</p>
+                <p><strong>Option 1:</strong> {{ question.option_1 }}</p>
+                <p><strong>Option 2:</strong> {{ question.option_2 }}</p>
+                <p><strong>Option 3:</strong> {{ question.option_3 }}</p>
+                <p><strong>Réponse 1:</strong> {{ question.rigth_answer }}</p>
+                <p><strong>Réponse 2:</strong> {{ question.rigth_answer_2 }}</p>
+            </li>
+        </ul>
+
+
+        <p><strong>Image:</strong></p>
+        <img [src]="quiz.picture" alt="Image du quiz" />
+
+        <p><strong>Rating:</strong> {{ quiz.rating }}</p>
+        <p><strong>Archivé:</strong> {{ quiz.archive ? 'Oui' : 'Non' }}</p>
+
+        <!-- <div class="author-info">
         <h3>Auteur</h3>
         <p><strong>Nom:</strong> {{ quiz.author.lastname }}</p>
         <p><strong>Prénom:</strong> {{ quiz.author.firstname }}</p>
 
-    </div>
+    </div> -->
 
-    <h3>Badges</h3>
+        <!-- <h3>Badges</h3>
     <ul>
         <li *ngFor="let badge of quiz.badge">{{ badge.name }}</li>
     </ul>
 
     <h3>Articles associés</h3>
     <ul>
-        <li *ngFor="let article of quiz.articles">{{ article.title }}</li>
+        <li *ngFor="let article of quiz.articles">{{ quiz.article.title }}</li>
     </ul>
 
     <h3>Commentaires</h3>
     <ul>
-        <li *ngFor="let comment of quiz.comments">{{ comment.text }}</li>
+        <li *ngFor="let comment of quiz.comments">{{ quiz.comment.content }}</li>
     </ul>
-</div>
+    <h3>Questions</h3>
+    <ul>
+        <li *ngFor="let question of quiz.questions">{{ quiz.question.id }}</li>
+    </ul> -->
+    </div>

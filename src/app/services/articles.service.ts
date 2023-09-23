@@ -29,6 +29,15 @@ export class ArticlesService {
   getArticleById(id: string) {
     return this.httpClient.get(this.articlesDataUrl + '/' + id);
   }
+  getArticleContent(articleId: string): Observable<any> {
+    return this.getArticleById(articleId).pipe(
+      map((article: any) => {
+        return {
+          title: article.title,
+        };
+      })
+    );
+  }
 
   getArticlesByAuthor(author: string): Observable<Article[]> {
     return this.httpClient.get<Article[]>(
