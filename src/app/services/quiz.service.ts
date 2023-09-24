@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http"; // Assurez-vous d'importer HttpClient
 import { environment } from "src/environments/environment";
 import { Observable, map } from "rxjs";
+import { QuizQuestion } from "../models/quiz-question";
 
 @Injectable({
     providedIn: 'root'
@@ -31,6 +32,11 @@ export class QuizService {
     getQuizById(quizId: string) {
         return this.httpClient.get(`${this.quizDataUrl}/${quizId}`);
     }
+    getQuizQuestions(quizId: string): Observable<QuizQuestion[]> {
+        const url = `${this.quizDataUrl}/${quizId}/questions`;
+        return this.httpClient.get<QuizQuestion[]>(url);
+    }
+
     getQuestionByTitle(questionId: string): Observable<string> {
         console.log(questionId);
 
@@ -49,8 +55,10 @@ export class QuizService {
                     option_1: question.option_1,
                     option_2: question.option_2,
                     option_3: question.option_3,
-                    answer1: question.rigth_answer,
-                    answer2: question.rigth_answer_2
+                    // answer1: question.rigth_answer,
+                    // answer2: question.rigth_answer_2,
+                    answer1: question.right_answer, // Corrigé ici
+                    answer2: question.right_answer_2 // Corrigé ici
 
                 };
             })

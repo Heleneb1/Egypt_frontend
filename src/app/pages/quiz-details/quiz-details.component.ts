@@ -22,7 +22,10 @@ export class QuizDetailsComponent {
   questionTitles: any = [];
   questionsMap: any = [];
   articlesMap: any = [];
-
+  questions: any;
+  questionData: any[] = []; // Tableau pour stocker les données des questions
+  userAnswers: string[] = [];
+  selectedOption!: any[];
   constructor(
     private quizService: QuizService,
     private articlesService: ArticlesService,
@@ -52,12 +55,13 @@ export class QuizDetailsComponent {
         //     console.log('Auteur', this.quiz.authorId);
 
         //   });
-        //   this.loadQuestionTitles();
+
         this.quiz.article = this.articlesService.getArticleContent(this.quiz.articleId);
-        console.log(this.quiz.article);
+        console.log(this.quiz.article.ti);
 
         this.quiz.questionsIds.forEach((questionId: string) => {
           this.quizService.getQuestionContent(questionId).subscribe((question: any) => {
+            question.selectedOption = '';
             this.questionsMap.push(question);
           });
           console.log("Hello", this.questionsMap);
@@ -67,19 +71,21 @@ export class QuizDetailsComponent {
       );
     });
   }
-  // getQuestion(questionId: string) {
-  //   this.quizService.getQuestionByTitle(questionId).subscribe((questionData) => {
-  //     this.quiz.question_title = questionData;
-  //   });
-  // }
-  // loadQuestionTitles(questionId?: any) {
-  //   this.quizService.getQuestionByTitle(questionId).subscribe((questionData) => {
-  //     // Stockez les titres des questions dans l'objet questionTitles avec l'ID de la question comme clé
-  //     this.questionTitles = questionData;
-  //     console.log("Hello", this.questionTitles);
+  onOptionSelected(questionId: string, event: Event) {
+    //verification de event.target nonnull et a une propriété value
+    if (event.target && 'value' in event.target) {
+      let selectedOption = (<HTMLInputElement>event.target).value;
 
-  //   });
-  // }
+
+      let question = this.questionsMap.find((question: { id: string; }) => question.id === questionId);
+
+      if (question) {
+        question.selectedOption = selectedOption;
+      }
+    }
+  }
+
+
 
   onRatingChanged(rating: number) {
     this.currentRating = rating;
@@ -91,4 +97,38 @@ export class QuizDetailsComponent {
     this.quizService.addRating(this.quizId, rating);
     this.isVoteModified = false;
   }
+
+
+  calculateScore() {
+    let score = 0;
+
+    for (const question of this.questionsMap) {
+      const userAnswer = question.selectedOption;
+      console.log("reponse du joueur", userAnswer);
+      console.log("bonne", question.answer1);
+      console.log("Hello", this.questionsMap);
+
+      if (userAnswer === question.answer1 || userAnswer === question.answer2) {
+        console.log("Bonne réponse", question.answer1, question.answer2);
+
+        score++;
+      }
+    }
+
+    console.log("Score:", score);
+
+
+    let percentage = (score / this.questionsMap.length) * 100;
+    console.log("Pourcentage de bonnes réponses :", percentage + "%");
+
+
+    if (percentage >= 80) {
+      console.log("Félicitations ! Vous avez obtenu un score supérieur à 80%.");
+    } else {
+      console.log("Continuez à travailler pour améliorer votre score.");
+    }
+  }
+
+
 }
+

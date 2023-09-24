@@ -16,18 +16,43 @@
     <!-- <p><strong>Article:</strong> {{ quiz.questionsIds }}</p> -->
     <div class="author-info">
 
-        <p><strong>Auteur:</strong> {{ quiz.author}}</p>
+        <div *ngFor="let question of questionsMap; let i = index">
+            <p>{{question.content}}</p>
+            <div>
+                <input type="radio" id="option1-{{i}}" name="question-{{i}}" value="{{question.option_1}}"
+                    (change)="onOptionSelected(question.id, $event)">
+                <label for="option1-{{i}}">{{question.option_1}}</label>
+            </div>
+            <div>
+                <input type="radio" id="option2-{{i}}" name="question-{{i}}" value="{{question.option_2}}"
+                    (change)="onOptionSelected(question.id, $event)">
+                <label for="option2-{{i}}">{{question.option_2}}</label>
+            </div>
+            <div>
+                <input type="radio" id="option3-{{i}}" name="question-{{i}}" value="{{question.option_3}}"
+                    (change)="onOptionSelected(question.id, $event)">
+                <label for="option3-{{i}}">{{question.option_3}}</label>
+            </div>
+        </div>
 
+
+        <!-- 
         <ul>
             <li *ngFor="let question of questionsMap">
                 <p><strong>Contenu de la question:</strong> {{ question.content }}</p>
-                <p><strong>Option 1:</strong> {{ question.option_1 }}</p>
-                <p><strong>Option 2:</strong> {{ question.option_2 }}</p>
-                <p><strong>Option 3:</strong> {{ question.option_3 }}</p>
-                <p><strong>Réponse 1:</strong> {{ question.rigth_answer }}</p>
-                <p><strong>Réponse 2:</strong> {{ question.rigth_answer_2 }}</p>
+                <label>
+                    <input type="checkbox" [(ngModel)]="question.option_1_selected"> {{ question.option_1 }}
+                </label>
+                <label>
+                    <input type="checkbox" [(ngModel)]="question.option_2_selected"> {{ question.option_2 }}
+                </label>
+                <label>
+                    <input type="checkbox" [(ngModel)]="question.option_3_selected"> {{ question.option_3 }}
+                </label>
             </li>
-        </ul>
+        </ul> -->
+        <button (click)="calculateScore()">Vérifier les réponses</button>
+
 
 
         <p><strong>Image:</strong></p>
