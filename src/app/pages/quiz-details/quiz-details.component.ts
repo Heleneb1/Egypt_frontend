@@ -23,9 +23,12 @@ export class QuizDetailsComponent {
   questionsMap: any = [];
   articlesMap: any = [];
   questions: any;
-  questionData: any[] = []; // Tableau pour stocker les données des questions
   userAnswers: string[] = [];
   selectedOption!: any[];
+  progress: number = 0;
+  totalNumberOfQuestions: number = 0;
+  numberOfAnsweredQuestions: number = 0;
+
   constructor(
     private quizService: QuizService,
     private articlesService: ArticlesService,
@@ -56,13 +59,16 @@ export class QuizDetailsComponent {
 
         //   });
 
-        this.quiz.article = this.articlesService.getArticleContent(this.quiz.articleId);
-        console.log(this.quiz.article.ti);
+        this.articlesService.getArticleContent(this.quiz.article).subscribe((article: any) => {
+          this.quiz.article = article;
+          console.log(this.quiz.article.title);
+        });
 
         this.quiz.questionsIds.forEach((questionId: string) => {
           this.quizService.getQuestionContent(questionId).subscribe((question: any) => {
             question.selectedOption = '';
             this.questionsMap.push(question);
+            this.totalNumberOfQuestions = this.questionsMap.length;
           });
           console.log("Hello", this.questionsMap);
 
@@ -123,12 +129,29 @@ export class QuizDetailsComponent {
 
 
     if (percentage >= 80) {
-      console.log("Félicitations ! Vous avez obtenu un score supérieur à 80%.");
+      alert("Félicitations ! Vous avez obtenu un score supérieur à 80%. " + percentage + "% de bonnes réponses.");
     } else {
-      console.log("Continuez à travailler pour améliorer votre score.");
+      alert("Continuez à travailler pour améliorer votre score. " + percentage + "% de bonnes réponses.");
     }
   }
 
+  answerQuestion(): void {
+    const userProgress = (this.questionsMap.length / this.totalNumberOfQuestions) * 100;
+    console.log("Progression de l'utilisateur :", userProgress);
 
+    this.numberOfAnsweredQuestions++;
+    console.log("Nombre de questions répondues :", this.numberOfAnsweredQuestions);
+
+    this.progress = (this.numberOfAnsweredQuestions / this.totalNumberOfQuestions) * 100;
+    console.log("Nombre de questions répondues :", this.numberOfAnsweredQuestions);
+    console.log("Progression de l'utilisateur :", this.progress);
+    console.log("Nombre total de questions :", this.totalNumberOfQuestions);
+
+
+
+    let progressBar = document.getElementById('progressBar') as HTMLElement;
+    progressBar.style.width = this.progress + '%';
+
+  }
 }
 

@@ -1,89 +1,59 @@
-<div class="quiz-details">
+<div class="quiz-details-container">
+    <div class="quiz-details">
 
-    <!-- Empecher l'affichage des balises html dans le contenu du quiz innerHTML-->
-    <p><strong>Contenu:</strong> <span [innerHTML]="quiz.content"></span></p>
+        <div class="sub-title">
+            <h2>{{ quiz.title }}</h2>
+        </div>
+        <!-- Empecher l'affichage des balises html dans le contenu du quiz innerHTML-->
+        <div class="quiz-infos">
+            <p>Contenu: <span [innerHTML]="quiz.content"></span></p>
 
-    <p><strong>Difficulté:</strong> {{ quiz.difficulty }}</p>
-    <p><strong>Date de création:</strong> {{ formatDate(quiz.creationDate) }}</p>
-    <p><strong>Titre de l'article:</strong> {{ quiz.article.title }}</p>
-
-    <!-- <ul>
-        <li *ngFor="let article of articlesMap">
-            <p><strong>Titre de l'article:</strong> {{ quiz.article.title }}</p>
-
-        </li>
-    </ul> -->
-    <!-- <p><strong>Article:</strong> {{ quiz.questionsIds }}</p> -->
-    <div class="author-info">
-
-        <div *ngFor="let question of questionsMap; let i = index">
-            <p>{{question.content}}</p>
-            <div>
-                <input type="radio" id="option1-{{i}}" name="question-{{i}}" value="{{question.option_1}}"
-                    (change)="onOptionSelected(question.id, $event)">
-                <label for="option1-{{i}}">{{question.option_1}}</label>
-            </div>
-            <div>
-                <input type="radio" id="option2-{{i}}" name="question-{{i}}" value="{{question.option_2}}"
-                    (change)="onOptionSelected(question.id, $event)">
-                <label for="option2-{{i}}">{{question.option_2}}</label>
-            </div>
-            <div>
-                <input type="radio" id="option3-{{i}}" name="question-{{i}}" value="{{question.option_3}}"
-                    (change)="onOptionSelected(question.id, $event)">
-                <label for="option3-{{i}}">{{question.option_3}}</label>
-            </div>
+            <p>Difficulté: {{ quiz.difficulty }}</p>
+            <p>Date de création: {{ formatDate(quiz.creationDate) }}</p>
+            <p>Article associé: {{ quiz.article.title }}</p>
         </div>
 
+        <div class="quiz-questions">
 
-        <!-- 
-        <ul>
-            <li *ngFor="let question of questionsMap">
-                <p><strong>Contenu de la question:</strong> {{ question.content }}</p>
-                <label>
-                    <input type="checkbox" [(ngModel)]="question.option_1_selected"> {{ question.option_1 }}
-                </label>
-                <label>
-                    <input type="checkbox" [(ngModel)]="question.option_2_selected"> {{ question.option_2 }}
-                </label>
-                <label>
-                    <input type="checkbox" [(ngModel)]="question.option_3_selected"> {{ question.option_3 }}
-                </label>
-            </li>
-        </ul> -->
-        <button (click)="calculateScore()">Vérifier les réponses</button>
+            <div *ngFor="let question of questionsMap; let i = index">
+                <p>{{question.content}}</p>
+                <div class="options-container">
+                    <div class="option-column">
+                        <div>
+                            <input type="radio" id="option1-{{i}}" name="question-{{i}}" value="{{question.option_1}}"
+                                (click)="answerQuestion()" (change)="onOptionSelected(question.id, $event)">
+                            <label for="option1-{{i}}">{{question.option_1}}</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="option2-{{i}}" name="question-{{i}}" value="{{question.option_2}}"
+                                (click)="answerQuestion()" (change)="onOptionSelected(question.id, $event)">
+                            <label for="option2-{{i}}">{{question.option_2}}</label>
+                        </div>
+                    </div>
+                    <div class="option-column">
+                        <div>
+                            <input type="radio" id="option3-{{i}}" name="question-{{i}}" value="{{question.option_3}}"
+                                (click)="answerQuestion()" (change)="onOptionSelected(question.id, $event)">
+                            <label for="option3-{{i}}">{{question.option_3}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-
-
-        <p><strong>Image:</strong></p>
-        <img [src]="quiz.picture" alt="Image du quiz" />
-
-        <p><strong>Rating:</strong> {{ quiz.rating }}</p>
-        <p><strong>Archivé:</strong> {{ quiz.archive ? 'Oui' : 'Non' }}</p>
-
-        <!-- <div class="author-info">
-        <h3>Auteur</h3>
-        <p><strong>Nom:</strong> {{ quiz.author.lastname }}</p>
-        <p><strong>Prénom:</strong> {{ quiz.author.firstname }}</p>
-
-    </div> -->
-
-        <!-- <h3>Badges</h3>
-    <ul>
-        <li *ngFor="let badge of quiz.badge">{{ badge.name }}</li>
-    </ul>
-
-    <h3>Articles associés</h3>
-    <ul>
-        <li *ngFor="let article of quiz.articles">{{ quiz.article.title }}</li>
-    </ul>
-
-    <h3>Commentaires</h3>
-    <ul>
-        <li *ngFor="let comment of quiz.comments">{{ quiz.comment.content }}</li>
-    </ul>
-    <h3>Questions</h3>
-    <ul>
-        <li *ngFor="let question of quiz.questions">{{ quiz.question.id }}</li>
-    </ul> -->
+        </div>
+        <div class="progress">
+            <div id="progressBarContainer">
+                <div id="progressBar">
+                    <i class="fa fa-star progress-star">
+                        <i class="fa fa-star nested-star"></i>
+                    </i>
+                </div>
+            </div>
+        </div>
+        <div class="button">
+            <div class="button-container">
+                <button (click)="calculateScore()">Vérifier</button>
+            </div>
+        </div>
     </div>
+</div>

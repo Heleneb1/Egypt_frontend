@@ -8,6 +8,8 @@ import { Observable, map } from 'rxjs';
   providedIn: 'root',
 })
 export class ArticlesService {
+  private articlesDataUrl = environment.apiUrl + '/articles';
+
   addRating(articleId: string, userRating: number) {
     const url = `${this.articlesDataUrl}/${articleId}/rating`;
     this.httpClient.put<any>(url, { rating: userRating }).subscribe(
@@ -20,20 +22,27 @@ export class ArticlesService {
     );
   }
 
-  private articlesDataUrl = environment.apiUrl + '/articles';
+
 
   constructor(private httpClient: HttpClient) { }
   getArticles() {
     return this.httpClient.get(this.articlesDataUrl);
   }
+  // getArticleById(id: string) {
+  //   return this.httpClient.get(this.articlesDataUrl + '/' + id);
+  // }
   getArticleById(id: string) {
-    return this.httpClient.get(this.articlesDataUrl + '/' + id);
+    return this.httpClient.get(`${this.articlesDataUrl}/${id}`);
   }
-  getArticleContent(articleId: string): Observable<any> {
+  getArticleContent(articleId: string): any {
     return this.getArticleById(articleId).pipe(
       map((article: any) => {
         return {
           title: article.title,
+          id: article.id,
+          archive: article.archive,
+          author: article.author,
+          content: article.content,
         };
       })
     );
