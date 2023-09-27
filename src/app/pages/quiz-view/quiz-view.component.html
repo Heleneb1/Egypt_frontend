@@ -27,7 +27,7 @@
         <div class="quiz-card">
             <div class="header-card">
                 <!-- <img src="{{ quiz.picture }}" /> -->
-                <img [src]="quiz.picture ? quiz.picture : 'assets/images/Gizeah.jpg'" alt="Image du quiz" />
+                <img [src]="quiz.picture ? quiz.picture : defaultImage" alt="Image du quiz" />
             </div>
             <div class="body-card">
                 <h3>{{ quiz.title }}</h3>

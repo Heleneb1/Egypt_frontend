@@ -10,7 +10,12 @@
 
             <p>Difficulté: {{ quiz.difficulty }}</p>
             <p>Date de création: {{ formatDate(quiz.creationDate) }}</p>
-            <p>Article associé: {{ quiz.article.title }}</p>
+            <p>Article associé: {{ quiz.article?.title }}</p>
+
+            <div class="quiz-badges">
+                Badge: {{quiz.badge?.name}}
+            </div>
+
         </div>
 
         <div class="quiz-questions">
@@ -57,3 +62,6 @@
         </div>
     </div>
 </div>
+<!-- <app-badges-modal *ngIf="showModal"></app-badges-modal> -->
+<app-badges-modal *ngIf="showModal" [userId]="userId" [badgeId]="quiz.badge?.id"></app-badges-modal>
+<!-- <app-badges-modal [badgeId]="quiz.badge.id" [userId]="userId"></app-badges-modal> -->

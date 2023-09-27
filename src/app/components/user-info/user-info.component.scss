@@ -1,4 +1,7 @@
-/* Mobile Styles (up to 767px) */
+$color: white;
+$family: var(--title);
+$size: 2rem;
+$text: var(--text);
 
 .container {
     display: flex;
@@ -6,14 +9,24 @@
     align-items: center;
     padding: 20px;
     height: 100vh;
+    display: flex;
+
 }
 
 .user-info-container {
+    font-size: $size;
+    font-family: $family;
+    color: $color;
+
     text-align: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .user-sub-info-container {
-    // width: 28rem;
+
     width: 80%;
     display: flex;
     padding: 2rem;
@@ -32,38 +45,53 @@ img {
 }
 
 .add-avatar {
+    color: var(--sun);
     position: relative;
-    bottom: 42px;
-    right: 60px;
+    bottom: 5rem;
+    right: 4rem;
 }
 
-.add-avatar-button {
+.avatar-button {
     display: none;
-}
-
-.add-avatar-label {
-    display: inline-block;
-    background-color: var(--sun);
-    color: #fff;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    text-align: center;
+    // color: var(--white);
+    // border: 1px solid var(--white);
+    // width: 2rem;
+    // height: 2rem;
+    // border-radius: 100%;
+    // background-color: var(--sun);
     cursor: pointer;
 }
 
-.name-container p {
-    font-size: 1.2rem;
-    margin-top: 10px;
+
+// .add-avatar-label {
+//     background-color: var(--sun);
+//     color: #fff;
+//     width: 30px;
+//     height: 30px;
+//     border-radius: 50%;
+//     text-align: center;
+//     cursor: pointer;
+// }
+
+.title-profile {
     font-family: var(--title);
+    color: var(--sun);
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin: 2rem;
+    font-size: 2rem;
+    text-align: center;
 }
 
-// .bio-container {
-//     margin-top: 20px;
-//     border: 1px solid #ccc;
-//     height: 10rem;
-//     width: 18rem;
-// }
+
+
+.name-container p {
+    display: flex;
+    width: 75vw;
+    margin: 2rem 2rem;
+    font-family: var(--title);
+    justify-content: flex-start;
+}
+
 .bio-container {
     padding: 20px;
     height: 100%;
@@ -77,12 +105,10 @@ img {
     justify-content: center;
     align-items: center;
     position: relative;
+    font-family: $text;
+    font-size: 1.2rem;
 
-    p {
-        font-size: 18px;
-        font-family: 'laton', sans-serif;
-        color: white;
-    }
+
 }
 
 .bio-editing-button {
@@ -95,10 +121,6 @@ img {
     height: 20px;
 }
 
-p {
-    font-size: 1rem;
-    color: #fff;
-}
 
 .bio-form {
     display: none;
@@ -115,7 +137,7 @@ p {
 
 .update-bio-button {
     margin-top: 10px;
-    background-color: #007bff;
+
     color: #fff;
     text-align: center;
     padding: 10px;
@@ -148,14 +170,13 @@ p {
 
 .input-text-area-bio {
     background: linear-gradient(180deg, #EEE 0%, rgba(223, 223, 223, 1) 100%);
-    width: 70%;
-    height: 60%;
+    width: 80%;
+    height: 100%;
     text-align: center;
     border-radius: 5px;
     border: 0.3px solid black;
-    font-size: 18px;
-    font-family: 'laton', sans-serif;
-    color: #6F42C1;
+    font-size: 1.5rem;
+    font-family: $text;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -183,4 +204,48 @@ p {
     flex-direction: column;
     width: 100%;
     height: 100%;
+}
+
+.badge-container {
+    margin: 4rem;
+    font-size: $size;
+    font-family: $family;
+    color: $color;
+
+    .reward {
+        font-family: var(--title);
+        display: flex;
+        // justify-content: center;
+        margin: 2rem;
+
+
+    }
+
+    .badge-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        justify-content: center;
+    }
+
+
+
+    .badge-item {
+        flex: 1;
+        flex: 0 0 20%;
+        margin-bottom: 10px;
+        text-align: center;
+        font-family: $text;
+        font-size: 1rem;
+
+        p {
+            margin-top: 1rem;
+        }
+    }
+
+    .badge-image {
+        border: 2px solid var(--white);
+        height: 100px;
+        width: 100px;
+    }
 }

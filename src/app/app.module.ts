@@ -37,6 +37,7 @@ import { StarRatingComponent } from './components/star-rating/star-rating.compon
 import { QuizDetailsComponent } from './pages/quiz-details/quiz-details.component';
 import { DatePipe } from '@angular/common';
 import { ArticleDetailsComponent } from './pages/article-details/article-details.component';
+import { BadgesModalComponent } from './components/badges-modal/badges-modal.component';
 
 const cookieConfig: NgcCookieConsentConfig = {
   cookie: {
@@ -74,6 +75,7 @@ const cookieConfig: NgcCookieConsentConfig = {
     StarRatingComponent,
     QuizDetailsComponent,
     ArticleDetailsComponent,
+    BadgesModalComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,88 @@
+/* badges-modal.component.css */
+
+/* Style de la boîte modale */
+/* badges-modal.component.css */
+
+/* Style de la boîte modale */
+.modal-container {}
+
+.modal-content {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* Style du titre */
+.modal-content h2 {
+    background-color: var(--sun);
+    height: 20rem;
+    width: 25rem;
+    border-radius: 3%;
+    text-align: center;
+    color: var(--white);
+    font-family: var(--title);
+    padding: 2rem;
+
+}
+
+/* Style de l'image du badge */
+.badge-image {
+    height: 10rem;
+}
+
+/* Style du nom du badge */
+.modal-content h3 {
+    color: var(--white);
+}
+
+/* Style de la description du badge */
+.modal-content p {
+    color: var(--white);
+}
+
+/* Style du bouton de fermeture */
+.modal-content button {
+    background-color: var(--sun);
+    color: var(--white);
+    border: none;
+    border-radius: 3%;
+    width: 10rem;
+    height: 3rem;
+    font-family: var(--title);
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin: 2rem;
+}
+
+/* Style du bouton de fermeture au survol */
+.modal-content button:hover {}
+
+/* Style de la boîte modale */
+.modal-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    /* Ajoute un fond semi-transparent pour l'arrière-plan obscurci */
+}
+
+.modal-content {
+    width: 25rem;
+    height: 25rem;
+    background-color: var(--sun);
+    color: var(--white);
+    border-radius: 3%;
+    text-align: center;
+    padding: 2rem;
+}
+
+/* Autres styles restent inchangés */

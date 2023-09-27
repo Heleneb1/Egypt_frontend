@@ -14,6 +14,8 @@ export class QuizViewComponent implements OnInit {
   isVoteModified: boolean = false;
   quiz: any;
   quizId: any;
+  defaultImage: string = 'assets/images/Gizeah.jpg';
+
   constructor(private quizService: QuizService, private router: Router) { }
 
   ngOnInit(): void {

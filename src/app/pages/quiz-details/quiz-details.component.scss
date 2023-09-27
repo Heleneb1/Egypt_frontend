@@ -8,11 +8,10 @@
 
 .quiz-details {
     padding: 20px;
-    // background-color: #f8f9fa;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
     max-width: 80%;
-    // margin: 2rem 4rem;
+
     line-height: 1.8;
 
 }
@@ -95,7 +94,6 @@ ul {
     font-size: 1.5rem;
 }
 
-/* Définissez la couleur de fond pour les boutons radio sélectionnés */
 .radio-selected {
     color: var(--sun)
 }
@@ -105,9 +103,8 @@ input[type="radio"]:checked {
     border-radius: 3rem;
     background-color: var(--sun);
     padding: 0.5rem;
-    /* Changez la couleur de fond à votre choix */
     color: var(--white);
-    /* Changez la couleur du texte à votre choix */
+
 }
 
 .option input[type="radio" i] {
@@ -130,7 +127,6 @@ input[type="radio"]:checked {
 .options-container {
     display: flex;
     flex-wrap: wrap;
-    /* Permet le passage à la ligne automatique */
     gap: 20px;
 }
 

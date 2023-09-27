@@ -18,9 +18,11 @@ export class UserInfoComponent {
   inputBiography = '';
   editIcon = 'fa fa-pencil';
   closeEditIcon = 'fa fa-times';
+  edit = 'fa  fa-plus-square';
   newBio = '';
   user: any = [];
   biography = '';
+  badges: any;
 
   constructor(private userService: UserService, private sanitizer: DomSanitizer) { }
 
@@ -32,11 +34,22 @@ export class UserInfoComponent {
   private objectURL: string | undefined;
 
   ngOnInit(): void {
+    this.user = this.userData;
+    this.badges = this.userData.badges;
+    console.log(this.userData.badges);
+    const userBadges = this.userData.badges || [];
+
+
+    while (userBadges.length < 10) {
+      userBadges.push({ name: 'Badge à venir', image: 'assets/images/wait.jpg' });
+    }
+
+    this.badges = userBadges;
+
 
 
     if (this.userData.biography !== null) {
-      this.inputBiography = this.userData.biography; // Initialise inputBiography avec la valeur de la bio
-
+      this.inputBiography = this.userData.biography;
     }
     if (this.userData.avatar !== null) {
       this.loadAvatar();

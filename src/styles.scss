@@ -1,8 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import url("https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap");
-
-@import url("https://fonts.googleapis.com/css2?family=Inter+Tight&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inknut+Antiqua&display=swap");
+// @import url("https://fonts.googleapis.com/css2?family=Inter+Tight&display=swap");
 @import '~font-awesome/css/font-awesome.min.css';
 
 html,
@@ -33,7 +33,7 @@ p {
   --blue-e: #182034, #0d193af2;
   --white: #ffffff;
   --title: "Kaushan Script", cursive;
-  --text: "Inter Tight", sans-serif;
+  --text: 'Inknut Antiqua', serif;
 }
 
 .user-box {

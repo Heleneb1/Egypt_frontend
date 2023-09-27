@@ -1,0 +1,11 @@
+<div class="modal-container">
+    <div class="modal-content">
+        <h2>Badge Awarded!</h2>
+        <div class="badge-details">
+            <img [src]="badge.image" alt="Badge Image" class="badge-image">
+            <h3>{{ badge.name }}</h3>
+            <p>{{ badge.description }}</p>
+        </div>
+        <button (click)="awardBadgeToUser(userId,badgeId)">Close</button>
+    </div>
+</div>

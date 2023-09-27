@@ -4,6 +4,8 @@ import { Component } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ArticlesService } from 'src/app/services/articles.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { BadgesService } from 'src/app/services/badges.service';
 import { QuizService } from 'src/app/services/quiz.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -28,6 +30,12 @@ export class QuizDetailsComponent {
   progress: number = 0;
   totalNumberOfQuestions: number = 0;
   numberOfAnsweredQuestions: number = 0;
+  showModal: boolean = false;
+  badgeId: string = '';
+  userConnected: any;
+  badges: any[] = [];
+
+
 
   constructor(
     private quizService: QuizService,
@@ -37,8 +45,18 @@ export class QuizDetailsComponent {
     private router: Router,
     private http: HttpClient,
     private datePipe: DatePipe,
-    private sanitizer: DomSanitizer
-  ) { }
+    private sanitizer: DomSanitizer,
+    private auth: AuthService,
+    private badgeService: BadgesService
+  ) {
+    this.auth.getUserConnected().subscribe((user: any) => {
+      this.userConnected = user;
+      this.userId = this.userConnected.id;
+      console.log("ID user", this.userId);
+      console.log(this.userConnected);
+
+    });
+  }
   formatDate(date: string | null): string {
     if (date === null) {
       return '';
@@ -51,7 +69,14 @@ export class QuizDetailsComponent {
       this.quizId = params.get('id');
       this.quizService.getQuizById(this.quizId).subscribe((quiz) => {
         this.quiz = quiz;
+        console.log("Quiz", this.quiz.id);
+
         console.log(this.quiz);
+        // this.badgeId = this.quiz.badge;
+        // this.badgeId = this.badgeId.toString();//TODO: A supprimer
+        this.userService.getUsers;
+        console.log(this.userService.getUsers);
+
         //   this.userService.getUserName(this.quiz.authorId).subscribe((authorData) => {
 
         //     this.authorName = authorData;
@@ -62,6 +87,12 @@ export class QuizDetailsComponent {
         this.articlesService.getArticleContent(this.quiz.article).subscribe((article: any) => {
           this.quiz.article = article;
           console.log(this.quiz.article.title);
+        });
+
+        this.badgeService.getBadgeContent(this.quiz.badge).subscribe((badge: any) => {
+          this.quiz.badge = badge;
+          console.log("badge", this.quiz.badge.name);
+
         });
 
         this.quiz.questionsIds.forEach((questionId: string) => {
@@ -75,6 +106,7 @@ export class QuizDetailsComponent {
         });
       },
       );
+
     });
   }
   onOptionSelected(questionId: string, event: Event) {
@@ -104,7 +136,13 @@ export class QuizDetailsComponent {
     this.isVoteModified = false;
   }
 
+  openModal(): void {
+    this.showModal = true;
+  }
 
+  closeModal(): void {
+    this.showModal = false;
+  }
   calculateScore() {
     let score = 0;
 
@@ -129,10 +167,13 @@ export class QuizDetailsComponent {
 
 
     if (percentage >= 80) {
+
       alert("Félicitations ! Vous avez obtenu un score supérieur à 80%. " + percentage + "% de bonnes réponses.");
+      this.showModal = true;
     } else {
       alert("Continuez à travailler pour améliorer votre score. " + percentage + "% de bonnes réponses.");
     }
+
   }
 
   answerQuestion(): void {
@@ -152,6 +193,14 @@ export class QuizDetailsComponent {
     let progressBar = document.getElementById('progressBar') as HTMLElement;
     progressBar.style.width = this.progress + '%';
 
+
   }
+  awardBadgeToUser() {
+    this.userService.awardBadgeToCurrentUser(this.userId, this.badgeId).subscribe();
+    console.log("badge aprés", this.badgeId);
+
+    this.closeModal();
+  }
+
 }
 
