@@ -1,11 +1,3 @@
-/* badges-modal.component.css */
-
-/* Style de la boîte modale */
-/* badges-modal.component.css */
-
-/* Style de la boîte modale */
-.modal-container {}
-
 .modal-content {
     width: 100vw;
     height: 100vh;
@@ -16,7 +8,7 @@
 }
 
 
-/* Style du titre */
+
 .modal-content h2 {
     background-color: var(--sun);
     height: 20rem;
@@ -29,39 +21,26 @@
 
 }
 
-/* Style de l'image du badge */
+
 .badge-image {
-    height: 10rem;
+    height: 12rem;
+    border-radius: 60%;
 }
 
-/* Style du nom du badge */
 .modal-content h3 {
     color: var(--white);
 }
 
-/* Style de la description du badge */
+
 .modal-content p {
     color: var(--white);
 }
 
-/* Style du bouton de fermeture */
-.modal-content button {
-    background-color: var(--sun);
-    color: var(--white);
-    border: none;
-    border-radius: 3%;
-    width: 10rem;
-    height: 3rem;
-    font-family: var(--title);
-    font-size: 1.5rem;
-    cursor: pointer;
-    margin: 2rem;
+.modal {
+    height: 20rem;
 }
 
-/* Style du bouton de fermeture au survol */
-.modal-content button:hover {}
 
-/* Style de la boîte modale */
 .modal-container {
     display: flex;
     justify-content: center;
@@ -70,9 +49,10 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 100vh;
+    background-color: var(--blue);
+    ;
 
-    /* Ajoute un fond semi-transparent pour l'arrière-plan obscurci */
 }
 
 .modal-content {
@@ -85,4 +65,15 @@
     padding: 2rem;
 }
 
-/* Autres styles restent inchangés */
+.badge-details {
+    color: var(--white);
+    font-size: 2rem;
+    font-family: var(--title);
+}
+
+.button-style {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+
+}

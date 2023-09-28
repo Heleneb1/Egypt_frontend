@@ -16,6 +16,7 @@ export class QuizViewComponent implements OnInit {
   quizId: any;
   defaultImage: string = 'assets/images/Gizeah.jpg';
 
+
   constructor(private quizService: QuizService, private router: Router) { }
 
   ngOnInit(): void {
@@ -23,12 +24,14 @@ export class QuizViewComponent implements OnInit {
   }
 
   getQuizzes(): void {
-    // Get quizzes from API
-    // this.quizzes = [...]
+
+
     this.quizService.getQuizzes().subscribe((quizzes: any) => {
-      this.quizzes = quizzes;
+      this.quizzes = quizzes.filter((quiz: any) => quiz.archive !== true);
+      console.log(this.quizzes);
     });
   }
+
   selectedQuizById(id: string) {
     this.quizId = id;
     console.log(id);

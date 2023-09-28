@@ -1,0 +1,133 @@
+.all {
+    display: flex;
+    justify-content: center;
+}
+
+.articles-carousel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    margin: 0 auto;
+    padding: 20px;
+    width: 83%;
+    gap: 16px;
+    overflow: hidden;
+
+    button {
+        padding: 0;
+    }
+}
+
+
+.article,
+.previous,
+.next {
+    text-align: center;
+    // max-width: 100%;
+}
+
+.article img {
+    position: relative;
+    top: 2rem;
+    width: 14rem;
+    height: 11rem;
+    border: 1px solid var(--sun);
+}
+
+.article-view {
+    display: flex;
+    justify-content: center;
+    position: relative;
+
+}
+
+.article-view img {
+    position: relative;
+    top: 2rem;
+    width: 14rem;
+    height: 11rem;
+    border: 0.3rem solid var(--sun);
+}
+
+.previous img,
+.next img {
+    max-width: 100%;
+    height: 11rem;
+    width: 14rem;
+}
+
+button {
+    background-color: var(--sun);
+    color: #fff;
+    border: none;
+    padding: 10px;
+    width: 2rem;
+    height: 3rem;
+    // border-radius: 100%;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: var(--white);
+    color: var(--sun);
+}
+
+.back-picture {
+    display: flex;
+
+}
+
+.articles-carousel .previous,
+.articles-carousel .next {
+    display: flex;
+    align-items: center;
+}
+
+.articles-carousel .previous img,
+.articles-carousel .next img {
+    margin: 0;
+
+}
+
+.title {
+    margin: 2.5rem;
+    font-family: var(--title);
+    color: var(--sun);
+    font-size: 1.3rem;
+}
+
+@media screen and (max-width: 768px) {
+    // .articles-carousel {
+    //     width: 100%;
+    // }
+
+    // .article img {
+    //     width: 100%;
+    //     height: 100%;
+    // }
+
+    .article-view img {
+        width: 8rem;
+        max-width: 100%;
+        height: 6 rem;
+
+    }
+
+    .previous img,
+    .next img {
+        max-width: 100%;
+        height: 6 rem;
+        width: 8rem;
+    }
+
+    // .previous img,
+    // .next img {
+    //     width: 100%;
+    //     height: 100%;
+    // }
+
+    // .title {
+    //     font-size: 1rem;
+    // }
+}

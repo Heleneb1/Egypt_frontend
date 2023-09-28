@@ -1,36 +1,40 @@
-<div class="article-details">
-
-    <!-- Empecher l'affichage des balises html dans le contenu du quiz innerHTML-->
-    <p><strong>Contenu:</strong> <span [innerHTML]="article.content"></span></p>
-
-    <p><strong>Thème:</strong> {{ article.tag }}</p>
-    <p><strong>Date de création:</strong> {{ formatDate(article.creationDate) }}</p>
-    <p><strong>Quiz:</strong> {{ article.quiz }}</p>
-    <p><strong>Image:</strong></p>
-    <img [src]="article.picture" alt="Image du article" />
-
-    <p><strong>Rating:</strong> {{ article.rating }}</p>
-    <p><strong>Archivé:</strong> {{ article.archive ? 'Oui' : 'Non' }}</p>
-
-    <div class="author-info">
-
-        <p><strong>Auteur:</strong> {{ article.author}}</p>
-
-
+<div class="sub-title">
+    <h2>Les Mystères de l’Égypte Antique</h2>
+</div>
+<div class="text-container">
+    Votre article...
+</div>
+<div class="article-main-image">
+    <div class="image">
+        <img [src]="'assets/images/Gizeah.jpg'" alt="Gizeh" />
     </div>
 
-    <h3>Badges</h3>
-    <ul>
-        <li *ngFor="let badge of article.badge">{{ badge.name }}</li>
-    </ul>
+</div>
 
-    <h3>Articles associés</h3>
-    <ul>
-        <li *ngFor="let article of article.articles">{{ article.title }}</li>
-    </ul>
+<div class="articles-details-container">
 
-    <h3>Commentaires</h3>
-    <ul>
-        <li *ngFor="let comment of article.comments">{{ comment.text }}</li>
-    </ul>
+
+    <div class="article-details">
+        <img [src]="article?.image ?article?.image : defaultImage" alt="Image de l'article" />
+        <p>Note: {{ article?.rating }}</p>
+        <!-- Empecher l'affichage des balises html dans le contenu du quiz innerHTML-->
+        <p>Contenu: <span [innerHTML]="article?.content"></span></p>
+
+        <div class="author-info">
+            <p>Auteur: {{ article?.author}}</p>
+        </div>
+        <p>Thème: {{ article?.tag }}</p>
+        <p>Date de création: {{ formatDate(article?.creationDate) }}</p>
+        <p>Quiz associé: {{ article?.quiz }}</p>
+
+    </div>
+    <div class="suggest-text">
+        <div class="sub-title">
+            <h2>Articles pouvant vous intérésser</h2>
+        </div>
+    </div>
+    <div class="suggest">
+
+        <app-articles-carousel [articles]="article"></app-articles-carousel>
+    </div>
 </div>
