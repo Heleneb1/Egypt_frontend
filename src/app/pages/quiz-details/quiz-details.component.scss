@@ -1,0 +1,146 @@
+.quiz-details-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem 0;
+}
+
+.quiz-details {
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    max-width: 80%;
+
+    line-height: 1.8;
+
+}
+
+.quiz-infos {
+    color: var(--white);
+    font-family: var(--text);
+    padding: 1rem 0.5rem;
+}
+
+.quiz-details strong {
+    font-weight: bold;
+    color: var(--white);
+    font-family: var(--text);
+}
+
+.quiz-details img {
+    max-width: 100%;
+    height: auto;
+}
+
+.author-info {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #dee2e6;
+}
+
+.author-info h3 {
+    margin-bottom: 10px;
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.progress {
+    position: fixed;
+    width: 75%;
+    top: 80%;
+
+}
+
+#progressBarContainer {
+    position: relative;
+    width: 100%;
+    padding: 0.2rem;
+    margin: 0.5rem;
+    background-color: var(--white);
+    border-radius: 2rem;
+}
+
+#progressBar {
+    position: relative;
+    height: 1.2rem;
+    border-radius: 2rem;
+    width: 0%;
+    max-width: 100%;
+    background-color: var(--sun);
+    transition: width 0.3s ease-in-out;
+}
+
+.progress-star {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    margin-left: 0.5rem;
+    transform: translateY(-50%);
+    color: var(--white);
+    font-size: 2.5rem;
+
+}
+
+.nested-star {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--sun);
+    font-size: 1.5rem;
+}
+
+.radio-selected {
+    color: var(--sun)
+}
+
+input[type="radio"]:checked {
+    border: 1px solid var(--sun);
+    border-radius: 3rem;
+    background-color: var(--sun);
+    padding: 0.5rem;
+    color: var(--white);
+
+}
+
+.option input[type="radio" i] {
+    appearance: none;
+    // background-color: var(--white);
+    border: 1px solid var(--white);
+    cursor: pointer;
+    color: var(--white);
+    height: 1rem;
+    width: 1rem;
+}
+
+.quiz-questions {
+    color: var(--white);
+    font-family: var(--text);
+    margin-bottom: 3rem;
+
+}
+
+.options-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.option-column {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    flex-direction: column;
+
+}
+
+@media (min-width: 768px) {
+    .progress {
+        max-width: 38rem;
+    }
+}

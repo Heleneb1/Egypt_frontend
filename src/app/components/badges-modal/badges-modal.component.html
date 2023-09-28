@@ -1,0 +1,20 @@
+<div class="modal-container">
+    <div class="modal">
+        <div class="modal-content">
+            <h2>Votre Récompense !</h2>
+            <div class="badge-details">
+                <img [src]="badge.image" alt="Badge Image" class="badge-image">
+                <h3> Le Badge : {{ badge.name }}</h3>
+            </div>
+        </div>
+        <div class="button">
+            <div class="button-container"><button (click)="awardBadgeToUser(userId,badgeId)">Récupérer</button>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+</div>

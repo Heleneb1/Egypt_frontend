@@ -14,6 +14,9 @@ export class QuizViewComponent implements OnInit {
   isVoteModified: boolean = false;
   quiz: any;
   quizId: any;
+  defaultImage: string = 'assets/images/Gizeah.jpg';
+
+
   constructor(private quizService: QuizService, private router: Router) { }
 
   ngOnInit(): void {
@@ -21,12 +24,23 @@ export class QuizViewComponent implements OnInit {
   }
 
   getQuizzes(): void {
-    // Get quizzes from API
-    // this.quizzes = [...]
+
+
     this.quizService.getQuizzes().subscribe((quizzes: any) => {
-      this.quizzes = quizzes;
+      this.quizzes = quizzes.filter((quiz: any) => quiz.archive !== true);
+      console.log(this.quizzes);
     });
   }
+
+  selectedQuizById(id: string) {
+    this.quizId = id;
+    console.log(id);
+    this.router.navigate(['/quiz', id]);
+  }
+  // selectPromotionById(promoId: string): void {
+  //   this.selectedPromotionId = promoId;
+  // }
+
   saveVote() {
     if (this.currentRating >= 0 && this.currentRating <= 5) {
       this.quizService.addRating(this.quizId, this.currentRating);
@@ -36,6 +50,15 @@ export class QuizViewComponent implements OnInit {
       alert(`Vous avez évalué cette promotion à ${this.currentRating} étoiles`);
     }
   }
+  // saveVote() {
+  //   if (this.currentRating >= 0 && this.currentRating <= 5) {
+  //     this.promotionsService.addRating(this.promotionId, this.currentRating, this.authorId);
+  //     this.isVoteModified = false;
+  //     this.promotion.rating = this.currentRating;
+
+  //     alert(`Vous avez évalué cette promotion à ${this.currentRating} étoiles`);
+  //   }
+  // }
   onRatingChanged(rating: number) {
     this.currentRating = rating;
     this.isVoteModified = true;

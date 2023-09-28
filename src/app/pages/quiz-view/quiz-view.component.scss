@@ -6,12 +6,39 @@
 //     font-size: 16px;
 //     border: none;
 //     border-radius: 5px;
+.loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    color: var(--white);
+    font-family: var(--title);
+    transform: translate(-50%, -50%);
+    /* Centre la boîte modale */
+}
+
+.quiz-main-image {
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    .image img {
+        width: 100vw;
+        height: 50vh;
+        object-fit: cover;
+    }
+}
+
 .quiz-count {
     color: var(--white);
     font-family: var(--text);
     margin: 1.5rem;
     display: flex;
     justify-content: center;
+    padding: 2rem;
 
 
     .number {
@@ -27,10 +54,25 @@
     align-items: center;
 
     button {
+        background-color: var(--sun);
+        font-family: var(--title);
+        font-size: 1rem;
+        color: var(--white);
         width: 10rem;
         height: 3rem;
         border-radius: 4rem;
         cursor: pointer;
+        text-decoration: none;
+    }
+
+    .create-quiz-button {
+        background-color: var(--sun);
+        font-family: var(--title);
+        font-size: 1.3rem;
+        color: var(--white);
+        border-radius: 4rem;
+        cursor: pointer;
+        text-decoration: none;
     }
 }
 
@@ -64,7 +106,7 @@
     .header-card {
         img {
             width: 8rem;
-            height: 100%;
+            height: 12rem;
             border-radius: 5px;
             border: 0.3px solid black;
             box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
@@ -73,14 +115,9 @@
 
     .body-card {
         background-color: (var(--white));
-        // color: white;
-        // padding: 10px 0;
-        // height: 40%;
+        height: 12rem;
         width: 100%;
-        // margin-top: -8px;
-        border-radius: 0 0 5px 5px;
         border: 0.3px solid black;
-        // box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -106,15 +143,11 @@
                 margin-right: 10px;
 
                 p {
+                    color: black;
                     text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
                 }
 
-                // img {
-                //     width: 20px;
-                //     height: 20px;
-                //     align-items: center;
-                //     vertical-align: middle;
-                // }
+
             }
         }
 

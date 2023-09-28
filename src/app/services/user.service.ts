@@ -7,6 +7,10 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class UserService {
+  awardBadgeToCurrentUser(badgeId: any, userId: any) {
+    return this.httpClient.put<any>(environment.apiUrl + `/users/${userId}/badges/${badgeId}`, {});
+  }
+
   getData() {
     throw new Error('Method not implemented.');
   }
@@ -44,7 +48,11 @@ export class UserService {
     }
   }
 
-  updateBio(id: string, user: any) {
-    return this.httpClient.put<any>(environment.apiUrl + `/users/${id}`, user);
+  updateBio(userId: string, updatedBiography: string) {
+    const url = environment.apiUrl + `/users/${userId}/update-bio`;
+    console.log(url);
+
+    return this.httpClient.put(url, updatedBiography);
   }
+
 }

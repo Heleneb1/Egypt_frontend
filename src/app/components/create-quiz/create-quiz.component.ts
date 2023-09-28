@@ -24,6 +24,7 @@ export class CreateQuizComponent implements AfterViewInit, OnInit {
   createdQuizId: string = '';
   userConnected: any; // Type should be defined
   userId: string = '';
+  isArchived: boolean = true;
 
   constructor(
     private http: HttpClient,
@@ -38,7 +39,6 @@ export class CreateQuizComponent implements AfterViewInit, OnInit {
   }
 
   ngOnInit(): void {
-    // Initialize code here if needed
   }
 
   ngAfterViewInit() {
@@ -56,9 +56,9 @@ export class CreateQuizComponent implements AfterViewInit, OnInit {
     this.quill = new Quill('#editor', {
       modules: {
         toolbar: toolbarOptions,
-        'emoji-toolbar': true,
-        'emoji-textarea': true,
-        'emoji-shortname': true,
+        // 'emoji-toolbar': true,
+        // 'emoji-textarea': true,
+        // 'emoji-shortname': true,
       },
       theme: 'snow',
     });
@@ -78,10 +78,16 @@ export class CreateQuizComponent implements AfterViewInit, OnInit {
       picture: this.picture,
       tag: this.tag,
       difficulty: this.difficulty,
+      archive: this.isArchived,
     };
 
     this.http.post(url, data).subscribe(
+
       (response: any) => {
+        console.log('Quiz created', response);
+        console.log(data);
+
+
         alert('Le quiz est créé avec succès !');
       },
       (error) => {
@@ -92,3 +98,5 @@ export class CreateQuizComponent implements AfterViewInit, OnInit {
     );
   }
 }
+
+
