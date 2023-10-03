@@ -1,5 +1,5 @@
 export class Article {
-  constructor(
+  constructor (
     public id: number,
     public archive: boolean,
     public author: string,
@@ -8,6 +8,9 @@ export class Article {
     public tag: string,
     public title: string,
     public edition_date: Date,
-    public rating: number
-  ) {}
+    public rating: number,
+    public image: string,
+    public comments: any[],
+
+  ) { }
 }

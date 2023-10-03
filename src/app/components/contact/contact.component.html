@@ -1,0 +1,45 @@
+<div class="contact-container">
+    <div class="contact-intro">
+        <div class="sub-title">
+            <h2>Les Mystères de l’Égypte Antique</h2>
+        </div>
+        <div class="main-image">
+            <div class="image">
+                <img [src]="'assets/images/Gizeah.jpg'" alt="Gizeh" />
+            </div>
+
+            <div class="text-container">
+                Un commentaire, une suggestion, un signalement , laissez votre message, notre scribe vous repondra
+                rapidement
+            </div>
+        </div>
+    </div>
+</div>
+<div class="contact">
+    <!-- <img [src]="'assets/images/background.svg'" alt="contact"> -->
+    <form (ngSubmit)="sendMessage()">
+        <div class="form-group">
+            <label for="nom">Nom :</label>
+            <input type="text" id="nom" [(ngModel)]="contact.firstName" name="nom" required>
+        </div>
+        <div class="form-group">
+            <label for="prenom">Prénom :</label>
+            <input type="text" id="prenom" [(ngModel)]="contact.lastName" name="prenom" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email :</label>
+            <input type="email" id="email" [(ngModel)]="contact.email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="message">Votre message :</label>
+            <textarea id="message" [(ngModel)]="contact.message" name="message" required></textarea>
+        </div>
+        <div class="send-button">
+            <div class="button">
+                <div class="button-container">
+                    <button type="submit" class="button">Envoyer</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

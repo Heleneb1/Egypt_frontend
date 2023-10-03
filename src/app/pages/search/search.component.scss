@@ -3,10 +3,12 @@
 }
 
 .name-search {
+  margin: 2rem 0.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
 }
 
 #theme {
@@ -15,6 +17,8 @@
   border-radius: 2rem;
   padding-left: 2rem;
   font-size: 1.5rem;
+  height: 2.2rem;
+  width: 45rem;
 }
 
 button {
@@ -108,6 +112,7 @@ option {
 
 input[type="text"]::placeholder {
   color: var(--blue);
+
 }
 
 .filter-container {
@@ -166,6 +171,7 @@ input[type="text"]::placeholder {
 
   #theme {
     width: 90%;
+    height: 2rem;
   }
 
   .filter-container select {

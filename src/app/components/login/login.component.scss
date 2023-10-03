@@ -2,6 +2,19 @@
   width: 80vw;
 }
 
+.show-password {
+  position: relative;
+  top: 4.5rem;
+  left: 85%;
+  width: 2rem;
+  height: 1.5rem;
+  display: flex;
+  font-size: 25px;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+}
+
 @media (min-width: 768px) {
   .login-box {
     width: 60vw;
@@ -13,13 +26,4 @@
   height: 2rem;
   margin-right: 0.5rem;
   cursor: pointer;
-}
-
-.show-password {
-  width: 2rem;
-  display: flex;
-  font-size: 18px;
-  cursor: pointer;
-  border: none;
-  background: transparent;
 }

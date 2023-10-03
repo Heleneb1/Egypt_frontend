@@ -1,45 +1,50 @@
-<nav class="header-container">
-    <div class="header-content">
+<div class="header-all">
 
-        <div class="menu-burger" [ngClass]="{ open: isMenuOpen }" (click)="toggleMenu()">
-            <div class="line"></div>
-            <div class="line"></div>
-            <div class="line"></div>
-        </div>
+    <nav class="header-container">
+        <div class="header-content">
 
-        <div class="menu" [ngClass]="{ open: isMenuOpen }">
-            <div class="nav-mobile">
-                <ul>
-                    <li><a routerLink="/home">Accueil</a></li>
-                    <li><a routerLink="/article">Articles</a></li>
-                    <li><a routerLink="/quiz">Quiz</a></li>
-                    <li><a routerLink="/profile">Profil</a></li>
-                    <li><a routerLink="/authentication">Connexion</a></li>
-                    <li> <a (click)="logout()">Déconnexion</a></li>
-                    <!-- <img src="assets/images/Brain.png" alt="Image 2" class="menu-image" /> -->
-                </ul>
-                <div class="menu-image">
-                    <img [src]="'assets/images/logo-bleu.svg'" alt="logo" class="menu-image" />
+            <div class="menu-burger" [ngClass]="{ open: isMenuOpen }" (click)="toggleMenu()">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+
+            <div class="menu" [ngClass]="{ open: isMenuOpen }">
+                <div class="nav-mobile">
+                    <ul>
+                        <li><a routerLink="/home">Accueil</a></li>
+                        <li><a routerLink="/article">Articles</a></li>
+                        <li><a routerLink="/quiz">Quiz</a></li>
+                        <li><a routerLink="/profile">Profil</a></li>
+                        <li><a routerLink="/authentication">Connexion</a></li>
+                        <li><a routerLink="/inscription">Créer un compte</a></li>
+                        <li><a routerLink="/contact">Nous Contacter</a></li>
+                        <li> <a (click)="logout()">Déconnexion</a></li>
+                    </ul>
+                    <div class="menu-image">
+                        <a routerLink="/home">
+                            <img [src]="'assets/images/logo-bleu.svg'" alt="logo" class="menu-image" />
+                        </a>
+                    </div>
+
                 </div>
-                <!-- <div class="logo">
-                    <a routerLink="/home">
-                        <img [src]="'assets/images/logo-bleu.svg'" alt="logo" />
-                    </a>
-                </div> -->
             </div>
         </div>
-    </div>
 
-    <div class="icons">
-        <a routerLink="/profile" class="icon">
-            <i class="fa fa-user"></i>
-        </a>
-        <div class="icon"><i class="fa fa-envelope"></i></div>
-        <div class="icon"><i class="fa fa-bell"></i></div>
+        <div class="icons">
+            <a routerLink="/profile" class="icon">
+                <i class="fa fa-user"></i>
+            </a>
+            <div class="icon"><i class="fa fa-envelope"></i></div>
+            <div class="icon"><i class="fa fa-bell"></i></div>
 
-    </div>
-    <div class="logo">
-        <img [src]="'assets/images/logo-bleu.svg'" alt="logo" />
-    </div>
+        </div>
+        <div class="logo">
+            <a routerLink="/home">
+                <img [src]="'assets/images/logo-bleu.svg'" alt="logo" />
+                <!-- <img [src]="'assets/images/logo-bleu.svg'" alt="logo" /> -->
+            </a>
+        </div>
 
-</nav>
+    </nav>
+</div>

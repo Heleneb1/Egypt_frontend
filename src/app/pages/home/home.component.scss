@@ -6,9 +6,8 @@
 
   .content {
     display: flex;
-
-    // padding: 3rem;
-    // margin: 2rem;
+    margin: 2rem;
+    padding: 0 3rem;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -31,27 +30,18 @@
     }
   }
 
-  // .sub-title {
-  //   margin-bottom: 2rem;
-
-  //   font-family: var(--title);
-  //   color: var(--sun);
-  //   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  //   h2 {
-  //     font-size: 2.2rem;
-  //     margin-bottom: 2rem;
-  //   }
-  // }
   .introduction {
-    margin: 2rem;
+    margin: 0 2rem;
     justify-content: space-around;
-    // height: 20rem;
+    padding: 2rem;
   }
 
   .title h3 {
     font-family: var(--title);
     font-size: 1.5rem;
     color: var(--white);
+    // padding: 2rem;
+    margin-bottom: 1rem;
   }
 
   .description {
@@ -59,7 +49,7 @@
     flex-direction: column;
     align-items: flex-start;
     margin: 2em;
-    padding-bottom: 2rem;
+    padding: 2rem;
     justify-content: center;
   }
 
@@ -149,8 +139,25 @@
       font-size: 1.3rem;
     }
 
+    .introduction {
+      padding: 0;
+      margin: 2rem;
+    }
+
+    .description {
+      margin: 2rem;
+      padding: 0;
+    }
+
+    .title {
+      margin: 0;
+      padding: 0;
+    }
+
     .title h3 {
       font-size: 1.3rem;
+      padding: 0;
+      margin-bottom: 1rem;
     }
   }
 }

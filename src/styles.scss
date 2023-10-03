@@ -2,7 +2,7 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inknut+Antiqua&display=swap");
-// @import url("https://fonts.googleapis.com/css2?family=Inter+Tight&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter+Tight&display=swap");
 @import '~font-awesome/css/font-awesome.min.css';
 
 html,
@@ -33,7 +33,8 @@ p {
   --blue-e: #182034, #0d193af2;
   --white: #ffffff;
   --title: "Kaushan Script", cursive;
-  --text: 'Inknut Antiqua', serif;
+  --text2: 'Inknut Antiqua', serif;
+  --text: 'Inter Tight', sans-serif;
 }
 
 .user-box {
@@ -92,12 +93,15 @@ p {
 }
 
 @media (min-width: 768px) {
+
+
   .user-box input {
     padding: 0.5rem 1rem;
   }
 }
 
 .sub-title {
+  text-align: center;
   margin-bottom: 2rem;
   font-family: var(--title);
   color: var(--sun);
@@ -161,6 +165,7 @@ span.ql-picker-label {
   }
 
   .text-container {
+    margin: 2rem;
     padding: 2rem;
     width: 50%;
     position: relative;

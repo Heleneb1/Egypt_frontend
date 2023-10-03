@@ -2,16 +2,7 @@
   <h2>Les Mystères de l’Égypte Antique</h2>
 </div>
 <section class="main-informations-container">
-  <div class="main-image">
-    <div class="image">
-      <img [src]="'assets/images/Gizeah.jpg'" alt="Gizeh" />
-    </div>
 
-    <div class="text-container">
-      Inscrivez-vous et bénéficiez des toutes dernières informations disponibles,
-      jouez et gagnez des badges...
-    </div>
-  </div>
   <div class="top-bar-form-container">
     <div class="top-bar-form" (click)="selectTab($event)">
       <div class="top-bar-form-item-connection" [class.top-bar-form-item-selected]="selectedTab === 'login'"
@@ -24,6 +15,7 @@
       </div>
     </div>
   </div>
+
 </section>
 <section class="select-container">
   <div class="connection-container">
@@ -44,5 +36,18 @@
     <div *ngIf="selectedTab === 'register'">
       <app-register class="register-form-container" (registrationStatus)="onRegistrationStatus($event)"></app-register>
     </div>
+    <div class="red-line">
+      <div class="main-image">
+        <div class="image">
+          <img [src]="'assets/images/Gizeah.jpg'" alt="Gizeh" />
+        </div>
+
+        <div class="text-container">
+          Inscrivez-vous et bénéficiez des toutes dernières informations disponibles,
+          jouez et gagnez des badges...
+        </div>
+      </div>
+    </div>
   </div>
+
 </section>

@@ -24,7 +24,7 @@ export class ArticlesService {
 
 
 
-  constructor(private httpClient: HttpClient) { }
+  constructor (private httpClient: HttpClient) { }
   getArticles() {
     return this.httpClient.get(this.articlesDataUrl);
   }
@@ -47,6 +47,10 @@ export class ArticlesService {
       })
     );
   }
+  getArticleId(id: number): Observable<Article> {
+    return this.httpClient.get<Article>(`${this.articlesDataUrl}/${id}`);
+  }
+
 
   getArticlesByAuthor(author: string): Observable<Article[]> {
     return this.httpClient.get<Article[]>(

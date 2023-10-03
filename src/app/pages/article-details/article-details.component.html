@@ -37,4 +37,14 @@
 
         <app-articles-carousel [articles]="article"></app-articles-carousel>
     </div>
+
+    <div class="comment">
+
+
+        <div class="add-comment" *ngIf="isConnected">
+
+            <app-comments [articleCommentId]="article?.id"></app-comments>
+        </div>
+
+    </div>
 </div>

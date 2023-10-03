@@ -1,0 +1,39 @@
+<div class="comment-container">
+    <h2>Ajouter un commentaire</h2>
+    <form (ngSubmit)="addComment()">
+        <div class="form-group">
+            <label for="comment"></label>
+            <button (click)="onEditComment()" type="button" class="comment-btn">Laisser un commentaire...
+            </button>
+            <div *ngIf="editComment">
+                <div class="edit">
+                    <textarea id="comment" class="form-control" [(ngModel)]="commentContent" name="commentContent"
+                        required></textarea>
+                    <button type="submit" class="btn btn-primary">Ajouter le commentaire</button>
+                </div>
+            </div>
+        </div>
+        <div class="comment-button">
+
+
+
+            <button (click)="onComment()" type="button" class="comment-btn">Afficher les commentaires</button>
+        </div>
+        <div *ngIf="showComment && commentList && commentList.length > 0">
+            <h2>Commentaires :</h2>
+            <ul>
+                <li *ngFor="let comment of commentList">
+                    {{ comment.content }}
+
+                    <p>auteur : {{ comment.author }}</p>
+                    <!-- <p>Date de création: {{ formatDate(comment?.creationDate) }}</p> -->
+
+
+                </li>
+            </ul>
+        </div>
+    </form>
+
+
+
+</div>

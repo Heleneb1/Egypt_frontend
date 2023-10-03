@@ -45,7 +45,7 @@ export class LoginComponent {
             }
           },
           () => {
-            this.loginError.emit('De mauvais identifiants ont été saisis');
+            this.loginError.emit('Mauvais identifiants saisis');
           }
         );
     } else {

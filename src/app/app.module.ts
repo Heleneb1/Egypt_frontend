@@ -1,23 +1,15 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { CookieService } from 'ngx-cookie-service';
-import {
-  FormsModule,
-  FormBuilder,
-  Validators,
-  ReactiveFormsModule,
-} from '@angular/forms';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthGuard } from './services/auth-guard.service';
-import { LoginAuthGuardService } from './services/login-auth-guard.service';
 import { AuthService } from './services/auth.service';
 import { AuthInterceptor } from './services/auth-interceptor';
 import { AppComponent } from './app.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './pages/home/home.component';
 import { SplashPageComponent } from './pages/splash-page/splash-page.component';
-
 import { AnimationComponent } from './components/animation/animation.component';
 import { SearchComponent } from './pages/search/search.component';
 import { ConnectionComponent } from './pages/connection/connection.component';
@@ -39,10 +31,12 @@ import { DatePipe } from '@angular/common';
 import { ArticleDetailsComponent } from './pages/article-details/article-details.component';
 import { BadgesModalComponent } from './components/badges-modal/badges-modal.component';
 import { ArticlesCarouselComponent } from './components/articles-carousel/articles-carousel.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { CommentsComponent } from './components/comments/comments.component';
 
 const cookieConfig: NgcCookieConsentConfig = {
   cookie: {
-    domain: 'localhost' // or 'your.domain.com' // it is mandatory to set a domain, for cookies to work properly (see https://goo.gl/S2Hy2A)
+    domain: 'localhost' // or 'your.domain.com'
   },
   palette: {
     popup: {
@@ -55,11 +49,11 @@ const cookieConfig: NgcCookieConsentConfig = {
   theme: 'edgeless',
   type: 'opt-out'
 };
+
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-
     SplashPageComponent,
     AnimationComponent,
     SearchComponent,
@@ -78,6 +72,8 @@ const cookieConfig: NgcCookieConsentConfig = {
     ArticleDetailsComponent,
     BadgesModalComponent,
     ArticlesCarouselComponent,
+    ContactComponent,
+    CommentsComponent,
   ],
   imports: [
     BrowserModule,
@@ -86,7 +82,6 @@ const cookieConfig: NgcCookieConsentConfig = {
     NgcCookieConsentModule.forRoot(cookieConfig),
     FormsModule,
     RouterModule,
-    AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
   ],
@@ -94,7 +89,6 @@ const cookieConfig: NgcCookieConsentConfig = {
     DatePipe,
     CookieService,
     AuthGuard,
-    LoginAuthGuardService,
     AuthService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],

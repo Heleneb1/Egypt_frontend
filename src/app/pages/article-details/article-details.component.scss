@@ -91,3 +91,16 @@ ul {
     justify-content: center;
     margin: 0 2rem 2rem 2rem;
 }
+
+.comment {
+    width: 80vw;
+    background-color: var(--blue);
+    display: flex;
+    justify-content: center;
+    margin: 3rem;
+    flex-direction: column;
+    align-items: center;
+    color: var(--white);
+
+
+}
