@@ -46,16 +46,21 @@ import { ArticleDetailsComponent } from './pages/article-details/article-details
 import { BadgesModalComponent } from './components/badges-modal/badges-modal.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { RegisterComponent } from './components/register/register.component';
+import { AdminComponent } from './components/admin/admin.component';
 // import { AdminComponent } from './pages/admin/admin.component'; // Supposez que vous avez une page d'administration
 
 // Importez votre AdminAuthGuardService
-// import { AdminAuthGuardService } from './services/admin-auth-guard.service';
+//  import { AdminAuthGuardService } from './services/admin-auth-guard.service';
 
 const routes: Routes = [
   {
     path: '',
     component: SplashPageComponent,
   },
+  // {
+  //   path: 'badges',
+  //   component: BadgesModalComponent,
+  // },
   {
     path: 'home',
     component: HomeComponent,
@@ -95,14 +100,18 @@ const routes: Routes = [
     component: QuizDetailsComponent,
   },
   {
-    path: 'inscription',
-    component: RegisterComponent,
+    path: 'loading',
+    component: UserProfileComponent,
+  },
+  {
+    path: 'admin',
+    component: AdminComponent,
   },
 
   // {
   //   path: 'admin',
   //   component: AdminComponent, // Page d'administration
-  //   canActivate: [AdminAuthGuardService], // Garde pour l'accès administratif
+  //   canActivate: [AuthGuard], // Garde pour l'accès administratif
   // },
 ];
 

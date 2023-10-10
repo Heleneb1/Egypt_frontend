@@ -16,7 +16,7 @@ export class UserService {
   }
   private userData = environment.apiUrl + '/users';
 
-  constructor(private httpClient: HttpClient) { }
+  constructor (private httpClient: HttpClient) { }
 
   getUsers(): Observable<any> {
     return this.httpClient.get(this.userData);
@@ -29,6 +29,15 @@ export class UserService {
   getUserName(userId: string): Observable<string> {
     return this.getUserById(userId).pipe(map((user: any) => `${user.firstname} ${user.lastname}`));
   }
+  getUserAvatar(userId: string): Observable<string> {
+    return this.getUserById(userId).pipe(map((user: any) => `${user.avatar}`));
+  }
+  getUserAvatarForComment(userId: string): Observable<string> {
+    return this.getUserById(userId).pipe(
+      map((user: any) => `${environment.apiUrl}/users/avatar/${user.avatar}`)
+    );
+  }
+
   updateUserById(userId: string, body: { promotionId: any } | undefined) {
     const url = environment.apiUrl + `/users/${userId}`;
     return this.httpClient.put(url, body);

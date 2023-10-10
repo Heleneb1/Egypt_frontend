@@ -1,5 +1,8 @@
 export class Comment {
+    authorAvatar: string | undefined;
+    authorName: string | undefined;
     constructor (
+
         public id: number,
         public archive: boolean,
         public author: string,

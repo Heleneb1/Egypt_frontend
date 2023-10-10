@@ -75,7 +75,7 @@ p {
       font-family: var(--title);
       font-size: 1.5rem;
       text-shadow: #fffcfc 0px 0px 10px;
-
+      cursor: pointer;
       transition: transform 0.2s ease-in-out;
     }
   }
@@ -156,6 +156,8 @@ span.ql-picker-label {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  margin-top: 6rem;
+
 
   .image img {
     margin-top: 14rem;

@@ -9,7 +9,10 @@ import { environment } from 'src/environments/environment.development';
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private http: HttpClient, private cookieService: CookieService) {}
+  getUserRole() {
+    throw new Error('Method not implemented.');
+  }
+  constructor (private http: HttpClient, private cookieService: CookieService) { }
   logout() {
     this.cookieService.delete('token');
   }

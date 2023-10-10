@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { BadgesService } from 'src/app/services/badges.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -7,6 +8,7 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './user-info.component.html',
   styleUrls: ['./user-info.component.scss']
 })
+//TODO revoir les badges affichés
 export class UserInfoComponent {
   @Input()
   userData: any;
@@ -24,7 +26,7 @@ export class UserInfoComponent {
   biography = '';
   badges: any;
 
-  constructor(private userService: UserService, private sanitizer: DomSanitizer) { }
+  constructor (private userService: UserService, private sanitizer: DomSanitizer, private badgesService: BadgesService) { }
 
   onFileSelected(event: any) {
     this.selectedFile = <File>event.target.files[0];
@@ -33,20 +35,44 @@ export class UserInfoComponent {
 
   private objectURL: string | undefined;
 
+  // ngOnInit(): void {
+  //   this.user = this.userData;
+  //   this.badges = this.userData.badgesIds;
+  //   console.log(this.userData.badgesIds);//TODO revoir les badges affichés
+  //   const userBadges = this.userData.badgesIds || [];
+
+
+  //   while (userBadges.length < 10) {
+  //     userBadges.push({ name: 'Badge à venir', image: 'assets/images/wait.jpg' });
+  //   }
+
+  //   this.badges = userBadges;
+
+
+
+  //   if (this.userData.biography !== null) {
+  //     this.inputBiography = this.userData.biography;
+  //   }
+  //   if (this.userData.avatar !== null) {
+  //     this.loadAvatar();
+  //   }
+
+  // }
   ngOnInit(): void {
     this.user = this.userData;
-    this.badges = this.userData.badges;
-    console.log(this.userData.badges);
-    const userBadges = this.userData.badges || [];
+    const userBadges = this.userData.badgesIds || [];
 
+    this.badges = [];
 
-    while (userBadges.length < 10) {
-      userBadges.push({ name: 'Badge à venir', image: 'assets/images/wait.jpg' });
+    userBadges.forEach((badgeId: string) => {
+      this.badgesService.getBadgeContent(badgeId).subscribe((badgeInfo: any) => {
+        this.badges.push(badgeInfo);
+      });
+    });
+
+    while (this.badges.length <= 8) {
+      this.badges.push({ name: 'Badge à venir', image: 'assets/images/wait.jpg' });
     }
-
-    this.badges = userBadges;
-
-
 
     if (this.userData.biography !== null) {
       this.inputBiography = this.userData.biography;
@@ -54,8 +80,8 @@ export class UserInfoComponent {
     if (this.userData.avatar !== null) {
       this.loadAvatar();
     }
-
   }
+
 
   ngOnDestroy(): void {
     if (this.objectURL) {

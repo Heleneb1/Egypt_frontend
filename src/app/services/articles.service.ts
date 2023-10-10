@@ -10,6 +10,7 @@ import { Observable, map } from 'rxjs';
 export class ArticlesService {
   private articlesDataUrl = environment.apiUrl + '/articles';
 
+
   addRating(articleId: string, userRating: number) {
     const url = `${this.articlesDataUrl}/${articleId}/rating`;
     this.httpClient.put<any>(url, { rating: userRating }).subscribe(
@@ -25,8 +26,8 @@ export class ArticlesService {
 
 
   constructor (private httpClient: HttpClient) { }
-  getArticles() {
-    return this.httpClient.get(this.articlesDataUrl);
+  getArticles(): Observable<Article[]> { // Typer la réponse comme un tableau d'articles
+    return this.httpClient.get<Article[]>(`${this.articlesDataUrl}`);
   }
   // getArticleById(id: string) {
   //   return this.httpClient.get(this.articlesDataUrl + '/' + id);

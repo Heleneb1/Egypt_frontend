@@ -18,7 +18,7 @@ export class ArticlesCarouselComponent implements OnInit {
 
 
 
-  constructor(private articlesService: ArticlesService, private router: Router) {
+  constructor (private articlesService: ArticlesService, private router: Router) {
     this.leftIndex = this.articles.length - 1;
   }
 
@@ -30,7 +30,7 @@ export class ArticlesCarouselComponent implements OnInit {
     this.articlesService.getArticles().subscribe((articles: any) => {
       this.articles = articles;
       this.updateIndexes();
-      console.log("articles", articles);
+      // console.log("articles", articles);
 
     });
   }

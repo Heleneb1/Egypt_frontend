@@ -33,6 +33,7 @@ import { BadgesModalComponent } from './components/badges-modal/badges-modal.com
 import { ArticlesCarouselComponent } from './components/articles-carousel/articles-carousel.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { CommentsComponent } from './components/comments/comments.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 const cookieConfig: NgcCookieConsentConfig = {
   cookie: {
@@ -74,6 +75,7 @@ const cookieConfig: NgcCookieConsentConfig = {
     ArticlesCarouselComponent,
     ContactComponent,
     CommentsComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,

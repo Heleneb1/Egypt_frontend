@@ -1,11 +1,11 @@
 import { DatePipe } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
-import { Component, Input } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
+// import { HttpClient } from '@angular/common/http';
+import { Component } from '@angular/core';
+// import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ArticlesService } from 'src/app/services/articles.service';
 import { AuthService } from 'src/app/services/auth.service';
-import { UserService } from 'src/app/services/user.service';
+// import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-articles-details',
@@ -29,12 +29,12 @@ export class ArticleDetailsComponent {
 
   constructor (
     private articlesService: ArticlesService,
-    private userService: UserService,
+    // private userService: UserService,
     private route: ActivatedRoute,
-    private router: Router,
-    private http: HttpClient,
+    // private router: Router,
+    // private http: HttpClient,
     private datePipe: DatePipe,
-    private sanitizer: DomSanitizer,
+    // private sanitizer: DomSanitizer,
     private authService: AuthService,
 
   ) { }
@@ -51,7 +51,7 @@ export class ArticleDetailsComponent {
       this.articlesService.getArticleById(this.articleId).subscribe((article) => {
         this.article = article;
         this.commentList = this.article.comments;
-        console.log("commentaires", this.commentList);
+        // console.log("commentaires", this.commentList);
       });
     });
 

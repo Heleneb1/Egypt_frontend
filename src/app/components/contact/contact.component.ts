@@ -19,7 +19,7 @@ export class ContactComponent {
   //     message: ['', Validators.required]
   //   });
   // }
-  constructor(private sendEmail: SendEmailService) {
+  constructor (private sendEmail: SendEmailService) {
     this.contact = new Contact('', '', '', '');
   }
 
@@ -29,6 +29,7 @@ export class ContactComponent {
     if (this.contact) {
       const formData = this.contact;
       this.sendEmail.sendEmail(formData)
+      this.contact = new Contact('', '', '', '');
 
     }
   }
