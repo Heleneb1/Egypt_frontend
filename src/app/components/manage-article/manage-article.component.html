@@ -1,0 +1,56 @@
+<div class="update-articles">
+    <button class="all-articles" (click)="getArticles()" type="button">Tous les articles</button>
+    <div *ngIf="articlesOpen">
+        <div class="articles-container" *ngFor="let article of articles">
+            <div class="title">
+                <h2>{{ article.title }}</h2>
+            </div>
+            <div class="content">
+                <p>{{ article.content }}</p>
+            </div>
+            <div class="arviched">
+                <input type="radio" id="archiveYes" name="archive" [(ngModel)]="isArchived" [value]="true"> Oui
+                <input type="radio" id="archiveNo" name="archive" [(ngModel)]="isArchived" [value]="false"> Non
+            </div>
+            <div class="image">
+                <img [src]="article.image" alt="Image de l'article" />
+            </div>
+            <div class="update-button">
+                <button (click)="editArticle(article)" type="button">Modifier</button>
+                <button (click)="deleteArticle(article.id)">Supprimer</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="add-article">
+    <div class="button">
+        <div class="button-container">
+            <button (click)="createArticle()" type="button" class="button">Ajouter un article</button>
+        </div>
+    </div>
+    <div class="create-article" *ngIf="showArticleForm">
+        <h2>Créer un nouvel article</h2>
+        <label for="title">Titre:</label>
+        <input type="text" id="title" [(ngModel)]="newTitle">
+        <label for="image">Image:</label>
+        <input type="text" id="image" name="image" [(ngModel)]="newImage" placeholder="Entrez le lien de l'image" />
+        <label for="content">Contenu:</label>
+        <textarea id="content" [(ngModel)]="newContent"></textarea>
+        <label for="archive">Archiver:</label>
+        <input type="radio" id="archive" [(ngModel)]="isArchived">
+        <label for="author">Auteur:</label>
+        <input type="text" id="author" [(ngModel)]="newAuthor">
+        <label for="tag">Thème:</label>
+        <input type="text" id="tag" [(ngModel)]="newTag">
+        <label for="rating">Évaluation:</label>
+        <input type="number" id="rating" [(ngModel)]="newRating">
+        <div class="create-button">
+            <div class="button">
+                <div class="button-container">
+                    <button (click)="addArticle()" type="button" class="button">Créer l'article</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

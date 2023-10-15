@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class UserService {
+
   awardBadgeToCurrentUser(badgeId: any, userId: any) {
     return this.httpClient.put<any>(environment.apiUrl + `/users/${userId}/badges/${badgeId}`, {});
   }
@@ -63,5 +64,9 @@ export class UserService {
 
     return this.httpClient.put(url, updatedBiography);
   }
+  deleteUsers(id: any) {
+    return this.httpClient.delete(environment.apiUrl + `/users/${id}`);
+  }
+
 
 }

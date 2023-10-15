@@ -1,0 +1,120 @@
+/* Styles pour la section de quiz */
+.all {
+    color: var(--white)
+}
+
+.quiz {
+    text-align: center;
+    padding: 20px;
+}
+
+/* Styles pour les boutons */
+.button {
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+/* Styles pour la liste de quiz */
+h2 {
+    color: #333;
+    font-size: 24px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin: 20px 0;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+/* Styles pour les boutons de modification et de suppression */
+.update-button button {
+    background-color: #dc3545;
+}
+
+/* Styles pour les boutons de création */
+.create-button button {
+    background-color: #28a745;
+}
+
+/* Styles pour les formulaires de création */
+.create-quiz,
+.create-question {
+    text-align: center;
+}
+
+/* Styles pour les labels et les champs de saisie */
+label {
+    display: block;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 5px 0;
+}
+
+/* Styles pour les radios et les cases à cocher */
+input[type="radio"] {
+    margin: 5px 10px;
+}
+
+/* Styles pour les catégories */
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 5px 0;
+}
+
+/* Styles pour les badges */
+.badge {
+    margin-top: 20px;
+}
+
+/* Styles pour la liste de badges */
+.badges {
+    text-align: center;
+}
+
+/* Styles pour les images de badge */
+img {
+    max-width: 100px;
+    max-height: 100px;
+}
+
+/* Styles pour les boutons de sélection de badge */
+.selected-badge button {
+    background-color: #17a2b8;
+}
+
+/* Styles pour le badge sélectionné */
+.selected-badge label {
+    display: block;
+    font-weight: bold;
+}
+
+/* Styles pour les messages d'état */
+.archived p {
+    color: #dc3545;
+}
+
+/* Styles pour les messages d'état de création */
+.created p {
+    color: #28a745;
+}

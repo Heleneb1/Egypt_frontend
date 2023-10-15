@@ -34,6 +34,8 @@ import { ArticlesCarouselComponent } from './components/articles-carousel/articl
 import { ContactComponent } from './components/contact/contact.component';
 import { CommentsComponent } from './components/comments/comments.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { ManageQuizComponent } from './components/manage-quiz/manage-quiz.component';
+import { ManageArticleComponent } from './components/manage-article/manage-article.component';
 
 const cookieConfig: NgcCookieConsentConfig = {
   cookie: {
@@ -76,6 +78,8 @@ const cookieConfig: NgcCookieConsentConfig = {
     ContactComponent,
     CommentsComponent,
     AdminComponent,
+    ManageQuizComponent,
+    ManageArticleComponent,
   ],
   imports: [
     BrowserModule,

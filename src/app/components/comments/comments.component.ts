@@ -115,6 +115,7 @@ export class CommentsComponent implements OnInit {
           this.ngOnInit();
           this.commentContent = '';
           alert('Commentaire ajouté avec succès.');
+          this.editComment = false;
         },
         (error) => {
           console.error('Failed to add comment to article:', error);

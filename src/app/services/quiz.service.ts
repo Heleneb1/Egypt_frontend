@@ -3,17 +3,23 @@ import { HttpClient } from "@angular/common/http"; // Assurez-vous d'importer Ht
 import { environment } from "src/environments/environment";
 import { Observable, map } from "rxjs";
 import { QuizQuestion } from "../models/quiz-question";
+import { loginUser } from "../components/login/login.component";
 
 @Injectable({
     providedIn: 'root'
 })
 export class QuizService {
 
+
+
+
+
     private quizDataUrl = environment.apiUrl + '/quizzes';
     private questionDataUrl = environment.apiUrl + '/questions';
+    private badgeDataUrl = environment.apiUrl + '/badges';
 
     questionTitles: any = [];
-    constructor(private httpClient: HttpClient) { }
+    constructor (private httpClient: HttpClient) { }
 
     getQuizzes() {
         return this.httpClient.get(this.quizDataUrl);
@@ -55,11 +61,8 @@ export class QuizService {
                     option_1: question.option_1,
                     option_2: question.option_2,
                     option_3: question.option_3,
-                    // answer1: question.rigth_answer,
-                    // answer2: question.rigth_answer_2,
-                    answer1: question.right_answer, // Corrigé ici
-                    answer2: question.right_answer_2 // Corrigé ici
-
+                    answer1: question.right_answer,
+                    answer2: question.right_answer_2
                 };
             })
         );
@@ -76,9 +79,107 @@ export class QuizService {
     //       }
     //     );
     //   }
+    createQuestion(data: any) {
+        this.questionDataUrl + '/question';
+        console.log(this.questionDataUrl + '/create', data);
 
-    // insertQuiz(data: any) {
-    //     this.quizDataUrl + '/quiz';
-    //     return this.httpClient.post(this.quizDataUrl + '/quizzes', data);
+        return this.httpClient.post(this.questionDataUrl + '/create', data);
+    }
+    getAllQuestionByCategory(category: string): Observable<any> {
+        const url = `${this.questionDataUrl}/category/${category}`;
+        return this.httpClient.get<any>(url);
+    }
+    addQuestionByCategoryToQuiz(quizId: string, category: string) {
+        const url = `${this.quizDataUrl}/${quizId}/add-questions`;
+        console.log(category);
+
+        const requestBody = { category: category };
+
+        return this.httpClient.put(url, requestBody);
+    }
+
+    getQuestionsByCategory(category: string): Observable<any[]> {
+        const url = `${this.questionDataUrl}/category/${category}`;
+        return this.httpClient.get<any[]>(url);
+    }
+    getCategories(): Observable<string[]> {
+        return this.httpClient.get<any[]>(this.questionDataUrl).pipe(
+            map((questions: any[]) => {
+                const uniqueCategory = new Set<string>();
+
+                questions.forEach((question: any) => {
+                    const category = question.category.split(',').map((c: string) => c.trim());
+                    category.forEach((c: string) => uniqueCategory.add(c));
+                });
+
+                // Convertion du Set en tableau
+                return Array.from(uniqueCategory);
+            })
+        );
+
+    }
+
+
+
+    createQuiz(data: any) {
+        console.log(data);
+
+        return this.httpClient.post(this.quizDataUrl + '/create', data);
+
+    }
+    deleteQuiz(id: string) {
+        return this.httpClient.delete(`${this.quizDataUrl}/${id}`);
+    }
+    updateQuiz(id: string) {
+        return this.httpClient.put(`${this.quizDataUrl}/${id}`, id);
+    }
+    updateQuestion(id: string) {
+        return this.httpClient.put(`${this.questionDataUrl}/${id}`, id);
+    }
+    insertQuestionsbyCategory(quizId: string, category: string) {
+        const url = `${this.quizDataUrl}/${quizId}/add-questions`;
+        return this.httpClient.put(url, { category: category });
+    }
+    deleteQuestion(questionId: string) {
+        return this.httpClient.delete(`${this.questionDataUrl}/${questionId}`)
+    }
+    getBadges(): Observable<any[]> {
+        return this.httpClient.get<any[]>(this.badgeDataUrl);
+    }
+    createBadge(data: any) {
+        console.log(data);
+
+        return this.httpClient.post(this.badgeDataUrl + '/create', data);
+    }
+    getBadgeById(badgeId: string) {
+        return this.httpClient.get(`${this.badgeDataUrl}/${badgeId}`);
+    }
+
+
+    addBadgeToQuiz(quizId: string, badgeId: string) {
+        console.log(`${this.quizDataUrl}/${quizId}/badges/${badgeId}/add-badge`);
+
+        return this.httpClient.put(`${this.quizDataUrl}/${quizId}/badges/${badgeId}/add-badge`, { badgeId: badgeId });
+    }
+    // @PutMapping("/{id}/badges/{badgeId}/add-badge")
+    // public ResponseEntity<QuizDTO> addBadgeToQuiz(@PathVariable UUID id,
+    //                 @PathVariable UUID badgeId) {
+    //         Quiz quiz = quizRepository.findById(id)
+    //                         .orElseThrow(() -> new ResponseStatusException(
+    //                                         HttpStatus.NOT_FOUND, "Quiz not found: " + id));
+
+    //         Badge badge = badgeRepository.findById(badgeId)
+    //                         .orElseThrow(() -> new ResponseStatusException(
+    //                                         HttpStatus.NOT_FOUND, "Badge not found: " + badgeId));
+
+    //         quiz.setBadge(badge);
+
+    //         quizRepository.save(quiz);
+
+    //         QuizDTOMapper mapper = new QuizDTOMapper();
+    //         QuizDTO quizDTO = mapper.convertToDTO(quiz);
+
+    //         return ResponseEntity.ok(quizDTO);
     // }
+
 }

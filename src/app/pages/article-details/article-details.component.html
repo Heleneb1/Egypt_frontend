@@ -13,8 +13,12 @@
 
 <div class="articles-details-container">
 
-
     <div class="article-details">
+        <div class="sub-title">
+            <h2>{{ article?.title }}</h2>
+        </div>
+
+
         <img [src]="article?.image ?article?.image : defaultImage" alt="Image de l'article" />
         <p>Note: {{ article?.rating }}</p>
         <!-- Empecher l'affichage des balises html dans le contenu du quiz innerHTML-->

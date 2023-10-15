@@ -70,7 +70,7 @@ export class UserInfoComponent {
       });
     });
 
-    while (this.badges.length <= 8) {
+    while (this.badges.length < 8) {
       this.badges.push({ name: 'Badge à venir', image: 'assets/images/wait.jpg' });
     }
 
@@ -81,7 +81,6 @@ export class UserInfoComponent {
       this.loadAvatar();
     }
   }
-
 
   ngOnDestroy(): void {
     if (this.objectURL) {
