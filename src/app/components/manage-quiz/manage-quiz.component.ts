@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { BadgesService } from 'src/app/services/badges.service';
 import { QuizService } from 'src/app/services/quiz.service';
 
 @Component({
@@ -7,11 +8,19 @@ import { QuizService } from 'src/app/services/quiz.service';
   styleUrls: ['./manage-quiz.component.scss']
 })
 export class ManageQuizComponent {
-  isSelectedBadge: any;
+  @Output() quizSelected: EventEmitter<any> = new EventEmitter<any>();
+
+
+
+  // isSelectedBadge: any;
+  // badge: any;
+  existingQuiz: any;
+
+  editingQuiz: any;
   constructor (
-    private quizService: QuizService) { }
+    private quizService: QuizService, private badgesService: BadgesService) { }
   ngOnInit() {
-    this.loadCategories();
+
   }
   quizzes: any[] = [];
   showQuizForm = false;
@@ -21,34 +30,24 @@ export class ManageQuizComponent {
   newContent: string = '';
   newDifficulty: string = '';
   isArchived: boolean = false;
-  questions: any = {};
-  question_title: string = '';
-  option_1: string = '';
-  option_2: string = '';
-  option_3: string = '';
-  right_answer: string = '';
-  right_answer_2: string = '';
-  category: string = '';
-  showQuestionForm: boolean = false;
   // categories!: string; // Pour stocker les catégories récupérées depuis le serveur
-  isSelectingQuestions: boolean = false;
-  categoriesOptions: string[] = [];
-  selectedCategory: string = '';
   isSelectedQuiz: boolean = false;
   quiz: any;
-  questionsToAdd: any[] = [];
+  questions: any = {};
   quizzesOpen = false;
-  badgesArray: any[] = [];
-  badges: any[] = [];
-  badgesOpen = false;
-  name: string = '';
-  description: string = '';
-  image: string = '';
-  showBadgeForm: boolean = false;
-  selectedBadge: any;
-  badgeId: string = '';
+  // badgesArray: any[] = [];
+  // badges: any[] = [];
+  // badgesOpen = false;
+  // name: string = '';
+  // description: string = '';
+  // image: string = '';
+  // showBadgeForm: boolean = false;
+  // selectedBadge: any;
+  // badgeId: string = '';
 
-
+  selectQuizEmit(quiz: any) {
+    this.quizSelected.emit(quiz);
+  }
   getQuiz(): void {
     this.quizzesOpen = !this.quizzesOpen;
     if (this.quizzesOpen) {
@@ -56,9 +55,28 @@ export class ManageQuizComponent {
         this.quizzes = quizzes;
         console.log(quizzes);
 
+        this.quizzes.forEach((quiz: any) => {
+          if (quiz.badge) {
+            const badgeId = quiz.badge; // Récupérer le badgeId pour chaque quiz
+            console.log("badgeId", badgeId);
 
+            this.badgesService.getBadgeContent(badgeId).subscribe((badge: any) => {
+              quiz.badgeContent = badge; // Stocker le contenu du badge dans l'objet quiz
+              console.log("Badge", badge);
+            });
+          }
+        });
       });
     }
+  }
+  archivedQuiz(quiz: any) {
+    this.existingQuiz = quiz;
+    this.existingQuiz.archive = !this.existingQuiz.archive; // Inverse l'état actuel de l'archive
+
+    this.quizService.updateQuiz(this.existingQuiz.id, this.existingQuiz).subscribe(() => {
+      this.getQuiz();
+      alert('Etat du Quiz modifié ' + this.existingQuiz.title + ' : ' + (this.existingQuiz.archive ? 'Archivé' : 'Non archivé'));
+    });
   }
   selectQuiz(quizId: string) {
     this.isSelectedQuiz = !this.isSelectedQuiz;
@@ -67,34 +85,10 @@ export class ManageQuizComponent {
       this.quizService.getQuizById(quizId).subscribe((quiz: any) => {
         this.quiz = quiz;
         console.log("id", quizId);
+        this.selectQuizEmit(quiz);
       });
     }
   }
-
-  deleteQuiz(id: string) {
-    this.quizService.deleteQuiz(id).subscribe(() => {
-      this.getQuiz();
-      alert('Quiz supprimé');
-    });
-  }
-  updateQuiz(id: string) {
-    this.quizService.updateQuiz(id).subscribe(() => {
-      this.getQuiz();
-      alert('Quiz modifié');
-    });
-  }
-  selectQuestions(selectedQuestionIds: string[]) {
-
-    this.isSelectingQuestions = !this.isSelectingQuestions;
-    if (this.isSelectingQuestions) {
-      this.quizService.getAllQuestionByCategory(this.category).subscribe((questions: any) => {
-        this.questions = selectedQuestionIds;
-        console.log(selectedQuestionIds);
-      });
-    }
-  }
-
-
   getQuestionContentForQuiz(questionId: string): void {
     this.quizService.getQuestionContent(questionId).subscribe(
       (question: any) => {
@@ -110,6 +104,14 @@ export class ManageQuizComponent {
       }
     );
   }
+  deleteQuestionFromQuiz(questionId: string) {
+    this.quizService.deleteQuestion(questionId).subscribe(() => {
+      this.getQuestionContentForQuiz(this.quiz.id);
+      alert('Question supprimée');
+    });
+  }
+
+
   onCreateQuiz() {
     const newQuiz = {
       title: this.newTitle,
@@ -133,146 +135,76 @@ export class ManageQuizComponent {
     this.newContent = '';
     this.isArchived = false;
   }
-  createQuestion() {
-    // Réinitialisez le formulaire
-    this.question_title = '';
-    this.option_1 = '';
-    this.option_2 = '';
-    this.option_3 = '';
-    this.right_answer = '';
-    this.right_answer_2 = '';
-    this.category = '';
 
-    this.showQuestionForm = !this.showQuestionForm;
-  }
-  onCreateQuestion() {
-    const newQuestion = {
-      question_title: this.question_title,
-      option_1: this.option_1,
-      option_2: this.option_2,
-      option_3: this.option_3,
-      right_answer: this.right_answer,
-      right_answer_2: this.right_answer_2,
-      category: this.category,
-    };
 
-    this.quizService.createQuestion(newQuestion).subscribe((response: any) => {
-      console.log("Nouvelle question créée :", response);
-
+  deleteQuiz(id: string) {
+    this.quizService.deleteQuiz(id).subscribe(() => {
+      this.getQuiz();
+      alert('Quiz supprimé');
     });
   }
-  getQuestionByCategory(category: string) {
-    this.quizService.getAllQuestionByCategory(category).subscribe((questions: any) => {
-      this.questions = questions;
-      console.log("categorie", category);
+  updateQuiz(id: string, updatedQuiz: any) {
+    this.quizService.updateQuiz(id, updatedQuiz).subscribe(() => {
+      this.getQuiz();
+      alert('Quiz modifié');
     });
   }
-
-  addQuestionToQuiz(quizId: string, category: string) {
-    this.quizService.getAllQuestionByCategory(category).subscribe((questions: any) => {
-      this.questionsToAdd = questions;
-      console.log(questions);
-    });
-  }
-  selectQuestionsByCategory() {
-    if (this.selectedCategory) {
-      this.quizService.getAllQuestionByCategory(this.selectedCategory).subscribe((questions: any) => {
-        this.questions = questions;
-        console.log("Les questions", questions);
-        console.log("categorie", this.selectedCategory);
-      });
-    }
-  }
-  questionSelection(question: any) {
-    question.selected = !question.selected;
-  }
-  loadCategories() {
-    this.quizService.getCategories().subscribe(
-      (categories: string[]) => {
-        this.categoriesOptions = categories;
-      },
-      (error) => {
-        console.error("Une erreur s'est produite lors du chargement des catégories :", error);
-      }
-    );
-  }
-  onCategoryChange(selectedCategory: string) {
-    this.quizService.getQuestionsByCategory(selectedCategory).subscribe(
-      (questions: any[]) => {
-        this.questions = questions;
-      },
-      (error) => {
-        console.error("Une erreur s'est produite :", error);
-      }
-    );
+  editQuiz(quiz: any) {
+    this.editingQuiz = { ...quiz }; // Créez une copie de l'élément à éditer
   }
 
-  addSelectedQuestionsToQuiz(quizId: string) {
-    console.log(this.questions);
-    this.quizService.addQuestionByCategoryToQuiz(quizId, this.selectedCategory).subscribe((response: any) => {
-      console.log("Questions ajoutées au quiz avec succès", response);
-    })
+  // Ajoutez une fonction pour annuler l'édition
+  cancelEdit() {
+    this.editingQuiz = null;
   }
-  deleteQuestion(id: string) {
-    this.quizService.deleteQuestion(id).subscribe(() => {
-      this.getQuestionByCategory(this.category);
-      alert('Question supprimée');
-    });
-  }
-  updateQuestion(id: string) {
-    this.quizService.updateQuestion(id).subscribe(() => {
-      this.getQuestionByCategory(this.category);
-      alert('Question modifiée');
-    });
-  }
-  createBadgeForm() {
+  // createBadgeForm() {
 
-    this.name = '';
-    this.description = '';
-    this.image = '';
-    // this.badgesOpen = !this.badgesOpen;
-  }
-  createBadge() {
-    this.showBadgeForm = !this.showBadgeForm;
-  }
+  //   this.name = '';
+  //   this.description = '';
+  //   this.image = '';
+  //   // this.badgesOpen = !this.badgesOpen;
+  // }
+  // createBadge() {
+  //   this.showBadgeForm = !this.showBadgeForm;
+  // }
 
-  onCreateBadge() {
-    const newBadge = {
-      name: this.name,
-      description: this.description,
-      image: this.image,
-    };
+  // onCreateBadge() {
+  //   const newBadge = {
+  //     name: this.name,
+  //     description: this.description,
+  //     image: this.image,
+  //   };
 
-    this.quizService.createBadge(newBadge).subscribe((response: any) => {
-      console.log("Nouveau badge créé :", response);
+  //   this.quizService.createBadge(newBadge).subscribe((response: any) => {
+  //     console.log("Nouveau badge créé :", response);
 
-    });
-  }
-  getBadge(): void {
-    this.badgesOpen = !this.badgesOpen;
-    if (this.badgesOpen) {
-      this.quizService.getBadges().subscribe((badges: any) => {
-        this.badges = badges;
-        console.log(badges);
-      });
-    }
-  }
-  selectBadge(badgeId: string) {
-    this.isSelectedBadge = !this.isSelectedBadge;
-    if (this.isSelectedBadge) {
+  //   });
+  // }
+  // getBadge(): void {
+  //   this.badgesOpen = !this.badgesOpen;
+  //   if (this.badgesOpen) {
+  //     this.quizService.getBadges().subscribe((badges: any) => {
+  //       this.badges = badges;
+  //       console.log(badges);
+  //     });
+  //   }
+  // }
+  // selectBadge(badgeId: string) {
+  //   this.isSelectedBadge = !this.isSelectedBadge;
+  //   if (this.isSelectedBadge) {
 
-      this.quizService.getBadgeById(badgeId).subscribe((badge: any) => {
-        this.badgesArray = badge;
-        console.log("id", badgeId);
-      });
-    }
-  }
-  addBadgeToQuiz(quizId: string, badgeId: string) {
-    console.log("quizId", quizId);
-    console.log("badgeId", badgeId); // Vérifiez que badgeId est correct ici
+  //     this.quizService.getBadgeById(badgeId).subscribe((badge: any) => {
+  //       this.badgesArray = badge;
+  //       console.log("id", badgeId);
+  //     });
+  //   }
+  // }
+  // addBadgeToQuiz(quizId: string, badgeId: string) {
+  //   console.log("quizId", quizId);
+  //   console.log("badgeId", badgeId); // Vérifiez que badgeId est correct ici
 
-    this.quizService.addBadgeToQuiz(quizId, badgeId).subscribe((response: any) => {
-      console.log("Badge ajouté au quiz avec succès", response);
-    });
-  }
+  //   this.quizService.addBadgeToQuiz(quizId, badgeId).subscribe((response: any) => {
+  //     console.log("Badge ajouté au quiz avec succès", response);
+  //   });
+  // }
 }

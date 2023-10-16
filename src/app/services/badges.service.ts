@@ -13,7 +13,7 @@ export class BadgesService {
   // private questionDataUrl = environment.apiUrl + '/badges';
 
   questionTitles: any = [];
-  constructor(private httpClient: HttpClient) { }
+  constructor (private httpClient: HttpClient) { }
 
   getBadges() {
     return this.httpClient.get(this.badgeDataUrl);
@@ -47,6 +47,9 @@ export class BadgesService {
         };
       })
     );
+  }
+  deleteBadge(id: string) {
+    return this.httpClient.delete(`${this.badgeDataUrl}/${id}`);
   }
   // addRating(promotionId: string, userRating: number, authorId: string) {
   //     const url = environment.apiUrl + `/promotions/${promotionId}/users/${authorId}`;

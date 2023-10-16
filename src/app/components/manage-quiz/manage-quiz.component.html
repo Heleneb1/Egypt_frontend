@@ -8,7 +8,27 @@
                     <h3>{{ quiz.title }}</h3>
                     <p>Difficulté : {{ quiz.difficulty }}</p>
                     <p>Date de création : {{ quiz.creationDate }}</p>
-                    <p>Badge : {{quiz.badge}}</p>
+
+                    <div *ngIf="quiz.badgeContent">
+                        <p>Badge :</p>
+                        <h2>{{ quiz.badgeContent.name }}</h2>
+                        <p>{{ quiz.badgeContent.description }}</p>
+                        <img [src]="quiz.badgeContent.image" alt="{{ quiz.badgeContent.name }}">
+                    </div>
+                    <div *ngIf="editingQuiz && editingQuiz.id === quiz.id">
+                        <label for="editedTitle">Titre :</label>
+                        <input type="text" id="editedTitle" [(ngModel)]="editingQuiz.title">
+
+                        <label for="editedDifficulty">Difficulté :</label>
+                        <input type="text" id="editedDifficulty" [(ngModel)]="editingQuiz.difficulty">
+
+
+                        <button (click)="cancelEdit()">Annuler</button>
+
+                        <!-- Ajoutez un bouton pour sauvegarder les modifications -->
+                        <button (click)="updateQuiz(quiz.id, quiz)">Sauvegarder</button>
+                    </div>
+
                     <div class="update-button">
                         <button (click)="deleteQuiz(quiz.id)">Supprimer</button>
                     </div>
@@ -20,7 +40,14 @@
                                 question</button>
                             <div *ngIf="questionId">
 
-
+                                <div class="delete-question">
+                                    <button (click)="deleteQuestionFromQuiz(questionId)">Supprimer la question</button>
+                                </div>
+                                <!-- <div class="update-question">
+                                    <button (click)="editQuestion(questionId)">Editer</button>
+                                    <button
+                                        (click)="updateQuestion(questionId, questions[questionId])">Sauvegarder</button>
+                                </div> -->
                                 <!-- Affichage des données de la question récupérées dans la méthode -->
                                 <div *ngIf="questions[questionId]">
                                     <p>ID: {{ questions[questionId].id }}</p>
@@ -32,6 +59,7 @@
                                     <p>Answer 2: {{ questions[questionId].answer2 }}</p>
                                 </div>
                             </div>
+
                         </li>
                     </ul>
                     <div class="archived">
@@ -39,9 +67,14 @@
                     </div>
 
                     <div class="arviched">
-                        <input type="radio" id="archiveYes" name="archive" [(ngModel)]="isArchived" [value]="true"> Oui
-                        <input type="radio" id="archiveNo" name="archive" [(ngModel)]="isArchived" [value]="false"> Non
+                        <input type="radio" id="archiveYes" name="archive_{{quiz.id}}" [(ngModel)]="quiz.isArchived"
+                            [value]="true"> Oui
+                        <input type="radio" id="archiveNo" name="archive_{{quiz.id}}" [(ngModel)]="quiz.isArchived"
+                            [value]="false"> Non
+                        <button (click)="archivedQuiz(quiz)">Modifier</button>
                     </div>
+
+                    <p>Selectionner ce Quiz</p>
                     <input type="checkbox" [(ngModel)]="quiz.selected" (change)="selectQuiz(quiz.id)">
                     {{ quiz.title }}
                 </li>
@@ -74,86 +107,13 @@
 
         <div class="create-button">
             <div class="button">
-                <!-- <div class="button-container"> -->
+
                 <button (click)="onCreateQuiz()" type="button" class="button">Ajouter le quiz</button>
             </div>
         </div>
     </div>
 
-    <div class="create-question">
-        <div class="button">
-            <!-- <div class="button-container"> -->
-            <button (click)="createQuestion()" type="button" class="button">Créer une question</button>
-            <!-- </div> -->
-        </div>
-        <div *ngIf="showQuestionForm">
-            <h2>Créer une nouvelle question</h2>
-            <label for="question_title">Question :</label>
-            <input type="text" id="question_title" [(ngModel)]="question_title">
-
-            <label for="option_1">Option 1 :</label>
-            <input type="text" id="option_1" [(ngModel)]="option_1">
-
-            <label for="option_2">Option 2 :</label>
-            <input type="text" id="option_2" [(ngModel)]="option_2">
-
-            <label for="option_3">Option 3 :</label>
-            <input type="text" id="option_3" [(ngModel)]="option_3">
-
-            <label for="right_answer">Réponse 1 (right_answer) :</label>
-            <input type="text" id="right_answer" [(ngModel)]="right_answer">
-
-            <label for="right_answer_2">Réponse 2 (right_answer_2) :</label>
-            <input type="text" id="right_answer_2" [(ngModel)]="right_answer_2">
-
-            <label for="category">Catégorie :</label>
-            <input type="text" id="category" [(ngModel)]="category">
-
-            <div class="create-button">
-                <div class="button">
-                    <!-- <div class="button-container"> -->
-                    <button (click)="onCreateQuestion()" type="button" class="button">Créer la question</button>
-                    <!-- </div> -->
-                </div>
-            </div>
-        </div>
-    </div>
-    <select [(ngModel)]="selectedCategory" (change)="selectQuestionsByCategory()">
-        <option value="">Toutes les catégories</option>
-        <option *ngFor="let category of categoriesOptions" [value]="category">{{ category }}</option>
-    </select>
-
-    <div *ngIf="questions">
-        <h2>Questions pour la catégorie : {{ selectedCategory }}</h2>
-        <ul>
-            <li *ngFor="let question of questions">
-                <h3>{{ question.question_title }}</h3>
-                <p>Option 1: {{ question.option_1 }}</p>
-                <p>Option 2: {{ question.option_2 }}</p>
-                <p>Option 3: {{ question.option_3 }}</p>
-                <p>Réponse 1: {{ question.right_answer }}</p>
-                <p>Réponse 2: {{ question.right_answer_2 }}</p>
-
-                <input type="radio" [(ngModel)]="question.selected" /> {{ question.content }}
-                <!-- <input type="checkbox" [checked]="question.selected" (change)="questionSelection(question)"> -->
-                <div class="delete-question">
-                    <button (click)="deleteQuestion(question.id)">Supprimer</button>
-                </div>
-                <div class="update-question">
-                    <button (click)="updateQuestion(question.id)">Modifier</button>
-                </div>
-
-            </li>
-        </ul>
-        <div *ngIf="selectedCategory && questions">
-            <h2>Questions de la catégorie "{{ selectedCategory }}" :</h2>
-
-        </div>
-
-        <button (click)="addSelectedQuestionsToQuiz(quiz.id)">Ajouter les questions sélectionnées au
-            quiz</button>
-    </div>
-    <!--Badge-->
+    <!-- Badge
     <div class="badge">
         <button (click)="getBadge()" type="button" class="button">Badge</button>
         <div *ngIf="badgesOpen">
@@ -168,10 +128,7 @@
                         <input type="radio" [value]="badge" [(ngModel)]="selectedBadge"> {{ badge.id }}
                     </label>
 
-                    <!-- Bouton pour supprimer le badge (non actif) -->
-                    <!-- <div class="update-button">
-                    <button (click)="deleteBadge(badge.id)" class="button">Supprimer</button>
-                </div> -->
+                  
                 </li>
             </ul>
             <div class="create-badge">
@@ -194,21 +151,8 @@
             </div>
         </div>
     </div>
-    <!-- Sélection de badges -->
-    <!-- Sélection de badge -->
-    <!-- <div class="select-badge">
-    <h2>Sélectionner un badge à ajouter au quiz</h2>
-    <ul>
-        <li *ngFor="let badge of badges">
-            <label>
-                <input type="radio" [value]="badge" [(ngModel)]="selectedBadge"> {{ badge.id }}
-            </label>
-        </li>
-    </ul>
-</div> -->
-
-    <!-- Bouton pour ajouter le badge sélectionné au quiz -->
+  
     <div *ngIf="selectedBadge">
         <button (click)="addBadgeToQuiz(quiz.id, selectedBadge.id)" class="button">Ajouter le badge au quiz</button>
     </div>
-</div>
+</div> -->

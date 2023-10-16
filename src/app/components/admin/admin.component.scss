@@ -1,0 +1,55 @@
+/* Style de base pour le composant d'affichage des utilisateurs */
+.users {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Style pour le bouton "Utilisateurs" */
+.button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+/* Style pour le conteneur d'utilisateurs lorsque ouvert */
+.users-container {
+    margin-top: 20px;
+    border: 1px solid black;
+    padding: 2rem;
+    border-radius: 5px;
+}
+
+/* Style pour le titre de l'utilisateur */
+.title {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Style pour le contenu de l'utilisateur */
+.content {
+    margin-top: 10px;
+}
+
+/* Style pour le rôle de l'utilisateur */
+.archived {
+    color: #888;
+    margin-top: 10px;
+}
+
+/* Style pour le bouton "Supprimer" de l'utilisateur */
+.update-button {
+    margin-top: 20px;
+}
+
+/* Style pour les messages d'information supplémentaires */
+.info-message {
+    margin-top: 20px;
+    font-weight: bold;
+}

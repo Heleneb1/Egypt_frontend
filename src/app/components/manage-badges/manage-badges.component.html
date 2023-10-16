@@ -1,0 +1,58 @@
+<div class="badge">
+    <button (click)="getBadge()" type="button" class="button">Badge</button>
+    <div *ngIf="badgesOpen">
+        <h2>Liste des badges</h2>
+        <ul>
+            <li *ngFor="let badge of badges">
+                <h3>{{ badge.name }}</h3>
+                <p>Description : {{ badge.description }}</p>
+                <img [src]="badge.image" alt="badge">
+                <button (click)="selectBadge(badge.id)" class="button">Sélectionner le badge</button>
+                <button (click)="deleteBadge(badge.id)" class="button">Supprimer ce badge</button>
+                <!-- <label>
+                    <input type="radio" [value]="badge" [(ngModel)]="selectedBadge"> {{ badge.id }}
+                </label> -->
+
+                <!-- Bouton pour supprimer le badge (non actif) -->
+                <!-- <div class="update-button">
+                <button (click)="deleteBadge(badge.id)" class="button">Supprimer</button>
+            </div> -->
+            </li>
+        </ul>
+        <div class="create-badge">
+            <button (click)="createBadge()" type="button" class="button">Créer un badge</button>
+        </div>
+        <div *ngIf="showBadgeForm">
+            <h2>Créer un nouveau badge</h2>
+            <label for="name">Nom :</label>
+            <input type="text" id="name" [(ngModel)]="name">
+
+            <label for="description">Description :</label>
+            <input type="text" id="description" [(ngModel)]="description">
+
+            <label for="image">Image :</label>
+            <input type="text" id="image" [(ngModel)]="image">
+
+            <div class="create-button">
+                <button (click)="onCreateBadge()" type="button" class="button">Ajouter le badge</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Sélection de badges -->
+<!-- Sélection de badge -->
+<!-- <div class="select-badge">
+<h2>Sélectionner un badge à ajouter au quiz</h2>
+<ul>
+    <li *ngFor="let badge of badges">
+        <label>
+            <input type="radio" [value]="badge" [(ngModel)]="selectedBadge"> {{ badge.id }}
+        </label>
+    </li>
+</ul>
+</div> -->
+
+<!-- Bouton pour ajouter le badge sélectionné au quiz -->
+<!-- <div *ngIf="selectedBadge">
+    <button (click)="addBadgeToQuiz(quiz.id, selectedBadge.id)" class="button">Ajouter le badge au quiz</button>
+</div> -->

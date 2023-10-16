@@ -1,0 +1,98 @@
+.question-container {
+    margin-top: 20px;
+}
+
+.create-question {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Style pour le bouton "Créer une question" */
+.button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+/* Style pour le formulaire de création de question */
+.create-question h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Style pour le bouton "Créer la question" dans le formulaire */
+.create-button {
+    margin-top: 20px;
+}
+
+/* Style pour la liste déroulante de sélection de catégorie */
+select {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+/* Style pour la liste de questions */
+h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Style pour les boutons "Supprimer" et "Modifier" des questions */
+.delete-question,
+.update-question {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+/* Style pour les boutons radio (sélection des questions) */
+input[type="radio"] {
+    margin-right: 5px;
+}
+
+/* Style pour les messages d'information supplémentaires */
+.info-message {
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+/* Style pour la section des questions par catégorie */
+.selected-category {
+    margin-top: 20px;
+}

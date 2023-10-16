@@ -98,6 +98,7 @@ export class QuizService {
         return this.httpClient.put(url, requestBody);
     }
 
+
     getQuestionsByCategory(category: string): Observable<any[]> {
         const url = `${this.questionDataUrl}/category/${category}`;
         return this.httpClient.get<any[]>(url);
@@ -130,11 +131,13 @@ export class QuizService {
     deleteQuiz(id: string) {
         return this.httpClient.delete(`${this.quizDataUrl}/${id}`);
     }
-    updateQuiz(id: string) {
-        return this.httpClient.put(`${this.quizDataUrl}/${id}`, id);
+    updateQuiz(id: string, updatedQuiz: any) {
+        return this.httpClient.put(`${this.quizDataUrl}/${id}`, updatedQuiz);
     }
-    updateQuestion(id: string) {
-        return this.httpClient.put(`${this.questionDataUrl}/${id}`, id);
+
+
+    updateQuestion(id: string, updatedQuestion: any) {
+        return this.httpClient.put(`${this.questionDataUrl}/${id}`, updatedQuestion);
     }
     insertQuestionsbyCategory(quizId: string, category: string) {
         const url = `${this.quizDataUrl}/${quizId}/add-questions`;

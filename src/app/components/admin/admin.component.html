@@ -19,4 +19,14 @@
     </div>
 </div>
 
-<app-manage-quiz></app-manage-quiz>
+<div *ngIf="selectedBadge && selectedQuiz">
+    <button (click)="addBadgeToQuiz()" class="button">Ajouter le badge au quiz</button>
+</div>
+<div *ngIf="selectedQuiz && selectedQuestions">
+    <button (click)="addSelectedQuestionsToQuiz(selectedCategory)">Ajouter les questions sélectionnées au
+        quiz</button>
+</div>
+<app-manage-question (questionsSelected)="onQuestionsSelected($event)"
+    (categorySelected)="onCategorySelected($event)"></app-manage-question>
+<app-manage-badges (badgeSelected)="selectedBadge = $event"></app-manage-badges>
+<app-manage-quiz (quizSelected)="selectedQuiz = $event"></app-manage-quiz>

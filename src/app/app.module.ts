@@ -36,6 +36,9 @@ import { CommentsComponent } from './components/comments/comments.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { ManageQuizComponent } from './components/manage-quiz/manage-quiz.component';
 import { ManageArticleComponent } from './components/manage-article/manage-article.component';
+import { ManageQuestionComponent } from './components/manage-question/manage-question.component';
+import { ManageBadgesComponent } from './components/manage-badges/manage-badges.component';
+import { ManageUsersComponent } from './components/manage-users/manage-users.component';
 
 const cookieConfig: NgcCookieConsentConfig = {
   cookie: {
@@ -80,6 +83,9 @@ const cookieConfig: NgcCookieConsentConfig = {
     AdminComponent,
     ManageQuizComponent,
     ManageArticleComponent,
+    ManageQuestionComponent,
+    ManageBadgesComponent,
+    ManageUsersComponent,
   ],
   imports: [
     BrowserModule,
