@@ -1,1 +1,21 @@
-<p>manage-users works!</p>
+<div class="users">
+    <div class="user-button">
+        <button (click)="getUsers()" type="button" class="button">Utilisateurs</button>
+    </div>
+    <div *ngIf="usersOpen">
+        <div class="users-container" *ngFor="let user of users">
+            <div class="title">
+                <h2>{{ user.firstname }} - {{ user.lastname }}</h2>
+            </div>
+            <div class="content">
+                <p>{{ user.email }}</p>
+            </div>
+            <div class="archived">
+                {{ user.role }}
+            </div>
+            <div class="delete-button">
+                <button (click)="deleteUser(user.id)">Supprimer</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,35 +1,18 @@
-<div class="users">
-    <div class="user-button">
-        <button (click)="getUsers()" type="button" class="button">Utilisateurs</button>
-    </div>
-    <div *ngIf="usersOpen">
-        <div class="users-container" *ngFor="let user of users">
-            <div class="title">
-                <h2>{{ user.firstname }} - {{ user.lastname }}</h2>
-            </div>
-            <div class="content">
-                <p>{{ user.email }}</p>
-            </div>
-            <div class="archived">
-                {{ user.role }}
-            </div>
-            <div class="delete-button">
-                <button (click)="deleteUser(user.id)">Supprimer</button>
-            </div>
-        </div>
-    </div>
-</div>
+<div class="admin">
+    <app-manage-users></app-manage-users>
 
-<div *ngIf="selectedBadge && selectedQuiz">
-    <button (click)="addBadgeToQuiz()" class="button">Ajouter le badge au quiz</button>
-</div>
-<app-manage-article></app-manage-article>
-<app-manage-question (questionsSelected)="onQuestionsSelected($event)"
-    (categorySelected)="onCategorySelected($event)"></app-manage-question>
+    <div *ngIf="selectedBadge && selectedQuiz">
+        <button (click)="addBadgeToQuiz()" class="button">Ajouter le badge au quiz</button>
+    </div>
+    <app-manage-article></app-manage-article>
+    <app-manage-question (questionsSelected)="onQuestionsSelected($event)"
+        (categorySelected)="onCategorySelected($event)"></app-manage-question>
 
-<app-manage-quiz (quizSelected)="selectedQuiz = $event"></app-manage-quiz>
-<div *ngIf="selectedQuiz && selectedQuestions">
-    <button (click)="addSelectedQuestionsToQuiz(selectedCategory)">Ajouter les questions sélectionnées au
-        quiz</button>
+    <app-manage-quiz (quizSelected)="selectedQuiz = $event"></app-manage-quiz>
+    <div *ngIf="selectedQuiz && selectedQuestions">
+        <button (click)="addSelectedQuestionsToQuiz(selectedCategory)">Ajouter les questions sélectionnées au
+            quiz</button>
+    </div>
+    <app-manage-badges (badgeSelected)="selectedBadge = $event"></app-manage-badges>
+    <app-scroll-to-top></app-scroll-to-top>
 </div>
-<app-manage-badges (badgeSelected)="selectedBadge = $event"></app-manage-badges>

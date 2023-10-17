@@ -4,6 +4,12 @@
         <div class="sub-title">
             <h2>{{ quiz.title }}</h2>
         </div>
+        <app-star-rating [totalStars]="5" [rating]="currentRating"
+            (ratingChanged)="onRatingChanged($event)"></app-star-rating>
+
+
+        <button class="update-button" *ngIf="isVoteModified" (click)="saveVote()">Enregistrer le
+            vote</button>
         <!-- Empecher l'affichage des balises html dans le contenu du quiz innerHTML-->
         <div class="quiz-infos">
             <p>Contenu: <span [innerHTML]="quiz.content"></span></p>
@@ -62,6 +68,7 @@
         </div>
     </div>
 </div>
+
 <!-- <app-badges-modal *ngIf="showModal"></app-badges-modal> -->
 <app-badges-modal *ngIf="showModal" [userId]="userId" [badgeId]="quiz.badge?.id"></app-badges-modal>
 <!-- <app-badges-modal [badgeId]="quiz.badge.id" [userId]="userId"></app-badges-modal> -->

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { User } from 'src/app/models/user';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-manage-users',
@@ -6,5 +8,24 @@ import { Component } from '@angular/core';
   styleUrls: ['./manage-users.component.scss']
 })
 export class ManageUsersComponent {
+  usersOpen = false;
+  users: User[] = [];
+  constructor (private userService: UserService) { }
 
+  getUsers() {
+    this.usersOpen = !this.usersOpen;
+    if (this.usersOpen) {
+      this.userService.getUsers().subscribe(users => {
+        this.users = users;
+        console.log(users);
+      });
+    }
+  }
+
+  deleteUser(id: string) {
+    this.userService.deleteUsers(id).subscribe(() => {
+      this.getUsers();
+      alert('Utilisateur supprimé');
+    });
+  }
 }

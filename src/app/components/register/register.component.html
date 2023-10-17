@@ -24,6 +24,7 @@
     <div class="user-box">
       <input [type]="showPassword ? 'text' : 'password'" [(ngModel)]="user.password" name="password" required
         (input)="verifyPasswordStrength(); verifyPassword()" />
+
       <div class="input-title">
         <h3>Mot de passe</h3>
       </div>
@@ -39,9 +40,8 @@
     </div>
 
     <div class="user-box">
-      <input [type]="showPassword ? 'text' : 'password'" [(ngModel)]="user.password" name="password" required
-        (input)="verifyPasswordStrength(); verifyPassword()" />
-
+      <input [type]="showPassword ? 'text' : 'password'" [(ngModel)]="confirmationPassword" name="confirmationPassword"
+        required (input)="verifyPasswordStrength(); verifyPassword()" />
       <div class="input-title">
         <h3>Confirmation du mot de passe</h3>
       </div>

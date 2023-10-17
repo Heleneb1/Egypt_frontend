@@ -21,7 +21,7 @@ nav.header-container {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  // width: 100%;
   z-index: 2;
 
 }
@@ -219,7 +219,7 @@ nav.header-container {
       position: fixed;
       top: 0;
       left: 0;
-      width: 100%;
+      // width: 100%;
       z-index: 2;
 
       div.logo {
@@ -452,4 +452,5 @@ nav.header-container {
   .logo {
     display: none;
   }
+
 }

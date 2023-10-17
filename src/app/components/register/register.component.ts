@@ -20,11 +20,12 @@ export class RegisterComponent {
   user = new registerUser();
   showPassword = false;
 
-  constructor(private http: HttpClient) { }
+  constructor (private http: HttpClient) { }
 
   verifyPassword() {
     this.passwordMatch = this.user.password === this.confirmationPassword;
   }
+
 
   verifyPasswordStrength() {
     if (this.user.password !== undefined) {
@@ -97,7 +98,7 @@ export class registerUser {
   email: string;
   password: string;
 
-  constructor() {
+  constructor () {
     this.lastname = '';
     this.firstname = '';
     this.email = '';

@@ -17,6 +17,14 @@
         <div class="sub-title">
             <h2>{{ article?.title }}</h2>
         </div>
+        <app-star-rating [totalStars]="5" [rating]="currentRating"
+            (ratingChanged)="onRatingChanged($event)"></app-star-rating>
+
+
+        <button class="update-button" *ngIf="isVoteModified" (click)="saveVote()">Enregistrer le
+            vote</button>
+
+
 
 
         <img [src]="article?.image ?article?.image : defaultImage" alt="Image de l'article" />

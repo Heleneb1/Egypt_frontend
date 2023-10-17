@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import jwtDecode from 'jwt-decode';
 import { environment } from 'src/environments/environment.development';
 
@@ -9,9 +9,8 @@ import { environment } from 'src/environments/environment.development';
   providedIn: 'root',
 })
 export class AuthService {
-  getUserRole() {
-    throw new Error('Method not implemented.');
-  }
+
+
   constructor (private http: HttpClient, private cookieService: CookieService) { }
   logout() {
     this.cookieService.delete('token');
@@ -31,5 +30,13 @@ export class AuthService {
     const userId = this.getUserToken();
     const userConnectedUrl = environment.apiUrl + `/users/${userId}`;
     return this.http.get<string>(userConnectedUrl);
+  }
+  getUserRole(): Observable<string> {
+    return this.getUserConnected().pipe(
+      map((userData: any) => {
+        console.log("userData", userData);
+        return userData.role;
+      })
+    );
   }
 }

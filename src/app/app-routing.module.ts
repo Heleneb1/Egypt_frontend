@@ -1,36 +1,4 @@
-// import { NgModule } from '@angular/core';
-// import { RouterModule, Routes } from '@angular/router';
-// import { LoginAuthGuardService } from './services/login-auth-guard.service';
-// import { ConnectionComponent } from './pages/connection/connection.component';
-// import { HomeComponent } from './pages/home/home.component';
-// import { SplashPageComponent } from './pages/splash-page/splash-page.component';
-// import { SearchComponent } from './pages/search/search.component';
 
-// const routes: Routes = [
-//   {
-//     path: '',
-//     component: SplashPageComponent,
-//   },
-//   {
-//     path: 'home',
-//     component: HomeComponent,
-//   },
-//   {
-//     path: 'article',
-//     component: SearchComponent,
-//   },
-//   {
-//     path: 'authentication',
-//     component: ConnectionComponent,
-//     canActivate: [LoginAuthGuardService],
-//   },
-// ];
-
-// @NgModule({
-//   imports: [RouterModule.forRoot(routes)],
-//   exports: [RouterModule],
-// })
-// export class AppRoutingModule {}
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ConnectionComponent } from './pages/connection/connection.component';
@@ -47,20 +15,13 @@ import { BadgesModalComponent } from './components/badges-modal/badges-modal.com
 import { ContactComponent } from './components/contact/contact.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AdminComponent } from './components/admin/admin.component';
-// import { AdminComponent } from './pages/admin/admin.component'; // Supposez que vous avez une page d'administration
-
-// Importez votre AdminAuthGuardService
-//  import { AdminAuthGuardService } from './services/admin-auth-guard.service';
+import { AdminGuardService } from './services/admin-guard.service';
 
 const routes: Routes = [
   {
     path: '',
     component: SplashPageComponent,
   },
-  // {
-  //   path: 'badges',
-  //   component: BadgesModalComponent,
-  // },
   {
     path: 'home',
     component: HomeComponent,
@@ -81,7 +42,6 @@ const routes: Routes = [
     path: 'contact',
     component: ContactComponent,
   },
-
   {
     path: 'authentication',
     component: ConnectionComponent,
@@ -106,14 +66,10 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
+    canActivate: [AdminGuardService],
   },
-
-  // {
-  //   path: 'admin',
-  //   component: AdminComponent, // Page d'administration
-  //   canActivate: [AuthGuard], // Garde pour l'accès administratif
-  // },
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

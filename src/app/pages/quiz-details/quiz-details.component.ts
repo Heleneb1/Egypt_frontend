@@ -37,7 +37,8 @@ export class QuizDetailsComponent {
 
 
 
-  constructor(
+
+  constructor (
     private quizService: QuizService,
     private articlesService: ArticlesService,
     private userService: UserService,
@@ -125,16 +126,26 @@ export class QuizDetailsComponent {
 
 
 
+  saveVote() {
+
+    console.log(this.currentRating);
+    console.log(this.quizId);
+
+
+    if (this.currentRating >= 0 && this.currentRating <= 5) {
+      this.quizService.addRating(this.quizId, this.currentRating);
+      this.isVoteModified = false;
+      this.quiz.rating = this.currentRating;
+
+      alert(`Vous avez évalué ce Quiz à ${this.currentRating} étoiles`);
+    }
+  }
   onRatingChanged(rating: number) {
     this.currentRating = rating;
     this.isVoteModified = true;
 
   }
 
-  saveRating(rating: number) {
-    this.quizService.addRating(this.quizId, rating);
-    this.isVoteModified = false;
-  }
 
   openModal(): void {
     this.showModal = true;

@@ -26,6 +26,7 @@ export class ArticleDetailsComponent {
   showComment: boolean = false;
   commentList: any[] = [];
   articleCommentId: any;
+  rating: any;
 
   constructor (
     private articlesService: ArticlesService,
@@ -51,7 +52,7 @@ export class ArticleDetailsComponent {
       this.articlesService.getArticleById(this.articleId).subscribe((article) => {
         this.article = article;
         this.commentList = this.article.comments;
-        // console.log("commentaires", this.commentList);
+        this.rating = this.article.rating;
       });
     });
 
@@ -67,19 +68,39 @@ export class ArticleDetailsComponent {
 
   }
 
+  // onRatingChanged(rating: number) {
+  //   this.currentRating = rating;
+  //   this.isVoteModified = true;
+
+  // }
+
+  // saveRating(rating: number) {
+  //   this.articlesService.addRating(this.articleId, rating);
+  //   this.isVoteModified = false;
+  // }
+  onComment() {
+    this.showComment = !this.showComment;
+  }
+  saveVote() {
+
+    console.log(this.currentRating);
+    console.log(this.articleId);
+
+
+    if (this.currentRating >= 0 && this.currentRating <= 5) {
+      this.articlesService.addRating(this.articleId, this.currentRating);
+      this.isVoteModified = false;
+      this.article.rating = this.currentRating;
+
+      alert(`Vous avez évalué cet Article à ${this.currentRating} étoiles`);
+    }
+  }
   onRatingChanged(rating: number) {
     this.currentRating = rating;
     this.isVoteModified = true;
 
   }
 
-  saveRating(rating: number) {
-    this.articlesService.addRating(this.articleId, rating);
-    this.isVoteModified = false;
-  }
-  onComment() {
-    this.showComment = !this.showComment;
-  }
 
 
 }

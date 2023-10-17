@@ -34,17 +34,13 @@
                 <div class="quiz-detail-container">
                     <div class="footer">
                         <div>
-                            <p>note: {{ quiz.rating? quiz.rating: "3.5" }}</p>
                             <p>niveau: {{ quiz.difficulty? quiz.difficulty: "facile" }}</p>
                         </div>
                         <div>
                             <div class="rating">
-                                <app-star-rating [totalStars]="5" [rating]="quiz.rating"
-                                    (ratingChanged)="onRatingChanged($event)"></app-star-rating>
 
+                                <app-star-rating [totalStars]="5" [rating]="quiz.rating"></app-star-rating>
 
-                                <button class="update-button" *ngIf="isVoteModified" (click)="saveVote()">Enregistrer le
-                                    vote</button>
                             </div>
 
                             <a class="quiz-detail-button" [routerLink]="['/quiz', quiz.id]"

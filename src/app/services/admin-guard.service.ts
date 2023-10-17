@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { AuthService } from './auth.service';
-import { Observable, map, of, tap } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 
-@Injectable()
-export class AuthGuard implements CanActivate {
+@Injectable({
+  providedIn: 'root',
+})
+export class AdminGuardService implements CanActivate {
+
   constructor (private authService: AuthService, private router: Router) { }
 
   canActivate(_route: ActivatedRouteSnapshot, _state: RouterStateSnapshot): Observable<boolean> {
@@ -12,7 +16,8 @@ export class AuthGuard implements CanActivate {
       map(userRole => {
         console.log("Role", userRole);
 
-        if (userRole === 'USER') {
+        if (userRole === 'ADMIN') {
+          console.log("Role", userRole);
 
           return true;
         } else {

@@ -11,38 +11,18 @@ import { UserService } from 'src/app/services/user.service';
 export class AdminComponent implements OnInit {
   quiz: any = {};
 
-  usersOpen = false;
-  users: User[] = [];
   selectedBadge: any;
   selectedQuiz: any;
   selectedQuestions: string[] = [];
   selectedCategory: string = '';
 
   constructor (
-    private userService: UserService,
     private quizService: QuizService,
   ) { }
 
   ngOnInit(): void {
-    // this.quizId;
   }
 
-  getUsers() {
-    this.usersOpen = !this.usersOpen;
-    if (this.usersOpen) {
-      this.userService.getUsers().subscribe(users => {
-        this.users = users;
-        console.log(users);
-      });
-    }
-  }
-
-  deleteUser(id: string) {
-    this.userService.deleteUsers(id).subscribe(() => {
-      this.getUsers();
-      alert('Utilisateur supprimé');
-    });
-  }
 
   addBadgeToQuiz() {
     console.log("quizId", this.selectedQuiz.id);

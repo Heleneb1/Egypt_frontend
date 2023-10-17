@@ -28,7 +28,7 @@ export class QuizService {
         return this.httpClient.get(this.quizDataUrl);
     }
     addRating(quizId: string, userRating: number) {
-        const url = `${this.quizDataUrl}/${quizId}/rating`;
+        const url = `${this.quizDataUrl}/${quizId}/add-rating`;
         this.httpClient.put<any>(url, { rating: userRating }).subscribe(
             updatedQuiz => {
                 console.log('Quiz mis à jour avec le vote :', updatedQuiz);
@@ -38,6 +38,19 @@ export class QuizService {
             }
         );
     }
+    // addRating(promotionId: string, userRating: number, authorId: string) {
+    //     const url = environment.apiUrl + `/promotions/${promotionId}/users/${authorId}`;
+
+    //     this.httpClient.put<any>(url, { rating: userRating }).subscribe(
+    //       updatedPromotion => {
+    //         console.log('Promotion mise à jour avec le vote :', updatedPromotion);
+    //       },
+    //       error => {
+    //         console.error('Erreur lors de la mise à jour de la promotion :', error);
+    //       }
+    //     );
+    //   }
+
     getQuizById(quizId: string) {
         return this.httpClient.get(`${this.quizDataUrl}/${quizId}`);
     }
@@ -70,18 +83,6 @@ export class QuizService {
             })
         );
     }
-    // addRating(promotionId: string, userRating: number, authorId: string) {
-    //     const url = environment.apiUrl + `/promotions/${promotionId}/users/${authorId}`;
-
-    //     this.httpClient.put<any>(url, { rating: userRating }).subscribe(
-    //       updatedPromotion => {
-    //         console.log('Promotion mise à jour avec le vote :', updatedPromotion);
-    //       },
-    //       error => {
-    //         console.error('Erreur lors de la mise à jour de la promotion :', error);
-    //       }
-    //     );
-    //   }
     createQuestion(data: any) {
         this.questionDataUrl + '/question';
         console.log(this.questionDataUrl + '/create', data);

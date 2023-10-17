@@ -80,8 +80,12 @@ li {
 
 .cancel-update,
 .delete-question {
+    // display: flex;
+    // justify-content: space-between;
     display: flex;
     justify-content: space-between;
+    gap: 1rem;
+    flex-direction: column;
 
     button {
         width: 10rem;
@@ -237,4 +241,14 @@ img {
 .info-message {
     margin-top: 20px;
     font-weight: bold;
+}
+
+@media screen and (min-width: 768px) {
+
+    .cancel-update,
+    .delete-question {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+    }
 }

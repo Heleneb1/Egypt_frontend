@@ -1,12 +1,13 @@
 .update-articles {
     display: flex;
     background-color: var(--white);
-    margin: 2rem;
+    margin: 1.2rem;
     padding: 2rem;
     color: var(--bleu);
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    border-radius: 5px;
 
 
     .button {
@@ -36,6 +37,7 @@
         width: 18rem;
         height: 3rem;
         color: var(--white);
+        cursor: pointer;
     }
 
     .articles-container {
@@ -91,6 +93,7 @@
                 height: 2rem;
                 color: var(--white);
                 margin: 0.5rem;
+                cursor: pointer;
             }
 
             input[type="text"]#image {
@@ -126,6 +129,7 @@
             font-family: var(--text);
             border-radius: 2rem;
             font-size: 1.3rem;
+            cursor: pointer;
         }
 
         .delete-button {
@@ -136,6 +140,7 @@
             font-family: var(--text);
             border-radius: 2rem;
             font-size: 1.3rem;
+            cursor: pointer;
         }
     }
 
@@ -226,8 +231,8 @@ input#editImage {
 
 .imageUpdate {
     display: flex;
-    height: 8rem;
-    width: 8rem;
+    // height: 8rem;
+    // width: 8rem;
     border: 1px solid black;
     flex-direction: column;
     justify-content: center;
@@ -244,6 +249,27 @@ input#editImage {
         justify-content: center;
         align-items: center;
         margin: 0.5rem;
+    }
+}
+
+.create-button {
+    display: flex;
+    width: 80%;
+    margin: 2rem;
+
+
+    .button {
+        // width: 10rem;
+        padding: 0 1rem;
+        background-color: var(--sun);
+        border-radius: 2rem;
+        height: 2rem;
+        color: var(--white);
+        display: flex;
+        justify-content: center;
+        cursor: pointer;
+        align-items: center;
+        border: none;
     }
 }
 

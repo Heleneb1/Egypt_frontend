@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthGuard } from './services/auth-guard.service';
 import { AuthService } from './services/auth.service';
+import { AdminGuardService } from './services/admin-guard.service';
 import { AuthInterceptor } from './services/auth-interceptor';
 import { AppComponent } from './app.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -102,6 +103,7 @@ const cookieConfig: NgcCookieConsentConfig = {
     CookieService,
     AuthGuard,
     AuthService,
+    AdminGuardService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],

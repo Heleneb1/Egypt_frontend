@@ -139,6 +139,12 @@ input[type="text"]::placeholder {
   align-items: center;
 }
 
+.result {
+  // width: 100vw;
+  padding: 1rem;
+  margin: 2rem;
+}
+
 .result-card {
   display: flex;
   justify-content: center;

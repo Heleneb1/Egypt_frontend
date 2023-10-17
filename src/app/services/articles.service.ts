@@ -12,7 +12,7 @@ export class ArticlesService {
 
 
   addRating(articleId: string, userRating: number) {
-    const url = `${this.articlesDataUrl}/${articleId}/rating`;
+    const url = `${this.articlesDataUrl}/${articleId}/add-rating`;
     this.httpClient.put<any>(url, { rating: userRating }).subscribe(
       updatedArticle => {
         console.log('Quiz mis à jour avec le vote :', updatedArticle);

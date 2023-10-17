@@ -10,9 +10,9 @@ import { Article } from 'src/app/models/article';
 export class ResultCardComponent {
   @Input() filteredArticle: Article[] = [];
   selectedArticle: Article | null = null;
-  // showDetails = false;
+  defaultImage: string = 'assets/images/Gizeh.jpg';
   isOpen = false;
-  constructor(private router: Router) { }
+  constructor (private router: Router) { }
 
   toggleDetails(selectedArticle: Article) {
     if (this.selectedArticle === selectedArticle) {

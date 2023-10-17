@@ -24,7 +24,7 @@ export class AdminService {
     return this.httpClient.delete(`${this.dataUrl}/articles/${id}`);
   }
   updateArticle(id: string, updatedArticle: Article): Observable<Article> {
-    const url = `${this.dataUrl}/articles/${id}`; // Assurez-vous d'adapter l'URL à votre API
+    const url = `${this.dataUrl}/articles/${id}`;
     return this.httpClient.put<Article>(url, updatedArticle);
   }
   getUsers() {
