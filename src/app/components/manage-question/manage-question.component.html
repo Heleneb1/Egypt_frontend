@@ -1,9 +1,9 @@
 <div class="question-container">
     <div class="create-question">
         <div class="button">
-            <!-- <div class="button-container"> -->
+
             <button (click)="createQuestion()" type="button" class="button">Créer une question</button>
-            <!-- </div> -->
+
         </div>
         <div *ngIf="showQuestionForm">
             <h2>Créer une nouvelle question</h2>
@@ -19,10 +19,10 @@
             <label for="option_3">Option 3 :</label>
             <input type="text" id="option_3" [(ngModel)]="option_3">
 
-            <label for="right_answer">Réponse 1 (right_answer) :</label>
+            <label for="right_answer">Réponse 1 :</label>
             <input type="text" id="right_answer" [(ngModel)]="right_answer">
 
-            <label for="right_answer_2">Réponse 2 (right_answer_2) :</label>
+            <label for="right_answer_2">Réponse 2 :</label>
             <input type="text" id="right_answer_2" [(ngModel)]="right_answer_2">
 
             <label for="category">Catégorie :</label>
@@ -31,20 +31,18 @@
 
             <div class="create-button">
                 <div class="button">
-                    <!-- <div class="button-container"> -->
-                    <button (click)="onCreateQuestion()" type="button" class="button">Créer la question</button>
-                    <!-- </div> -->
+                    <button (click)="onCreateQuestion()" type="button" class="button">Ajouter</button>
                 </div>
             </div>
         </div>
+        <select class="select-option" [(ngModel)]="selectCategory" (change)="selectQuestionsByCategory()">
+            <option value="">Toutes les catégories</option>
+            <option *ngFor="let category of categoriesOptions" [value]="category">{{ category }}</option>
+        </select>
+
     </div>
-    <select [(ngModel)]="selectCategory" (change)="selectQuestionsByCategory()">
-        <option value="">Toutes les catégories</option>
-        <option *ngFor="let category of categoriesOptions" [value]="category">{{ category }}</option>
-    </select>
 
     <div *ngIf="questions">
-        <!-- <h2>Questions pour la catégorie : {{ selectCategory }}</h2> -->
         <ul>
             <li *ngFor="let question of questions">
                 <h3>{{ question.question_title }}</h3>
@@ -55,7 +53,6 @@
                 <p>Réponse 2: {{ question.right_answer_2 }}</p>
 
                 <input type="radio" [(ngModel)]="question.selected" /> {{ question.content }}
-                <!-- <input type="checkbox" [checked]="question.selected" (change)="questionSelection(question)"> -->
                 <div class="delete-question">
                     <button (click)="deleteQuestion(question.id)">Supprimer la question</button>
                 </div>
@@ -70,7 +67,5 @@
 
         </div>
 
-        <!-- <button (click)="addSelectedQuestionsToQuiz(quiz.id)">Ajouter les questions sélectionnées au
-        quiz</button> -->
     </div>
 </div>

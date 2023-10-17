@@ -8,7 +8,7 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './user-info.component.html',
   styleUrls: ['./user-info.component.scss']
 })
-//TODO revoir les badges affichés
+
 export class UserInfoComponent {
   @Input()
   userData: any;
@@ -35,29 +35,6 @@ export class UserInfoComponent {
 
   private objectURL: string | undefined;
 
-  // ngOnInit(): void {
-  //   this.user = this.userData;
-  //   this.badges = this.userData.badgesIds;
-  //   console.log(this.userData.badgesIds);//TODO revoir les badges affichés
-  //   const userBadges = this.userData.badgesIds || [];
-
-
-  //   while (userBadges.length < 10) {
-  //     userBadges.push({ name: 'Badge à venir', image: 'assets/images/wait.jpg' });
-  //   }
-
-  //   this.badges = userBadges;
-
-
-
-  //   if (this.userData.biography !== null) {
-  //     this.inputBiography = this.userData.biography;
-  //   }
-  //   if (this.userData.avatar !== null) {
-  //     this.loadAvatar();
-  //   }
-
-  // }
   ngOnInit(): void {
     this.user = this.userData;
     const userBadges = this.userData.badgesIds || [];
@@ -66,7 +43,7 @@ export class UserInfoComponent {
 
     userBadges.forEach((badgeId: string) => {
       this.badgesService.getBadgeContent(badgeId).subscribe((badgeInfo: any) => {
-        this.badges.push(badgeInfo);
+        this.badges.unshift(badgeInfo);
       });
     });
 

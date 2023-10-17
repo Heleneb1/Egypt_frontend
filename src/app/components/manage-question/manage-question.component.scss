@@ -11,21 +11,57 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Style pour le bouton "Créer une question" */
+
 .button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-    margin-bottom: 20px;
+    display: flex;
+    margin: 2rem;
+    justify-content: center;
+
+    button {
+        background-color: var(--blue);
+        border-radius: 2rem;
+        font-size: 2rem;
+        width: 18rem;
+        height: 3rem;
+        color: var(--white);
+        display: flex;
+        justify-content: center;
+        cursor: pointer;
+    }
 }
 
-/* Style pour le formulaire de création de question */
 .create-question h2 {
     font-size: 24px;
     margin-bottom: 10px;
+
+}
+
+.select-option {
+    display: flex;
+    justify-content: center;
+    margin: 2rem;
+    width: max-content;
+    border-radius: 2rem;
+    height: 2rem;
+
+    option,
+    select {
+
+        background-color: var(--blue);
+
+
+        color: var(--white);
+        display: flex;
+        justify-content: center;
+        cursor: pointer;
+        align-items: center;
+    }
+}
+
+select {
+
+    color: var(--white);
+    background-color: var(--blue);
 }
 
 label {
@@ -40,12 +76,10 @@ input[type="text"] {
     border-radius: 5px;
 }
 
-/* Style pour le bouton "Créer la question" dans le formulaire */
 .create-button {
     margin-top: 20px;
 }
 
-/* Style pour la liste déroulante de sélection de catégorie */
 select {
     width: 100%;
     padding: 5px;
@@ -54,7 +88,6 @@ select {
     margin-bottom: 20px;
 }
 
-/* Style pour la liste de questions */
 h2 {
     font-size: 24px;
     margin-bottom: 10px;
@@ -74,25 +107,21 @@ li {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Style pour les boutons "Supprimer" et "Modifier" des questions */
 .delete-question,
 .update-question {
     display: inline-block;
     margin-right: 10px;
 }
 
-/* Style pour les boutons radio (sélection des questions) */
 input[type="radio"] {
     margin-right: 5px;
 }
 
-/* Style pour les messages d'information supplémentaires */
 .info-message {
     margin-top: 20px;
     font-weight: bold;
 }
 
-/* Style pour la section des questions par catégorie */
 .selected-category {
     margin-top: 20px;
 }

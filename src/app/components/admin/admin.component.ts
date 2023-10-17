@@ -9,8 +9,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
-  // @Input() quizId: string = '';
-  quiz: any = {}; // Initialize as an empty object or provide an appropriate default value
+  quiz: any = {};
 
   usersOpen = false;
   users: User[] = [];
@@ -47,8 +46,7 @@ export class AdminComponent implements OnInit {
 
   addBadgeToQuiz() {
     console.log("quizId", this.selectedQuiz.id);
-    console.log("badgeId", this.selectedBadge.id); // Assurez-vous que selectedBadge et selectedQuiz contiennent les bonnes informations
-
+    console.log("badgeId", this.selectedBadge.id);
     this.quizService.addBadgeToQuiz(this.selectedQuiz.id, this.selectedBadge.id).subscribe((response: any) => {
       console.log("Badge ajouté au quiz avec succès", response);
     });
@@ -65,7 +63,6 @@ export class AdminComponent implements OnInit {
     console.log("questions", this.selectedQuestions);
     console.log("category", selectedCategory);
 
-    // Call the service to add the questions to the quiz using the correct values of selectedQuestions and selectedCategory
     this.quizService.addQuestionByCategoryToQuiz(this.selectedQuiz.id, selectedCategory).subscribe((response: any) => {
       console.log("Questions successfully added to quiz", response);
     });

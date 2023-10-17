@@ -9,15 +9,8 @@ import { QuizService } from 'src/app/services/quiz.service';
 })
 export class ManageQuizComponent {
   @Output() quizSelected: EventEmitter<any> = new EventEmitter<any>();
-
-
-
-  // isSelectedBadge: any;
-  // badge: any;
   existingQuiz: any;
-
-  editingQuiz: any;
-  constructor (
+  editingQuiz: any = null; constructor (
     private quizService: QuizService, private badgesService: BadgesService) { }
   ngOnInit() {
 
@@ -150,10 +143,11 @@ export class ManageQuizComponent {
     });
   }
   editQuiz(quiz: any) {
-    this.editingQuiz = { ...quiz }; // Créez une copie de l'élément à éditer
+    this.editingQuiz = true;
+    this.editingQuiz = { ...quiz };
   }
 
-  // Ajoutez une fonction pour annuler l'édition
+
   cancelEdit() {
     this.editingQuiz = null;
   }

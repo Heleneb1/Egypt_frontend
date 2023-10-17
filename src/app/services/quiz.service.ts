@@ -9,6 +9,9 @@ import { loginUser } from "../components/login/login.component";
     providedIn: 'root'
 })
 export class QuizService {
+    deleteBadge(id: string) {
+        throw new Error('Method not implemented.');
+    }
 
 
 
@@ -164,25 +167,5 @@ export class QuizService {
 
         return this.httpClient.put(`${this.quizDataUrl}/${quizId}/badges/${badgeId}/add-badge`, { badgeId: badgeId });
     }
-    // @PutMapping("/{id}/badges/{badgeId}/add-badge")
-    // public ResponseEntity<QuizDTO> addBadgeToQuiz(@PathVariable UUID id,
-    //                 @PathVariable UUID badgeId) {
-    //         Quiz quiz = quizRepository.findById(id)
-    //                         .orElseThrow(() -> new ResponseStatusException(
-    //                                         HttpStatus.NOT_FOUND, "Quiz not found: " + id));
-
-    //         Badge badge = badgeRepository.findById(badgeId)
-    //                         .orElseThrow(() -> new ResponseStatusException(
-    //                                         HttpStatus.NOT_FOUND, "Badge not found: " + badgeId));
-
-    //         quiz.setBadge(badge);
-
-    //         quizRepository.save(quiz);
-
-    //         QuizDTOMapper mapper = new QuizDTOMapper();
-    //         QuizDTO quizDTO = mapper.convertToDTO(quiz);
-
-    //         return ResponseEntity.ok(quizDTO);
-    // }
 
 }

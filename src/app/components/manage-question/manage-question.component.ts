@@ -61,7 +61,6 @@ export class ManageQuestionComponent implements OnInit {
     this.showQuestionForm = true;
   }
   createQuestion() {
-    // Réinitialisez le formulaire
     this.question_title = '';
     this.option_1 = '';
     this.option_2 = '';
@@ -138,12 +137,6 @@ export class ManageQuestionComponent implements OnInit {
     );
   }
 
-  // addSelectedQuestionsToQuiz(quizId: string) {
-  //   console.log(this.questions);
-  //   this.quizService.addQuestionByCategoryToQuiz(quizId, this.selectedCategory).subscribe((response: any) => {
-  //     console.log("Questions ajoutées au quiz avec succès", response);
-  //   })
-  // }
   deleteQuestion(id: string) {
     this.quizService.deleteQuestion(id).subscribe(() => {
       this.getQuestionByCategory(this.category);

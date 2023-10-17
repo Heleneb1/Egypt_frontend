@@ -16,29 +16,51 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Style pour le bouton "Quiz" */
-.button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-    margin-bottom: 20px;
+.button-container {
+    display: flex;
+    justify-content: center;
+
+    .button {
+
+        background-color: var(--blue);
+        border-radius: 2rem;
+        font-size: 2rem;
+        width: 18rem;
+        height: 3rem;
+        color: var(--white);
+        display: flex;
+        justify-content: center;
+        cursor: pointer;
+    }
 }
 
-/* Style pour le conteneur de quiz lorsque ouvert */
+.button-create {
+    display: flex;
+    justify-content: center;
+
+    .button {
+        width: 10rem;
+        background-color: var(--blue);
+        border-radius: 2rem;
+        height: 2rem;
+        color: var(--white);
+        display: flex;
+        justify-content: center;
+        cursor: pointer;
+        align-items: center;
+    }
+}
+
 .quizzesOpen {
     margin-top: 20px;
 }
 
-/* Style pour le titre du quiz */
+
 h2 {
     font-size: 24px;
     margin-bottom: 10px;
 }
 
-/* Style pour les éléments du quiz */
 ul {
     list-style: none;
     padding: 0;
@@ -53,29 +75,72 @@ li {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Style pour les boutons "Supprimer" et "Sauvegarder" des quiz */
-.update-button {
-    display: inline-block;
-    margin-right: 10px;
+
+
+
+.cancel-update,
+.delete-question {
+    display: flex;
+    justify-content: space-between;
+
+    button {
+        width: 10rem;
+        background-color: var(--blue);
+        border-radius: 2rem;
+        height: 2rem;
+        color: var(--white);
+        display: flex;
+        justify-content: center;
+        cursor: pointer;
+        align-items: center;
+    }
 }
 
-/* Style pour les boutons radio (archiver) */
+.button-add {
+    width: max-content;
+    margin: 2rem;
+    padding: 2rem;
+
+    .add-button {
+        width: 10rem;
+        background-color: var(--blue);
+        border-radius: 2rem;
+        height: 2rem;
+        color: var(--white);
+        display: flex;
+        justify-content: center;
+        cursor: pointer;
+        align-items: center;
+    }
+}
+
+.delete-button {
+    button {
+        width: 10rem;
+        background-color: var(--sun);
+        border-radius: 2rem;
+        height: 2rem;
+        color: var(--white);
+        display: flex;
+        justify-content: center;
+        cursor: pointer;
+        align-items: center;
+    }
+}
+
 input[type="radio"] {
     margin-right: 5px;
 }
 
-/* Style pour le conteneur des questions du quiz */
 .questions-container {
     margin-top: 20px;
 }
 
-/* Style pour le titre "Questions" */
 h4 {
     font-size: 18px;
     margin-bottom: 10px;
 }
 
-/* Style pour les boutons "Afficher la question" des questions */
 .question-button {
     background-color: #007bff;
     color: #fff;
@@ -86,12 +151,10 @@ h4 {
     margin-top: 10px;
 }
 
-/* Style pour les éléments des questions affichées */
 .question-details {
     margin-top: 10px;
 }
 
-/* Style pour le conteneur de gestion des badges */
 .badge {
     margin: 20px;
     padding: 20px;
@@ -101,7 +164,6 @@ h4 {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Style pour le bouton "Badge" */
 .badge-button {
     background-color: #007bff;
     color: #fff;
@@ -112,18 +174,15 @@ h4 {
     margin-bottom: 20px;
 }
 
-/* Style pour le conteneur de gestion des badges lorsque ouvert */
 .badgesOpen {
     margin-top: 20px;
 }
 
-/* Style pour le titre des badges */
 h2 {
     font-size: 24px;
     margin-bottom: 10px;
 }
 
-/* Style pour les éléments des badges */
 ul {
     list-style: none;
     padding: 0;
@@ -142,9 +201,9 @@ img {
     height: 8rem;
     width: 8rem;
     object-fit: cover;
+    margin: 1rem;
 }
 
-/* Style pour les boutons "Sélectionner le badge" des badges */
 .select-badge-button {
     background-color: #007bff;
     color: #fff;
@@ -155,12 +214,10 @@ img {
     margin-top: 10px;
 }
 
-/* Style pour le formulaire de création de badge */
 .create-badge-form {
     margin-top: 20px;
 }
 
-/* Style pour les champs du formulaire de création de badge */
 .create-badge-form label {
     display: block;
     margin-top: 10px;
@@ -173,12 +230,10 @@ img {
     border-radius: 5px;
 }
 
-/* Style pour le bouton "Ajouter le badge" du formulaire */
 .create-badge-button {
     margin-top: 20px;
 }
 
-/* Style pour les messages d'information supplémentaires */
 .info-message {
     margin-top: 20px;
     font-weight: bold;

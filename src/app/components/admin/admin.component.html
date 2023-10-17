@@ -1,6 +1,7 @@
-<app-manage-article></app-manage-article>
 <div class="users">
-    <button (click)="getUsers()" type="button" class="button">Utilisateurs</button>
+    <div class="user-button">
+        <button (click)="getUsers()" type="button" class="button">Utilisateurs</button>
+    </div>
     <div *ngIf="usersOpen">
         <div class="users-container" *ngFor="let user of users">
             <div class="title">
@@ -12,7 +13,7 @@
             <div class="archived">
                 {{ user.role }}
             </div>
-            <div class="update-button">
+            <div class="delete-button">
                 <button (click)="deleteUser(user.id)">Supprimer</button>
             </div>
         </div>
@@ -22,11 +23,13 @@
 <div *ngIf="selectedBadge && selectedQuiz">
     <button (click)="addBadgeToQuiz()" class="button">Ajouter le badge au quiz</button>
 </div>
+<app-manage-article></app-manage-article>
+<app-manage-question (questionsSelected)="onQuestionsSelected($event)"
+    (categorySelected)="onCategorySelected($event)"></app-manage-question>
+
+<app-manage-quiz (quizSelected)="selectedQuiz = $event"></app-manage-quiz>
 <div *ngIf="selectedQuiz && selectedQuestions">
     <button (click)="addSelectedQuestionsToQuiz(selectedCategory)">Ajouter les questions sélectionnées au
         quiz</button>
 </div>
-<app-manage-question (questionsSelected)="onQuestionsSelected($event)"
-    (categorySelected)="onCategorySelected($event)"></app-manage-question>
 <app-manage-badges (badgeSelected)="selectedBadge = $event"></app-manage-badges>
-<app-manage-quiz (quizSelected)="selectedQuiz = $event"></app-manage-quiz>

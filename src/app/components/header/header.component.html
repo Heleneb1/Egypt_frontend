@@ -19,6 +19,12 @@
                         <li><a routerLink="/authentication">Connexion/Inscription</a></li>
                         <li><a routerLink="/contact">Nous Contacter</a></li>
                         <li> <a (click)="logout()">Déconnexion</a></li>
+                        <div class="logo">
+                            <a routerLink="/home">
+                                <img [src]="'assets/images/logo-bleu.svg'" alt="logo" />
+                            </a>
+                        </div>
+
                     </ul>
                     <div class="menu-image">
                         <a routerLink="/home">
@@ -38,12 +44,5 @@
             <div class="icon"><i class="fa fa-bell"></i></div>
 
         </div>
-        <div class="logo">
-            <a routerLink="/home">
-                <img [src]="'assets/images/logo-bleu.svg'" alt="logo" />
-                <!-- <img [src]="'assets/images/logo-bleu.svg'" alt="logo" /> -->
-            </a>
-        </div>
-
     </nav>
 </div>

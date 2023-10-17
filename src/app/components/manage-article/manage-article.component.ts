@@ -15,6 +15,7 @@ export class ManageArticleComponent {
   isArchived: boolean = false;
   existingArticle!: Article;
   showArticleForm = false;
+  showUpdateForm = false;
   articlesOpen = false;
   newAuthor: string = '';
   newTag: string = '';
@@ -41,7 +42,6 @@ export class ManageArticleComponent {
 
   deleteArticle(id: string) {
     this.adminService.deleteArticle(id).subscribe(() => {
-      this.getArticles();
       alert('Article supprimé');
     });
   }
@@ -50,9 +50,14 @@ export class ManageArticleComponent {
     this.existingArticle = article;
     this.newTitle = article.title;
     this.newImage = article.image;
+    this.newAuthor = article.author;
+    this.newTag = article.tag;
+    this.newRating = article.rating;
     this.newContent = article.content;
     this.isArchived = article.archive;
-    this.showArticleForm = true;
+    this.showUpdateForm = true;
+    console.log(this.existingArticle);
+
   }
 
   saveChanges() {
