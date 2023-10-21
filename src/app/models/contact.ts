@@ -1,20 +1,7 @@
-// export class Contact {
-//     constructor(
-//         public username: string,
-//         public email: string,
-//         public message: string
-//     ) { }
-// }
-
 export class Contact {
-    constructor(
-        public firstName: string,
-        public lastName: string,
+    constructor (
+        public username: string,
         public email: string,
-        public message: string
+        public content: string
     ) { }
-
-    get username() {
-        return `${this.firstName} ${this.lastName}`;
-    }
 }

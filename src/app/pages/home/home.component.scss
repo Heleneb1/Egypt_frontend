@@ -1,3 +1,23 @@
+.loader {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--blue);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  font-size: 3rem;
+  font-family: var(--title);
+  color: var(--sun);
+  transition: all 0.3s ease-in-out;
+  animation: fadeIn 4s ease-in-out forwards;
+
+}
+
 .home {
   text-align: center;
   height: 100vh;
@@ -121,6 +141,18 @@
   100% {
     transform: translate(-100%, -100%) scale(0.5);
     opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 1;
+
+  }
+
+  to {
+    opacity: 0;
+
   }
 }
 

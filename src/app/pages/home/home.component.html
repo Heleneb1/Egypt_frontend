@@ -1,3 +1,6 @@
+<div class="loader" *ngIf="!isLoaded">
+  Bienvenue...
+</div>
 <div [ngClass]="{ 'fog-effect': fogEffect, 'glow-effect': glow }"></div>
 <div class="home">
   <div class="home-title">
@@ -7,7 +10,9 @@
 
   <div class="content">
     <div class="introduction">
-      <div class="sub-title"><h2>Les Mystères de l’Égypte Antique</h2></div>
+      <div class="sub-title">
+        <h2>Les Mystères de l’Égypte Antique</h2>
+      </div>
 
       <p class="paragraph">
         Explorez l'Égypte au seuil de notre site, ouvrez les portes du passé et

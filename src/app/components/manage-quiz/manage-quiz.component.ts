@@ -10,7 +10,8 @@ import { QuizService } from 'src/app/services/quiz.service';
 export class ManageQuizComponent {
   @Output() quizSelected: EventEmitter<any> = new EventEmitter<any>();
   existingQuiz: any;
-  editingQuiz: any = null; constructor (
+  editingQuiz: any = null;
+  constructor (
     private quizService: QuizService, private badgesService: BadgesService) { }
   ngOnInit() {
 
@@ -22,7 +23,10 @@ export class ManageQuizComponent {
   newTitle: string = '';
   newContent: string = '';
   newDifficulty: string = '';
+  newPicture: string = '';
   isArchived: boolean = false;
+  defaultImage: string = 'assets/images/Gizeh.jpg'
+
   // categories!: string; // Pour stocker les catégories récupérées depuis le serveur
   isSelectedQuiz: boolean = false;
   quiz: any;
@@ -110,6 +114,7 @@ export class ManageQuizComponent {
       title: this.newTitle,
       difficulty: this.newDifficulty,
       content: this.newContent,
+      picture: this.newPicture,
       archive: this.isArchived,
     };
 
@@ -126,6 +131,7 @@ export class ManageQuizComponent {
     this.newTitle = '';
     this.newDifficulty = "";
     this.newContent = '';
+    this.newPicture = '';
     this.isArchived = false;
   }
 

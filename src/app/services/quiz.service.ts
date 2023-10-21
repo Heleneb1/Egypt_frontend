@@ -3,7 +3,7 @@ import { HttpClient } from "@angular/common/http"; // Assurez-vous d'importer Ht
 import { environment } from "src/environments/environment";
 import { Observable, map } from "rxjs";
 import { QuizQuestion } from "../models/quiz-question";
-import { loginUser } from "../components/login/login.component";
+
 
 @Injectable({
     providedIn: 'root'
@@ -12,10 +12,6 @@ export class QuizService {
     deleteBadge(id: string) {
         throw new Error('Method not implemented.');
     }
-
-
-
-
 
     private quizDataUrl = environment.apiUrl + '/quizzes';
     private questionDataUrl = environment.apiUrl + '/questions';
@@ -38,18 +34,6 @@ export class QuizService {
             }
         );
     }
-    // addRating(promotionId: string, userRating: number, authorId: string) {
-    //     const url = environment.apiUrl + `/promotions/${promotionId}/users/${authorId}`;
-
-    //     this.httpClient.put<any>(url, { rating: userRating }).subscribe(
-    //       updatedPromotion => {
-    //         console.log('Promotion mise à jour avec le vote :', updatedPromotion);
-    //       },
-    //       error => {
-    //         console.error('Erreur lors de la mise à jour de la promotion :', error);
-    //       }
-    //     );
-    //   }
 
     getQuizById(quizId: string) {
         return this.httpClient.get(`${this.quizDataUrl}/${quizId}`);

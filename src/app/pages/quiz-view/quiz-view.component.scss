@@ -82,6 +82,20 @@
 //     flex-direction: column;
 
 // }
+.no-connected {
+
+    background: transparent;
+    border: none;
+    color: var(--white);
+    font-family: var(--title);
+    font-size: 1.5rem;
+    text-shadow: #fffcfc 0px 0px 10px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+    text-decoration: none;
+    // transform: translate(-50%, -50%);
+
+}
 
 .quiz-card-container {
     display: flex;
@@ -101,10 +115,11 @@
 .quiz-card {
     margin: 20px;
     display: flex;
-    width: 28rem;
+    width: 25rem;
 
     .header-card {
         img {
+            object-fit: cover;
             width: 8rem;
             height: 12rem;
             border-radius: 5px;
@@ -113,6 +128,18 @@
         }
     }
 
+    // .quiz-detail-button{
+    //     background-color: var(--sun);
+    //     font-family: var(--title);
+    //     font-size: 1rem;
+    //     color: var(--white);
+    //     width: 10rem;
+    //     border: none;
+    //     margin: 1.1rem;
+    //     border-radius: 4rem;
+    //     cursor: pointer;
+    //     text-decoration: none;
+    // }
     .body-card {
         background-color: (var(--white));
         height: 12rem;
@@ -124,6 +151,7 @@
 
         h3 {
             font-family: var(--title);
+            text-align: center;
         }
 
         .quiz-detail-container {
@@ -136,15 +164,31 @@
             }
 
             .quiz-detail-button {
-                width: 30%;
-                display: flex;
-                justify-content: space-evenly;
+                background-color: var(--sun);
+                font-family: var(--title);
+                font-size: 1rem;
+                color: var(--white);
+                width: 10rem;
+                border: none;
+                margin: 1.1rem;
+                border-radius: 4rem;
                 cursor: pointer;
-                margin-right: 10px;
+                text-decoration: none;
 
                 p {
-                    color: black;
-                    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+                    background-color: var(--sun);
+                    font-family: var(--title);
+                    font-size: 1rem;
+                    color: var(--white);
+                    width: 10rem;
+                    border: none;
+                    margin: 1.1rem;
+                    border-radius: 4rem;
+                    cursor: pointer;
+                    text-decoration: none;
+                    position: relative;
+                    bottom: 1rem;
+
                 }
 
 

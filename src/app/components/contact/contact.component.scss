@@ -63,6 +63,15 @@
         }
     }
 
+    .no-authorize {
+        font-weight: 900;
+        background-color: var(--sun);
+        color: var(--white);
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        text-decoration-style: double;
+    }
+
     .send-button {
         display: flex;
         width: 80%;

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { QuizQuestion } from 'src/app/models/quiz-question';
 import { QuizService } from 'src/app/services/quiz.service';
 
 @Component({
@@ -26,6 +27,8 @@ export class ManageQuestionComponent implements OnInit {
   quiz: any;
   questionsToAdd: any[] = [];
   selectCategory: string = '';
+  existingQuestion!: QuizQuestion;
+  showUpdateForm = false;
 
 
   ngOnInit() {
@@ -49,17 +52,21 @@ export class ManageQuestionComponent implements OnInit {
     this.categorySelected.emit(category);
   }
 
-  editQuestion(question: any) {
-    this.question = question;
-    this.question_title = question.question_title;
-    this.option_1 = question.option_1;
-    this.option_2 = question.option_2;
-    this.option_3 = question.option_3;
-    this.right_answer = question.right_answer;
-    this.right_answer_2 = question.right_answer_2;
+  editQuestion(question: QuizQuestion) {
+    this.existingQuestion = question;
+    this.question_title = question.questionTitle;
+    this.option_1 = question.option1;
+    this.option_2 = question.option2;
+    this.option_3 = question.option3;
+    this.right_answer = question.rightAnswer;
+    this.right_answer_2 = question.rightAnswer2;
     this.category = question.category;
-    this.showQuestionForm = true;
+    this.showUpdateForm = true;
+    console.log(this.existingQuestion);
+
   }
+
+
   createQuestion() {
     this.question_title = '';
     this.option_1 = '';
@@ -143,10 +150,14 @@ export class ManageQuestionComponent implements OnInit {
       alert('Question supprimée');
     });
   }
-  updateQuestion(id: string, updatedQuestion: any) {
-    this.quizService.updateQuestion(id, updatedQuestion).subscribe(() => {
+  //TODO revoir la méthode updateQuestion
+  updateQuestion(existingQuestion: any, updatedQuestion: any) {
+    this.quizService.updateQuestion(existingQuestion, updatedQuestion).subscribe(() => {
       this.getQuestionByCategory(this.category);
+      console.log(existingQuestion);
+
       alert('Question modifiée');
+      this.ngOnInit();
     });
   }
 

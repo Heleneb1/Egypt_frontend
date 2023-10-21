@@ -5,7 +5,8 @@
 
   <div class="name-search">
     <label for="theme"></label>
-    <input type="text" id="theme" placeholder="Rechercher" [(ngModel)]="author" />
+    <!-- <input type="text" id="theme" placeholder="Rechercher" [(ngModel)]="author" /> -->
+    <input type="text" id="theme" placeholder="Rechercher" [(ngModel)]="searchQuery" />
     <button (click)="searchArticles()">
       <i class="fa fa-search"></i>
     </button>

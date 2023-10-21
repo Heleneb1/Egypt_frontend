@@ -10,6 +10,7 @@
                     <h3>{{ quiz.title }}</h3>
                     <p>Difficulté : {{ quiz.difficulty }}</p>
                     <p>Date de création : {{ quiz.creationDate }}</p>
+                    <img [src]="quiz.picture ? quiz.picture : defaultImage" alt="Image du quiz">
 
                     <div *ngIf="quiz.badgeContent">
                         <p>Badge :</p>
@@ -23,6 +24,11 @@
 
                         <label for="editedDifficulty">Difficulté :</label>
                         <input type="text" id="editedDifficulty" [(ngModel)]="editingQuiz.difficulty">
+                        <label for="editedContent">Sujet :</label>
+                        <input type="text" id="editedContent" [(ngModel)]="editingQuiz.content">
+                        <label for="editedImage">Image:</label>
+                        <input type="text" id="editedImage" name="picture" [(ngModel)]="editingQuiz.picture"
+                            placeholder="Entrez le lien de l'image" />
 
                         <div class="cancel-update">
                             <button (click)="cancelEdit()">Annuler</button>
@@ -103,7 +109,8 @@
         <input type="text" id="difficulty" [(ngModel)]="newDifficulty">
         <label for="content">Sujet :</label>
         <input type="text" id="difficulty" [(ngModel)]="newContent">
-
+        <label for="image">Image:</label>
+        <input type="text" id="image" name="picture" [(ngModel)]="newPicture" placeholder="Entrez le lien de l'image" />
 
         <label for="archive">Archiver :</label>
         <input type="radio" id="archiveYes" name="archive" [(ngModel)]="isArchived" [value]="true"> Oui

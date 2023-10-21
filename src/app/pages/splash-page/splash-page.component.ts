@@ -8,14 +8,14 @@ import { AppComponent } from 'src/app/app.component';
   styleUrls: ['./splash-page.component.scss'],
 })
 export class SplashPageComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor (private router: Router) { }
   shakeDoors = false;
   openDoors = false;
   fogEffect = false;
-  
+
 
   ngOnInit(): void {
- 
+
 
     setTimeout(() => {
       this.shakeDoors = true;
@@ -23,6 +23,7 @@ export class SplashPageComponent implements OnInit {
     setTimeout(() => {
       this.openDoors = true;
     }, 2000);
+
 
     this.fogEffect = true;
 

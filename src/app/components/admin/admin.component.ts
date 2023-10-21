@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { User } from 'src/app/models/user';
 import { QuizService } from 'src/app/services/quiz.service';
-import { UserService } from 'src/app/services/user.service';
+
 
 @Component({
   selector: 'app-admin',

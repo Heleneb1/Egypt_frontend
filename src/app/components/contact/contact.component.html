@@ -16,24 +16,34 @@
     </div>
 </div>
 <div class="contact">
-    <!-- <img [src]="'assets/images/background.svg'" alt="contact"> -->
-    <form (ngSubmit)="sendMessage()">
+    <form [formGroup]="contactForm" (ngSubmit)="sendMessage()">
         <div class="form-group">
-            <label for="nom">Nom :</label>
-            <input type="text" id="nom" [(ngModel)]="contact.firstName" name="nom" required>
+            <label for="username">Nom :</label>
+            <input type="text" id="nom" formControlName="username" required>
+            <div *ngIf="contactForm.controls['username'].invalid && (contactForm.controls['username'].dirty || contactForm.controls['username'].touched)"
+                class="no-authorize">
+                Le nom est requis et doit comporter au moins 5 caractères.
+            </div>
         </div>
-        <div class="form-group">
-            <label for="prenom">Prénom :</label>
-            <input type="text" id="prenom" [(ngModel)]="contact.lastName" name="prenom" required>
-        </div>
+
         <div class="form-group">
             <label for="email">Email :</label>
-            <input type="email" id="email" [(ngModel)]="contact.email" name="email" required>
+            <input type="email" id="email" formControlName="email" required>
+            <div *ngIf="contactForm.controls['email'].invalid && (contactForm.controls['email'].dirty || contactForm.controls['email'].touched)"
+                class="no-authorize">
+                Un email valide est requis.
+            </div>
         </div>
+
         <div class="form-group">
-            <label for="message">Votre message :</label>
-            <textarea id="message" [(ngModel)]="contact.message" name="message" required></textarea>
+            <label for="content">Votre message :</label>
+            <textarea id="message" formControlName="content" required></textarea>
+            <div *ngIf="contactForm.controls['content'].invalid && (contactForm.controls['content'].dirty || contactForm.controls['content'].touched)"
+                class="no-authorize">
+                Un message est requis et doit comporter au moins 50 caractères.
+            </div>
         </div>
+
         <div class="send-button">
             <div class="button">
                 <div class="button-container">

@@ -44,6 +44,7 @@ export class ArticlesService {
           archive: article.archive,
           author: article.author,
           content: article.content,
+          rating: article.rating,
         };
       })
     );
@@ -72,6 +73,8 @@ export class ArticlesService {
     return this.httpClient.get<Article[]>(this.articlesDataUrl).pipe(
       map((articles: Article[]) => {
         const uniqueTag = new Set<string>();
+        console.log(articles);
+
 
         articles.forEach((article: Article) => {
           const individualTag = article.tag.split(',').map(t => t.trim());
@@ -122,28 +125,16 @@ export class ArticlesService {
   // }
 
   getArticlesByAuthorTitleTag(articleAuthor?: string, articleTitle?: string, articleTag?: string): Observable<Article[]> {
-    // Construct the URL based on the provided parameters
-    let searchUrl = this.articlesDataUrl + '/search';
-
-    // Build the query parameters
-    const queryParams = [];
+    let searchUrl = this.articlesDataUrl;
     if (articleAuthor) {
-      queryParams.push(`author=${encodeURIComponent(articleAuthor)}`);
+      searchUrl += '/search/' + encodeURIComponent(articleAuthor);
+    } else if (articleTitle) {
+      searchUrl += '/search/' + encodeURIComponent(articleTitle);
+    } else if (articleTag) {
+      searchUrl += '/search/' + encodeURIComponent(articleTag);
     }
-    if (articleTitle) {
-      queryParams.push(`title=${encodeURIComponent(articleTitle)}`);
-    }
-    if (articleTag) {
-      queryParams.push(`tag=${encodeURIComponent(articleTag)}`);
-    }
-
-    // Add the query parameters to the URL if any are provided
-    if (queryParams.length > 0) {
-      searchUrl += '?' + queryParams.join('&');
-    }
-
-    // Specify the response type as Article[]
     return this.httpClient.get<Article[]>(searchUrl);
   }
+
 }
 
