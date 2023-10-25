@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { ToastrModule } from 'ngx-toastr';
 import { CookieService } from 'ngx-cookie-service';
 import {
   FormsModule,
@@ -41,12 +44,15 @@ import { QuillModule } from 'ngx-quill';
   imports: [
     BrowserModule,
     AppRoutingModule,
-QuillModule.forRoot(),
+    QuillModule.forRoot(),
     FormsModule,
     RouterModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+
   ],
   providers: [
     CookieService,
@@ -57,4 +63,4 @@ QuillModule.forRoot(),
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
