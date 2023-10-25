@@ -3,6 +3,7 @@
         <div class="sub-title">
             <h2>Les Mystères de l’Égypte Antique</h2>
         </div>
+
         <div class="main-image">
             <div class="image">
                 <img [src]="'assets/images/Gizeah.jpg'" alt="Gizeh" />
@@ -15,10 +16,13 @@
         </div>
     </div>
 </div>
+<div class="sub-title">
+    <h2>Message</h2>
+</div>
 <div class="contact">
     <form [formGroup]="contactForm" (ngSubmit)="sendMessage()">
         <div class="form-group">
-            <label for="username">Nom :</label>
+            <label for="username">Nom et Prénom :</label>
             <input type="text" id="nom" formControlName="username" required>
             <div *ngIf="contactForm.controls['username'].invalid && (contactForm.controls['username'].dirty || contactForm.controls['username'].touched)"
                 class="no-authorize">
@@ -43,7 +47,6 @@
                 Un message est requis et doit comporter au moins 50 caractères.
             </div>
         </div>
-
         <div class="send-button">
             <div class="button">
                 <div class="button-container">
@@ -51,5 +54,7 @@
                 </div>
             </div>
         </div>
+
     </form>
+
 </div>

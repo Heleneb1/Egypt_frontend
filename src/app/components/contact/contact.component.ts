@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Contact } from 'src/app/models/contact';
 import { SendEmailService } from 'src/app/services/send-email.service';
 
 @Component({
@@ -27,6 +26,8 @@ export class ContactComponent {
     if (this.contactForm.valid) {
       const formData = this.contactForm.value;
       this.sendEmail.sendEmail(formData)
+      console.log(formData);
+
       alert('Votre message a bien été envoyé');
       this.contactForm.reset();
     } else {

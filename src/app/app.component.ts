@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
 })
 export class AppComponent {
   showHeader: boolean = true;
-  constructor(private router: Router, private ccService: NgcCookieConsentService) {
+  constructor (private router: Router, private ccService: NgcCookieConsentService) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.showHeader = router.url !== '/';
@@ -73,6 +73,14 @@ export class AppComponent {
       (event: NgcNoCookieLawEvent) => {
         // you can use this.ccService.getConfig() to do stuff...
       });
+    //https://stackoverflow.com/questions/44309641/angular-2-scroll-to-top-on-every-route-click
+    this.router.events.subscribe((evt) => {
+      if (!(evt instanceof NavigationEnd)) {
+        return;
+      }
+      window.scrollTo(0, 0);
+    });
+
   }
 
   ngOnDestroy() {

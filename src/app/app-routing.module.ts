@@ -11,9 +11,7 @@ import { AuthGuard } from './services/auth-guard.service';
 import { QuizViewComponent } from './pages/quiz-view/quiz-view.component';
 import { QuizDetailsComponent } from './pages/quiz-details/quiz-details.component';
 import { ArticleDetailsComponent } from './pages/article-details/article-details.component';
-import { BadgesModalComponent } from './components/badges-modal/badges-modal.component';
 import { ContactComponent } from './components/contact/contact.component';
-import { RegisterComponent } from './components/register/register.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { AdminGuardService } from './services/admin-guard.service';
 

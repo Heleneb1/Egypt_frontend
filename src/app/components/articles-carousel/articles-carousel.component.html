@@ -2,22 +2,18 @@
     <div class="articles-carousel">
         <button (click)="prevArticle()"><i class="fa fa-chevron-left"></i></button>
         <div class="previous">
-            <img [src]="articles[currentIndex-1]?.image ?articles[currentIndex]?.image: defaultImage"
-                alt="article image" />
+            <img [src]="articles[leftIndex]?.image || defaultImage" alt="article image" />
         </div>
 
         <div class="next">
-            <img [src]="articles[currentIndex+1]?.image ?articles[currentIndex]?.image: defaultImage"
-                alt="article image" />
+            <img [src]="articles[rightIndex]?.image || defaultImage" alt="article image" />
         </div>
-        <button (click)="nextArticle()"><i class="fa fa-chevron-right"></i>
-        </button>
+        <button (click)="nextArticle()"><i class="fa fa-chevron-right"></i></button>
     </div>
     <div class="article">
         <div class="article-view">
             <a routerLink="/article/{{ articles[currentIndex]?.id }}">
-                <img [src]="articles[currentIndex]?.image ? articles[currentIndex]?.image : defaultImage"
-                    alt="article image" />
+                <img [src]="articles[currentIndex]?.image || defaultImage" alt="article image" />
             </a>
         </div>
         <div class="title">

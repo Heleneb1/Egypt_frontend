@@ -52,7 +52,7 @@ export class ManageArticleComponent {
     this.newImage = article.image;
     this.newAuthor = article.author;
     this.newTag = article.tag;
-    this.newRating = article.rating;
+    this.newRating = article.ratings;
     this.newContent = article.content;
     this.isArchived = article.archive;
     this.showUpdateForm = true;
@@ -66,6 +66,9 @@ export class ManageArticleComponent {
       this.existingArticle.image = this.newImage;
       this.existingArticle.content = this.newContent;
       this.existingArticle.archive = this.isArchived;
+      this.existingArticle.author = this.newAuthor;
+      this.existingArticle.tag = this.newTag;
+      this.existingArticle.ratings = this.newRating;
       this.adminService.updateArticle(this.existingArticle.id, this.existingArticle).subscribe(() => {
         this.getArticles();
 
@@ -108,7 +111,7 @@ export class ManageArticleComponent {
       archive: this.isArchived,
       author: this.newAuthor,
       tag: this.newTag,
-      rating: this.newRating,
+      ratings: this.newRating,
       comments: [],
       creation_date: new Date(),
       edition_date: new Date()

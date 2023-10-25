@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-// import { HttpClient } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
 import { Component } from '@angular/core';
 // import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -30,7 +30,7 @@ export class ArticleDetailsComponent {
 
   constructor (
     private articlesService: ArticlesService,
-    // private userService: UserService,
+    private toastr: ToastrService,
     private route: ActivatedRoute,
     // private router: Router,
     // private http: HttpClient,
@@ -91,8 +91,8 @@ export class ArticleDetailsComponent {
       this.articlesService.addRating(this.articleId, this.currentRating);
       this.isVoteModified = false;
       this.article.rating = this.currentRating;
-
-      alert(`Vous avez évalué cet Article à ${this.currentRating} étoiles`);
+      this.showSuccess();
+      // alert(`Vous avez évalué cet Article à ${this.currentRating} étoiles`);
     }
   }
   onRatingChanged(rating: number) {
@@ -102,5 +102,8 @@ export class ArticleDetailsComponent {
   }
 
 
+  showSuccess() {
+    this.toastr.success(`Vous avez évalué cet Article à ${this.currentRating} étoiles`);
+  }
 
 }

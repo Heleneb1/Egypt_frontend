@@ -81,6 +81,13 @@
   justify-content: center;
 }
 
+.result-rating {
+  width: 90%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 1rem;
+}
+
 @media screen and (min-width: 768px) {
   .result-content {
     font-family: var(--text);
@@ -110,7 +117,7 @@
 
     .result-image {
       width: 30%;
-      object-fit: cover;
+      // object-fit: cover;
       height: auto;
 
 
@@ -121,6 +128,7 @@
     img {
       width: 25rem;
       height: 12rem;
+      object-fit: initial;
     }
   }
 }

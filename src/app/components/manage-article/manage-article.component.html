@@ -18,7 +18,7 @@
                     *ngIf="showUpdateForm && existingArticle === article" />
             </div>
             <div class="rating">
-                <p>Évaluation: {{ article.rating }}/5</p>
+                <p>Évaluation: {{ article.ratings }}/5</p>
                 <input type="number" id="editRating" [(ngModel)]="newRating"
                     *ngIf="showUpdateForm && existingArticle === article" />
             </div>

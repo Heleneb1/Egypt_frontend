@@ -11,10 +11,10 @@ export class HeaderComponent implements OnInit {
   isMenuOpen = false;
   isLoggedIn!: boolean;
   isConnected = false;
-  
 
 
-  constructor(private router: Router, private authservice: AuthService) {
+
+  constructor (private router: Router, private authservice: AuthService) {
     this.isConnected = false; // Assurez-vous que isConnected est initialisé à false
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -22,16 +22,16 @@ export class HeaderComponent implements OnInit {
       }
     });
   }
-  ngOnInit(): void {}
+  ngOnInit(): void { }
   logged() {
-      this.authservice.isLoggedIn();
-      this.isConnected = true;
-      console.log(this.authservice.isLoggedIn());
+    this.authservice.isLoggedIn();
+    this.isConnected = true;
+    console.log(this.authservice.isLoggedIn());
   }
   logout() {
     this.authservice.logout();
     if (this.isConnected == true)
-    alert('Vous venez de vous déconnecter avec succes')
+      alert('Vous venez de vous déconnecter avec succes')
     this.isConnected = false;
     this.router.navigate(['/home'])
   }
@@ -42,15 +42,8 @@ export class HeaderComponent implements OnInit {
   closeMenu() {
     this.isMenuOpen = false;
   }
-  // toggleConnection() {
-  //   if (this.isConnected === this.authservice.isLoggedIn()) {
-  //    this.logout();
-  //   } else {
-  //     this.router.navigate(['/authentication']);
-  //   }
-  // }
-  
-    @HostListener('window:resize', ['$event'])
+
+  @HostListener('window:resize', ['$event'])
   onResize(event: Event) {
     this.closeMenu();
   }

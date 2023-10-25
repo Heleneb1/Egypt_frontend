@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-splash-page',
@@ -15,15 +14,12 @@ export class SplashPageComponent implements OnInit {
 
 
   ngOnInit(): void {
-
-
     setTimeout(() => {
       this.shakeDoors = true;
     }, 1000);
     setTimeout(() => {
       this.openDoors = true;
     }, 2000);
-
 
     this.fogEffect = true;
 

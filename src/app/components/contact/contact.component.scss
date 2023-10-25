@@ -1,5 +1,5 @@
 .contact-intro {
-    margin-top: 5rem;
+    // margin-top: 5rem;
 
     img {
         height: 21rem
@@ -30,7 +30,8 @@
             font-size: 1.5rem;
             font-weight: 700;
             font-family: var(--title);
-
+            text-shadow: white 2px 1px;
+            margin: 1rem 0 0.5rem 0;
             color: var(--blue);
         }
     }
@@ -77,10 +78,26 @@
         width: 80%;
         margin: 2rem;
         flex-direction: row-reverse;
+
+        .button {
+            .button-container {
+                position: relative;
+                top: 5rem;
+            }
+        }
     }
+
 }
 
 @media screen and (max-width: 768px) {
+    .contact-intro {
+        height: 52vh;
+
+        img {
+            height: 21rem
+        }
+    }
+
     .contact {
         height: 65%;
         width: 100vw;

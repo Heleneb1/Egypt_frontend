@@ -62,27 +62,6 @@ export class SearchComponent implements OnInit {
     this.searchQuery = '';
   }
 
-  // getMuseumByName() {
-  //   if (this.museumData) {
-  //     this.museumData.map((museumData) => {
-  //       const dataMuseum: Museums = museumData.fields;
-  //       dataMuseum.recordid = museumData.recordid;
-  //     });
-  //     this.nameMuseums = this.museumData
-  //       .filter((museum) => {
-  //         const museumFields: Museums = museum.fields;
-  //         const museumName = museumFields.nom_offre.toLowerCase();
-  //         const searchQuery = this.museumName.toLowerCase();
-  //         return museumName.substring(1).includes(searchQuery);
-  //       })
-  //       .map((museum) => museum.fields);
-  //     this.animate = true;
-  //     setTimeout(() => {
-  //       this.animate = false;
-  //     }, 5000);
-  //     this.museumName = "";
-  //   }
-  // }
   onAuthorSearchChange(selectedAuthor: string) {
     this.resetOtherFilters("author"); // Réinitialise les autres filtres sauf le filtre par auteur
 

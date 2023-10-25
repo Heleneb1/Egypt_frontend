@@ -165,26 +165,19 @@ export class QuizDetailsComponent {
 
       if (userAnswer === question.answer1 || userAnswer === question.answer2) {
         console.log("Bonne réponse", question.answer1, question.answer2);
-
         score++;
       }
     }
 
     console.log("Score:", score);
-
-
     let percentage = (score / this.questionsMap.length) * 100;
     console.log("Pourcentage de bonnes réponses :", percentage + "%");
-
-
     if (percentage >= 80) {
-
       alert("Félicitations ! Vous avez obtenu un score supérieur à 80%. " + percentage + "% de bonnes réponses.");
       this.showModal = true;
     } else {
       alert("Continuez à travailler pour améliorer votre score. " + percentage + "% de bonnes réponses.");
     }
-
   }
 
   answerQuestion(): void {
@@ -198,18 +191,13 @@ export class QuizDetailsComponent {
     console.log("Nombre de questions répondues :", this.numberOfAnsweredQuestions);
     console.log("Progression de l'utilisateur :", this.progress);
     console.log("Nombre total de questions :", this.totalNumberOfQuestions);
-
-
-
     let progressBar = document.getElementById('progressBar') as HTMLElement;
     progressBar.style.width = this.progress + '%';
-
-
   }
+
   awardBadgeToUser() {
     this.userService.awardBadgeToCurrentUser(this.userId, this.badgeId).subscribe();
     console.log("badge aprés", this.badgeId);
-
     this.closeModal();
   }
 

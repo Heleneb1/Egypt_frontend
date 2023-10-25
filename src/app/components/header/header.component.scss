@@ -110,21 +110,21 @@ nav.header-container {
   color: var(--sun);
   font-size: 1.3rem;
   margin-top: 10px;
-
+  cursor: pointer;
 }
 
-.menu-image {
+// .menu-image {
 
-  display: flex;
-  justify-content: center;
-  margin-top: 2rem;
+//   display: flex;
+//   justify-content: center;
+//   margin-top: 2rem;
 
-  img {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-}
+//   img {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//   }
+// }
 
 .icons {
   display: flex;
@@ -140,16 +140,20 @@ nav.header-container {
   display: none;
 }
 
-.logo {
-  padding: 2rem;
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
+// .logo {
+//   padding: 2rem;
+//   display: flex;
+//   justify-content: flex-end;
+//   width: 100%;
 
-}
+// }
 
 
 @media screen and (min-width: 768px) {
+  // .logo a img {
+  //   display: none;
+  // }
+
   .header-all {
     margin: 0;
   }
@@ -195,6 +199,8 @@ nav.header-container {
     list-style: none;
     margin: 0 3rem;
     text-align: center;
+
+    a {}
 
     .header-all {
       margin-bottom: 8rem;
@@ -355,102 +361,105 @@ nav.header-container {
 
     }
 
-
-    @media (min-width: 768px) {
-      .header-all {
-        margin: 0;
-      }
-
-      nav.header-container {
-        position: relative;
-
-      }
-
-      .menu-burger {
-        display: none;
-      }
-
-      .header-content {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .menu {
-        display: flex;
-        position: relative;
-        height: 100%;
-
-      }
-
-
-
-      .nav-mobile {
-        display: flex;
-        align-items: center;
-        height: 100%;
-        position: absolute;
-
-        ul {
-          padding: 0%;
-          display: flex;
-          align-items: center;
-          height: 100%;
-
-        }
-
-      }
-
-      .menu .nav-mobile ul {
-        list-style: none;
-        margin: 0 3rem;
-        text-align: center;
-
-
-      }
-
-      .menu li a {
-        text-decoration: none;
-        color: white;
-        font-size: 16px;
-        width: max-content;
-        padding: 1rem;
-
-      }
-
-      .menu-image {
-        display: none;
-      }
-
-      .icons {
-        display: none;
-
-      }
-    }
-
-  }
-
-  .menu li a {
-    text-decoration: none;
-    color: white;
-    font-size: 16px;
-    width: 7rem;
-
-  }
-
-  .menu-image {
-    display: none;
-  }
-
-  .icons {
-    display: none;
-
   }
 }
 
-@media (max-width: 768px) {
-  .logo {
-    display: none;
-  }
+//     @media (min-width: 768px) {
+//       .header-all {
+//         margin: 0;
+//       }
 
-}
+//       nav.header-container {
+//         position: relative;
+
+//       }
+
+//       .menu-burger {
+//         display: none;
+//       }
+
+//       .header-content {
+//         display: flex;
+//         justify-content: space-between;
+//         align-items: center;
+//       }
+
+//       .menu {
+//         display: flex;
+//         position: relative;
+//         height: 100%;
+
+//       }
+
+
+
+//       .nav-mobile {
+//         display: flex;
+//         align-items: center;
+//         height: 100%;
+//         position: absolute;
+
+//         ul {
+//           padding: 0%;
+//           display: flex;
+//           align-items: center;
+//           height: 100%;
+
+//         }
+
+//       }
+
+//       .menu .nav-mobile ul {
+//         list-style: none;
+//         margin: 0 3rem;
+//         text-align: center;
+
+
+//       }
+
+//       .menu li a {
+//         text-decoration: none;
+//         color: white;
+//         font-size: 16px;
+//         width: max-content;
+//         padding: 1rem;
+
+//       }
+
+//       .menu-image {
+//         display: none;
+//       }
+
+//       .icons {
+//         display: none;
+
+//       }
+//     }
+
+//   }
+
+//   .menu li a {
+//     text-decoration: none;
+//     color: white;
+//     font-size: 16px;
+//     width: 7rem;
+
+//   }
+
+//   .menu-image {
+//     display: none;
+//   }
+
+//   .icons {
+//     display: none;
+
+//   }
+// }
+
+//   @media (max-width: 768px) {
+//     .logo {
+//       display: none;
+//     }
+
+//   }
+// }

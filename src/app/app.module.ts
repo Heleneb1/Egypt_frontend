@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 import { CookieService } from 'ngx-cookie-service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
@@ -11,7 +13,7 @@ import { AppComponent } from './app.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './pages/home/home.component';
 import { SplashPageComponent } from './pages/splash-page/splash-page.component';
-import { AnimationComponent } from './components/animation/animation.component';
+// import { AnimationComponent } from './components/animation/animation.component';
 import { SearchComponent } from './pages/search/search.component';
 import { ConnectionComponent } from './pages/connection/connection.component';
 import { LoginComponent } from './components/login/login.component';
@@ -62,7 +64,7 @@ const cookieConfig: NgcCookieConsentConfig = {
     AppComponent,
     HomeComponent,
     SplashPageComponent,
-    AnimationComponent,
+    // AnimationComponent,
     SearchComponent,
     ConnectionComponent,
     LoginComponent,
@@ -97,6 +99,8 @@ const cookieConfig: NgcCookieConsentConfig = {
     RouterModule,
     HttpClientModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
   ],
   providers: [
     DatePipe,
@@ -104,8 +108,10 @@ const cookieConfig: NgcCookieConsentConfig = {
     AuthGuard,
     AuthService,
     AdminGuardService,
+
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
+
 })
 export class AppModule { }

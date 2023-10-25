@@ -8,21 +8,19 @@
       <div class="result-container">
         <h3 class="result-name">{{ article?.title }}</h3>
         <p class="result-tag">{{ article?.tag }}</p>
-        <p class="result-note">{{ article?.rating }}</p>
+
         <div class="result-image" (click)="toggleDetails(article)">
           <button class="show-details-button" (click)="goToArticleDetails()">
             Détails
           </button>
         </div>
-        <app-star-rating [totalStars]="5" [rating]="article.rating"></app-star-rating>
-
+        <div class="result-rating">
+          <app-star-rating [totalStars]="5" [rating]="article.ratings"></app-star-rating>
+        </div>
       </div>
-      <!-- <div class="rating">
-
-        <app-star-rating [totalStars]="5" [rating]="filteredAricle.rating"></app-star-rating>
-
-    </div> -->
-      <img [src]="article.image ? article.image : defaultImage" alt="Image du quiz" />
+      <div class="result-image">
+        <img [src]="article.image ? article.image : defaultImage" alt="Image du quiz" class="rating" />
+        <!-- <img [src]="article.image ? article.image : defaultImage" alt="Image du quiz" class="rating" /> -->
+      </div>
     </div>
   </div>
-</div>

@@ -11,38 +11,47 @@ import { ArticlesService } from 'src/app/services/articles.service';
 export class ResultCardComponent {
   @Input() filteredArticle: Article[] = [];
   @Input() tag: string = '';
+  @Input() ratings: any;
   selectedArticle: Article | null = null;
   defaultImage: string = 'assets/images/Gizeh.jpg';
   isOpen = false;
   article: any = [];
   articleId: any;
-  rating: any;
+  // ratings: any;
   currentRating!: number;
 
   constructor (private router: Router, private articlesService: ArticlesService) { }
 
   ngOnInit() {
-    this.tag = this.tag;
-    console.log(this.tag);
+    // this.tag = this.tag;
+    // console.log("TAG", this.tag);
+
+    // this.articlesService.getArticles().subscribe((article) => {
+    //   this.article = article;
+    //   console.log("Article", this.article);
 
 
-
-    this.articlesService.getArticles().subscribe((article) => {
-      this.article = article;
-      console.log(this.article);
-
-      this.rating = this.article.rating;
-      console.log(this.rating);
-    });
+    // });
   }
 
   toggleDetails(selectedArticle: Article) {
+    // console.log("this is the selected article", this.selectedArticle);
+    // this.articleId = this.selectedArticle?.id;
+
+    // this.ratings = this.articleId.ratings;
+    // console.log("Ratings", this.ratings);
+
+
     if (this.selectedArticle === selectedArticle) {
+
+
       this.selectedArticle = null;
     } else {
       this.selectedArticle = selectedArticle;
+
     }
-    // this.showDetails = !this.selectedArticle;
+
+
     return this.selectedArticle;
   }
 
