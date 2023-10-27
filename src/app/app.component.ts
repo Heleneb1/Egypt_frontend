@@ -10,6 +10,7 @@ import { Subscription } from 'rxjs';
 })
 export class AppComponent {
   showHeader: boolean = true;
+
   constructor (private router: Router, private ccService: NgcCookieConsentService) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {

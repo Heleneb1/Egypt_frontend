@@ -56,7 +56,13 @@ const cookieConfig: NgcCookieConsentConfig = {
     }
   },
   theme: 'edgeless',
-  type: 'opt-out'
+  type: 'opt-out',
+  revokable: true,
+  content: {
+    message: "Un petit cookie pour la route?\n Avant de s'immerger dans l'Égypte des Pharaons ?",
+    deny: "Ce site utilise des cookies pour vous garantir la meilleure expérience..."
+  }
+
 };
 
 @NgModule({

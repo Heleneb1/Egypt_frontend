@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { BadgesService } from 'src/app/services/badges.service';
 import { QuizService } from 'src/app/services/quiz.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-manage-badges',
@@ -21,7 +22,7 @@ export class ManageBadgesComponent implements OnInit {
   showBadgeForm: boolean = false;
   selectedBadge: any;
 
-  constructor (private quizService: QuizService, private badgesService: BadgesService) { }
+  constructor (private quizService: QuizService, private badgesService: BadgesService, private toastr: ToastrService) { }
 
   ngOnInit(): void { }
 
@@ -50,6 +51,8 @@ export class ManageBadgesComponent implements OnInit {
       console.log("Nouveau badge créé :", response);
       this.createBadgeForm();
     });
+    this.toastr.success('Badge créé', 'Création');
+    this.ngOnInit();
   }
 
   getBadge(): void {
@@ -79,8 +82,9 @@ export class ManageBadgesComponent implements OnInit {
 
     this.badgesService.deleteBadge(id).subscribe(() => {
       this.getBadge();
-      alert('Badge supprimé');
+
     });
+    this.toastr.success('Badge supprimé', 'Suppression');
   }
   addBadgeToQuiz(quizId: string, badgeId: string) {
 

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-manage-users',
@@ -10,7 +11,7 @@ import { UserService } from 'src/app/services/user.service';
 export class ManageUsersComponent {
   usersOpen = false;
   users: User[] = [];
-  constructor (private userService: UserService) { }
+  constructor (private userService: UserService, private toastr: ToastrService) { }
 
   getUsers() {
     this.usersOpen = !this.usersOpen;
@@ -25,7 +26,8 @@ export class ManageUsersComponent {
   deleteUser(id: string) {
     this.userService.deleteUsers(id).subscribe(() => {
       this.getUsers();
-      alert('Utilisateur supprimé');
+      // alert('Utilisateur supprimé');
+      this.toastr.success('Utilisateur supprimé', 'Suppression');
     });
   }
 }

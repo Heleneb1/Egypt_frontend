@@ -8,7 +8,7 @@
             (ratingChanged)="onRatingChanged($event)"></app-star-rating>
 
 
-        <button class="update-button" *ngIf="isVoteModified" (click)="saveVote()">Enregistrer le
+        <button class="rating-button" *ngIf="isVoteModified" (click)="saveVote()">Enregistrer le
             vote</button>
         <!-- Empecher l'affichage des balises html dans le contenu du quiz innerHTML-->
         <div class="quiz-infos">

@@ -8,6 +8,7 @@ import { CommentsService } from 'src/app/services/comments.service';
 import { UserService } from 'src/app/services/user.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { environment } from 'src/environments/environment';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-comments',
@@ -38,6 +39,7 @@ export class CommentsComponent implements OnInit {
     private datePipe: DatePipe,
     private commentsService: CommentsService,
     private userService: UserService,
+    private toastr: ToastrService,
     private sanitizer: DomSanitizer
   ) {
     this.userConnected = this.authService.getUserConnected();
@@ -99,7 +101,8 @@ export class CommentsComponent implements OnInit {
       const authorId = user.id;
 
       if (!this.commentContent) {
-        alert('Le commentaire ne peut pas être vide.');
+        this.toastr.warning('Le commentaire ne peut pas être vide.');
+        // alert('Le commentaire ne peut pas être vide.');
         return;
       }
       // /{articleId}/{authorId}/add-comment
@@ -114,7 +117,8 @@ export class CommentsComponent implements OnInit {
         (response) => {
           this.ngOnInit();
           this.commentContent = '';
-          alert('Commentaire ajouté avec succès.');
+          this.toastr.success('Commentaire ajouté avec succès.');
+          // alert('Commentaire ajouté avec succès.');
           this.editComment = false;
         },
         (error) => {

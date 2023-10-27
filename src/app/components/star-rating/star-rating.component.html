@@ -1,8 +1,16 @@
 <div class="star-rating">
   <span *ngFor="let star of stars" class="star" (click)="rate(star)">
-    <i class="fa" [ngClass]="star <= rating ? 'fa-star' : 'fa-star-o'"></i>
+    <i [ngClass]="getStarClass(star)" (click)="rate(star)"></i>
   </span>
 </div>
 <div *ngIf="isVoteModified" class="rating-info">
-  {{votedRating }}
+
+  <ng-container *ngIf="!userConnected">
+    <p>Connectez-vous pour attribuer une note ou inscrivez-vous.</p>
+  </ng-container>
 </div>
+<!-- <div class="rating-info" *ngIf="userConnected && isVoteModified ; then thanks else invite"></div>
+<ng-template #thanks>Merci...</ng-template>
+<ng-template #invite>
+  <p>Connectez-vous pour attribuer une note ou inscrivez-vous.</p>
+</ng-template> -->

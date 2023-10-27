@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { QuizQuestion } from 'src/app/models/quiz-question';
 import { QuizService } from 'src/app/services/quiz.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-manage-question',
@@ -8,7 +9,7 @@ import { QuizService } from 'src/app/services/quiz.service';
   styleUrls: ['./manage-question.component.scss']
 })
 export class ManageQuestionComponent implements OnInit {
-  constructor (private quizService: QuizService) { }
+  constructor (private quizService: QuizService, private toastr: ToastrService) { }
   @Output() questionsSelected: EventEmitter<any> = new EventEmitter<any>();
   @Output() categorySelected: EventEmitter<any> = new EventEmitter<any>();
   questions: any = {};
@@ -147,7 +148,8 @@ export class ManageQuestionComponent implements OnInit {
   deleteQuestion(id: string) {
     this.quizService.deleteQuestion(id).subscribe(() => {
       this.getQuestionByCategory(this.category);
-      alert('Question supprimée');
+      // alert('Question supprimée');
+      this.toastr.success('Question supprimée', 'Suppression');
     });
   }
   //TODO revoir la méthode updateQuestion
@@ -155,8 +157,8 @@ export class ManageQuestionComponent implements OnInit {
     this.quizService.updateQuestion(existingQuestion, updatedQuestion).subscribe(() => {
       this.getQuestionByCategory(this.category);
       console.log(existingQuestion);
-
-      alert('Question modifiée');
+      this.toastr.success('Question modifiée', 'Modification');
+      // alert('Question modifiée');
       this.ngOnInit();
     });
   }

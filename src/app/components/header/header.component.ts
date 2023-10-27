@@ -1,6 +1,7 @@
 import { Component, Host, HostListener, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-header',
@@ -14,8 +15,8 @@ export class HeaderComponent implements OnInit {
 
 
 
-  constructor (private router: Router, private authservice: AuthService) {
-    this.isConnected = false; // Assurez-vous que isConnected est initialisé à false
+  constructor (private router: Router, private authservice: AuthService, private toastr: ToastrService) {
+    this.isConnected = false;
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.closeMenu();
@@ -31,9 +32,11 @@ export class HeaderComponent implements OnInit {
   logout() {
     this.authservice.logout();
     if (this.isConnected == true)
-      alert('Vous venez de vous déconnecter avec succes')
-    this.isConnected = false;
-    this.router.navigate(['/home'])
+      this.isConnected = false;
+    this.router.navigate(['/home']);
+    this.toastr.success('Vous venez de vous déconnecter avec succes,\nà bientôt...', 'Déconnexion');
+    // alert('Vous venez de vous déconnecter avec succes')
+
   }
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;

@@ -1,3 +1,7 @@
+$textWidth: 55vw;
+$moblieWidth: 80%;
+$lineHeight: 1.5;
+
 .loader {
   position: fixed;
   height: 100vh;
@@ -54,6 +58,9 @@
     margin: 0 2rem;
     justify-content: space-around;
     padding: 2rem;
+    width: $textWidth;
+    line-height: $lineHeight;
+
   }
 
   .title h3 {
@@ -71,6 +78,9 @@
     margin: 2em;
     padding: 2rem;
     justify-content: center;
+    width: $textWidth;
+    line-height: $lineHeight;
+
   }
 
   .paragraph {
@@ -174,11 +184,17 @@
     .introduction {
       padding: 0;
       margin: 2rem;
+      width: $moblieWidth;
+      line-height: $lineHeight;
+
+
     }
 
     .description {
       margin: 2rem;
       padding: 0;
+      line-height: $lineHeight;
+      width: $moblieWidth;
     }
 
     .title {
@@ -192,4 +208,11 @@
       margin-bottom: 1rem;
     }
   }
+}
+
+.scroll-home {
+  display: flex;
+
+  justify-content: flex-end;
+  margin: 2rem;
 }

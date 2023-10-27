@@ -14,6 +14,7 @@ import { ArticleDetailsComponent } from './pages/article-details/article-details
 import { ContactComponent } from './components/contact/contact.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { AdminGuardService } from './services/admin-guard.service';
+import { BadgesModalComponent } from './components/badges-modal/badges-modal.component';
 
 const routes: Routes = [
   {
@@ -23,7 +24,12 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
+  }, {
+
+    path: "badges",
+    component: BadgesModalComponent
   },
+
   {
     path: 'article',
     component: SearchComponent,

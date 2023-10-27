@@ -17,9 +17,11 @@
     </div>
 
 </div>
-<div class="button" *ngIf="!isUserConnected">
-    <div class="button-container">
-        <a routerLink="/authentication" class="no-connected">Connexion</a>
+<div class="no-connected">
+    <div class="button" *ngIf="!isUserConnected">
+        <div class="button-container">
+            <a routerLink="/authentication" class="no-connected">Connexion</a>
+        </div>
     </div>
 </div>
 <!-- <div class="sub-title">

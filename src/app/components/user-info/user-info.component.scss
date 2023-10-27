@@ -169,13 +169,12 @@ img {
 }
 
 .input-text-area-bio {
-    background: linear-gradient(180deg, #EEE 0%, rgba(223, 223, 223, 1) 100%);
+    background-color: var(--white);
     width: 80%;
     height: 100%;
     text-align: center;
-    border-radius: 5px;
-    border: 0.3px solid black;
-    font-size: 1.5rem;
+    border-radius: 0.5rem;
+    font-size: 1.3rem;
     font-family: $text;
     display: flex;
     flex-direction: column;
@@ -185,16 +184,16 @@ img {
 }
 
 .update-bio-button {
-    background: linear-gradient(180deg, #EEE 0%, rgba(223, 223, 223, 1) 100%);
-    width: 20%;
-    height: 12%;
-    text-align: center;
-    border-radius: 5px;
-    border: 0.3px solid black;
-    font-size: 18px;
-    font-family: 'laton', sans-serif;
-    color: #6F42C1;
+    background-color: var(--sun);
+    font-family: var(--title);
+    font-size: 1rem;
+    color: var(--white);
+    width: 10rem;
+    border: none;
+    margin: 1.1rem;
+    border-radius: 4rem;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .bio-form {

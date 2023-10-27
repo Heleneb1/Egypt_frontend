@@ -8,6 +8,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { BadgesService } from 'src/app/services/badges.service';
 import { QuizService } from 'src/app/services/quiz.service';
 import { UserService } from 'src/app/services/user.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-quiz-details',
@@ -45,6 +46,7 @@ export class QuizDetailsComponent {
     private route: ActivatedRoute,
     private router: Router,
     private http: HttpClient,
+    private toastr: ToastrService,
     private datePipe: DatePipe,
     private sanitizer: DomSanitizer,
     private auth: AuthService,
@@ -136,8 +138,8 @@ export class QuizDetailsComponent {
       this.quizService.addRating(this.quizId, this.currentRating);
       this.isVoteModified = false;
       this.quiz.rating = this.currentRating;
-
-      alert(`Vous avez évalué ce Quiz à ${this.currentRating} étoiles`);
+      this.toastr.success(`Vous avez évalué ce Quiz à ${this.currentRating} étoiles`);
+      // alert(`Vous avez évalué ce Quiz à ${this.currentRating} étoiles`);
     }
   }
   onRatingChanged(rating: number) {
@@ -173,10 +175,12 @@ export class QuizDetailsComponent {
     let percentage = (score / this.questionsMap.length) * 100;
     console.log("Pourcentage de bonnes réponses :", percentage + "%");
     if (percentage >= 80) {
-      alert("Félicitations ! Vous avez obtenu un score supérieur à 80%. " + percentage + "% de bonnes réponses.");
+      this.toastr.success(`Félicitations ! Vous avez obtenu un score supérieur à 80%. ${percentage}% de bonnes réponses.`);
+      // alert("Félicitations ! Vous avez obtenu un score supérieur à 80%. " + percentage + "% de bonnes réponses.");
       this.showModal = true;
     } else {
-      alert("Continuez à travailler pour améliorer votre score. " + percentage + "% de bonnes réponses.");
+      this.toastr.warning(`Continuez à travailler pour améliorer votre score. ${percentage}% de bonnes réponses.`);
+      // alert("Continuez à travailler pour améliorer votre score. " + percentage + "% de bonnes réponses.");
     }
   }
 

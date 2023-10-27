@@ -26,7 +26,7 @@
     padding: 0.5rem;
 }
 
-.update-button {
+.rating-button {
     background-color: var(--sun);
     font-family: var(--title);
     font-size: 1rem;
@@ -40,13 +40,13 @@
 }
 
 
-.articles-details-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+// .articles-details-container {
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+//     justify-content: center;
 
-}
+// }
 
 .article-details {
     padding: 20px;
@@ -62,17 +62,59 @@
     p {
         font-family: var(--text);
         font-size: 1rem;
+        line-height: 1.5;
     }
 }
 
-.article-details strong {
-    font-weight: bold;
-    color: #333;
+.add-comment {
+    width: 100%;
 }
 
-.article-details img {
-    max-width: 100%;
-    height: auto;
+// .article-details strong {
+//     font-weight: bold;
+//     color: #333;
+// }
+
+// .article-details img {
+//     max-width: 100%;
+//     height: auto;
+// }
+
+.content {
+    max-width: 40rem;
+    margin: 0 auto;
+    padding: 2rem;
+    border-radius: 0.8rem;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15);
+
+
+    .content::after {
+        content: '';
+        display: block;
+        clear: both;
+    }
+
+    .article-title {
+        font-family: var(--title);
+        color: var(--sun);
+        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        text-transform: capitalize;
+    }
+
+    img {
+        width: 14rem;
+        height: 14rem;
+        object-fit: cover;
+        shape-outside: margin-box;
+        margin: 0 1rem 0.5rem 0;
+        float: left;
+    }
+
+    img:hover {
+        transform: scale(1.5);
+        transition: all 0.5s ease-in-out;
+        cursor: pointer;
+    }
 }
 
 .author-info {
@@ -97,7 +139,7 @@ ul {
 }
 
 .suggest {
-    width: 97%;
+    // width: 97%;
     background-color: var(--blue);
     display: flex;
     justify-content: center;
@@ -114,5 +156,25 @@ ul {
     align-items: center;
     color: var(--white);
 
+
+}
+
+@media screen and (min-width:768px) {
+    .content {
+        img {
+            width: 14rem;
+            height: 14rem;
+            object-fit: cover;
+            shape-outside: margin-box;
+            margin: 0 1rem 0.5rem 0;
+            float: left;
+        }
+
+        img:hover {
+            transform: scale(2.2);
+            transition: all 0.5s ease-in-out;
+            cursor: pointer;
+        }
+    }
 
 }

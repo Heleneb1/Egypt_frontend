@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { BadgesService } from 'src/app/services/badges.service';
 import { QuizService } from 'src/app/services/quiz.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-manage-quiz',
@@ -12,7 +13,7 @@ export class ManageQuizComponent {
   existingQuiz: any;
   editingQuiz: any = null;
   constructor (
-    private quizService: QuizService, private badgesService: BadgesService) { }
+    private quizService: QuizService, private badgesService: BadgesService, private toastr: ToastrService) { }
   ngOnInit() {
 
   }
@@ -72,7 +73,8 @@ export class ManageQuizComponent {
 
     this.quizService.updateQuiz(this.existingQuiz.id, this.existingQuiz).subscribe(() => {
       this.getQuiz();
-      alert('Etat du Quiz modifié ' + this.existingQuiz.title + ' : ' + (this.existingQuiz.archive ? 'Archivé' : 'Non archivé'));
+      // alert('Etat du Quiz modifié ' + this.existingQuiz.title + ' : ' + (this.existingQuiz.archive ? 'Archivé' : 'Non archivé'));
+      this.toastr.success('Etat du Quiz modifié ' + this.existingQuiz.title + ' : ' + (this.existingQuiz.archive ? 'Archivé' : 'Non archivé'), 'Modification');
     });
   }
   selectQuiz(quizId: string) {
@@ -104,7 +106,8 @@ export class ManageQuizComponent {
   deleteQuestionFromQuiz(questionId: string) {
     this.quizService.deleteQuestion(questionId).subscribe(() => {
       this.getQuestionContentForQuiz(this.quiz.id);
-      alert('Question supprimée');
+      // alert('Question supprimée');
+      this.toastr.success('Question supprimée', 'Suppression');
     });
   }
 
@@ -139,13 +142,15 @@ export class ManageQuizComponent {
   deleteQuiz(id: string) {
     this.quizService.deleteQuiz(id).subscribe(() => {
       this.getQuiz();
-      alert('Quiz supprimé');
+      // alert('Quiz supprimé');
+      this.toastr.success('Quiz supprimé', 'Suppression');
     });
   }
   updateQuiz(id: string, updatedQuiz: any) {
     this.quizService.updateQuiz(id, updatedQuiz).subscribe(() => {
       this.getQuiz();
-      alert('Quiz modifié');
+      // alert('Quiz modifié');
+      this.toastr.success('Quiz modifié', 'Modification');
     });
   }
   editQuiz(quiz: any) {

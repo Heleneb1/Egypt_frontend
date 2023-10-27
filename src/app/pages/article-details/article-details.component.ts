@@ -62,6 +62,7 @@ export class ArticleDetailsComponent {
 
       } else {
         this.isConnected = false;
+        this.toastr.error('Vous devez être connecté pour évaluer cet article');
       }
     });
 
@@ -91,8 +92,11 @@ export class ArticleDetailsComponent {
       this.articlesService.addRating(this.articleId, this.currentRating);
       this.isVoteModified = false;
       this.article.rating = this.currentRating;
-      this.showSuccess();
+      // this.showSuccess();
       // alert(`Vous avez évalué cet Article à ${this.currentRating} étoiles`);
+      this.toastr.success(`Vous avez évalué cet Article à ${this.currentRating} étoiles`);
+    } else {
+
     }
   }
   onRatingChanged(rating: number) {
@@ -102,8 +106,8 @@ export class ArticleDetailsComponent {
   }
 
 
-  showSuccess() {
-    this.toastr.success(`Vous avez évalué cet Article à ${this.currentRating} étoiles`);
-  }
+  // showSuccess() {
+  //   this.toastr.success(`Vous avez évalué cet Article à ${this.currentRating} étoiles`);
+  // }
 
 }

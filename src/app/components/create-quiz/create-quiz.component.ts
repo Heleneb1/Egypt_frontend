@@ -5,6 +5,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { environment } from 'src/environments/environment.development';
 import Quill from 'quill';
 import 'quill-emoji/dist/quill-emoji.js';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-create-quiz',
@@ -26,10 +27,11 @@ export class CreateQuizComponent implements AfterViewInit, OnInit {
   userId: string = '';
   isArchived: boolean = true;
 
-  constructor(
+  constructor (
     private http: HttpClient,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private toastr: ToastrService
   ) {
     this.userConnected = this.authService.getUserConnected();
     this.authService.getUserConnected().subscribe((user: any) => {
@@ -86,9 +88,9 @@ export class CreateQuizComponent implements AfterViewInit, OnInit {
       (response: any) => {
         console.log('Quiz created', response);
         console.log(data);
+        this.toastr.success('Le quiz est créé avec succès !');
 
-
-        alert('Le quiz est créé avec succès !');
+        // alert('Le quiz est créé avec succès !');
       },
       (error) => {
         console.error('Failed to create quiz', error);

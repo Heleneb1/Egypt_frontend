@@ -29,50 +29,59 @@
                     *ngIf="showUpdateForm && existingArticle === article"></textarea>
             </div>
             <div class="arviched">
-                <input type="radio" id="archiveYes" name="archive" [(ngModel)]="isArchived" [value]="true"
+                <div class="archived">
+                    <p>État: {{ article.archive ? 'Archivé' : 'Non archivé' }}</p>
+                </div>
+
+                <div class="arviched">
+                    <input type="radio" id="archiveYes" name="archive_{{article.id}}" [(ngModel)]="isArchived"
+                        [value]="true"> Oui
+                    <input type="radio" id="archiveNo" name="archive_{{article.id}}" [(ngModel)]="isArchived"
+                        [value]="false"> Non
+                    <!-- <input type="radio" id="archiveYes" name="archive" [(ngModel)]="isArchived" [value]="true"
                     *ngIf="showUpdateForm && existingArticle === article"> Oui
                 <input type="radio" id="archiveNo" name="archive" [(ngModel)]="isArchived" [value]="false"
-                    *ngIf="showUpdateForm && existingArticle === article"> Non
+                    *ngIf="showUpdateForm && existingArticle === article"> Non -->
+                </div>
+                <div class="imageUpdate">
+                    <img [src]="article.image" alt="Image de l'article" />
+                    <input type="text" id="editImage" [(ngModel)]="newImage"
+                        *ngIf="showUpdateForm && existingArticle === article" />
+                </div>
+                <div class="update-button">
+                    <button (click)="editArticle(article)" type="button">Modifier</button>
+                    <button class="delete-button" (click)="deleteArticle(article.id)">Supprimer</button>
+                    <button (click)="saveChanges()">Enregistrer</button>
+                </div>
             </div>
-            <div class="imageUpdate">
-                <img [src]="article.image" alt="Image de l'article" />
-                <input type="text" id="editImage" [(ngModel)]="newImage"
-                    *ngIf="showUpdateForm && existingArticle === article" />
-            </div>
-            <div class="update-button">
-                <button (click)="editArticle(article)" type="button">Modifier</button>
-                <button class="delete-button" (click)="deleteArticle(article.id)">Supprimer</button>
-                <button (click)="saveChanges()">Enregistrer</button>
+        </div>
+        <div class="button">
+            <button (click)="createArticle()" type="button" class="button">Créer un article</button>
+        </div>
+    </div>
+
+    <div class="add-article">
+
+        <div class="create-article" *ngIf="showArticleForm">
+            <h2>Créer un nouvel article</h2>
+            <label for="title">Titre:</label>
+            <input type="text" id="title" [(ngModel)]="newTitle">
+            <label for="image">Image:</label>
+            <input type="text" id="image" name="image" [(ngModel)]="newImage" placeholder="Entrez le lien de l'image" />
+            <label for="content">Contenu:</label>
+            <textarea id="content" [(ngModel)]="newContent"></textarea>
+            <label for="archive">Archiver:</label>
+            <input type="radio" id="archive" [(ngModel)]="isArchived">
+            <label for="author">Auteur:</label>
+            <input type="text" id="author" [(ngModel)]="newAuthor">
+            <label for="tag">Thème:</label>
+            <input type="text" id="tag" [(ngModel)]="newTag">
+            <label for="rating">Évaluation:</label>
+            <input type="number" id="rating" [(ngModel)]="newRating">
+            <div class="create-button">
+                <div class="button">
+                    <button (click)="addArticle()" type="button" class="button">Ajouter l'article</button>
+                </div>
             </div>
         </div>
     </div>
-    <div class="button">
-        <button (click)="createArticle()" type="button" class="button">Créer un article</button>
-    </div>
-</div>
-
-<div class="add-article">
-
-    <div class="create-article" *ngIf="showArticleForm">
-        <h2>Créer un nouvel article</h2>
-        <label for="title">Titre:</label>
-        <input type="text" id="title" [(ngModel)]="newTitle">
-        <label for="image">Image:</label>
-        <input type="text" id="image" name="image" [(ngModel)]="newImage" placeholder="Entrez le lien de l'image" />
-        <label for="content">Contenu:</label>
-        <textarea id="content" [(ngModel)]="newContent"></textarea>
-        <label for="archive">Archiver:</label>
-        <input type="radio" id="archive" [(ngModel)]="isArchived">
-        <label for="author">Auteur:</label>
-        <input type="text" id="author" [(ngModel)]="newAuthor">
-        <label for="tag">Thème:</label>
-        <input type="text" id="tag" [(ngModel)]="newTag">
-        <label for="rating">Évaluation:</label>
-        <input type="number" id="rating" [(ngModel)]="newRating">
-        <div class="create-button">
-            <div class="button">
-                <button (click)="addArticle()" type="button" class="button">Ajouter l'article</button>
-            </div>
-        </div>
-    </div>
-</div>

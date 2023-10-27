@@ -12,7 +12,7 @@
 .modal-content h2 {
     background-color: var(--sun);
     height: 20rem;
-    width: 25rem;
+    width: 20rem;
     border-radius: 3%;
     text-align: center;
     color: var(--white);
@@ -42,7 +42,7 @@
 
 
 .modal-container {
-    height: 100vh;
+    height: 92vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -53,27 +53,40 @@
     background-color: var(--blue);
 
 
+    .modal-content {
+        width: 25rem;
+        height: 25rem;
+        background-color: var(--sun);
+        color: var(--white);
+        border-radius: 3%;
+        text-align: center;
+        padding: 2rem;
+    }
+
+    .badge-details {
+        color: var(--white);
+        font-size: 2rem;
+        font-family: var(--title);
+    }
+
+    .reward_button {
+        margin: 1rem;
+    }
+
 }
 
-.modal-content {
-    width: 25rem;
-    height: 25rem;
-    background-color: var(--sun);
-    color: var(--white);
-    border-radius: 3%;
-    text-align: center;
-    padding: 2rem;
-}
+@media screen and (max-width: 768px) {
+    .modal-container {
+        height: 100vh;
 
-.badge-details {
-    color: var(--white);
-    font-size: 2rem;
-    font-family: var(--title);
-}
-
-.button-style {
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-
+        .modal-content {
+            width: 20rem;
+            height: 20rem;
+            background-color: var(--sun);
+            color: var(--white);
+            border-radius: 3%;
+            text-align: center;
+            padding: 2rem;
+        }
+    }
 }

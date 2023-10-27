@@ -14,29 +14,37 @@
 <div class="articles-details-container">
 
     <div class="article-details">
-        <div class="sub-title">
-            <h2>{{ article?.title }}</h2>
-        </div>
+
         <app-star-rating [totalStars]="5" [rating]="currentRating"
             (ratingChanged)="onRatingChanged($event)"></app-star-rating>
 
 
-        <button class="update-button" *ngIf="isVoteModified" (click)="saveVote()">Enregistrer le
+        <button class="rating-button" *ngIf="isVoteModified && isConnected" (click)="saveVote()">Enregistrer le
             vote</button>
 
 
+        <article class="content">
+            <img [src]="article?.image" alt="description de l'image">
 
 
-        <img [src]="article?.image ?article?.image : defaultImage" alt="Image de l'article" />
-        <p>Note: {{ article?.rating }}</p>
+
+            <p><span>
+                    <h2 class="article-title">{{ article?.title }}</h2>
+                </span>{{ article?.content }}</p>
+            <!-- <p><span class="article-title">{{ article?.title }}</span>{{ article?.content }}</p> -->
+
+
+        </article>
+        <!-- <p>lorem100</p> -->
+        <!-- <img [src]="article?.image ?article?.image : defaultImage" alt="Image de l'article" /> -->
         <!-- Empecher l'affichage des balises html dans le contenu du quiz innerHTML-->
-        <p>Contenu: <span [innerHTML]="article?.content"></span></p>
+        <!-- <p><span [innerHTML]="article?.content"></span></p> -->
 
         <div class="author-info">
             <p>Auteur: {{ article?.author}}</p>
         </div>
         <p>Thème: {{ article?.tag }}</p>
-        <p>Date de création: {{ formatDate(article?.creationDate) }}</p>
+        <p>Date de création: {{ formatDate(article?.editionDate) }}</p>
         <p>Quiz associé: {{ article?.quiz }}</p>
 
     </div>
@@ -59,4 +67,5 @@
         </div>
 
     </div>
+    <!-- <app-scroll-to-top></app-scroll-to-top> -->
 </div>

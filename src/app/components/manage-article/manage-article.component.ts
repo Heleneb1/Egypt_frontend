@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Article } from 'src/app/models/article';
 import { AdminService } from 'src/app/services/admin.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-manage-article',
@@ -22,7 +23,7 @@ export class ManageArticleComponent {
   newDifficulty: string = '';
   newRating: number = 3.5;
 
-  constructor (private adminService: AdminService) { }
+  constructor (private adminService: AdminService, private toastr: ToastrService) { }
   getArticles() {
     this.articlesOpen = !this.articlesOpen;
     if (this.articlesOpen) {
@@ -42,7 +43,8 @@ export class ManageArticleComponent {
 
   deleteArticle(id: string) {
     this.adminService.deleteArticle(id).subscribe(() => {
-      alert('Article supprimé');
+      this.toastr.success('Article supprimé', 'Suppression');
+      // alert('Article supprimé');
     });
   }
 
@@ -73,7 +75,8 @@ export class ManageArticleComponent {
         this.getArticles();
 
         this.showArticleForm = !this.showArticleForm;
-        alert('Article modifié');
+        // alert('Article modifié');
+        this.toastr.success('Article modifié', 'Modification');
       });
     }
   }
@@ -84,14 +87,16 @@ export class ManageArticleComponent {
     this.adminService.updateArticle(this.existingArticle.id, this.existingArticle).subscribe(() => {
       this.getArticles();
       this.showArticleForm = !this.showArticleForm;
-      alert('Article archivé');
+      // alert('Article archivé');
+      this.toastr.success('Article archivé', 'Archivage');
 
     });
   }
 
   cancelChanges() {
 
-    alert('Annulation');
+    // alert('Annulation');
+    this.toastr.info('Annulation', 'Annulation');
     this.showArticleForm = !this.showArticleForm;
   }
 
@@ -126,7 +131,8 @@ export class ManageArticleComponent {
       console.log("createId", newArticleWithID);
 
       this.getArticles();
-      alert('Article ajouté avec succès. ID de l\'article : ' + newArticleWithID.id);
+      this.toastr.success('Article ajouté avec succès. ID de l\'article : ' + newArticleWithID.id);
+      // alert('Article ajouté avec succès. ID de l\'article : ' + newArticleWithID.id);
     });
 
     this.newTitle = '';
