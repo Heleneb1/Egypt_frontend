@@ -42,10 +42,13 @@ export class ManageArticleComponent {
   }
 
   deleteArticle(id: string) {
-    this.adminService.deleteArticle(id).subscribe(() => {
-      this.toastr.success('Article supprimé', 'Suppression');
-      // alert('Article supprimé');
-    });
+    if (confirm('Êtes-vous sûr de vouloir supprimer cet article ?')) {
+      this.adminService.deleteArticle(id).subscribe(() => {
+        this.toastr.success('Article supprimé', 'Suppression');
+        // alert('Article supprimé');
+        this.getArticles();
+      });
+    }
   }
 
   editArticle(article: Article) {
@@ -57,7 +60,7 @@ export class ManageArticleComponent {
     this.newRating = article.ratings;
     this.newContent = article.content;
     this.isArchived = article.archive;
-    this.showUpdateForm = true;
+    this.showUpdateForm = !this.showUpdateForm;
     console.log(this.existingArticle);
 
   }
@@ -74,7 +77,7 @@ export class ManageArticleComponent {
       this.adminService.updateArticle(this.existingArticle.id, this.existingArticle).subscribe(() => {
         this.getArticles();
 
-        this.showArticleForm = !this.showArticleForm;
+        // this.showArticleForm = !this.showArticleForm;
         // alert('Article modifié');
         this.toastr.success('Article modifié', 'Modification');
       });

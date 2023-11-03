@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable, map, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class UserService {
   }
   private userData = environment.apiUrl + '/users';
 
-  constructor (private httpClient: HttpClient) { }
+  constructor (private httpClient: HttpClient, private authService: AuthService) { }
 
   getUsers(): Observable<any> {
     return this.httpClient.get(this.userData);
@@ -33,12 +34,14 @@ export class UserService {
   getUserAvatar(userId: string): Observable<string> {
     return this.getUserById(userId).pipe(map((user: any) => `${user.avatar}`));
   }
-  getUserAvatarForComment(userId: string): Observable<string> {
-    return this.getUserById(userId).pipe(
-      map((user: any) => `${environment.apiUrl}/users/avatar/${user.avatar}`)
-    );
+
+  getUserAvatarForComment(userId: string): Observable<Blob> {
+    return this.httpClient.get(`${environment.apiUrl}/users/avatar/user/${userId}`, { responseType: 'blob' });
   }
 
+  getUserAvatarComment(userId: string): Observable<string> {
+    return this.getUserById(userId).pipe(map((user: any) => `${user.favatar}`));
+  }
   updateUserById(userId: string, body: { promotionId: any } | undefined) {
     const url = environment.apiUrl + `/users/${userId}`;
     return this.httpClient.put(url, body);

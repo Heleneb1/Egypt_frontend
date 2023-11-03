@@ -17,18 +17,17 @@
                 <input type="text" id="editTag" [(ngModel)]="newTag"
                     *ngIf="showUpdateForm && existingArticle === article" />
             </div>
-            <div class="rating">
+            <!-- <div class="rating">
                 <p>Évaluation: {{ article.ratings }}/5</p>
                 <input type="number" id="editRating" [(ngModel)]="newRating"
                     *ngIf="showUpdateForm && existingArticle === article" />
-            </div>
-
+            </div> -->
             <div class="content">
                 <p>{{ article.content }}</p>
                 <textarea id="editContent" [(ngModel)]="newContent"
                     *ngIf="showUpdateForm && existingArticle === article"></textarea>
             </div>
-            <div class="arviched">
+            <div class="archived">
                 <div class="archived">
                     <p>État: {{ article.archive ? 'Archivé' : 'Non archivé' }}</p>
                 </div>

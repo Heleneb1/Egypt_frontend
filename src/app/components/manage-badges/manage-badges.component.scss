@@ -46,15 +46,27 @@
     .button-badges {
         background-color: var(--blue);
         border-radius: 2rem;
-        font-size: 2rem;
-        width: 22rem;
+        font-size: 1.5rem;
+        width: 16rem;
         height: 3rem;
         color: var(--white);
         display: flex;
         justify-content: center;
         cursor: pointer;
+        align-items: center;
     }
 }
+
+input[type="checkbox" i] {
+    accent-color: var(--sun);
+
+    color: var(--white);
+    border-radius: 5px;
+}
+
+
+
+
 
 h2 {
     font-size: 24px;

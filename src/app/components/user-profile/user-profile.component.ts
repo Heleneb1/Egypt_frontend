@@ -11,7 +11,9 @@ import { environment } from 'src/environments/environment';
 })
 export class UserProfileComponent implements OnInit {
   userData: any;
-  constructor(private http: HttpClient, private authService: AuthService, private cookieService: CookieService) { }
+
+
+  constructor (private http: HttpClient, private authService: AuthService, private cookieService: CookieService) { }
   ngOnInit() {
     if (this.cookieService.get('token') === '') {
       this.authService.logout();

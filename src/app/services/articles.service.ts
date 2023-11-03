@@ -29,9 +29,6 @@ export class ArticlesService {
   getArticles(): Observable<Article[]> { // Typer la réponse comme un tableau d'articles
     return this.httpClient.get<Article[]>(`${this.articlesDataUrl}`);
   }
-  // getArticleById(id: string) {
-  //   return this.httpClient.get(this.articlesDataUrl + '/' + id);
-  // }
   getArticleById(id: string) {
     return this.httpClient.get(`${this.articlesDataUrl}/${id}`);
   }
@@ -118,12 +115,6 @@ export class ArticlesService {
       })
     );
   }
-  // getArticlesByAuthor(author: string): Observable<Article[]> {
-  //   return this.httpClient.get<Article[]>(
-  //     `${this.articlesDataUrl}/byAuthor/${author}`
-  //   );
-  // }
-
   getArticlesByAuthorTitleTag(articleAuthor?: string, articleTitle?: string, articleTag?: string): Observable<Article[]> {
     let searchUrl = this.articlesDataUrl;
     if (articleAuthor) {

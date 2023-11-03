@@ -3,7 +3,7 @@ export class Comment {
     authorName: string | undefined;
     constructor (
 
-        public id: number,
+        public id: string,
         public archive: boolean,
         public author: string,
         public content: string,

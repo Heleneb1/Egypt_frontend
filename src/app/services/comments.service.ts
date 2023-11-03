@@ -27,4 +27,8 @@ export class CommentsService {
       `${this.commentsDataUrl}/byArticle/${articleId}`
     );
   }
+  deleteCommentByAuthor(commentId: string, authorId: string) {
+    const url = `${this.commentsDataUrl}/${commentId}/${authorId}`;
+    return this.httpClient.delete(url);
+  }
 }

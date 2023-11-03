@@ -118,9 +118,9 @@ $lineHeight: 1.5;
   left: 0;
   // z-index: -1;
   background: radial-gradient(circle, #f1c787, rgba(255, 255, 255, 0) 50%);
-  animation: glow 0s ease-in-out forwards;
+  animation: glow 1s ease-in-out forwards;
   border-radius: 100%;
-  animation-duration: 10s;
+  animation-duration: 7s;
 }
 
 @keyframes fogAnimation {

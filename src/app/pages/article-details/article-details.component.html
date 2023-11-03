@@ -2,7 +2,7 @@
     <h2>Les Mystères de l’Égypte Antique</h2>
 </div>
 <div class="text-container">
-    Votre article...
+    Votre article...<br>{{ article?.title }}
 </div>
 <div class="article-main-image">
     <div class="image">
@@ -15,8 +15,12 @@
 
     <div class="article-details">
 
-        <app-star-rating [totalStars]="5" [rating]="currentRating"
+        <!-- <app-star-rating [totalStars]="5" [rating]="currentRating"
+            (ratingChanged)="onRatingChanged($event)"></app-star-rating> -->
+
+        <app-star-rating [totalStars]="5" [rating]="article.ratings"
             (ratingChanged)="onRatingChanged($event)"></app-star-rating>
+
 
 
         <button class="rating-button" *ngIf="isVoteModified && isConnected" (click)="saveVote()">Enregistrer le
@@ -55,7 +59,7 @@
     </div>
     <div class="suggest">
 
-        <app-articles-carousel [articles]="article"></app-articles-carousel>
+        <app-articles-carousel [articles]="articles"></app-articles-carousel>
     </div>
 
     <div class="comment">

@@ -14,8 +14,7 @@ export class UserInfoComponent {
   userData: any;
   selectedFile: File | null = null;
   avatarFilename!: string;
-  avatarUrl: SafeUrl | string =
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWje_gjVcmi-wks5nTRnW_xv5W2l3MVnk7W1QDcZuhNg&s';
+  avatarUrl: SafeUrl | string = 'https://cdn.pixabay.com/photo/2018/04/14/08/45/egypt-3318550_1280.jpg';
   isEditingBiography = false;
   inputBiography = '';
   editIcon = 'fa fa-pencil';

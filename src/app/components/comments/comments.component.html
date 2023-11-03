@@ -19,15 +19,24 @@
             <ul>
                 <li *ngFor="let comment of commentList">
                     <div class="comment-card">
-                        <div class="comment-text">{{ comment.content }}
-                            <p *ngIf="comment?.creationDate">Date de création: {{ formatDate(comment.creationDate) }}
+                        <div class="comment-text">
+                            <h3>{{ comment.content }}</h3>
+                            <p *ngIf="comment?.creationDate">Date : {{ formatDate(comment.creationDate) }}
                             </p>
                         </div>
                         <div class="avatar">
-                            <img [src]="avatarUrl" alt="Avatar de {{ comment.authorName }}" />
+                            <!-- <img [src]="avatarUrl" alt="Avatar de {{ comment.authorName }}" /> -->
+                            <img [src]="comment.authorAvatar || defaultAvatarUrl"
+                                alt="Avatar de l'auteur du commentaire" />
                             <p> {{ comment.authorName }}</p>
-                            <!-- <img [src]="comment.authorAvatar" alt="Avatar de {{ comment.authorName }}" />
+
+                            <div *ngIf="userConnected.id === comment.author">
+                                <button (click)="deleteMyComment(comment.id, comment.author)" type="button"
+                                    class="deleteMyComment">Supprimer
+                                    le commentaire</button>
+                                <!-- <img [src]="comment.authorAvatar" alt="Avatar de {{ comment.authorName }}" />
                             <p> {{ comment.authorName }}</p> -->
+                            </div>
                         </div>
                     </div>
                 </li>

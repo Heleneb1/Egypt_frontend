@@ -4,13 +4,13 @@
   width: 100vw;
 }
 
-/* Styles pour le conteneur du header */
+
 nav.header-container {
-  height: 5rem;
+  height: 3rem;
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 99%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -114,7 +114,7 @@ nav.header-container {
 .menu li a {
   text-decoration: none;
   color: var(--sun);
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   margin-top: 10px;
   cursor: pointer;
 }
@@ -141,6 +141,7 @@ nav.header-container {
 
   nav.header-container {
     position: relative;
+    height: 5rem;
   }
 
   .menu-burger {
@@ -153,15 +154,17 @@ nav.header-container {
     height: 100%;
   }
 
-  .logo {
-    width: 25rem;
-  }
+  // .logo {
+  //   width: 25rem;
+  // }
 
   .nav-mobile {
+    width: 97vw;
     display: flex;
     align-items: center;
     height: 100%;
-    position: absolute;
+    justify-content: space-between;
+    // position: absolute;
 
     ul {
       padding: 0;
@@ -188,7 +191,7 @@ nav.header-container {
   .menu li a {
     text-decoration: none;
     color: var(--sun);
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     margin-top: 10px;
   }
 }

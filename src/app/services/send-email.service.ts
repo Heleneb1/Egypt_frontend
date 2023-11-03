@@ -15,7 +15,7 @@ export class SendEmailService {
   sendEmail(contact: Contact) {
     console.log("Nom", contact);
     return this.httpClient.post(this.emailUrl + '/send', contact)
-      .subscribe((response) => this.toastr.success('Votre message a bien été envoyé', 'Message envoyé'), (error) => this.toastr.warning('Veuillez remplir tous les champs', 'Erreur'));
+      .subscribe((response) => this.toastr.success('Votre message a bien été envoyé', 'Message envoyé'),);
 
   }
 }

@@ -12,7 +12,6 @@
 .text-container {
     position: relative;
     top: 10rem;
-    font-size: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -24,6 +23,12 @@
     font-size: 24px;
     margin: 0 3rem;
     padding: 0.5rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    line-height: 1.4;
 }
 
 .rating-button {

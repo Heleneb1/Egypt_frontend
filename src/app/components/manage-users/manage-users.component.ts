@@ -24,10 +24,13 @@ export class ManageUsersComponent {
   }
 
   deleteUser(id: string) {
-    this.userService.deleteUsers(id).subscribe(() => {
-      this.getUsers();
-      // alert('Utilisateur supprimé');
-      this.toastr.success('Utilisateur supprimé', 'Suppression');
-    });
+    if (confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')) {
+
+      this.userService.deleteUsers(id).subscribe(() => {
+        this.getUsers();
+        // alert('Utilisateur supprimé');
+        this.toastr.success('Utilisateur supprimé', 'Suppression');
+      });
+    }
   }
 }

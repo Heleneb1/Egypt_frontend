@@ -130,7 +130,7 @@ input[type="radio"]:checked {
 
 .question-card {
     p {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
     }
 }
 
@@ -173,6 +173,25 @@ input[type="radio"]:checked {
     text-decoration: none;
 }
 
+.loader {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--blue);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    font-size: 3rem;
+    font-family: var(--title);
+    color: var(--sun);
+    transition: all 0.3s ease-in-out;
+    animation: fadeIn 4s ease-in-out forwards;
+
+}
 
 
 @media (min-width: 768px) {

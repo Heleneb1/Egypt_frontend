@@ -35,9 +35,7 @@ export class QuizDetailsComponent {
   badgeId: string = '';
   userConnected: any;
   badges: any[] = [];
-
-
-
+  isLoaded = false;
 
   constructor (
     private quizService: QuizService,
@@ -68,6 +66,9 @@ export class QuizDetailsComponent {
   }
   ngOnInit() {
 
+    setTimeout(() => {
+      this.isLoaded = true;
+    }, 2000);
     this.route.paramMap.subscribe((params) => {
       this.quizId = params.get('id');
       this.quizService.getQuizById(this.quizId).subscribe((quiz) => {
@@ -112,6 +113,7 @@ export class QuizDetailsComponent {
 
     });
   }
+
   onOptionSelected(questionId: string, event: Event) {
     //verification de event.target nonnull et a une propriété value
     if (event.target && 'value' in event.target) {

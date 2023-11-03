@@ -46,6 +46,7 @@ import { ManageUsersComponent } from './components/manage-users/manage-users.com
 const cookieConfig: NgcCookieConsentConfig = {
   cookie: {
     domain: 'localhost' // or 'your.domain.com'
+
   },
   palette: {
     popup: {
@@ -57,12 +58,15 @@ const cookieConfig: NgcCookieConsentConfig = {
   },
   theme: 'edgeless',
   type: 'opt-out',
-  revokable: true,
-  content: {
-    message: "Un petit cookie pour la route?\n Avant de s'immerger dans l'Égypte des Pharaons ?",
-    deny: "Ce site utilise des cookies pour vous garantir la meilleure expérience..."
-  }
 
+  // revokable: false,
+  content: {
+
+    message: "Un petit cookie pour la route?\n Avant de s'immerger dans l'Égypte des Pharaons ?",
+    allow: 'Accepter',
+    deny: 'Refuser',
+    link: 'En savoir plus',
+  }
 };
 
 @NgModule({

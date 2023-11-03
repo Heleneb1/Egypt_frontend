@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { BadgesService } from 'src/app/services/badges.service';
 import { QuizService } from 'src/app/services/quiz.service';
 import { ToastrService } from 'ngx-toastr';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-manage-quiz',
@@ -12,36 +13,34 @@ export class ManageQuizComponent {
   @Output() quizSelected: EventEmitter<any> = new EventEmitter<any>();
   existingQuiz: any;
   editingQuiz: any = null;
+  updateQuizForm!: FormGroup;
   constructor (
-    private quizService: QuizService, private badgesService: BadgesService, private toastr: ToastrService) { }
+    private quizService: QuizService, private badgesService: BadgesService, private toastr: ToastrService, private formBuilder: FormBuilder) { }
   ngOnInit() {
+    this.updateQuizForm = this.formBuilder.group({
+      title: [''],
+      difficulty: [''],
+      content: [''],
+      picture: [''],
 
+    });
   }
   quizzes: any[] = [];
   showQuizForm = false;
-  // questions: Question[] = [];
-  // question: any;
+  selectedQuestions: any[] = [];
   newTitle: string = '';
   newContent: string = '';
   newDifficulty: string = '';
   newPicture: string = '';
   isArchived: boolean = false;
   defaultImage: string = 'assets/images/Gizeh.jpg'
-
-  // categories!: string; // Pour stocker les catégories récupérées depuis le serveur
   isSelectedQuiz: boolean = false;
   quiz: any;
   questions: any = {};
   quizzesOpen = false;
-  // badgesArray: any[] = [];
-  // badges: any[] = [];
-  // badgesOpen = false;
-  // name: string = '';
-  // description: string = '';
-  // image: string = '';
-  // showBadgeForm: boolean = false;
-  // selectedBadge: any;
-  // badgeId: string = '';
+  badgeId: string = '';
+  quizId: string = '';
+  selectedQuiz!: string;
 
   selectQuizEmit(quiz: any) {
     this.quizSelected.emit(quiz);
@@ -77,17 +76,24 @@ export class ManageQuizComponent {
       this.toastr.success('Etat du Quiz modifié ' + this.existingQuiz.title + ' : ' + (this.existingQuiz.archive ? 'Archivé' : 'Non archivé'), 'Modification');
     });
   }
-  selectQuiz(quizId: string) {
-    this.isSelectedQuiz = !this.isSelectedQuiz;
-    if (this.isSelectedQuiz) {
+  // selectQuiz(quizId: string) {
+  //   // this.isSelectedQuiz = !this.isSelectedQuiz;
+  //   if (this.isSelectedQuiz) {
 
-      this.quizService.getQuizById(quizId).subscribe((quiz: any) => {
-        this.quiz = quiz;
-        console.log("id", quizId);
-        this.selectQuizEmit(quiz);
-      });
-    }
+  //     this.quizService.getQuizById(quizId).subscribe((quiz: any) => {
+  //       this.quiz.id = quizId;
+  //       console.log("id", quizId);
+  //       // this.selectQuizEmit(quiz);
+  //     });
+  //   }
+  // }
+
+
+  selectQuiz(id: string) {
+    console.log('Quiz sélectionné : ', id);
   }
+
+
   getQuestionContentForQuiz(questionId: string): void {
     this.quizService.getQuestionContent(questionId).subscribe(
       (question: any) => {
@@ -105,9 +111,8 @@ export class ManageQuizComponent {
   }
   deleteQuestionFromQuiz(questionId: string) {
     this.quizService.deleteQuestion(questionId).subscribe(() => {
-      this.getQuestionContentForQuiz(this.quiz.id);
-      // alert('Question supprimée');
-      this.toastr.success('Question supprimée', 'Suppression');
+      this.getQuestionContentForQuiz(this.quizId);
+      alert('Question supprimée');
     });
   }
 
@@ -142,17 +147,28 @@ export class ManageQuizComponent {
   deleteQuiz(id: string) {
     this.quizService.deleteQuiz(id).subscribe(() => {
       this.getQuiz();
-      // alert('Quiz supprimé');
+
       this.toastr.success('Quiz supprimé', 'Suppression');
     });
   }
   updateQuiz(id: string, updatedQuiz: any) {
-    this.quizService.updateQuiz(id, updatedQuiz).subscribe(() => {
+    console.log("id", id);
+    console.log("updatedQuiz", updatedQuiz);
+
+    this.editingQuiz.title = updatedQuiz.title;
+    this.editingQuiz.difficulty = updatedQuiz.difficulty;
+    this.editingQuiz.content = updatedQuiz.content;
+    this.editingQuiz.isArchived = updatedQuiz.isArchived;
+    this.editingQuiz.picture = updatedQuiz.picture;
+
+    this.quizService.updateQuiz(id, this.editingQuiz).subscribe(() => {
       this.getQuiz();
-      // alert('Quiz modifié');
       this.toastr.success('Quiz modifié', 'Modification');
+
     });
   }
+
+
   editQuiz(quiz: any) {
     this.editingQuiz = true;
     this.editingQuiz = { ...quiz };
@@ -162,54 +178,13 @@ export class ManageQuizComponent {
   cancelEdit() {
     this.editingQuiz = null;
   }
-  // createBadgeForm() {
-
-  //   this.name = '';
-  //   this.description = '';
-  //   this.image = '';
-  //   // this.badgesOpen = !this.badgesOpen;
-  // }
-  // createBadge() {
-  //   this.showBadgeForm = !this.showBadgeForm;
-  // }
-
-  // onCreateBadge() {
-  //   const newBadge = {
-  //     name: this.name,
-  //     description: this.description,
-  //     image: this.image,
-  //   };
-
-  //   this.quizService.createBadge(newBadge).subscribe((response: any) => {
-  //     console.log("Nouveau badge créé :", response);
-
-  //   });
-  // }
-  // getBadge(): void {
-  //   this.badgesOpen = !this.badgesOpen;
-  //   if (this.badgesOpen) {
-  //     this.quizService.getBadges().subscribe((badges: any) => {
-  //       this.badges = badges;
-  //       console.log(badges);
-  //     });
-  //   }
-  // }
-  // selectBadge(badgeId: string) {
-  //   this.isSelectedBadge = !this.isSelectedBadge;
-  //   if (this.isSelectedBadge) {
-
-  //     this.quizService.getBadgeById(badgeId).subscribe((badge: any) => {
-  //       this.badgesArray = badge;
-  //       console.log("id", badgeId);
-  //     });
-  //   }
-  // }
   // addBadgeToQuiz(quizId: string, badgeId: string) {
   //   console.log("quizId", quizId);
-  //   console.log("badgeId", badgeId); // Vérifiez que badgeId est correct ici
+  //   console.log("badgeId", badgeId);
 
   //   this.quizService.addBadgeToQuiz(quizId, badgeId).subscribe((response: any) => {
   //     console.log("Badge ajouté au quiz avec succès", response);
   //   });
   // }
+
 }

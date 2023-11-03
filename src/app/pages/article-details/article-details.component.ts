@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ArticlesService } from 'src/app/services/articles.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { Article } from 'src/app/models/article';
 // import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -14,12 +15,12 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class ArticleDetailsComponent {
 
-
+  articles: Article[] = [];
   article: any = [];
   articleId: any;
   userId: any;
   isVoteModified: boolean = false;
-  currentRating: number = 3.5;
+  currentRating!: number;
   // authorName: any;
   defaultImage: string = 'assets/images/Gizeh.jpg';
   isConnected: boolean = false;

@@ -88,6 +88,17 @@
   padding: 0 1rem;
 }
 
+.transition-bottom {
+  transform: translateY(-100%);
+  animation: appear 5s forwards;
+}
+
+.transition-right {
+  transform: translateX(0rem, 100%);
+  animation: appear2 3s forwards;
+}
+
+
 @media screen and (min-width: 768px) {
   .result-content {
     font-family: var(--text);

@@ -23,6 +23,11 @@ export class ArticlesCarouselComponent implements OnInit {
 
   ngOnInit(): void {
     this.showArticles();
+    this.currentIndex = this.articles.length;
+    console.log("articles", this.currentIndex);
+    this.updateIndexes();
+
+
   }
   showArticles() {
     this.articlesService.getArticles().subscribe((articles: any) => {
@@ -34,9 +39,12 @@ export class ArticlesCarouselComponent implements OnInit {
   }
 
   updateIndexes() {
+    this.currentIndex = (this.currentIndex + this.articles.length) % this.articles.length;
     this.leftIndex = (this.currentIndex - 1 + this.articles.length) % this.articles.length;
     this.rightIndex = (this.currentIndex + 1 + this.articles.length) % this.articles.length;
     this.visibleArticle = this.articles[this.currentIndex];
+    console.log("visibleArticle", this.visibleArticle);
+
   }
   updateArticles(newArticles: any[]) {
     this.articles = newArticles;
@@ -44,16 +52,20 @@ export class ArticlesCarouselComponent implements OnInit {
     this.updateIndexes();
   }
 
+  // updateIndexes() {
+  //   this.leftIndex = (this.currentIndex - 1 + this.articles.length) % this.articles.length;
+  //   this.rightIndex = (this.currentIndex + 1) % this.articles.length;
+  // }
 
   nextArticle() {
-    this.currentIndex = (this.currentIndex + 1);
+    this.currentIndex = (this.currentIndex + 1) % this.articles.length;
     this.updateIndexes();
   }
 
   prevArticle() {
-    this.currentIndex = (this.currentIndex - 1);
+    this.currentIndex = (this.currentIndex - 1 + this.articles.length) % this.articles.length;
     this.updateIndexes();
   }
 
-
 }
+

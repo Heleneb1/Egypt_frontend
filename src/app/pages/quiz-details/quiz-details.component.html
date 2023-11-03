@@ -1,3 +1,6 @@
+<div class="loader" *ngIf="!isLoaded">
+    Chargement...
+</div>
 <div class="quiz-details-container">
     <div class="quiz-details">
 
@@ -16,7 +19,7 @@
 
             <p>Difficulté: {{ quiz.difficulty }}</p>
             <p>Date de création: {{ formatDate(quiz.creationDate) }}</p>
-            <p>Article associé: {{ quiz.article?.title }}</p>
+            <!-- <p>Article associé: {{ quiz.article?.title }}</p> -->
 
             <div class="quiz-badges">
                 Badge: {{quiz.badge?.name}}
@@ -31,20 +34,23 @@
                 <div class="options-container">
                     <div class="option-column1">
                         <div>
-                            <input type="radio" id="option1-{{i}}" name="question-{{i}}" value="{{question.option_1}}"
-                                (click)="answerQuestion()" (change)="onOptionSelected(question.id, $event)">
+                            <input type="checkbox" id="option1-{{i}}" name="question-{{i}}"
+                                value="{{question.option_1}}" (click)="answerQuestion()"
+                                (change)="onOptionSelected(question.id, $event)">
                             <label for="option1-{{i}}">{{question.option_1}}</label>
                         </div>
                         <div>
-                            <input type="radio" id="option2-{{i}}" name="question-{{i}}" value="{{question.option_2}}"
-                                (click)="answerQuestion()" (change)="onOptionSelected(question.id, $event)">
+                            <input type="checkbox" id="option2-{{i}}" name="question-{{i}}"
+                                value="{{question.option_2}}" (click)="answerQuestion()"
+                                (change)="onOptionSelected(question.id, $event)">
                             <label for="option2-{{i}}">{{question.option_2}}</label>
                         </div>
                     </div>
                     <div class="option-column2">
                         <div>
-                            <input type="radio" id="option3-{{i}}" name="question-{{i}}" value="{{question.option_3}}"
-                                (click)="answerQuestion()" (change)="onOptionSelected(question.id, $event)">
+                            <input type="checkbox" id="option3-{{i}}" name="question-{{i}}"
+                                value="{{question.option_3}}" (click)="answerQuestion()"
+                                (change)="onOptionSelected(question.id, $event)">
                             <label for="option3-{{i}}">{{question.option_3}}</label>
                         </div>
                     </div>

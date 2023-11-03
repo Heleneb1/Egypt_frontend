@@ -17,41 +17,22 @@ export class ResultCardComponent {
   isOpen = false;
   article: any = [];
   articleId: any;
-  // ratings: any;
   currentRating!: number;
+
 
   constructor (private router: Router, private articlesService: ArticlesService) { }
 
   ngOnInit() {
-    // this.tag = this.tag;
-    // console.log("TAG", this.tag);
 
-    // this.articlesService.getArticles().subscribe((article) => {
-    //   this.article = article;
-    //   console.log("Article", this.article);
-
-
-    // });
   }
 
   toggleDetails(selectedArticle: Article) {
-    // console.log("this is the selected article", this.selectedArticle);
-    // this.articleId = this.selectedArticle?.id;
-
-    // this.ratings = this.articleId.ratings;
-    // console.log("Ratings", this.ratings);
-
 
     if (this.selectedArticle === selectedArticle) {
-
-
       this.selectedArticle = null;
     } else {
       this.selectedArticle = selectedArticle;
-
     }
-
-
     return this.selectedArticle;
   }
 

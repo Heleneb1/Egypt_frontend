@@ -37,6 +37,7 @@ export class CreateQuizComponent implements AfterViewInit, OnInit {
     this.authService.getUserConnected().subscribe((user: any) => {
       this.userConnected = user;
       this.userId = user?.userId;
+      this.isArchived = true;
     });
   }
 
@@ -88,9 +89,6 @@ export class CreateQuizComponent implements AfterViewInit, OnInit {
       (response: any) => {
         console.log('Quiz created', response);
         console.log(data);
-        this.toastr.success('Le quiz est créé avec succès !');
-
-        // alert('Le quiz est créé avec succès !');
       },
       (error) => {
         console.error('Failed to create quiz', error);
@@ -98,7 +96,21 @@ export class CreateQuizComponent implements AfterViewInit, OnInit {
 
       }
     );
+    this.resetForm();
+    this.router.navigate(['/profile']);
+    this.toastr.success('Le quiz est créé avec succès !');
+  }
+
+  resetForm(): void {
+    this.textValue = '';
+    this.picture = '';
+    this.tag = '';
+    this.difficulty = '';
+    this.isArchived = true;
+    this.quill.root.innerHTML = '';
   }
 }
+
+
 
 

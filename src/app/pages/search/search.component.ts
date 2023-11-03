@@ -45,9 +45,9 @@ export class SearchComponent implements OnInit {
     this.resetOtherFilters("author");
 
     this.articlesService.getArticlesByAuthorTitleTag(
-      this.searchQuery,  // Utilisez la variable searchQuery pour la recherche
-      this.searchQuery,  // Vous pouvez également utiliser la même variable pour le titre
-      this.searchQuery   // Et pour le tag
+      this.searchQuery,
+      this.searchQuery,
+      this.searchQuery
     ).subscribe(
       (response: Article[]) => {
         console.log('Articles par auteur, titre ou tag :', response);
@@ -58,14 +58,11 @@ export class SearchComponent implements OnInit {
       }
     );
 
-    // Réinitialisez le champ de recherche après la recherche
     this.searchQuery = '';
   }
 
   onAuthorSearchChange(selectedAuthor: string) {
-    this.resetOtherFilters("author"); // Réinitialise les autres filtres sauf le filtre par auteur
-
-    // Appelez le service pour récupérer les articles par auteur
+    this.resetOtherFilters("author");
     this.articlesService.getArticlesByAuthor(selectedAuthor).subscribe(
       (articles: Article[]) => {
         this.articles = articles;

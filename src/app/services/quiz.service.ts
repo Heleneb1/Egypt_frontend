@@ -9,9 +9,9 @@ import { QuizQuestion } from "../models/quiz-question";
     providedIn: 'root'
 })
 export class QuizService {
-    deleteBadge(id: string) {
-        throw new Error('Method not implemented.');
-    }
+    // deleteBadge(id: string) {
+    //     throw new Error('Method not implemented.');
+    // }
 
     private quizDataUrl = environment.apiUrl + '/quizzes';
     private questionDataUrl = environment.apiUrl + '/questions';
@@ -97,15 +97,16 @@ export class QuizService {
                 const uniqueCategory = new Set<string>();
 
                 questions.forEach((question: any) => {
-                    const category = question.category.split(',').map((c: string) => c.trim());
-                    category.forEach((c: string) => uniqueCategory.add(c));
+                    if (question.category) {
+                        const category = question.category.split(',').map((c: string) => c.trim());
+                        category.forEach((c: string) => uniqueCategory.add(c));
+                    }
                 });
 
                 // Convertion du Set en tableau
                 return Array.from(uniqueCategory);
             })
         );
-
     }
 
 
@@ -124,9 +125,19 @@ export class QuizService {
     }
 
 
-    updateQuestion(id: string, updatedQuestion: any) {
-        return this.httpClient.put(`${this.questionDataUrl}/${id}`, updatedQuestion);
+    // updateQuestion(id: string, updatedQuestion: any) {
+    //     console.log("MaJ", updatedQuestion);
+
+    //     return this.httpClient.put(`${this.questionDataUrl}/${id}`, updatedQuestion);
+    // }
+    updateQuestion(id: string, updatedQuestion: any): Observable<any> {
+        const url = `${this.questionDataUrl}/${id}`;
+        console.log("MaJ", updatedQuestion);
+
+        return this.httpClient.put<any>(url, updatedQuestion);
     }
+
+
     insertQuestionsbyCategory(quizId: string, category: string) {
         const url = `${this.quizDataUrl}/${quizId}/add-questions`;
         return this.httpClient.put(url, { category: category });
@@ -148,7 +159,10 @@ export class QuizService {
 
 
     addBadgeToQuiz(quizId: string, badgeId: string) {
+        console.log(quizId, badgeId);
+
         console.log(`${this.quizDataUrl}/${quizId}/badges/${badgeId}/add-badge`);
+
 
         return this.httpClient.put(`${this.quizDataUrl}/${quizId}/badges/${badgeId}/add-badge`, { badgeId: badgeId });
     }

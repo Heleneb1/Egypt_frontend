@@ -21,6 +21,10 @@ export class ManageBadgesComponent implements OnInit {
   image: string = '';
   showBadgeForm: boolean = false;
   selectedBadge: any;
+  badgeId: string = '';
+  quizIdForBadge: string = '';
+  selectedQuiz: string = '';
+
 
   constructor (private quizService: QuizService, private badgesService: BadgesService, private toastr: ToastrService) { }
 
@@ -52,7 +56,7 @@ export class ManageBadgesComponent implements OnInit {
       this.createBadgeForm();
     });
     this.toastr.success('Badge créé', 'Création');
-    this.ngOnInit();
+    this.getBadge();
   }
 
   getBadge(): void {
@@ -86,12 +90,14 @@ export class ManageBadgesComponent implements OnInit {
     });
     this.toastr.success('Badge supprimé', 'Suppression');
   }
-  addBadgeToQuiz(quizId: string, badgeId: string) {
-
-    console.log("ID du quiz : ", quizId);
+  addBadgeToQuiz(selectedQuiz: string, badgeId: string) {
+    console.log("ID du quiz : ", selectedQuiz);
     console.log("ID du badge : ", badgeId);
 
-    this.quizService.addBadgeToQuiz(quizId, badgeId).subscribe((response: any) => {
+    this.quizService.addBadgeToQuiz(selectedQuiz, badgeId).subscribe((response: any) => {
+      if (response) {
+        this.toastr.success('Badge ajouté au quiz', 'Ajout');
+      }
       console.log("Badge ajouté au quiz avec succès", response);
 
     });
