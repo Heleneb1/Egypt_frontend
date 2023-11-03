@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 import { StarService } from 'src/app/services/star.service';
 
 @Component({
@@ -7,20 +8,29 @@ import { StarService } from 'src/app/services/star.service';
   styleUrls: ['./star-rating.component.scss']
 })
 export class StarRatingComponent implements OnInit {
-  constructor(private starService: StarService) { }
+  constructor (private starService: StarService, private authService: AuthService) { }
 
   @Input() totalStars = 5;
-  @Input() rating = 3;
+  @Input() rating = 3.5;
+
 
   stars: number[] = [];
   votedRating!: number;
   isVoteModified: boolean = false;
+  userConnected!: boolean;
 
   @Output() ratingChanged: EventEmitter<number> = new EventEmitter<number>();
+
 
   ngOnInit() {
     this.stars = Array.from({ length: this.totalStars }, (_, index) => index + 1);
     this.votedRating = this.starService.votedRating;
+    this.authService.getUserConnected().subscribe((user) => {
+      if (user) {
+        this.userConnected = true;
+      }
+    });
+
   }
 
   rate(star: number) {

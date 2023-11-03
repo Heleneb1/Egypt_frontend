@@ -1,6 +1,6 @@
 export class Article {
-  constructor(
-    public id: number,
+  constructor (
+    public id: string,
     public archive: boolean,
     public author: string,
     public content: string,
@@ -8,6 +8,9 @@ export class Article {
     public tag: string,
     public title: string,
     public edition_date: Date,
-    public rating: number
-  ) {}
+    public ratings: number,
+    public image: string,
+    public comments: any[],
+
+  ) { }
 }

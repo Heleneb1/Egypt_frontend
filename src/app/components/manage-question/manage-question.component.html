@@ -1,0 +1,113 @@
+<div class="question-all">
+    <div class="question-container">
+        <div class="create-question">
+            <div class="button">
+
+                <button (click)="createQuestion()" type="button" class="button">Créer une question</button>
+
+            </div>
+            <div class="create-form" *ngIf="showQuestionForm">
+                <h2>Créer une nouvelle question</h2>
+                <label for="question_title">Question :</label>
+                <input type="text" id="question_title" [(ngModel)]="question_title">
+
+                <label for="option_1">Option 1 :</label>
+                <input type="text" id="option_1" [(ngModel)]="option_1">
+
+                <label for="option_2">Option 2 :</label>
+                <input type="text" id="option_2" [(ngModel)]="option_2">
+
+                <label for="option_3">Option 3 :</label>
+                <input type="text" id="option_3" [(ngModel)]="option_3">
+
+                <label for="right_answer">Réponse 1 :</label>
+                <input type="text" id="right_answer" [(ngModel)]="right_answer">
+
+                <label for="right_answer_2">Réponse 2 :</label>
+                <input type="text" id="right_answer_2" [(ngModel)]="right_answer_2">
+
+                <label for="category">Catégorie :</label>
+                <input type="text" id="category" [(ngModel)]="category">
+                <div *ngIf="!category" class="error-message">
+                    <p>La catégorie ne peut pas être vide.</p>
+                </div>
+
+                <div class="create-button">
+                    <div class="button">
+                        <button (click)="onCreateQuestion()" type="button" class="button">Ajouter</button>
+                    </div>
+                </div>
+            </div>
+            <select class="select-option" [(ngModel)]="selectCategory" (change)="selectQuestionsByCategory()">
+                <option value="">Toutes les catégories</option>
+                <option *ngFor="let category of categoriesOptions" [value]="category">{{ category }}</option>
+            </select>
+
+        </div>
+        <div *ngIf="questions">
+            <ul>
+                <li *ngFor="let question of questions">
+                    <h3>{{ question.question_title }}</h3>
+                    <p>Option 1: {{ question.option_1 }}</p>
+                    <p>Option 2: {{ question.option_2 }}</p>
+                    <p>Option 3: {{ question.option_3 }}</p>
+                    <p>Réponse 1: {{ question.right_answer }}</p>
+                    <p>Réponse 2: {{ question.right_answer_2 }}</p>
+                    <label for="category">Selectionnée:<input type="radio" [(ngModel)]="question.selected" /> {{
+                        question.content }}</label>
+                    <div class="update-delete">
+
+                        <div class="update-question">
+                            <button (click)="editQuestion(question.id)">Modifier</button>
+                        </div>
+                        <div class="delete-question">
+                            <button (click)="deleteQuestion(question.id)">Supprimer la question</button>
+                        </div>
+                        <div class="save-question">
+                            <button (click)="updateQuestion(question.id, question)" type="button"
+                                class="button">Enregistrer</button>
+                        </div>
+                    </div>
+
+                    <div *ngIf="selectedCategory && questions">
+                        <h2>Questions de la catégorie "{{ selectedCategory }}" :</h2>
+
+                    </div>
+
+                    <div *ngIf="showUpdateForm && selected  === question.id">
+                        <h2>Modifier la question</h2>
+                        <label for="question_title">Question :</label>
+                        <input type="text" id="question_title" [(ngModel)]="question_title">
+
+                        <label for="option_1">Option 1 :</label>
+                        <input type="text" id="option_1" [(ngModel)]="option_1">
+
+                        <label for="option_2">Option 2 :</label>
+                        <input type="text" id="option_2" [(ngModel)]="option_2">
+
+                        <label for="option_3">Option 3 :</label>
+                        <input type="text" id="option_3" [(ngModel)]="option_3">
+
+                        <label for="right_answer">Réponse 1 :</label>
+                        <input type="text" id="right_answer" [(ngModel)]="right_answer">
+
+                        <label for="right_answer_2">Réponse 2 :</label>
+                        <input type="text" id="right_answer_2" [(ngModel)]="right_answer_2">
+
+                        <label for="category">Catégorie :</label>
+                        <input type="text" id="category" [(ngModel)]="question.category">
+
+
+                    </div>
+
+
+
+                </li>
+            </ul>
+            <!-- <button (click)="addQuestionToQuiz(quizSelectedId ,category)" type="button" class="button">Ajouter les
+                questions au
+                Quiz</button> -->
+
+        </div>
+
+    </div>

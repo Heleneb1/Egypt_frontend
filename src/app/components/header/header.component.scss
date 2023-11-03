@@ -1,6 +1,16 @@
+/* Styles pour l'ensemble du header */
+.header-all {
+  margin-bottom: 8rem;
+  width: 100vw;
+}
+
+
 nav.header-container {
-  height: 5rem;
-  position: relative;
+  height: 3rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 99%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -9,33 +19,49 @@ nav.header-container {
   border-bottom: #fc9900 1px solid;
   color: white;
   z-index: 2;
+  margin-bottom: 3rem;
 }
 
+/* Styles pour le contenu du header */
 .header-content {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  /* Pour aligner le logo complètement à droite */
 }
 
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+/* Styles pour le menu burger */
 .menu-burger {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 30px;
-  height: 20px;
+  width: 50px;
+  height: 30px;
   cursor: pointer;
   z-index: 3;
   transition: transform 0.3s ease-in-out;
 }
 
-.line {
+.menu-burger .line {
   width: 100%;
-  height: 3px;
+  height: 5px;
   background-color: var(--sun);
   transition: transform 0.3s ease-in-out;
 }
 
+.menu-burger.open {
+  position: fixed;
+}
+
 .menu-burger.open .line:nth-child(1) {
-  transform: translateY(8px) rotate(45deg);
+  transform: translateY(15px) rotate(45deg);
 }
 
 .menu-burger.open .line:nth-child(2) {
@@ -43,9 +69,10 @@ nav.header-container {
 }
 
 .menu-burger.open .line:nth-child(3) {
-  transform: translateY(-8px) rotate(-45deg);
+  transform: translateY(-10px) rotate(-45deg);
 }
 
+/* Styles pour le menu principal */
 .menu {
   top: 100%;
   right: 0;
@@ -68,25 +95,17 @@ nav.header-container {
   z-index: 1;
 }
 
-.menu {
-  // div {
-  //   margin-top: 25%;
-  //   height: 100%;
-  // }
-}
-
+/* Styles pour le menu mobile */
 .menu .nav-mobile ul {
   list-style: none;
-  padding-top: 6rem;
-  margin: 3rem;
+  margin: 0 3rem;
   text-align: center;
 }
 
 .menu li {
   font-family: var(--title);
   color: var(--sun);
-  // padding: 2rem;
-  margin: 2rem;
+  margin: 1rem;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -95,24 +114,12 @@ nav.header-container {
 .menu li a {
   text-decoration: none;
   color: var(--sun);
-  font-size: 30px;
+  font-size: 1.5rem;
   margin-top: 10px;
+  cursor: pointer;
 }
 
-.menu-image {
-
-  display: flex;
-  // width: 100%;
-  justify-content: center;
-  margin-top: 2rem;
-
-  img {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-}
-
+/* Styles pour les icônes */
 .icons {
   display: flex;
   align-items: center;
@@ -124,70 +131,67 @@ nav.header-container {
   color: var(--sun);
   font-size: 20px;
   cursor: pointer;
-  display: none;
 }
 
-
-@media (min-width: 768px) {
-  .menu-burger {
-    display: none;
-
-
-
+/* Media query pour les écrans de 768px ou plus */
+@media screen and (min-width: 768px) {
+  .header-all {
+    margin: 0;
   }
 
-  .header-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  nav.header-container {
+    position: relative;
+    height: 5rem;
+  }
+
+  .menu-burger {
+    display: none;
   }
 
   .menu {
     display: flex;
     position: relative;
     height: 100%;
-
-    div {
-      height: 100%;
-    }
   }
 
-  .menu .nav-mobile ul {
-    padding: 0%;
-    list-style: none;
-    display: flex;
-  }
+  // .logo {
+  //   width: 25rem;
+  // }
 
   .nav-mobile {
+    width: 97vw;
     display: flex;
     align-items: center;
     height: 100%;
-    position: absolute;
+    justify-content: space-between;
+    // position: absolute;
 
     ul {
-      padding: 0%;
+      padding: 0;
       display: flex;
       align-items: center;
       height: 100%;
     }
   }
 
-  .menu li {
-    padding: 0 10px;
+  .menu ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+
+  .menu .nav-mobile ul {
+    list-style: none;
+    margin: 0 3rem;
+    text-align: center;
   }
 
   .menu li a {
     text-decoration: none;
-    color: white;
-    font-size: 16px;
-  }
-
-  .menu-image {
-    display: none;
-  }
-
-  .icons {
-    display: none;
-
+    color: var(--sun);
+    font-size: 1.5rem;
+    margin-top: 10px;
   }
 }

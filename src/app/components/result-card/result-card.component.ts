@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Article } from 'src/app/models/article';
+import { ArticlesService } from 'src/app/services/articles.service';
 
 @Component({
   selector: 'app-result-card',
@@ -9,18 +10,29 @@ import { Article } from 'src/app/models/article';
 })
 export class ResultCardComponent {
   @Input() filteredArticle: Article[] = [];
+  @Input() tag: string = '';
+  @Input() ratings: any;
   selectedArticle: Article | null = null;
-  // showDetails = false;
+  defaultImage: string = 'assets/images/Gizeh.jpg';
   isOpen = false;
-  constructor(private router: Router) { }
+  article: any = [];
+  articleId: any;
+  currentRating!: number;
+
+
+  constructor (private router: Router, private articlesService: ArticlesService) { }
+
+  ngOnInit() {
+
+  }
 
   toggleDetails(selectedArticle: Article) {
+
     if (this.selectedArticle === selectedArticle) {
       this.selectedArticle = null;
     } else {
       this.selectedArticle = selectedArticle;
     }
-    // this.showDetails = !this.selectedArticle;
     return this.selectedArticle;
   }
 
@@ -31,4 +43,5 @@ export class ResultCardComponent {
       this.router.navigate(['/article', this.selectedArticle.id]);
     }
   }
+
 }

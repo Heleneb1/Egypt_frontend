@@ -17,16 +17,19 @@ export class SearchComponent implements OnInit {
   selectedTag: string[] = [];
   selectedTitle: string[] = [];
   selectedAuthor: string[] = [];
-  articleTag="";
-  articleTitle="";
+  articleTag = "";
+  articleTitle = "";
   tagOptions!: string[];
   titleOptions!: string[];
-  articleAuthor="";
+  articleAuthor = "";
   authorOptions!: string[];
+  currentRating!: number;
+  rating: number = 3.5;
+  searchQuery: string = "";
 
-  constructor(private articlesService: ArticlesService) {}
+  constructor (private articlesService: ArticlesService) { }
   getArticles(): void {
-    this.articlesService.getArticles().subscribe((articles: any) => {
+    this.articlesService.getArticles().subscribe((articles: Article[]) => {
       this.articles = articles;
     });
   }
@@ -37,31 +40,29 @@ export class SearchComponent implements OnInit {
   }
   //TODO revoir la fonction
   searchArticles() {
-    
     this.resetOtherFilters("tag");
     this.resetOtherFilters("title");
     this.resetOtherFilters("author");
-  
-   
+
     this.articlesService.getArticlesByAuthorTitleTag(
-      this.articleAuthor ||
-      this.articleTitle ||
-      this.articleTag
+      this.searchQuery,
+      this.searchQuery,
+      this.searchQuery
     ).subscribe(
       (response: Article[]) => {
+        console.log('Articles par auteur, titre ou tag :', response);
         this.articles = response;
       },
       (error) => {
-        console.error("An error occurred:", error);
+        console.error("Une erreur s'est produite :", error);
       }
     );
-  
-    this.articleTag = '';
+
+    this.searchQuery = '';
   }
-     onAuthorSearchChange(selectedAuthor: string) {
-    this.resetOtherFilters("author"); // Réinitialise les autres filtres sauf le filtre par auteur
-  
-    // Appelez le service pour récupérer les articles par auteur
+
+  onAuthorSearchChange(selectedAuthor: string) {
+    this.resetOtherFilters("author");
     this.articlesService.getArticlesByAuthor(selectedAuthor).subscribe(
       (articles: Article[]) => {
         this.articles = articles;
@@ -71,15 +72,18 @@ export class SearchComponent implements OnInit {
       }
     );
   }
-  
-  
+
+
   onTagSearchChange(selectedTag: string) {
-this.resetOtherFilters("tag");
-    console.log('Tag sélectionné :', this.selectedTag);
+    this.resetOtherFilters("tag");
+
 
     this.articlesService.getArticlesByTag(selectedTag).subscribe(
       (articles: Article[]) => {
         this.articles = articles;
+        console.log('Articles par tag :', this.articles);
+
+
       },
       (error) => {
         console.error("Une erreur s'est produite lors de la recherche d'articles par tag :", error);
@@ -100,7 +104,7 @@ this.resetOtherFilters("tag");
 
   loadAuthors() {
     this.articlesService.getUniqueAuthors().subscribe(
-      (authors: string[]) => {  
+      (authors: string[]) => {
         this.authorOptions = authors;
       },
       (error) => {
@@ -108,17 +112,18 @@ this.resetOtherFilters("tag");
       }
     );
   }
-  
-loadTags() {
-  this.articlesService.getUniqueTags().subscribe(
-    (tags: string[]) => {
-      this.tagOptions = tags;
-    },
-    (error) => {
-      console.error("Une erreur s'est produite lors du chargement des tags :", error);
-    }
-  );
-}
+
+  loadTags() {
+    this.articlesService.getUniqueTags().subscribe(
+      (tags: string[]) => {
+        this.tagOptions = tags;
+      },
+      (error) => {
+        console.error("Une erreur s'est produite lors du chargement des tags :", error);
+      }
+    );
+  }
+
 
 
   onTitleSearchChange(selectedTitle: string) {
@@ -145,7 +150,7 @@ loadTags() {
       this.articleAuthor = "";
       this.selectedAuthor = [];
     }
-    
+
   }
 }
 

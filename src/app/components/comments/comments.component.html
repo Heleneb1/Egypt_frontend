@@ -1,0 +1,55 @@
+<div class="comment-container">
+    <h2>Commentaire</h2>
+    <form (ngSubmit)="addComment()">
+        <div class="form-group">
+            <label for="comment"></label>
+            <button (click)="onEditComment()" type="button" class="comment-btn">Laisser un commentaire...
+            </button>
+            <div *ngIf="editComment">
+                <div class="edit">
+                    <textarea id="comment" class="form-control" [(ngModel)]="commentContent" name="commentContent"
+                        required></textarea>
+                    <button type="submit" class="btn-add-comment">Ajouter le commentaire</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="comment-content" *ngIf="showComment && commentList && commentList.length > 0">
+            <h2>Commentaires déjà en ligne </h2>
+            <ul>
+                <li *ngFor="let comment of commentList">
+                    <div class="comment-card">
+                        <div class="comment-text">
+                            <h3>{{ comment.content }}</h3>
+                            <p *ngIf="comment?.creationDate">Date : {{ formatDate(comment.creationDate) }}
+                            </p>
+                        </div>
+                        <div class="avatar">
+                            <!-- <img [src]="avatarUrl" alt="Avatar de {{ comment.authorName }}" /> -->
+                            <img [src]="comment.authorAvatar || defaultAvatarUrl"
+                                alt="Avatar de l'auteur du commentaire" />
+                            <p> {{ comment.authorName }}</p>
+
+                            <div *ngIf="userConnected.id === comment.author">
+                                <button (click)="deleteMyComment(comment.id, comment.author)" type="button"
+                                    class="deleteMyComment">Supprimer
+                                    le commentaire</button>
+                                <!-- <img [src]="comment.authorAvatar" alt="Avatar de {{ comment.authorName }}" />
+                            <p> {{ comment.authorName }}</p> -->
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="comment-button">
+
+
+
+            <button (click)="onComment()" type="button" class="comment-btn">Afficher les commentaires</button>
+        </div>
+    </form>
+
+
+
+</div>

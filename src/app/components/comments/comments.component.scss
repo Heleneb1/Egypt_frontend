@@ -1,0 +1,152 @@
+.comment-container {
+    width: 82vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    h2 {
+        color: var(--sun);
+        font-family: var(--title);
+    }
+
+    form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+#comment {
+    height: 8rem;
+    width: 95%;
+    font-size: 1.1rem;
+    font-family: var(--text);
+    color: var(--blue);
+}
+
+.comment-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    ul {
+        margin: 0;
+        padding: 0;
+    }
+
+    ul li {
+        list-style: none;
+    }
+}
+
+.comment-card {
+    // width: 80vw;
+    height: max-content;
+    border-radius: 1.5rem;
+    border: 1px solid var(--sun);
+    padding: 2rem;
+    display: flex;
+    margin: 1rem;
+    list-style: none;
+    font-family: var(--text);
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+
+    img {
+        height: 5rem;
+        width: 5rem;
+        border-radius: 100%;
+        border: 1px solid var(--sun);
+        margin: 1rem;
+    }
+
+    .comment-text {
+        margin: 1rem;
+    }
+}
+
+.avatar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 7rem;
+    text-align: center;
+}
+
+.comment-button {
+    margin: 3rem;
+}
+
+.form-group {
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.edit {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+
+}
+
+.comment-btn {
+    cursor: pointer;
+    display: flex;
+    border-radius: 3rem;
+    font-size: 1.3rem;
+    height: 2rem;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem;
+    border: 2px solid var(--sun);
+    font-family: var(--title);
+    font-weight: bolder;
+    width: 18rem;
+}
+
+.btn-add-comment {
+    background-color: var(--sun);
+    font-family: var(--title);
+    text-shadow: 2px 1px 0px #152131;
+    font-size: 1.3rem;
+    color: var(--white);
+    width: 15rem;
+    height: 2rem;
+    border: none;
+    margin: 1.1rem;
+    border-radius: 4rem;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.deleteMyComment {
+    border-radius: 1.5rem;
+    background-color: #fc9900;
+    color: white;
+}
+
+@media screen and (min-width: 768px) {
+    #comment {
+
+        width: 80vw;
+
+    }
+
+    .comment-container {
+        width: 90vw;
+    }
+
+    .comment-card {
+        width: 80vw;
+    }
+
+}

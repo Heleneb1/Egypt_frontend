@@ -1,0 +1,141 @@
+<div class="all">
+    <div class="quiz">
+        <div class="button-container">
+            <button (click)="getQuiz()" type="button" class="button">Quiz</button>
+        </div>
+        <div *ngIf="quizzesOpen">
+            <h2>Liste des quiz</h2>
+            <ul>
+                <li *ngFor="let quiz of quizzes">
+                    <h3>{{ quiz.title }}</h3>
+
+                    <p>Selectionner ce Quiz pour ajouter les questions par catégorie</p>
+                    <input type="radio" [(ngModel)]="selectedQuiz" [value]="quiz.id" (change)="selectQuiz(quiz.id)">
+                    {{ quiz.title }}
+                    <p>Difficulté : {{ quiz.difficulty }}</p>
+                    <p>Date de création : {{ quiz.creationDate }}</p>
+                    <img [src]="quiz.picture ? quiz.picture : defaultImage" alt="Image du quiz">
+
+                    <div *ngIf="quiz.badgeContent">
+                        <p>Badge :</p>
+                        <h2>{{ quiz.badgeContent.name }}</h2>
+                        <p>{{ quiz.badgeContent.description }}</p>
+                        <img [src]="quiz.badgeContent.image" alt="{{ quiz.badgeContent.name }}">
+                    </div>
+                    <div class="update-quiz" *ngIf="editingQuiz">
+                        <form [formGroup]="updateQuizForm"
+                            (ngSubmit)="updateQuiz(editingQuiz.id, updateQuizForm.value)">
+                            <label for="editedTitle">Titre :</label>
+                            <input type="text" id="editedTitle" formControlName="title">
+
+                            <label for="editedDifficulty">Difficulté :</label>
+                            <input type="text" id="editedDifficulty" formControlName="difficulty">
+
+                            <label for="editedContent">Sujet :</label>
+                            <input type="text" id="editedContent" formControlName="content">
+
+                            <label for="editedImage">Image :</label>
+                            <input type="text" id="editedImage" formControlName="picture"
+                                placeholder="Entrez le lien de l'image">
+
+                            <label for="editedIsArchived">Archiver :</label>
+                            <input type="radio" id="editedIsArchivedYes" name="editedIsArchived" [value]="true"
+                                formControlName="isArchived"> Oui
+                            <input type="radio" id="editedIsArchivedNo" name="editedIsArchived" [value]="false"
+                                formControlName="isArchived">Non
+
+                            <div class="cancel-update">
+                                <button (click)="cancelEdit()">Annuler</button>
+                                <button type="submit">Mettre à jour</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="delete-button">
+                        <button (click)="deleteQuiz(quiz.id)">Supprimer le quiz</button>
+                    </div>
+                    <h4>Questions :</h4>
+                    <ul>
+
+                        <li *ngFor="let questionId of quiz.questionsIds">
+                            <div class="delete-question">
+                                <button (click)="getQuestionContentForQuiz(questionId)" type="button">Afficher la
+                                    question</button>
+                                <div *ngIf="questionId">
+
+                                    <div class="delete-button">
+                                        <button (click)="deleteQuestionFromQuiz(questionId)">Supprimer la
+                                            question</button>
+                                    </div>
+                                </div>
+
+                                <div *ngIf="questions[questionId]">
+                                    <p>ID: {{ questions[questionId].id }}</p>
+                                    <p>Content: {{ questions[questionId].content }}</p>
+                                    <p>Option 1: {{ questions[questionId].option_1 }}</p>
+                                    <p>Option 2: {{ questions[questionId].option_2 }}</p>
+                                    <p>Option 3: {{ questions[questionId].option_3 }}</p>
+                                    <p>Answer 1: {{ questions[questionId].answer1 }}</p>
+                                    <p>Answer 2: {{ questions[questionId].answer2 }}</p>
+                                </div>
+                            </div>
+
+                        </li>
+                    </ul>
+                    <div class="archived">
+                        <p>État: {{ quiz.archive ? 'Archivé' : 'Non archivé' }}</p>
+                    </div>
+
+                    <div class="arviched">
+                        <input type="radio" id="archiveYes" name="archive_{{quiz.id}}" [(ngModel)]="quiz.isArchived"
+                            [value]="true"> Oui
+                        <input type="radio" id="archiveNo" name="archive_{{quiz.id}}" [(ngModel)]="quiz.isArchived"
+                            [value]="false"> Non
+                        <div class="cancel-update">
+                            <button (click)="archivedQuiz(quiz)">Archiver</button>
+                            <button (click)="editQuiz(quiz)" type="button">Modifier</button>
+
+                        </div>
+                    </div>
+
+
+                </li>
+            </ul>
+        </div>
+        <div class="create-quiz">
+            <div class="button">
+                <div class="button-create">
+                    <button (click)="createQuiz()" type="button" class="button">Créer un quiz</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="quiz-form" *ngIf="showQuizForm">
+        <h2>Créer un nouveau quiz</h2>
+
+        <label for="title">Titre :</label>
+        <input type="text" id="title" [(ngModel)]="newTitle">
+
+        <label for="difficulty">Difficulté :</label>
+        <input type="text" id="difficulty" [(ngModel)]="newDifficulty">
+        <label for="content">Sujet :</label>
+        <input type="text" id="difficulty" [(ngModel)]="newContent">
+        <label for="image">Image:</label>
+        <input type="text" id="image" name="picture" [(ngModel)]="newPicture" placeholder="Entrez le lien de l'image" />
+
+        <label for="archive">Archiver :</label>
+        <input type="radio" id="archiveYes" name="archive" [(ngModel)]="isArchived" [value]="true"> Oui
+        <input type="radio" id="archiveNo" name="archive" [(ngModel)]="isArchived" [value]="false"> Non
+
+        <div class="create-button">
+            <div class="button-add">
+
+                <button (click)="onCreateQuiz()" type="button" class="add-button">Ajouter le quiz</button>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="add-button">
+        <button (click)="addBadgeToQuiz(quizId, badgeId)" type="button" class="button">Ajouter le badge au
+            quiz</button>
+
+    </div> -->

@@ -1,7 +1,7 @@
 .star-rating {
     .star {
-        font-size: 24px;
-        color: rgb(243, 205, 17);
+        font-size: 1.3rem;
+        color: var(--sun);
         cursor: pointer;
         transition: color 0.2s ease-in-out;
 
@@ -10,7 +10,34 @@
             position: absolute;
             width: 50%;
             overflow: hidden;
-            color: rgb(243, 205, 17);
+            color: var(--sun);
         }
     }
+
+
+}
+
+.rating-info p {
+    font-size: 1rem;
+    font-family: var(--text);
+    background-color: var(--sun);
+    color: var(--white);
+    font-weight: bold;
+    margin-left: 1rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+
+
+}
+
+#thanks {
+    /* Styles spécifiques pour l'élément h2 avec la classe "thanks" */
+    text-align: center;
+    font-family: var(--title);
+    color: var(--white);
+    background-color: var(--blue);
+    border-radius: 0.5rem;
+    margin-left: 1rem;
+    padding: 1rem;
+    /* Autres styles spécifiques */
 }

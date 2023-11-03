@@ -18,12 +18,14 @@ export class RegisterComponent {
   formSubmitted = false;
   confirmationPassword = '';
   user = new registerUser();
+  showPassword = false;
 
-  constructor(private http: HttpClient) {}
+  constructor (private http: HttpClient) { }
 
   verifyPassword() {
     this.passwordMatch = this.user.password === this.confirmationPassword;
   }
+
 
   verifyPasswordStrength() {
     if (this.user.password !== undefined) {
@@ -80,8 +82,14 @@ export class RegisterComponent {
             submitted: this.formSubmitted,
           });
         }
+
       });
+
   }
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
+
 }
 
 export class registerUser {
@@ -90,7 +98,7 @@ export class registerUser {
   email: string;
   password: string;
 
-  constructor() {
+  constructor () {
     this.lastname = '';
     this.firstname = '';
     this.email = '';

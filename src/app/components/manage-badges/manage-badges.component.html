@@ -1,0 +1,62 @@
+<div class="badge">
+    <div class="main-button">
+        <button (click)="getBadge()" type="button" class="button-badges">Badges</button>
+    </div>
+    <div *ngIf="badgesOpen">
+        <h2>Liste des badges</h2>
+        <ul>
+            <li *ngFor="let badge of badges">
+                <h3>{{ badge.name }}</h3>
+                <p>Description : {{ badge.description }}</p>
+                <img [src]="badge.image" alt="badge">
+                <div class="button-badge">
+                    <input type="radio" (click)="selectBadge(badge.id)" class="input">Sélectionner le badge
+
+                    <button class="delete-button" (click)="deleteBadge(badge.id)">Supprimer ce
+                        badge</button>
+                </div>
+                <!-- À l'intérieur de la boucle *ngFor -->
+                <div class="add-button">
+                    <button (click)="addBadgeToQuiz(selectedQuiz, badge.id)" type="button" class="button">Ajouter le
+                        badge au quiz</button>
+                </div>
+
+                <!-- <div class="add-button">
+                    <button (click)="addBadgeToQuiz(quizId, badgeId)" type="button" class="button">Ajouter le badge au
+                        quiz</button>
+
+                </div> -->
+            </li>
+        </ul>
+
+    </div>
+    <div class="create-badge">
+        <button (click)="createBadge()" type="button" class="button">Créer un badge</button>
+    </div>
+    <div *ngIf="showBadgeForm">
+        <h2>Créer un nouveau badge</h2>
+        <label for="name">Nom :</label>
+        <input type="text" id="name" [(ngModel)]="name">
+
+        <label for="description">Description :</label>
+        <input type="text" id="description" [(ngModel)]="description">
+
+        <label for="image">Image :</label>
+        <input type="text" id="image" [(ngModel)]="image">
+
+        <div class="create-button">
+            <button (click)="onCreateBadge()" type="button" class="button">Ajouter le badge</button>
+        </div>
+
+    </div>
+    <!-- <div class="add-button">
+        <button (click)="addBadgeToQuiz(quizIdForBadge, badgeId)" type="button" class="button">Ajouter le
+            badge au
+            quiz</button>
+
+    </div> -->
+    <!-- À l'intérieur de la boucle *ngFor -->
+    <!-- <div class="add-button">
+        <button (click)="addBadgeToQuiz(quizId, badgeId)" type="button" class="button">Ajouter le badge au
+            quiz</button>
+    </div> -->

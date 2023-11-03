@@ -1,24 +1,26 @@
-<div *ngIf="filteredArticle.length > 0" class="result-title">
-  <h2 class="title">Résultats</h2>
-</div>
-
-<div class="result-card">
-  <div class="card" *ngFor="let article of filteredArticle">
-
-    <div class="result-container">
-      <h3 class="result-name">{{ article?.title }}</h3>
-      <p class="result-tag">{{ article?.tag }}</p>
-      <p class="result-content">{{ article?.content }}</p>
-      <div class="result-image" (click)="toggleDetails(article)">
-        <button class="show-details-button" (click)=" goToArticleDetails()">Détails</button>
-      </div>
-      <!-- <div class="details" *ngIf="showDetails && selectedArticle === article">
-      </div> -->
-    </div>
-
-    <!-- <img class="result-image" [src]="'/assets/images/' + article?.image " alt="{{ article?.title }}" /> -->
-    <img class="result-image" [src]="'/assets/images/Gizeh.jpg' " alt="{{ article?.title }}" />
-
-    <!-- Afficher les détails lorsque l'article est sélectionné -->
+<div class="result-all">
+  <div *ngIf="filteredArticle.length > 0" class="result-title">
+    <h2 class="title">Résultats</h2>
   </div>
-</div>
+
+  <div class="result-card">
+    <div class="card" *ngFor="let article of filteredArticle">
+      <div class="result-container">
+        <h3 class="result-name">{{ article?.title }}</h3>
+        <p class="result-tag">{{ article?.tag }}</p>
+
+        <div class="result-image" (click)="toggleDetails(article)">
+          <button class="show-details-button" (click)="goToArticleDetails()">
+            Détails
+          </button>
+        </div>
+        <div class="result-rating">
+          <app-star-rating [totalStars]="5" [rating]="article.ratings"></app-star-rating>
+        </div>
+      </div>
+      <div class="result-image">
+        <img [src]="article.image ? article.image : defaultImage" alt="Image du quiz" class="rating" />
+        <!-- <img [src]="article.image ? article.image : defaultImage" alt="Image du quiz" class="rating" /> -->
+      </div>
+    </div>
+  </div>

@@ -10,10 +10,9 @@ export class BadgesService {
 
 
   private badgeDataUrl = environment.apiUrl + '/badges';
-  // private questionDataUrl = environment.apiUrl + '/badges';
 
   questionTitles: any = [];
-  constructor(private httpClient: HttpClient) { }
+  constructor (private httpClient: HttpClient) { }
 
   getBadges() {
     return this.httpClient.get(this.badgeDataUrl);
@@ -22,20 +21,6 @@ export class BadgesService {
   getBadgesById(badgeId: string) {
     return this.httpClient.get(`${this.badgeDataUrl}/${badgeId}`);
   }
-  // getBadgesQuestions(badgeId: string): Observable<any[]> {
-  //   const url = `${this.badgeDataUrl}/${badgeId}/questions`;
-  //   return this.httpClient.get<any[]>(url);
-  // }
-
-  // getQuestionByTitle(questionId: string): Observable<string> {
-  //   console.log(questionId);
-
-  //   return this.getQuestionById(questionId).pipe(map((question: any) => `${question.question_title} `));
-
-  // }
-  // getQuestionById(questionId: string) {
-  //   return this.httpClient.get(`${this.questionDataUrl}/${questionId}`);
-  // }
   getBadgeContent(badgeId: string): Observable<any> {
     return this.getBadgesById(badgeId).pipe(
       map((badge: any) => {
@@ -47,6 +32,9 @@ export class BadgesService {
         };
       })
     );
+  }
+  deleteBadge(id: string) {
+    return this.httpClient.delete(`${this.badgeDataUrl}/${id}`);
   }
   // addRating(promotionId: string, userRating: number, authorId: string) {
   //     const url = environment.apiUrl + `/promotions/${promotionId}/users/${authorId}`;
@@ -61,9 +49,5 @@ export class BadgesService {
   //     );
   //   }
 
-  // insertBadges(data: any) {
-  //     this.badgeDataUrl + '/Badges';
-  //     return this.httpClient.post(this.badgeDataUrl + '/Badgeszes', data);
-  // }
 
 }

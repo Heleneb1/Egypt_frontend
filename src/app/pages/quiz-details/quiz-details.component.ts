@@ -8,6 +8,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { BadgesService } from 'src/app/services/badges.service';
 import { QuizService } from 'src/app/services/quiz.service';
 import { UserService } from 'src/app/services/user.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-quiz-details',
@@ -34,16 +35,16 @@ export class QuizDetailsComponent {
   badgeId: string = '';
   userConnected: any;
   badges: any[] = [];
+  isLoaded = false;
 
-
-
-  constructor(
+  constructor (
     private quizService: QuizService,
     private articlesService: ArticlesService,
     private userService: UserService,
     private route: ActivatedRoute,
     private router: Router,
     private http: HttpClient,
+    private toastr: ToastrService,
     private datePipe: DatePipe,
     private sanitizer: DomSanitizer,
     private auth: AuthService,
@@ -65,6 +66,9 @@ export class QuizDetailsComponent {
   }
   ngOnInit() {
 
+    setTimeout(() => {
+      this.isLoaded = true;
+    }, 2000);
     this.route.paramMap.subscribe((params) => {
       this.quizId = params.get('id');
       this.quizService.getQuizById(this.quizId).subscribe((quiz) => {
@@ -109,6 +113,7 @@ export class QuizDetailsComponent {
 
     });
   }
+
   onOptionSelected(questionId: string, event: Event) {
     //verification de event.target nonnull et a une propriété value
     if (event.target && 'value' in event.target) {
@@ -125,16 +130,26 @@ export class QuizDetailsComponent {
 
 
 
+  saveVote() {
+
+    console.log(this.currentRating);
+    console.log(this.quizId);
+
+
+    if (this.currentRating >= 0 && this.currentRating <= 5) {
+      this.quizService.addRating(this.quizId, this.currentRating);
+      this.isVoteModified = false;
+      this.quiz.rating = this.currentRating;
+      this.toastr.success(`Vous avez évalué ce Quiz à ${this.currentRating} étoiles`);
+      // alert(`Vous avez évalué ce Quiz à ${this.currentRating} étoiles`);
+    }
+  }
   onRatingChanged(rating: number) {
     this.currentRating = rating;
     this.isVoteModified = true;
 
   }
 
-  saveRating(rating: number) {
-    this.quizService.addRating(this.quizId, rating);
-    this.isVoteModified = false;
-  }
 
   openModal(): void {
     this.showModal = true;
@@ -154,26 +169,21 @@ export class QuizDetailsComponent {
 
       if (userAnswer === question.answer1 || userAnswer === question.answer2) {
         console.log("Bonne réponse", question.answer1, question.answer2);
-
         score++;
       }
     }
 
     console.log("Score:", score);
-
-
     let percentage = (score / this.questionsMap.length) * 100;
     console.log("Pourcentage de bonnes réponses :", percentage + "%");
-
-
     if (percentage >= 80) {
-
-      alert("Félicitations ! Vous avez obtenu un score supérieur à 80%. " + percentage + "% de bonnes réponses.");
+      this.toastr.success(`Félicitations ! Vous avez obtenu un score supérieur à 80%. ${percentage}% de bonnes réponses.`);
+      // alert("Félicitations ! Vous avez obtenu un score supérieur à 80%. " + percentage + "% de bonnes réponses.");
       this.showModal = true;
     } else {
-      alert("Continuez à travailler pour améliorer votre score. " + percentage + "% de bonnes réponses.");
+      this.toastr.warning(`Continuez à travailler pour améliorer votre score. ${percentage}% de bonnes réponses.`);
+      // alert("Continuez à travailler pour améliorer votre score. " + percentage + "% de bonnes réponses.");
     }
-
   }
 
   answerQuestion(): void {
@@ -187,18 +197,13 @@ export class QuizDetailsComponent {
     console.log("Nombre de questions répondues :", this.numberOfAnsweredQuestions);
     console.log("Progression de l'utilisateur :", this.progress);
     console.log("Nombre total de questions :", this.totalNumberOfQuestions);
-
-
-
     let progressBar = document.getElementById('progressBar') as HTMLElement;
     progressBar.style.width = this.progress + '%';
-
-
   }
+
   awardBadgeToUser() {
     this.userService.awardBadgeToCurrentUser(this.userId, this.badgeId).subscribe();
     console.log("badge aprés", this.badgeId);
-
     this.closeModal();
   }
 

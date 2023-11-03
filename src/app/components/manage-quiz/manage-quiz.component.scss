@@ -1,0 +1,263 @@
+.all {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1)
+}
+
+.quiz {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+
+    .button {
+
+        background-color: var(--blue);
+        border-radius: 2rem;
+        font-size: 1.5rem;
+        width: 16rem;
+        height: 3rem;
+        color: var(--white);
+        display: flex;
+        justify-content: center;
+        cursor: pointer;
+        align-items: center;
+    }
+}
+
+.quiz-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    // align-items: center;
+    // width: 80%;
+}
+
+.button-create {
+    display: flex;
+    justify-content: center;
+
+    .button {
+        width: 10rem;
+        background-color: var(--blue);
+        border-radius: 2rem;
+        height: 2rem;
+        color: var(--white);
+        display: flex;
+        justify-content: center;
+        cursor: pointer;
+        align-items: center;
+    }
+}
+
+.quizzesOpen {
+    margin-top: 20px;
+}
+
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+.cancel-update,
+.delete-question {
+    // display: flex;
+    // justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    flex-direction: column;
+
+    button {
+        width: 10rem;
+        background-color: var(--blue);
+        border-radius: 2rem;
+        height: 2rem;
+        color: var(--white);
+        display: flex;
+        justify-content: center;
+        cursor: pointer;
+        align-items: center;
+    }
+}
+
+.button-add {
+    width: max-content;
+    margin: 2rem;
+    padding: 2rem;
+
+    .add-button {
+        width: 10rem;
+        background-color: var(--blue);
+        border-radius: 2rem;
+        height: 2rem;
+        color: var(--white);
+        display: flex;
+        justify-content: center;
+        cursor: pointer;
+        align-items: center;
+    }
+}
+
+.delete-button {
+    button {
+        width: 10rem;
+        background-color: var(--sun);
+        border-radius: 2rem;
+        height: 2rem;
+        color: var(--white);
+        display: flex;
+        justify-content: center;
+        cursor: pointer;
+        align-items: center;
+    }
+}
+
+input[type="radio"] {
+    margin-right: 5px;
+}
+
+.questions-container {
+    margin-top: 20px;
+}
+
+h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.question-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.question-details {
+    margin-top: 10px;
+}
+
+.badge {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.badge-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.badgesOpen {
+    margin-top: 20px;
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+img {
+    height: 8rem;
+    width: 8rem;
+    object-fit: cover;
+    margin: 1rem;
+}
+
+.select-badge-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.create-badge-form {
+    margin-top: 20px;
+}
+
+.create-badge-form label {
+    display: block;
+    margin-top: 10px;
+}
+
+.create-badge-form input[type="text"] {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.create-badge-button {
+    margin-top: 20px;
+}
+
+.info-message {
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+@media screen and (min-width: 768px) {
+
+    .cancel-update,
+    .delete-question {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+    }
+}

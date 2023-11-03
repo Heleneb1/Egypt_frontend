@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 import { QuizService } from 'src/app/services/quiz.service';
 
 @Component({
@@ -15,17 +16,20 @@ export class QuizViewComponent implements OnInit {
   quiz: any;
   quizId: any;
   defaultImage: string = 'assets/images/Gizeah.jpg';
+  isUserConnected: boolean = false;
 
-
-  constructor(private quizService: QuizService, private router: Router) { }
+  constructor (private quizService: QuizService, private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.getQuizzes();
+    this.authService.getUserConnected().subscribe((user: any) => {
+      this.isUserConnected = !!user;
+      if (this.isUserConnected) {
+        this.getQuizzes();
+      }
+    });
   }
 
   getQuizzes(): void {
-
-
     this.quizService.getQuizzes().subscribe((quizzes: any) => {
       this.quizzes = quizzes.filter((quiz: any) => quiz.archive !== true);
       console.log(this.quizzes);
@@ -37,31 +41,8 @@ export class QuizViewComponent implements OnInit {
     console.log(id);
     this.router.navigate(['/quiz', id]);
   }
-  // selectPromotionById(promoId: string): void {
-  //   this.selectedPromotionId = promoId;
-  // }
 
-  saveVote() {
-    if (this.currentRating >= 0 && this.currentRating <= 5) {
-      this.quizService.addRating(this.quizId, this.currentRating);
-      this.isVoteModified = false;
-      this.quiz.rating = this.currentRating;
-
-      alert(`Vous avez évalué cette promotion à ${this.currentRating} étoiles`);
-    }
-  }
-  // saveVote() {
-  //   if (this.currentRating >= 0 && this.currentRating <= 5) {
-  //     this.promotionsService.addRating(this.promotionId, this.currentRating, this.authorId);
-  //     this.isVoteModified = false;
-  //     this.promotion.rating = this.currentRating;
-
-  //     alert(`Vous avez évalué cette promotion à ${this.currentRating} étoiles`);
-  //   }
-  // }
-  onRatingChanged(rating: number) {
-    this.currentRating = rating;
-    this.isVoteModified = true;
-
+  showRating() {
+    this.currentRating = this.quiz.rating;
   }
 }

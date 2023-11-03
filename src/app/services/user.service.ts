@@ -1,12 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable, map, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+
   awardBadgeToCurrentUser(badgeId: any, userId: any) {
     return this.httpClient.put<any>(environment.apiUrl + `/users/${userId}/badges/${badgeId}`, {});
   }
@@ -16,7 +18,7 @@ export class UserService {
   }
   private userData = environment.apiUrl + '/users';
 
-  constructor(private httpClient: HttpClient) { }
+  constructor (private httpClient: HttpClient, private authService: AuthService) { }
 
   getUsers(): Observable<any> {
     return this.httpClient.get(this.userData);
@@ -28,6 +30,17 @@ export class UserService {
   }
   getUserName(userId: string): Observable<string> {
     return this.getUserById(userId).pipe(map((user: any) => `${user.firstname} ${user.lastname}`));
+  }
+  getUserAvatar(userId: string): Observable<string> {
+    return this.getUserById(userId).pipe(map((user: any) => `${user.avatar}`));
+  }
+
+  getUserAvatarForComment(userId: string): Observable<Blob> {
+    return this.httpClient.get(`${environment.apiUrl}/users/avatar/user/${userId}`, { responseType: 'blob' });
+  }
+
+  getUserAvatarComment(userId: string): Observable<string> {
+    return this.getUserById(userId).pipe(map((user: any) => `${user.favatar}`));
   }
   updateUserById(userId: string, body: { promotionId: any } | undefined) {
     const url = environment.apiUrl + `/users/${userId}`;
@@ -54,5 +67,9 @@ export class UserService {
 
     return this.httpClient.put(url, updatedBiography);
   }
+  deleteUsers(id: any) {
+    return this.httpClient.delete(environment.apiUrl + `/users/${id}`);
+  }
+
 
 }

@@ -1,0 +1,27 @@
+.admin {
+    margin: 1rem;
+    padding: 2rem 0;
+}
+
+.addMore {
+    button {
+        display: flex;
+        border: none;
+        height: 2rem;
+        border-radius: 1.5em;
+        padding: 1rem;
+        margin: 1rem;
+        color: var(--white);
+        background-color: var(--sun);
+        align-items: center;
+        justify-content: center;
+
+    }
+
+    button:active,
+    /* Appliquer la mise à l'échelle lors du clic */
+    button:focus {
+        transform: scale(1.1);
+        /* Mettre à l'échelle le bouton au clic */
+    }
+}
