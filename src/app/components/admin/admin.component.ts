@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { QuizService } from 'src/app/services/quiz.service';
 
 @Component({
@@ -14,7 +15,7 @@ export class AdminComponent implements OnInit {
   selectedCategory: string = '';
 
   constructor (
-    private quizService: QuizService,
+    private quizService: QuizService, private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -29,12 +30,12 @@ export class AdminComponent implements OnInit {
 
 
   // Ajoute un badge au quiz sélectionné
-  addBadgeToQuiz() {
+  addBadgeToQuiz(selectedQuiz: any, selectedBadge: any) {
     if (this.selectedQuiz && this.selectedBadge) {
-      console.log("quizId", this.selectedQuiz.id);
-      console.log("badgeId", this.selectedBadge.id);
+      console.log("quizId", this.selectedQuiz);
+      console.log("badgeId", this.selectedBadge);
       this.quizService.addBadgeToQuiz(this.selectedQuiz.id, this.selectedBadge.id).subscribe((response: any) => {
-        console.log("Badge ajouté au quiz avec succès", response);
+        this.toastr.success('Badge ajouté au quiz', 'Ajout');
       });
     }
   }
@@ -57,7 +58,7 @@ export class AdminComponent implements OnInit {
       console.log("category", selectedCategory);
 
       this.quizService.addQuestionByCategoryToQuiz(this.selectedQuiz.id, selectedCategory).subscribe((response: any) => {
-        console.log("Questions successfully added to quiz", response);
+        this.toastr.success('Questions ajoutées au quiz', 'Ajout');
       });
     }
   }

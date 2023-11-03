@@ -76,24 +76,17 @@ export class ManageQuizComponent {
       this.toastr.success('Etat du Quiz modifié ' + this.existingQuiz.title + ' : ' + (this.existingQuiz.archive ? 'Archivé' : 'Non archivé'), 'Modification');
     });
   }
-  // selectQuiz(quizId: string) {
-  //   // this.isSelectedQuiz = !this.isSelectedQuiz;
-  //   if (this.isSelectedQuiz) {
+  selectQuiz(quizId: string) {
+    this.isSelectedQuiz = !this.isSelectedQuiz;
+    if (this.isSelectedQuiz) {
 
-  //     this.quizService.getQuizById(quizId).subscribe((quiz: any) => {
-  //       this.quiz.id = quizId;
-  //       console.log("id", quizId);
-  //       // this.selectQuizEmit(quiz);
-  //     });
-  //   }
-  // }
-
-
-  selectQuiz(id: string) {
-    console.log('Quiz sélectionné : ', id);
+      this.quizService.getQuizById(quizId).subscribe((quiz: any) => {
+        this.quiz = quiz;
+        console.log("id", quizId);
+        this.selectQuizEmit(quiz);
+      });
+    }
   }
-
-
   getQuestionContentForQuiz(questionId: string): void {
     this.quizService.getQuestionContent(questionId).subscribe(
       (question: any) => {

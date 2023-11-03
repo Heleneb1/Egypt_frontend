@@ -1,18 +1,19 @@
 <div class="admin">
     <app-manage-users></app-manage-users>
 
-    <div *ngIf="selectedBadge && selectedQuiz">
-        <button (click)="addBadgeToQuiz()" class="button">Ajouter le badge au quiz</button>
+    <div class="addMore" *ngIf="selectedBadge && selectedQuiz">
+        <button (click)="addBadgeToQuiz(selectedBadge, selectedQuiz)" class="button">Ajouter le badge au quiz</button>
     </div>
     <app-manage-article></app-manage-article>
+    <div class="addMore" *ngIf="selectedQuiz && selectedQuestions">
+        <button (click)="addSelectedQuestionsToQuiz(selectedCategory)">Ajouter les questions sélectionnées au
+            quiz</button>
+    </div>
     <app-manage-question (questionsSelected)="onQuestionsSelected($event)"
         (categorySelected)="onCategorySelected($event)"></app-manage-question>
 
     <app-manage-quiz (quizSelected)="selectedQuiz = $event"></app-manage-quiz>
-    <div *ngIf="selectedQuiz && selectedQuestions">
-        <button (click)="addSelectedQuestionsToQuiz(selectedCategory)">Ajouter les questions sélectionnées au
-            quiz</button>
-    </div>
+
     <app-manage-badges (badgeSelected)="selectedBadge = $event"></app-manage-badges>
     <app-scroll-to-top></app-scroll-to-top>
 </div>

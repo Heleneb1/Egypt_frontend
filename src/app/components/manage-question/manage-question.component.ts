@@ -99,7 +99,8 @@ export class ManageQuestionComponent implements OnInit {
 
 
       this.quizService.createQuestion(newQuestion).subscribe((response: any) => {
-        this.showQuestionForm = false;
+        // this.showQuestionForm = false;
+        this.createQuestion();
         this.toastr.success('Question ajoutée', 'Ajout');
 
       });
