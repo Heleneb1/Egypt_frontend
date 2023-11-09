@@ -5,6 +5,11 @@
         </div>
         <div *ngIf="quizzesOpen">
             <h2>Liste des quiz</h2>
+            <div>
+                <label for="searchInput">Rechercher un quiz par titre :</label>
+                <input type="text" id="searchInput" [(ngModel)]="searchTitle">
+                <button (click)="searchQuiz()">Rechercher</button>
+            </div>
             <ul>
                 <li *ngFor="let quiz of quizzes">
                     <h3>{{ quiz.title }}</h3>
@@ -53,8 +58,10 @@
                     <div class="delete-button">
                         <button (click)="deleteQuiz(quiz.id)">Supprimer le quiz</button>
                     </div>
+                    <button (click)="seeQuestionsOfQuiz()">Afficher les questions du quiz</button>
+
                     <h4>Questions :</h4>
-                    <ul>
+                    <ul *ngIf="showQuestions">
 
                         <li *ngFor="let questionId of quiz.questionsIds">
                             <div class="delete-question">

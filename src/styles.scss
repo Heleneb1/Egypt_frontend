@@ -12,6 +12,12 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  // cursor: url('../src/assets/images/Ankh-Horus-1.svg'), auto;
+}
+
+svg {
+  fill: var(--white);
+  cursor: pointer;
 }
 
 h1,

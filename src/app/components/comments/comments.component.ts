@@ -27,6 +27,7 @@ export class CommentsComponent implements OnInit {
   userConnected: any;
   articleId!: any;
   commentList: Comment[] = [];
+  commentsOnLine: Comment[] = [];
   commentContent: string = '';
   showComment: boolean = false;
   editComment: boolean = false;
@@ -34,6 +35,7 @@ export class CommentsComponent implements OnInit {
   isEditingBiography = false;
   objectURL: any;
   user: any = [];
+  isArchived: boolean = true;
 
   constructor (
     private authService: AuthService,
@@ -45,8 +47,9 @@ export class CommentsComponent implements OnInit {
     private sanitizer: DomSanitizer
   ) {
     this.userConnected = this.authService.getUserConnected();
-  }
 
+  }
+  //TODO mettre le commentaire en archive à sa création
   formatDate(date: Date | null): string {
     if (date === null || date === undefined) {
       return '';
@@ -67,7 +70,6 @@ export class CommentsComponent implements OnInit {
 
       this.commentsService.getCommentsByArticleId(this.articleCommentId).subscribe((comments: Comment[]) => {
         this.commentList = comments;
-        // console.log('Comment List:', this.commentList);
 
         this.commentList.forEach((comment: Comment) => {
           this.userService.getUserById(comment.author).subscribe((author: User) => {
@@ -77,17 +79,20 @@ export class CommentsComponent implements OnInit {
             })
           });
         });
+        this.commentsOnLine = this.commentList.filter((comment: Comment) => comment.archive !== true);
+        console.log(this.commentsOnLine);
 
-        this.commentList.forEach((comment: Comment) => {
+
+        this.commentsOnLine.forEach((comment: Comment) => {
           this.userService.getUserAvatarForComment(comment.author).subscribe((avatarBlob: Blob) => {
             const avatarUrl = URL.createObjectURL(avatarBlob);
             comment.authorAvatar = avatarUrl;
-            // console.log('Avatar URL for author', comment.author, ':', avatarUrl);
           });
         });
       });
     });
   }
+
 
 
 
@@ -104,22 +109,26 @@ export class CommentsComponent implements OnInit {
       }
 
       const url = environment.apiUrl + `/comments/${authorCommentId}/articles/${this.articleCommentId}/add-comment`;
-      this.httpClient.put(url, {
+      const data = {
         content: this.commentContent,
         user: authorCommentId,
-        article: this.articleCommentId
-      }).subscribe(
-        (response) => {
+        article: this.articleCommentId,
+        archive: this.isArchived,
+      };
+      console.log(data);
+
+      this.httpClient.put(url, data).subscribe(
+        (response: any) => {
           this.ngOnInit();
           this.commentContent = '';
-          this.toastr.success('Commentaire ajouté avec succès.');
+          this.toastr.success('Commentaire ajouté avec succès, il sera visible après validation de notre Scribe.');
           this.editComment = false;
         },
-        (error) => {
+        (error: any) => {
           console.error('Failed to add comment to article:', error);
         }
       );
-    };
+    }
   }
   deleteMyComment(commentId: string, authorId: string) {
     if (this.userConnected.id === authorId) {
@@ -137,8 +146,12 @@ export class CommentsComponent implements OnInit {
     }
   }
   onComment() {
-
-    this.commentList
-    this.showComment = !this.showComment;
+    if (this.commentsOnLine.length > 0) {
+      this.showComment = !this.showComment;
+    } else {
+      const message = 'Il n\'y a pas encore de commentaire pour cet article.';
+      this.toastr.info(message);
+    }
   }
+
 }

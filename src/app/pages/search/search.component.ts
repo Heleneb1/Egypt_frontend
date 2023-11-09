@@ -46,8 +46,8 @@ export class SearchComponent implements OnInit {
 
     this.articlesService.getArticlesByAuthorTitleTag(
       this.searchQuery,
-      this.searchQuery,
-      this.searchQuery
+      // this.searchQuery,
+      // this.searchQuery
     ).subscribe(
       (response: Article[]) => {
         console.log('Articles par auteur, titre ou tag :', response);

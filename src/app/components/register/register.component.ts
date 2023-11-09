@@ -1,6 +1,15 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { passwordValidator } from '../password-validators';
+
+export interface RegisterUser {
+  lastname: string;
+  firstname: string;
+  email: string;
+  password: string;
+}
 
 @Component({
   selector: 'app-register',
@@ -8,46 +17,38 @@ import { environment } from 'src/environments/environment.development';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent {
-  @Output() registrationStatus = new EventEmitter<{
-    success: boolean;
-    submitted: boolean;
-  }>();
+  @Output() registrationStatus = new EventEmitter<{ success: boolean; submitted: boolean; }>();
+
   passwordMatch = true;
   passwordStrong = false;
   isEmailValid = false;
-  formSubmitted = false;
   confirmationPassword = '';
-  user = new registerUser();
+  formSubmitted = false;
   showPassword = false;
+  userForm: FormGroup;
 
-  constructor (private http: HttpClient) { }
-
-  verifyPassword() {
-    this.passwordMatch = this.user.password === this.confirmationPassword;
+  constructor (private http: HttpClient, private fb: FormBuilder) {
+    this.userForm = this.fb.group({
+      lastname: ['', Validators.required],
+      firstname: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, passwordValidator]],
+      confirmationPassword: ['']
+    });
   }
 
+  verifyPassword() {
+    this.passwordMatch = this.userForm.value.password === this.userForm.value.confirmationPassword;
+  }
 
   verifyPasswordStrength() {
-    if (this.user.password !== undefined) {
-      this.passwordStrong = this.user.password.length >= 8;
-    }
+    const password = this.userForm.value.password;
+    this.passwordStrong = password !== undefined && password.length >= 12;
   }
 
   onSubmit() {
     this.formSubmitted = true;
-    if (
-      this.passwordMatch &&
-      this.passwordStrong &&
-      this.isEmailValid &&
-      this.user.firstname !== undefined &&
-      this.user.lastname !== undefined &&
-      this.user.email !== undefined &&
-      this.user.password !== undefined &&
-      this.user.firstname !== '' &&
-      this.user.lastname !== '' &&
-      this.user.email !== '' &&
-      this.user.password !== ''
-    ) {
+    if (this.userForm.valid && this.passwordMatch && this.passwordStrong && this.isEmailValid) {
       this.registerUser();
     } else {
       this.registrationStatus.emit({
@@ -58,16 +59,23 @@ export class RegisterComponent {
   }
 
   checkEmail() {
-    if (this.user.email !== undefined) {
-      this.isEmailValid = !!this.user.email.match(
-        /^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/i
-      );
-    }
+    const email = this.userForm.value.email;
+    this.isEmailValid = email !== undefined && /^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/i.test(email);
   }
 
   registerUser() {
-    return this.http
-      .post(environment.apiUrl + '/api/auth/register', this.user, {
+
+    const user: RegisterUser = {
+      lastname: this.userForm.value.lastname,
+      firstname: this.userForm.value.firstname,
+      email: this.userForm.value.email,
+      password: this.userForm.value.password
+
+    };
+
+
+    this.http
+      .post(environment.apiUrl + '/api/auth/register', user, {
         observe: 'response',
       })
       .subscribe((response) => {
@@ -82,26 +90,10 @@ export class RegisterComponent {
             submitted: this.formSubmitted,
           });
         }
-
       });
-
   }
+
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
-  }
-
-}
-
-export class registerUser {
-  lastname: string;
-  firstname: string;
-  email: string;
-  password: string;
-
-  constructor () {
-    this.lastname = '';
-    this.firstname = '';
-    this.email = '';
-    this.password = '';
   }
 }
