@@ -1,0 +1,66 @@
+/* manage-comments.component.scss */
+
+.comment {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    .comment-details {
+
+        /* Add styles for comment details */
+        // Example:
+        p {
+            margin-bottom: 10px;
+        }
+    }
+
+    .archived {
+
+        /* Add styles for the archived section */
+        // Example:
+        p {
+            margin-bottom: 10px;
+        }
+
+        .archive-options {
+
+            /* Add styles for the archive options */
+            // Example:
+            input[type="radio"] {
+                margin-right: 5px;
+            }
+        }
+
+        .update-button {
+
+            /* Add styles for the update button section */
+            // Example:
+            button {
+                margin-top: 10px;
+            }
+        }
+    }
+}
+
+.archived-button {
+    /* Add styles for the button badge */
+    // Example:
+    width: 10rem;
+    border-radius: 2rem;
+    height: 2rem;
+    color: var(--white);
+    background-color: var(--blue);
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    align-items: center;
+}
+
+.delete-button {
+    /* Add styles for the delete button */
+    // Example:
+    background-color: var(--sun);
+}

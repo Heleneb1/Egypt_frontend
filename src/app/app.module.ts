@@ -27,6 +27,7 @@ import { ScrollToTopComponent } from './components/scroll-to-top/scroll-to-top.c
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { UserInfoComponent } from './components/user-info/user-info.component';
 import { NgcCookieConsentModule, NgcCookieConsentConfig } from 'ngx-cookieconsent';
+
 import { QuizViewComponent } from './pages/quiz-view/quiz-view.component';
 import { StarRatingComponent } from './components/star-rating/star-rating.component';
 import { QuizDetailsComponent } from './pages/quiz-details/quiz-details.component';

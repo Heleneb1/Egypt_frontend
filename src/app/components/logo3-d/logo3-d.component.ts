@@ -1,4 +1,4 @@
-import { Component, ElementRef, NgZone, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import * as THREE from 'three';
 
 @Component({
@@ -6,69 +6,101 @@ import * as THREE from 'three';
   templateUrl: './logo3-d.component.html',
   styleUrls: ['./logo3-d.component.scss']
 })
-export class Logo3DComponent implements OnInit {
-  @ViewChild('rendererContainer') rendererContainer!: ElementRef;
+export class Logo3DComponent implements OnInit, AfterViewInit {
 
-  private scene: THREE.Scene = new THREE.Scene();
-  private camera: THREE.PerspectiveCamera = new THREE.PerspectiveCamera();
-  private renderer: THREE.WebGLRenderer = new THREE.WebGLRenderer();
-  private pyramid: THREE.Mesh = new THREE.Mesh();
+  constructor () { }
 
-  constructor (private ngZone: NgZone) { }
-
-  ngOnInit() {
-    this.init();
-    this.animate();
+  ngOnInit(): void {
+    // Rien à faire dans ngOnInit, déplacez la logique dans ngAfterViewInit
   }
 
-  init() {
-    this.scene = new THREE.Scene();
-
-    this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    this.camera.position.z = 5;
-
-    this.renderer = new THREE.WebGLRenderer();
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
-
-    this.rendererContainer.nativeElement.appendChild(this.renderer.domElement);
-
-    this.createPyramid();
+  ngAfterViewInit(): void {
+    this.createLogo();
   }
 
-  createPyramid() {
-    const pyramidMaterial = new THREE.MeshStandardMaterial({
-      color: '#ffd700',
+  createLogo(): void {
+    // Récupère l'élément de canevas à partir de l'ID 'logo-canvas'
+    const canvas = document.getElementById('logo-canvas') as HTMLCanvasElement;
+
+    // Vérifie si le canevas est trouvé
+    if (!canvas) {
+      console.error("Canvas element not found.");
+      return;
+    }
+
+    // Initialise une nouvelle scène Three.js
+    const scene = new THREE.Scene();
+
+    // Définit les propriétés du matériau du logo
+    const material = new THREE.MeshStandardMaterial({
+      color: '#fc9900',
       metalness: 1,
       roughness: 0.2,
-      opacity: 1,
-      transparent: false,
+      opacity: 0.8,
+      transparent: true,
     });
 
-    const pyramidGeometry = new THREE.ConeGeometry(1, 1, 4);
+    // Augmentez l'intensité de la lumière ambiante, mais réduisez celle de la lumière ponctuelle
+    const ambientLight = new THREE.AmbientLight(0xffffff, 5000);
+    scene.add(ambientLight);
 
-    this.pyramid = new THREE.Mesh(pyramidGeometry, pyramidMaterial);
-    this.scene.add(this.pyramid);
-  }
+    const pointLight = new THREE.PointLight(0xffffff, 5000);
+    pointLight.position.set(3, 4, 1);  // Ajustez la position de la lumière ponctuelle
+    scene.add(pointLight);
 
-  // animate() {
-  //   this.ngZone.runOutsideAngular(() => {
-  //     requestAnimationFrame(() => this.animate());
-  //   });
+    // Crée une géométrie de cône et un maillage avec le matériau,
+    // puis ajoute le maillage à la scène
+    const pyramidGeometry = new THREE.ConeGeometry(2.7, 4, 5);//diametre, hauteur, nombre de faces
+    const pyramid = new THREE.Mesh(pyramidGeometry, material);
+    scene.add(pyramid);
 
-  //   // Ajoutez ici toute logique d'animation ou de mise à jour de la scène
+    // Définit les dimensions du canevas
+    const canvasSizes = {
+      width: 125, // ajustez la largeur selon vos besoins
+      height: 90, // ajustez la hauteur selon vos besoins
 
-  //   this.renderer.render(this.scene, this.camera);
-  // }
-  animate() {
-    this.ngZone.runOutsideAngular(() => {
-      requestAnimationFrame(() => this.animate());
+      background: '#152131', // ajustez la couleur d'arrière-plan selon vos besoins
+    };
+
+    // Initialise une caméra perspective et la place à une certaine distance
+    const camera = new THREE.PerspectiveCamera(
+      75,
+      canvasSizes.width / canvasSizes.height,
+      0.001,
+      1000
+    );
+    camera.position.z = 3;
+    scene.add(camera);
+
+    // Initialise le moteur de rendu Three.js et l'attache au canevas
+    const renderer = new THREE.WebGLRenderer({
+      canvas: canvas,
+    });
+    // Définit la couleur d'arrière-plan du rendu
+    renderer.setClearColor(0x152131, 1);
+    renderer.setSize(canvasSizes.width, canvasSizes.height);
+
+    // Écouteur de redimensionnement pour mettre à jour la caméra et le rendu
+    // lors du redimensionnement de la fenêtre
+    window.addEventListener('resize', () => {
+      camera.aspect = canvasSizes.width / canvasSizes.height;
+      camera.updateProjectionMatrix();
+      renderer.setSize(canvasSizes.width, canvasSizes.height);
     });
 
-    // Ajoutez ici toute logique d'animation ou de mise à jour de la scène
-    this.pyramid.rotation.x += 0.01;
-    this.pyramid.rotation.y += 0.01;
+    // Initialise une horloge pour gérer le temps
+    const clock = new THREE.Clock();
 
-    this.renderer.render(this.scene, this.camera);
+    // Fonction d'animation du logo
+    const animateLogo = () => {
+      const elapsedTime = clock.getElapsedTime();
+      //vitesse de rotation de la pyramide
+      pyramid.rotation.y = elapsedTime * 0.15;
+      renderer.render(scene, camera);
+      window.requestAnimationFrame(animateLogo);
+    };
+
+    // Lancement de l'animation
+    animateLogo();
   }
-
 }

@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CommentsService {
+
   private commentsDataUrl = environment.apiUrl + '/comments';
 
   constructor (private httpClient: HttpClient) { }
@@ -27,8 +28,23 @@ export class CommentsService {
       `${this.commentsDataUrl}/byArticle/${articleId}`
     );
   }
+  updateComment(id: string, comment: any) {
+    console.log('Comment to update:', id, comment);
+
+    const url = `${this.commentsDataUrl}/${id}`;
+    return this.httpClient.put(url, comment);
+  }
   deleteCommentByAuthor(commentId: string, authorId: string) {
+    console.log('Comment to delete:', commentId, authorId);
+
     const url = `${this.commentsDataUrl}/${commentId}/${authorId}`;
     return this.httpClient.delete(url);
   }
+  deleteComment(id: string) {
+    console.log('Comment to delete:', id);
+
+    const url = `${this.commentsDataUrl}/${id}`;
+    return this.httpClient.delete(url);
+  }
+
 }

@@ -1,1 +1,30 @@
-<p>manage-comments works!</p>
+<!-- manage-comments.component.html -->
+
+<button (click)="toggleComments()">Toggle Comments</button>
+
+<div class="show-comments" *ngIf="showComments">
+    <div *ngFor="let comment of commentList" class="comment">
+        <div class="comment-details">
+            <p>{{ comment?.content }}</p>
+            <p>{{ comment?.author }}</p>
+            <p>{{ comment?.article }}</p>
+            <p>{{ comment?.creationDate | date: 'medium' }}</p>
+        </div>
+        <div class="archived">
+            <p>État: {{ comment?.archive ? 'Archivé' : 'Non archivé' }}</p>
+            <div class="archive-options">
+                <input type="radio" id="archiveYes_{{comment.id}}" name="archive_{{comment.id}}"
+                    [(ngModel)]="comment.archive" [value]="true">
+                <label for="archiveYes_{{comment.id}}">Oui</label>
+                <input type="radio" id="archiveNo_{{comment.id}}" name="archive_{{comment.id}}"
+                    [(ngModel)]="comment.archive" [value]="false">
+                <label for="archiveNo_{{comment.id}}">Non</label>
+            </div>
+            <div class="update-button">
+                <button (click)="archiveComment(comment)" type="button" class="archived-button">Archiver</button>
+                <button (click)="deleteComment(comment.id)" class="delete-button archived-button">Supprimer</button>
+                <!-- <button (click)="saveChanges()" class="button-badge">Enregistrer</button> -->
+            </div>
+        </div>
+    </div>
+</div>

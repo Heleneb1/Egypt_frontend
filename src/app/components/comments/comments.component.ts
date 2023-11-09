@@ -27,7 +27,6 @@ export class CommentsComponent implements OnInit {
   userConnected: any;
   articleId!: any;
   commentList: Comment[] = [];
-  commentsOnLine: Comment[] = [];
   commentContent: string = '';
   showComment: boolean = false;
   editComment: boolean = false;
@@ -69,7 +68,7 @@ export class CommentsComponent implements OnInit {
       console.log('User connected:', this.userConnected);
 
       this.commentsService.getCommentsByArticleId(this.articleCommentId).subscribe((comments: Comment[]) => {
-        this.commentList = comments;
+        this.commentList = comments.filter((comment: Comment) => !comment.archive);
 
         this.commentList.forEach((comment: Comment) => {
           this.userService.getUserById(comment.author).subscribe((author: User) => {
@@ -79,11 +78,7 @@ export class CommentsComponent implements OnInit {
             })
           });
         });
-        this.commentsOnLine = this.commentList.filter((comment: Comment) => comment.archive !== true);
-        console.log(this.commentsOnLine);
-
-
-        this.commentsOnLine.forEach((comment: Comment) => {
+        this.commentList.forEach((comment: Comment) => {
           this.userService.getUserAvatarForComment(comment.author).subscribe((avatarBlob: Blob) => {
             const avatarUrl = URL.createObjectURL(avatarBlob);
             comment.authorAvatar = avatarUrl;
@@ -146,7 +141,9 @@ export class CommentsComponent implements OnInit {
     }
   }
   onComment() {
-    if (this.commentsOnLine.length > 0) {
+    if (this.commentList.length > 0) {
+      console.log("commentaire", this.commentList);
+
       this.showComment = !this.showComment;
     } else {
       const message = 'Il n\'y a pas encore de commentaire pour cet article.';

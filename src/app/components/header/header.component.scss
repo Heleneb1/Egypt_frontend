@@ -34,7 +34,16 @@ nav.header-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 2rem;
+  margin-top: 3rem;
+}
+
+.title-for-mobile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--sun);
+  font-family: var(--title);
+  margin-top: 1rem;
 }
 
 /* Styles pour le menu burger */
@@ -141,7 +150,7 @@ nav.header-container {
 
   nav.header-container {
     position: relative;
-    height: 5rem;
+    height: 8rem;
   }
 
   .menu-burger {
@@ -154,9 +163,13 @@ nav.header-container {
     height: 100%;
   }
 
-  // .logo {
-  //   width: 25rem;
-  // }
+  .title-for-mobile {
+    display: none;
+  }
+
+  .logo {
+    margin: 1rem;
+  }
 
   .nav-mobile {
     width: 97vw;
