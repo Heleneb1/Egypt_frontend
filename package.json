@@ -18,6 +18,7 @@
     "@angular/platform-browser": "^16.1.0",
     "@angular/platform-browser-dynamic": "^16.1.0",
     "@angular/router": "^16.1.0",
+    "@types/three": "^0.158.2",
     "font-awesome": "^4.7.0",
     "jwt-decode": "^3.1.2",
     "ngx-cookie-service": "^16.0.1",
@@ -25,6 +26,7 @@
     "ngx-toastr": "^17.0.2",
     "quill": "^1.3.7",
     "rxjs": "~7.8.0",
+    "three": "^0.158.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"
   },
