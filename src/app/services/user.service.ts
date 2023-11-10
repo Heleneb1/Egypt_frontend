@@ -34,6 +34,16 @@ export class UserService {
   getUserAvatar(userId: string): Observable<string> {
     return this.getUserById(userId).pipe(map((user: any) => `${user.avatar}`));
   }
+  getUserEmail(userId: string): Observable<string> {
+    return this.getUserById(userId).pipe(
+      map((user: any) => {
+        console.log(userId);
+        console.log(user.email);
+        return `${user.email}`;
+      })
+    );
+  }
+
 
   getUserAvatarForComment(userId: string): Observable<Blob> {
     return this.httpClient.get(`${environment.apiUrl}/users/avatar/user/${userId}`, { responseType: 'blob' });

@@ -40,11 +40,12 @@ export class CommentsService {
     const url = `${this.commentsDataUrl}/${commentId}/${authorId}`;
     return this.httpClient.delete(url);
   }
-  deleteComment(id: string) {
+  deleteComment(id: string, content: string) {
     console.log('Comment to delete:', id);
 
     const url = `${this.commentsDataUrl}/${id}`;
-    return this.httpClient.delete(url);
+    return this.httpClient.delete(url, { body: { content } });
   }
+
 
 }

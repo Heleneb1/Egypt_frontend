@@ -1,7 +1,10 @@
 // Import necessary modules and components
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { User } from 'src/app/models/user';
 import { CommentsService } from 'src/app/services/comments.service';
+import { SendEmailService } from 'src/app/services/send-email.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-manage-comments',
@@ -14,7 +17,7 @@ export class ManageCommentsComponent implements OnInit {
   isArchived!: boolean;
   authorId!: string;
 
-  constructor (private commentsService: CommentsService, private toastr: ToastrService) { }
+  constructor (private commentsService: CommentsService, private toastr: ToastrService, private sendEmail: SendEmailService, private userService: UserService) { }
 
   ngOnInit() {
     this.fetchComments();
@@ -55,18 +58,31 @@ export class ManageCommentsComponent implements OnInit {
 
   deleteComment(id: string) {
     console.log('Comment to delete:', id);
+
     const commentToDelete = this.commentList.find(comment => comment.id === id);
+    console.log('Comment author:', commentToDelete.author); // Contains the author's id
 
     if (commentToDelete && confirm('Voulez-vous vraiment supprimer ce commentaire ?')) {
-      this.commentsService.deleteComment(id).subscribe(() => {
-        console.log('Comment deleted successfully:', commentToDelete);
-        this.toastr.info('Commentaire supprimé');
-        this.fetchComments(); // Actualisez la liste ici
+      this.userService.getUserById(commentToDelete.author).subscribe((user: User) => {
+        const author = user;
+        console.log('Comment author:', author);
+        this.userService.getUserEmail(author.id).subscribe((userEmail: string) => {
+          author.email = userEmail;
+          console.log('Comment author email:', userEmail);
 
+          this.commentsService.deleteComment(id, commentToDelete.content).subscribe(() => {
+            console.log('Comment deleted successfully:', commentToDelete);
+            this.toastr.info('Commentaire supprimé');
+
+            // Send email when comment is deleted
+            this.sendEmail.SendMessage(author);
+
+            this.fetchComments(); // Refresh the comment list here
+          });
+        });
       });
     }
   }
-
   toggleComments() {
     this.showComments = !this.showComments;
   }

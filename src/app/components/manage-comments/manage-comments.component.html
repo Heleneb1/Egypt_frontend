@@ -1,6 +1,5 @@
 <!-- manage-comments.component.html -->
 
-<button (click)="toggleComments()">Toggle Comments</button>
 
 <div class="show-comments" *ngIf="showComments">
     <div *ngFor="let comment of commentList" class="comment">
@@ -28,3 +27,4 @@
         </div>
     </div>
 </div>
+<button (click)="toggleComments()">Commentaires</button>
