@@ -27,6 +27,7 @@ export class CreateQuizComponent implements AfterViewInit, OnInit {
   userId: string = '';
   isArchived: boolean = true;
 
+
   constructor (
     private http: HttpClient,
     private router: Router,
@@ -37,7 +38,7 @@ export class CreateQuizComponent implements AfterViewInit, OnInit {
     this.authService.getUserConnected().subscribe((user: any) => {
       this.userConnected = user;
       this.userId = user?.userId;
-      this.isArchived = true;
+
     });
   }
 

@@ -45,11 +45,11 @@ export class UserInfoComponent {
         this.badges.unshift(badgeInfo);
       });
     });
-
-    while (this.badges.length < 8) {
-      this.badges.push({ name: 'Badge à venir', image: 'assets/images/wait.jpg' });
+    if (userBadges.length < 10) {
+      while (this.badges.length <= userBadges.length) {
+        this.badges.push({ name: 'Badge à venir', image: 'assets/images/wait.jpg' });
+      }
     }
-
     if (this.userData.biography !== null) {
       this.inputBiography = this.userData.biography;
     }

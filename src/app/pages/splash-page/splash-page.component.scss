@@ -13,7 +13,8 @@
   transition: all 2s ease-in-out;
 }
 
-.left-div {
+.left-div,
+.right-div {
   background-size: cover;
   object-fit: cover;
   background-repeat: no-repeat;
@@ -27,12 +28,12 @@
   height: 100%;
 }
 
-.right-div {
-  animation-name: crawl;
-  background-size: cover;
-  object-fit: cover;
-  background-repeat: no-repeat;
-}
+// .right-div {
+//   animation-name: crawl;
+//   background-size: cover;
+//   object-fit: cover;
+//   background-repeat: no-repeat;
+// }
 
 .right-div img {
   background-size: cover;

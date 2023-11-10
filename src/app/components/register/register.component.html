@@ -1,54 +1,55 @@
 <div class="register-box">
-  <form #myForm="ngForm" (ngSubmit)="myForm.valid && onSubmit()">
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
     <div class="user-box">
-      <input type="text" name="lastname" [(ngModel)]="user.lastname" required />
+      <input type="text" formControlName="lastname" required />
       <div class="input-title">
         <h3>Nom</h3>
       </div>
     </div>
     <div class="user-box">
-      <input type="text" name="firstname" [(ngModel)]="user.firstname" required />
+      <input type="text" formControlName="firstname" required />
       <div class="input-title">
         <h3>Prénom</h3>
       </div>
     </div>
     <div class="user-box">
-      <input type="text" name="email" required [(ngModel)]="user.email" (input)="checkEmail()" />
+      <input type="text" formControlName="email" required (input)="checkEmail()" />
       <div class="input-title">
         <h3>Email</h3>
       </div>
-      <div class="error" *ngIf="formSubmitted && !isEmailValid">
+      <div class="error"
+        *ngIf="formSubmitted && userForm.get('email')?.hasError('email') && (userForm.get('email')?.dirty || userForm.get('email')?.touched)">
         L'email n'est pas valide.
       </div>
     </div>
     <div class="user-box">
-      <input [type]="showPassword ? 'text' : 'password'" [(ngModel)]="user.password" name="password" required
+      <input [type]="showPassword ? 'text' : 'password'" formControlName="password" required
         (input)="verifyPasswordStrength(); verifyPassword()" />
-
       <div class="input-title">
         <h3>Mot de passe</h3>
       </div>
-      <div class="error" *ngIf="formSubmitted && !passwordStrong">
-        Le mot de passe doit comporter au moins 8 caractères.
-      </div>
-      <button type="button" class="show-password" (click)=" togglePasswordVisibility()"
+
+      <div class="error"
+        *ngIf="formSubmitted && userForm.controls['password'].invalid && (userForm.controls['password'].dirty || userForm.controls['password']?.touched)">
+        Le mot de passe doit comporter au moins 12 caractères, 1 majuscule, 1 caractère spécial parmis @, #, $, %, ^, &,
+        +, = et 1 chiffre, sans espace.</div>
+      <button type="button" class="show-password" (click)="togglePasswordVisibility()"
         style="color: var(--sun); background-color: var(--white);">
         <div class="eye">
           <i [class]="showPassword ? 'fa fa-eye-slash' : 'fa fa-eye'"></i>
         </div>
       </button>
     </div>
-
     <div class="user-box">
-      <input [type]="showPassword ? 'text' : 'password'" [(ngModel)]="confirmationPassword" name="confirmationPassword"
-        required (input)="verifyPasswordStrength(); verifyPassword()" />
+      <input [type]="showPassword ? 'text' : 'password'" formControlName="confirmationPassword" required
+        (input)="verifyPasswordStrength(); verifyPassword()" />
       <div class="input-title">
         <h3>Confirmation du mot de passe</h3>
       </div>
       <div class="error" *ngIf="formSubmitted && !passwordMatch">
         Mots de passe différents.
       </div>
-      <button type="button" class="show-password" (click)=" togglePasswordVisibility()"
+      <button type="button" class="show-password" (click)="togglePasswordVisibility()"
         style="color: var(--sun); background-color: var(--white);">
         <div class="eye">
           <i [class]="showPassword ? 'fa fa-eye-slash' : 'fa fa-eye'"></i>
@@ -62,3 +63,5 @@
     </div>
   </form>
 </div>
+<!-- Jesuisle@mdp1 -->
+<!-- JesuisleMdp1 -->

@@ -167,15 +167,16 @@ export class ManageQuestionComponent implements OnInit {
   }
 
   deleteQuestion(questionId: string) {
-    console.log("id question", questionId);
+    if (confirm('Êtes-vous sûr de vouloir supprimer cette question ?')) {
+      console.log("id question", questionId);
 
-    this.quizService.deleteQuestion(questionId).subscribe(() => {
-      this.selectQuestionsByCategory();
-      // alert('Question supprimée');
-      this.toastr.success('Question supprimée', 'Suppression');
-    });
+      this.quizService.deleteQuestion(questionId).subscribe(() => {
+        this.selectQuestionsByCategory();
+        // alert('Question supprimée');
+        this.toastr.success('Question supprimée', 'Suppression');
+      });
+    }
   }
-
 
   updateQuestion(questionId: string, existingQuestion: any) {
     console.log("existingQuestion", existingQuestion);

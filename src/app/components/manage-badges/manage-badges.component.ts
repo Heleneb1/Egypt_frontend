@@ -65,11 +65,25 @@ export class ManageBadgesComponent implements OnInit {
     if (this.badgesOpen) {
       this.quizService.getBadges().subscribe((badges: any) => {
         this.badges = badges;
-        console.log(badges);
+        this.badges.sort((a, b) => a.name.localeCompare(b.name));
+        console.log(this.badges);
       });
     }
   }
+  searchBadgeByName(name: string) {
+    console.log("searchName", name);
+    this.badgesService.getBadgeByName(name).subscribe((badge: any) => {
+      this.badge = badge;
+      console.log("badge", badge);
+      this.badges = badge;
+      this.reset();
 
+    });
+  }
+  reset() {
+    this.name = '';
+
+  }
   selectBadge(badgeId: string) {
     this.isSelectedBadge = !this.isSelectedBadge;
 
@@ -83,12 +97,14 @@ export class ManageBadgesComponent implements OnInit {
     }
   }
   deleteBadge(id: string) {
+    if (confirm('Êtes-vous sûr de vouloir supprimer ce badge?')) {
 
-    this.badgesService.deleteBadge(id).subscribe(() => {
-      this.getBadge();
+      this.badgesService.deleteBadge(id).subscribe(() => {
+        this.getBadge();
 
-    });
-    this.toastr.success('Badge supprimé', 'Suppression');
+      });
+      this.toastr.success('Badge supprimé', 'Suppression');
+    }
   }
   addBadgeToQuiz(selectedQuiz: string, badgeId: string) {
     console.log("ID du quiz : ", selectedQuiz);

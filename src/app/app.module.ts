@@ -27,6 +27,7 @@ import { ScrollToTopComponent } from './components/scroll-to-top/scroll-to-top.c
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { UserInfoComponent } from './components/user-info/user-info.component';
 import { NgcCookieConsentModule, NgcCookieConsentConfig } from 'ngx-cookieconsent';
+
 import { QuizViewComponent } from './pages/quiz-view/quiz-view.component';
 import { StarRatingComponent } from './components/star-rating/star-rating.component';
 import { QuizDetailsComponent } from './pages/quiz-details/quiz-details.component';
@@ -42,6 +43,8 @@ import { ManageArticleComponent } from './components/manage-article/manage-artic
 import { ManageQuestionComponent } from './components/manage-question/manage-question.component';
 import { ManageBadgesComponent } from './components/manage-badges/manage-badges.component';
 import { ManageUsersComponent } from './components/manage-users/manage-users.component';
+import { ManageCommentsComponent } from './components/manage-comments/manage-comments.component';
+import { Logo3DComponent } from './components/logo3-d/logo3-d.component';
 
 const cookieConfig: NgcCookieConsentConfig = {
   cookie: {
@@ -99,6 +102,8 @@ const cookieConfig: NgcCookieConsentConfig = {
     ManageQuestionComponent,
     ManageBadgesComponent,
     ManageUsersComponent,
+    ManageCommentsComponent,
+    Logo3DComponent,
   ],
   imports: [
     BrowserModule,
@@ -110,7 +115,20 @@ const cookieConfig: NgcCookieConsentConfig = {
     HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      timeOut: 4000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+      closeButton: true,
+      progressBar: true,
+      progressAnimation: 'increasing',
+      maxOpened: 1,
+      autoDismiss: true,
+      newestOnTop: true,
+      enableHtml: true,
+      easing: 'ease-in',
+
+    }),
   ],
   providers: [
     DatePipe,

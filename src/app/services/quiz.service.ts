@@ -9,6 +9,7 @@ import { QuizQuestion } from "../models/quiz-question";
     providedIn: 'root'
 })
 export class QuizService {
+
     // deleteBadge(id: string) {
     //     throw new Error('Method not implemented.');
     // }
@@ -38,6 +39,9 @@ export class QuizService {
     getQuizById(quizId: string) {
         return this.httpClient.get(`${this.quizDataUrl}/${quizId}`);
     }
+    getQuizByTitle(title: string) {
+        return this.httpClient.get(`${this.quizDataUrl}/title/${title}`);
+    }
     getQuizQuestions(quizId: string): Observable<QuizQuestion[]> {
         const url = `${this.quizDataUrl}/${quizId}/questions`;
         return this.httpClient.get<QuizQuestion[]>(url);
@@ -51,7 +55,9 @@ export class QuizService {
     }
     getQuestionById(questionId: string) {
         return this.httpClient.get(`${this.questionDataUrl}/${questionId}`);
+
     }
+
     getQuestionContent(questionId: string): Observable<any> {
         return this.getQuestionById(questionId).pipe(
             map((question: any) => {

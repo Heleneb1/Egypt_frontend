@@ -14,6 +14,10 @@ export class ManageQuizComponent {
   existingQuiz: any;
   editingQuiz: any = null;
   updateQuizForm!: FormGroup;
+  showQuestions: boolean = false;
+  allQuestions: any[] = [];
+  questionTitles: any;
+
   constructor (
     private quizService: QuizService, private badgesService: BadgesService, private toastr: ToastrService, private formBuilder: FormBuilder) { }
   ngOnInit() {
@@ -41,6 +45,9 @@ export class ManageQuizComponent {
   badgeId: string = '';
   quizId: string = '';
   selectedQuiz!: string;
+  category: string = '';
+  selectedQuizId!: string;
+  searchTitle: any;
 
   selectQuizEmit(quiz: any) {
     this.quizSelected.emit(quiz);
@@ -53,6 +60,7 @@ export class ManageQuizComponent {
         console.log(quizzes);
 
         this.quizzes.forEach((quiz: any) => {
+
           if (quiz.badge) {
             const badgeId = quiz.badge; // Récupérer le badgeId pour chaque quiz
             console.log("badgeId", badgeId);
@@ -102,11 +110,38 @@ export class ManageQuizComponent {
       }
     );
   }
+  searchQuiz() {
+    if (this.searchTitle) {
+      this.quizService.getQuizByTitle(this.searchTitle).subscribe((quizzes: any) => {
+        this.quizzes = quizzes;
+        console.log("quizzes", this.quizzes);
+        this.reset();
+      });
+    } else {
+      this.getQuiz();
+    }
+  }
+  reset() {
+    this.searchTitle = '';
+  }
+  seeQuestionsOfQuiz() {
+    this.showQuestions = !this.showQuestions;
+    if (this.showQuestions) {
+      if (this.selectedQuizId) {
+        this.quizService.getQuizQuestions(this.selectedQuizId).subscribe((questions: any) => {
+          this.allQuestions = questions; // Stockez les questions dans le tableau allQuestions
+          console.log("questions", questions);
+        });
+      }
+    }
+  }
   deleteQuestionFromQuiz(questionId: string) {
-    this.quizService.deleteQuestion(questionId).subscribe(() => {
-      this.getQuestionContentForQuiz(this.quizId);
-      alert('Question supprimée');
-    });
+    if (confirm('Êtes-vous sûr de vouloir supprimer cette question du quiz ?')) {
+      this.quizService.deleteQuestion(questionId).subscribe(() => {
+        this.getQuestionContentForQuiz(this.quizId);
+        alert('Question supprimée');
+      });
+    }
   }
 
 

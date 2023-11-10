@@ -33,6 +33,11 @@ export class BadgesService {
       })
     );
   }
+  getBadgeByName(name: string) {
+    console.log("name", name);
+    console.log("this.badgeDataUrl", this.badgeDataUrl);
+    return this.httpClient.get(`${this.badgeDataUrl}/name/${name}`);
+  }
   deleteBadge(id: string) {
     return this.httpClient.delete(`${this.badgeDataUrl}/${id}`);
   }
