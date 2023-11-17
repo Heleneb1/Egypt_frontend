@@ -1,4 +1,4 @@
-// Import necessary modules and components
+
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/models/user';
@@ -16,6 +16,8 @@ export class ManageCommentsComponent implements OnInit {
   showComments: boolean = false;
   isArchived!: boolean;
   authorId!: string;
+  articleId!: string;
+  comment: any[] = []
 
   constructor (private commentsService: CommentsService, private toastr: ToastrService, private sendEmail: SendEmailService, private userService: UserService) { }
 
@@ -41,17 +43,20 @@ export class ManageCommentsComponent implements OnInit {
     );
   }
 
-  archiveComment(id: string) {
-    console.log('Comment to archive:', id);
+  //TODO pouvoir modifier état d'un commentaire
+  archiveCommentByArticle(comment: any) {
+    console.log('Comment to archive:', comment);
+    console.log('Comment id:', comment.id);
+    console.log('Comment author:', comment.author);
 
-    const commentToArchive = this.commentList.find(comment => comment.id === id);
-
-    if (commentToArchive) {
-      commentToArchive.archive = true;
-      this.commentsService.updateComment(id, commentToArchive).subscribe(() => {
-        console.log('Comment archived successfully:', commentToArchive);
-        this.toastr.info('Commentaire archivé');
-        this.fetchComments(); // Actualisez la liste ici
+    if (comment && confirm('Voulez-vous vraiment changer l\'état de ce commentaire ?')) {
+      comment.archive = !comment.archive;
+      console.log('Comment state changed:', comment);
+      console.log(comment.id);
+      this.commentsService.updateCommentByArticleId(comment.id, comment.author, comment).subscribe(() => {
+        console.log('Comment state changed successfully:', comment);
+        this.toastr.info(`Commentaire ${comment.archive ? 'archivé' : 'restauré'}`);
+        this.fetchComments();
       });
     }
   }

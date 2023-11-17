@@ -15,8 +15,10 @@ import { ContactComponent } from './components/contact/contact.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { AdminGuardService } from './services/admin-guard.service';
 import { BadgesModalComponent } from './components/badges-modal/badges-modal.component';
+import { ViewComponent } from './components/view/view.component';
 
 const routes: Routes = [
+
   {
     path: '',
     component: SplashPageComponent,
@@ -50,6 +52,7 @@ const routes: Routes = [
     path: 'authentication',
     component: ConnectionComponent,
   },
+
   {
     path: 'profile',
     component: UserProfileComponent,
@@ -72,6 +75,9 @@ const routes: Routes = [
     component: AdminComponent,
     canActivate: [AdminGuardService],
   },
+  {
+    path: 'view', component: ViewComponent
+  }
 ];
 
 

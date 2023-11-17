@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { QuizService } from 'src/app/services/quiz.service';
+import { SendEmailService } from 'src/app/services/send-email.service';
 
 @Component({
   selector: 'app-admin',
@@ -13,21 +14,58 @@ export class AdminComponent implements OnInit {
   selectedQuiz: any;
   selectedQuestions: string[] = [];
   selectedCategory: string = '';
+  contact: any = {};
+  contactCount: number = 0;
+  showMsg: boolean = false;
+  animate: boolean = false;
+  isShaking: boolean = false;
 
   constructor (
-    private quizService: QuizService, private toastr: ToastrService
+    private quizService: QuizService, private toastr: ToastrService, private sendEmailService: SendEmailService
   ) { }
 
   ngOnInit(): void {
+    this.sendEmailService.getContact().subscribe((contact: any) => {
+      this.contact = contact;
+      this.contactCount = contact.length;
+      console.log("contact", this.contactCount);
+    });
   }
+  toggleShake() {
+    this.isShaking = !this.isShaking;
+  }
+
   onQuizSelected(selectedQuiz: any) {
     this.selectedQuiz = selectedQuiz;
   }
   onBadgeSelected(selectedBadge: any) {
     this.selectedBadge = selectedBadge;
   }
+  showMessage() {
+    this.showMsg = !this.showMsg;
+  }
+  getContact() {
+    this.sendEmailService.getContact().subscribe((contact: any) => {
+      this.contact = contact;
+      console.log("contact", contact);
+      this.showMsg = true;
+      this.isShaking = true;
 
+    });
+  }
+  deleteMessage(id: number) {
+    console.log("id", id);
 
+    if (confirm("Voulez-vous supprimer ce message ?")) {
+      this.sendEmailService.deleteContact(id).subscribe((response: any) => {
+        this.toastr.success('Message supprimé', 'Suppression');
+        this.getContact();
+        this.contactCount--;
+      }
+      );
+    }
+
+  }
 
   // Ajoute un badge au quiz sélectionné
   addBadgeToQuiz(selectedQuiz: any, selectedBadge: any) {

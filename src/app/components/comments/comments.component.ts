@@ -108,9 +108,11 @@ export class CommentsComponent implements OnInit {
         content: this.commentContent,
         user: authorCommentId,
         article: this.articleCommentId,
+
         archive: this.isArchived,
       };
       console.log(data);
+      console.log("article", this.articleCommentId);
 
       this.httpClient.put(url, data).subscribe(
         (response: any) => {

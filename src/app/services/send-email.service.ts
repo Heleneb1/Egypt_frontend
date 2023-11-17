@@ -14,6 +14,13 @@ export class SendEmailService {
 
   constructor (private httpClient: HttpClient, private toastr: ToastrService, private userService: UserService) { }
 
+  getContact() {
+    return this.httpClient.get(this.emailUrl + '/see-message');
+  }
+  deleteContact(id: number) {
+    return this.httpClient.delete(`${this.emailUrl}/${id}`);
+  }
+
   sendEmail(contact: Contact) {
     console.log("Nom", contact);
     return this.httpClient.post(this.emailUrl + '/send', contact)

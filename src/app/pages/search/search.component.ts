@@ -26,6 +26,7 @@ export class SearchComponent implements OnInit {
   currentRating!: number;
   rating: number = 3.5;
   searchQuery: string = "";
+  animateCard = false;
 
   constructor (private articlesService: ArticlesService) { }
   getArticles(): void {
@@ -57,6 +58,10 @@ export class SearchComponent implements OnInit {
         console.error("Une erreur s'est produite :", error);
       }
     );
+    this.animateCard = true;
+    setTimeout(() => {
+      this.animateCard = false;
+    }, 5000);
 
     this.searchQuery = '';
   }
@@ -71,6 +76,10 @@ export class SearchComponent implements OnInit {
         console.error("Une erreur s'est produite :", error);
       }
     );
+    this.animateCard = true;
+    setTimeout(() => {
+      this.animateCard = false;
+    }, 5000);
   }
 
 
@@ -89,6 +98,10 @@ export class SearchComponent implements OnInit {
         console.error("Une erreur s'est produite lors de la recherche d'articles par tag :", error);
       }
     );
+    this.animateCard = true;
+    setTimeout(() => {
+      this.animateCard = false;
+    }, 5000);
   }
 
   loadTitle() {
@@ -136,6 +149,10 @@ export class SearchComponent implements OnInit {
         console.error("Une erreur s'est produite :", error);
       }
     );
+    this.animateCard = true;
+    setTimeout(() => {
+      this.animateCard = false;
+    }, 5000);
   }
   resetOtherFilters(filter: string) {
     if (filter !== "tag") {

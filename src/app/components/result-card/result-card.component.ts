@@ -18,7 +18,7 @@ export class ResultCardComponent {
   article: any = [];
   articleId: any;
   currentRating!: number;
-
+  animateCard = false;
 
   constructor (private router: Router, private articlesService: ArticlesService) { }
 

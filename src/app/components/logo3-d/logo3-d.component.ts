@@ -36,15 +36,15 @@ export class Logo3DComponent implements OnInit, AfterViewInit {
       color: '#fc9900',
       metalness: 1,
       roughness: 0.2,
-      opacity: 0.8,
+      opacity: 0.7,
       transparent: true,
     });
 
     // Augmentez l'intensité de la lumière ambiante, mais réduisez celle de la lumière ponctuelle
-    const ambientLight = new THREE.AmbientLight(0xffffff, 5000);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 3000);
     scene.add(ambientLight);
 
-    const pointLight = new THREE.PointLight(0xffffff, 5000);
+    const pointLight = new THREE.PointLight(0xffffff, 10000);
     pointLight.position.set(3, 4, 1);  // Ajustez la position de la lumière ponctuelle
     scene.add(pointLight);
 

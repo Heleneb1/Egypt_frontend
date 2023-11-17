@@ -2,16 +2,18 @@
 
 
     .image img {
-
-        height: 14rem;
+        height: 18rem;
         width: 100%;
         object-fit: cover;
+        position: relative;
+        top: -4rem;
     }
 }
 
 .text-container {
     position: relative;
-    top: 10rem;
+    z-index: 1;
+    top: 8rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,6 +31,12 @@
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     line-height: 1.4;
+
+    p {
+        font-family: var(--title);
+        text-transform: capitalize;
+        font-size: 1.8rem;
+    }
 }
 
 .rating-button {

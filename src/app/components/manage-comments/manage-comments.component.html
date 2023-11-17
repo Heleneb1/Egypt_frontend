@@ -20,7 +20,11 @@
                 <label for="archiveNo_{{comment.id}}">Non</label>
             </div>
             <div class="update-button">
-                <button (click)="archiveComment(comment)" type="button" class="archived-button">Archiver</button>
+                <button (click)="archiveCommentByArticle(comment)" type="button" class="archived-button">
+                    {{ comment.archive ? 'Restaurer' : 'Archiver' }}
+                </button>
+
+
                 <button (click)="deleteComment(comment.id)" class="delete-button archived-button">Supprimer</button>
                 <!-- <button (click)="saveChanges()" class="button-badge">Enregistrer</button> -->
             </div>

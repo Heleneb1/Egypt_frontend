@@ -199,6 +199,7 @@ export class QuizDetailsComponent {
     console.log("Nombre total de questions :", this.totalNumberOfQuestions);
     let progressBar = document.getElementById('progressBar') as HTMLElement;
     progressBar.style.width = this.progress + '%';
+
   }
 
   awardBadgeToUser() {

@@ -13,7 +13,7 @@
 .result-image {
   display: flex;
   justify-content: center;
-  // width: 20rem;
+  width: 8rem;
   border-radius: 0.3rem;
   border-color: transparent;
   cursor: pointer;
@@ -110,7 +110,7 @@
   }
 
   .result-container {
-    max-width: 30rem;
+    max-width: 38rem;
     padding: 0.3rem;
     height: 11.4rem;
     display: flex;
@@ -137,7 +137,7 @@
 
   .card {
     img {
-      width: 25rem;
+      width: 30rem;
       height: 12rem;
       object-fit: initial;
     }

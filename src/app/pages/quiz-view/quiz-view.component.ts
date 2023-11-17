@@ -18,6 +18,7 @@ export class QuizViewComponent implements OnInit {
   defaultImage: string = 'assets/images/Gizeah.jpg';
   isUserConnected: boolean = false;
 
+
   constructor (private quizService: QuizService, private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {

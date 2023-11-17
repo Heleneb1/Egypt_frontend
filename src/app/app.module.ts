@@ -13,7 +13,6 @@ import { AppComponent } from './app.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './pages/home/home.component';
 import { SplashPageComponent } from './pages/splash-page/splash-page.component';
-// import { AnimationComponent } from './components/animation/animation.component';
 import { SearchComponent } from './pages/search/search.component';
 import { ConnectionComponent } from './pages/connection/connection.component';
 import { LoginComponent } from './components/login/login.component';
@@ -27,7 +26,6 @@ import { ScrollToTopComponent } from './components/scroll-to-top/scroll-to-top.c
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { UserInfoComponent } from './components/user-info/user-info.component';
 import { NgcCookieConsentModule, NgcCookieConsentConfig } from 'ngx-cookieconsent';
-
 import { QuizViewComponent } from './pages/quiz-view/quiz-view.component';
 import { StarRatingComponent } from './components/star-rating/star-rating.component';
 import { QuizDetailsComponent } from './pages/quiz-details/quiz-details.component';
@@ -45,6 +43,8 @@ import { ManageBadgesComponent } from './components/manage-badges/manage-badges.
 import { ManageUsersComponent } from './components/manage-users/manage-users.component';
 import { ManageCommentsComponent } from './components/manage-comments/manage-comments.component';
 import { Logo3DComponent } from './components/logo3-d/logo3-d.component';
+import { ViewComponent } from './components/view/view.component';
+import { FullPageImageComponent } from './components/full-page-image/full-page-image.component';
 
 const cookieConfig: NgcCookieConsentConfig = {
   cookie: {
@@ -54,17 +54,26 @@ const cookieConfig: NgcCookieConsentConfig = {
   palette: {
     popup: {
       background: 'var(--sun)',
+
+
     },
     button: {
       background: 'var(--blue)',
-    }
+    },
+    highlight: {
+      background: 'var(--blue)',
+    },
   },
   theme: 'edgeless',
   type: 'opt-out',
+  position: 'bottom-left',
+  enabled: false,
+  law: {
+    regionalLaw: true,
+    countryCode: 'FR',
+  },
 
-  // revokable: false,
   content: {
-
     message: "Un petit cookie pour la route?\n Avant de s'immerger dans l'Égypte des Pharaons ?",
     allow: 'Accepter',
     deny: 'Refuser',
@@ -72,12 +81,22 @@ const cookieConfig: NgcCookieConsentConfig = {
   }
 };
 
+// 5 seconds after the page loads, the cookie popup will appear
+
+//modif de app.component.ts pour metrre en place un delai de 5s avant l'apparition de la banniere de cookie
+
+
+setTimeout(() => {
+  cookieConfig.enabled = true;
+}, 5000);
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     SplashPageComponent,
-    // AnimationComponent,
     SearchComponent,
     ConnectionComponent,
     LoginComponent,
@@ -104,6 +123,8 @@ const cookieConfig: NgcCookieConsentConfig = {
     ManageUsersComponent,
     ManageCommentsComponent,
     Logo3DComponent,
+    ViewComponent,
+    FullPageImageComponent,
   ],
   imports: [
     BrowserModule,

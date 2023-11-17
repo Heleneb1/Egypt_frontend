@@ -150,6 +150,23 @@ input[type="text"]::placeholder {
   justify-content: center;
 }
 
+.transition-right {
+  transform: translateX(0rem, 100%);
+  animation: appear2 3s forwards;
+}
+
+@keyframes appear2 {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 // @media (min-width: 768px) {
 //   #theme {
 //     width: 45rem;

@@ -34,6 +34,38 @@ export class CommentsService {
     const url = `${this.commentsDataUrl}/${id}`;
     return this.httpClient.put(url, comment);
   }
+
+
+  updateCommentByArticleId(id: string, authorId: string, comment: any) {
+    console.log('Comment to update:', id);
+    console.log('Comment to update:', authorId);
+    console.log('Comment to update:', comment);
+
+    const updateUrl = `${this.commentsDataUrl}/${id}/${authorId}/update`;
+    console.log('URL:', updateUrl);
+    console.log(this.httpClient.put(updateUrl, comment));
+
+
+    return this.httpClient.put(updateUrl, comment);
+  }
+
+  // updateCommentByArticleId(id: string, comment: any, articleId: string, authorId: string): Observable<any> {
+  //   const url = `${this.commentsDataUrl}/${id}/${authorId}/${articleId}/update`;
+  //   console.log('URL:', url);
+
+  //   const updatedComment = {
+  //     id: id,
+  //     content: comment.content,
+  //     creationDate: comment.creationDate,
+  //     archive: comment.archive,
+  //     author: authorId,
+  //     article: articleId
+  //   };
+
+  //   return this.httpClient.put(url, updatedComment);
+  // }
+
+
   deleteCommentByAuthor(commentId: string, authorId: string) {
     console.log('Comment to delete:', commentId, authorId);
 
