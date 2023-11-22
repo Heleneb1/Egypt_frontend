@@ -45,6 +45,7 @@ import { ManageCommentsComponent } from './components/manage-comments/manage-com
 import { Logo3DComponent } from './components/logo3-d/logo3-d.component';
 import { ViewComponent } from './components/view/view.component';
 import { FullPageImageComponent } from './components/full-page-image/full-page-image.component';
+import { TopicsComponent } from './components/topics/topics.component';
 
 const cookieConfig: NgcCookieConsentConfig = {
   cookie: {
@@ -125,6 +126,7 @@ setTimeout(() => {
     Logo3DComponent,
     ViewComponent,
     FullPageImageComponent,
+    TopicsComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,60 @@
+<div class="all-topics">
+    <div class="form-group">
+        <form (submit)="createTopic()">
+            <label for="topic"></label>
+            <button type="button" class="topic-btn" (click)="toggleEdit()">Créer un nouveau sujet</button>
+            <div class="create-topic-form" *ngIf="editTopic">
+                <div class="edit">
+                    <textarea id="create-topic" class="form-control" [(ngModel)]="topicMessage" name="topicMessage"
+                        required></textarea>
+                    <button type="submit" class="btn-add-topic">Ajouter la discussion</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Liste des sujets -->
+    <ul *ngIf="topics && topics.length > 0; else noTopics">
+        <li *ngFor="let topic of topics">
+            <button (click)="getTopicById(topic.id)">Participer</button>
+            <p>Date de création: {{ topic.creationDate|date:"medium" }}</p>
+            <p>Par: {{ topic.authorName }}</p>
+
+            <div>Sujet: {{ topic.message }}</div>
+            <div>Id: {{ topic.id }}</div>
+        </li>
+    </ul>
+    <ng-template #noTopics>
+        <p class="noTopics">Veuillez vous connecter pour accéder aux discussions.</p>
+    </ng-template>
+
+    <div class="answer" *ngIf="selectedTopic">
+        <h2>Sujet sélectionné</h2>
+
+        <p>Date de création: {{ selectedTopic.creationDate| date: 'medium' }}</p>
+
+        <p>Auteur: {{ selectedTopic.authorId }}</p>
+        <div class="see-answer">{{ selectedTopic.message }}</div>
+        <button class="answer-btn" (click)="toggleAnswer()">Répondre</button>
+
+        <div class="create-answer-form" *ngIf="editAnswer">
+            <div class="edit">
+                <textarea id="create-answer" class="form-control" [(ngModel)]="answerMessage" name="answerMessage"
+                    required></textarea>
+                <button type="button" class="btn-add-topic" (click)="createAnswer()">Ajouter la réponse</button>
+            </div>
+            <!-- Liste des réponses associées au sujet sélectionné -->
+
+        </div>
+        <ul *ngIf="existingAnswers && existingAnswers.length > 0; else noAnswers">
+            <li *ngFor="let answer of existingAnswers">
+                <p>Réponse: {{ answer.answer }}</p>
+                <p>ID du sujet: {{ answer.topicId }}</p>
+                <p>auteur :{{answer.authorId}}</p>
+            </li>
+        </ul>
+        <!-- Aucune réponse disponible -->
+        <ng-template #noAnswers>
+            <p>Aucune réponse disponible pour ce sujet.</p>
+        </ng-template>
+    </div>

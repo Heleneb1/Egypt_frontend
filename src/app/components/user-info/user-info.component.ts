@@ -43,18 +43,27 @@ export class UserInfoComponent {
     userBadges.forEach((badgeId: string) => {
       this.badgesService.getBadgeContent(badgeId).subscribe((badgeInfo: any) => {
         this.badges.unshift(badgeInfo);
+        this.checkBadgeLimit();
       });
     });
-    if (userBadges.length < 10) {
-      while (this.badges.length <= userBadges.length) {
-        this.badges.push({ name: 'Badge à venir', image: 'assets/images/wait.jpg' });
-      }
+
+    while (this.badges.length < 10) {
+      this.badges.push({ name: 'Badge à venir', image: 'assets/images/wait.jpg' });
+      this.checkBadgeLimit();
     }
+
     if (this.userData.biography !== null) {
       this.inputBiography = this.userData.biography;
     }
     if (this.userData.avatar !== null) {
       this.loadAvatar();
+    }
+  }
+
+  checkBadgeLimit() {
+
+    if (this.badges.length > 10) {
+      this.badges.splice(10); // Retirez les badges excédentaires
     }
   }
 

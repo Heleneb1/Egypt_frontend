@@ -4,9 +4,9 @@
 <div class="show-comments" *ngIf="showComments">
     <div *ngFor="let comment of commentList" class="comment">
         <div class="comment-details">
-            <p>{{ comment?.content }}</p>
-            <p>{{ comment?.author }}</p>
-            <p>{{ comment?.article }}</p>
+            <p> contenu : {{ comment?.content }}</p>
+            <p> auteur : {{ comment?.author }}</p>
+            <p>article : {{ comment?.article}}</p>
             <p>{{ comment?.creationDate | date: 'medium' }}</p>
         </div>
         <div class="archived">

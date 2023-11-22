@@ -2,9 +2,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/models/user';
+import { Comment } from 'src/app/models/comment';
 import { CommentsService } from 'src/app/services/comments.service';
 import { SendEmailService } from 'src/app/services/send-email.service';
 import { UserService } from 'src/app/services/user.service';
+
 
 @Component({
   selector: 'app-manage-comments',
@@ -26,11 +28,13 @@ export class ManageCommentsComponent implements OnInit {
   }
 
   fetchComments() {
+    console.log("fetch managecomments", this.articleId);
     this.commentsService.getComments().subscribe(
+
+
       (data: any) => {
         this.commentList = data;
 
-        // Sort the commentList by the 'archive' property in descending order
         this.commentList.sort((a, b) => {
           return b.archive - a.archive;
         });
@@ -43,21 +47,19 @@ export class ManageCommentsComponent implements OnInit {
     );
   }
 
-  //TODO pouvoir modifier état d'un commentaire
-  archiveCommentByArticle(comment: any) {
+  archiveCommentByArticle(comment: Comment) {
     console.log('Comment to archive:', comment);
-    console.log('Comment id:', comment.id);
-    console.log('Comment author:', comment.author);
-
     if (comment && confirm('Voulez-vous vraiment changer l\'état de ce commentaire ?')) {
-      comment.archive = !comment.archive;
-      console.log('Comment state changed:', comment);
-      console.log(comment.id);
-      this.commentsService.updateCommentByArticleId(comment.id, comment.author, comment).subscribe(() => {
-        console.log('Comment state changed successfully:', comment);
-        this.toastr.info(`Commentaire ${comment.archive ? 'archivé' : 'restauré'}`);
-        this.fetchComments();
-      });
+      this.commentsService.updateCommentByArticleId(comment.id, comment).subscribe(
+        (updatedComment: any) => {
+          console.log('Comment state changed successfully:', updatedComment);
+          this.toastr.info(`Commentaire ${updatedComment.archive ? 'archivé' : 'restauré'}`);
+          this.fetchComments();
+        },
+        (error: any) => {
+          console.error('Erreur lors de la mise à jour du commentaire:', error);
+        }
+      );
     }
   }
 

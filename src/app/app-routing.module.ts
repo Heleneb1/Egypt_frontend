@@ -16,6 +16,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { AdminGuardService } from './services/admin-guard.service';
 import { BadgesModalComponent } from './components/badges-modal/badges-modal.component';
 import { ViewComponent } from './components/view/view.component';
+import { TopicsComponent } from './components/topics/topics.component';
 
 const routes: Routes = [
 
@@ -52,7 +53,10 @@ const routes: Routes = [
     path: 'authentication',
     component: ConnectionComponent,
   },
-
+  {
+    path: 'topics',
+    component: TopicsComponent,
+  },
   {
     path: 'profile',
     component: UserProfileComponent,

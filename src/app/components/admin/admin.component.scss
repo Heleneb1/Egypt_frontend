@@ -36,7 +36,16 @@
 
 }
 
-.icon i.fa-bell {
+.notify {
+    display: flex;
+    flex-direction: row;
+    // gap: 1rem;
+    justify-content: flex-end;
+    margin-left: 1rem;
+}
+
+.icon i.fa-bell,
+i.fa-envelope {
     color: var(--white);
     font-size: 1.7rem;
     cursor: pointer;

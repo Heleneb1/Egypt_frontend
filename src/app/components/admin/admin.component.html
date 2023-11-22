@@ -1,12 +1,23 @@
-<div *ngIf="contact.length>0" class="message-count">
-
-    <div ngClass="animate: shake" class="icon" (click)="showMessage()">
-        <i class="fa fa-bell"></i>
-        <span class="number">{{contactCount }}</span>
+<div class="notify">
+    <div *ngIf="contact.length>0" class="message-count">
+        <div ngClass="animate: shake" class="icon" (click)="showMessage()">
+            <i class="fa fa-envelope"></i>
+            <span class="number">{{contactCount }}</span>
+        </div>
+    </div>
+    <div *ngIf="commentList.length>0" class="message-count">
+        <div ngClass="animate: shake" class="icon" (click)=" onClickShowCommentsArchived()">
+            <i class="fa fa-bell"></i>
+            <span class="number">{{archivedCommentCount}}</span>
+        </div>
     </div>
 </div>
 <div class="admin">
-
+    <div class="contact" *ngIf="showArchivedComments">
+        <div class="contact_message" *ngFor="let comments of archivedComments">
+            <p>{{comments.content}}</p>
+        </div>
+    </div>
     <!-- <button (click)="getContact()" class="button">Afficher les messages</button> -->
     <div class="contact" *ngIf="showMsg">
 

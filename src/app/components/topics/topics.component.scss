@@ -1,0 +1,178 @@
+.all-topics {
+    font-family: var(--text);
+    color: var(--white);
+    background-color: var(--blue);
+
+    .noTopics {
+        text-align: center;
+        margin: 2rem;
+        font-size: 1.5rem;
+        font-family: var(--title);
+        color: var(--sun)
+    }
+
+    img {
+        height: 5rem;
+        width: 5rem;
+        border-radius: 100%;
+        border: 1px solid var(--sun);
+        margin: 1rem;
+    }
+
+    .form-group {
+        form {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+
+            .topic-btn {
+                background-color: var(--sun);
+                color: var(--white);
+                display: flex;
+                margin: 1rem;
+                padding: 1rem;
+                border-radius: 2rem;
+                cursor: pointer;
+            }
+
+            .edit {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+
+                textarea {
+                    background-color: var(--blue);
+                    color: var(--white);
+                    width: 60%;
+                    height: 15rem;
+                    display: flex;
+                    justify-content: center;
+                    border: 0.2rem solid var(--white);
+                    border-radius: 1.5rem;
+                    padding: 1rem;
+                }
+
+                .btn-add-topic {
+                    background-color: var(--sun);
+                    color: var(--white);
+                    border-radius: 1rem;
+                    background-color: var(--sun);
+                    color: var(--white);
+                    border: none;
+                    padding: 0.5rem 2rem;
+                    margin: 1rem;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        /* Adjust as needed */
+    }
+
+    li {
+        background-color: var(--white);
+        border-radius: 0.5rem;
+        color: var(--blue);
+        padding: 1rem 0.5rem;
+        width: calc(48% - 1rem);
+        /* Adjust as1 needed */
+        margin: 1rem;
+        /* Adjust as needed */
+        box-sizing: border-box;
+    }
+
+    button {
+        background-color: var(--sun);
+        color: var(--white);
+        border-radius: 1rem;
+        border: none;
+        cursor: pointer;
+        padding: 0.5rem 2rem;
+    }
+
+    p {
+        color: var(--blue);
+    }
+}
+
+.see-answer {
+    margin: 0 1rem;
+    padding: 1rem;
+    text-align: justify;
+
+}
+
+
+
+
+.answer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.answer-btn {
+    background-color: var(--sun);
+    color: var(--white);
+    border-radius: 1rem;
+    background-color: var(--sun);
+    color: var(--white);
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem 2rem;
+    margin: 1rem;
+}
+
+.edit {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+}
+
+.create-answer-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 2rem;
+    background-color: var(--blue);
+    color: var(--white);
+    font-family: var(--text);
+
+    .btn-add-topic {
+        background-color: var(--sun);
+        color: var(--white);
+        border-radius: 1rem;
+        border: none;
+        padding: 0.5rem 2rem;
+        cursor: pointer;
+        margin-top: 1rem;
+    }
+
+    /* Additional styling for response content */
+    textarea {
+        background-color: var(--blue);
+        color: var(--white);
+        width: 60%;
+        height: 15rem;
+        display: flex;
+        justify-content: center;
+        border: 0.2rem solid var(--white);
+        border-radius: 1.5rem;
+        padding: 1rem;
+    }
+}

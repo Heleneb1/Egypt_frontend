@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { CommentsService } from 'src/app/services/comments.service';
 import { QuizService } from 'src/app/services/quiz.service';
 import { SendEmailService } from 'src/app/services/send-email.service';
 
@@ -8,6 +9,9 @@ import { SendEmailService } from 'src/app/services/send-email.service';
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss']
 })
+//TODO ajouter parallax sur les images
+//TODO commentaires sur quiz
+//TODO ajouter leaflet
 export class AdminComponent implements OnInit {
   quiz: any = {};
   selectedBadge: any;
@@ -17,11 +21,16 @@ export class AdminComponent implements OnInit {
   contact: any = {};
   contactCount: number = 0;
   showMsg: boolean = false;
+  showArchivedComments: boolean = false;
   animate: boolean = false;
   isShaking: boolean = false;
+  commentList: any[] = [];
+  archivedCommentCount: number = 0;
+  archivedComments: any[] = [];
+  showCmt: boolean = false;
 
   constructor (
-    private quizService: QuizService, private toastr: ToastrService, private sendEmailService: SendEmailService
+    private quizService: QuizService, private toastr: ToastrService, private sendEmailService: SendEmailService, private commentsService: CommentsService
   ) { }
 
   ngOnInit(): void {
@@ -30,6 +39,35 @@ export class AdminComponent implements OnInit {
       this.contactCount = contact.length;
       console.log("contact", this.contactCount);
     });
+
+    this.commentsService.getComments().subscribe(
+      (data: any) => {
+        this.commentList = data;
+        const archivedComments = this.commentList.filter(comment => comment.archive);
+        this.archivedCommentCount = archivedComments.length;
+        console.log("Commentaires archivés", this.archivedCommentCount);
+        this.commentList.sort((a, b) => {
+          return b.archive - a.archive;
+        });
+      });
+  }
+
+
+  onClickShowCommentsArchived() {
+    if (this.showArchivedComments) {
+      this.commentsService.getComments().subscribe(
+        (data: any) => {
+          this.commentList = data;
+          this.archivedComments = this.commentList.filter(comment => comment.archive);
+        });
+    }
+
+    this.showArchivedComments = !this.showArchivedComments;
+    this.showCmt = this.showArchivedComments;
+  }
+
+  showComment() {
+    this.showCmt = this.showArchivedComments;
   }
   toggleShake() {
     this.isShaking = !this.isShaking;
@@ -50,9 +88,9 @@ export class AdminComponent implements OnInit {
       console.log("contact", contact);
       this.showMsg = true;
       this.isShaking = true;
-
     });
   }
+
   deleteMessage(id: number) {
     console.log("id", id);
 
@@ -66,6 +104,7 @@ export class AdminComponent implements OnInit {
     }
 
   }
+
 
   // Ajoute un badge au quiz sélectionné
   addBadgeToQuiz(selectedQuiz: any, selectedBadge: any) {
