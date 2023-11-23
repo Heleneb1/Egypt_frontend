@@ -1,13 +1,11 @@
 .result-container {
   width: 40rem;
   background-color: var(--white);
-
   border-color: transparent;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
 }
 
 .result-image {
@@ -57,9 +55,7 @@
 .result-name {
   font-family: var(--title);
   color: var(--blue);
-  // font-size: 1.3rem;
   max-width: 22rem;
-  // max-width: 14rem;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -128,7 +124,6 @@
 
     .result-image {
       width: 30%;
-      // object-fit: cover;
       height: auto;
 
 
@@ -147,14 +142,12 @@
 
 
 .result-name {
-  // font-size: 1.3rem;
   text-align: center;
   width: 15rem;
   margin-top: 1rem;
   max-width: 15rem;
   text-overflow: ellipsis;
   white-space: nowrap;
-  /* overflow: hidden; */
   display: block;
 }
 

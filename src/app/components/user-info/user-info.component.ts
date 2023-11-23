@@ -22,7 +22,7 @@ export class UserInfoComponent {
   edit = 'fa  fa-plus-square';
   newBio = '';
   user: any = [];
-  biography = '';
+  // biography = '';
   badges: any;
 
   constructor (private userService: UserService, private sanitizer: DomSanitizer, private badgesService: BadgesService) { }

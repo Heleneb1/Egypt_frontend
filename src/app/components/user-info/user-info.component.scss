@@ -53,25 +53,11 @@ img {
 
 .avatar-button {
     display: none;
-    // color: var(--white);
-    // border: 1px solid var(--white);
-    // width: 2rem;
-    // height: 2rem;
-    // border-radius: 100%;
-    // background-color: var(--sun);
     cursor: pointer;
+    height: 3rem;
+    width: 3rem;
+    background-color: var(--white);
 }
-
-
-// .add-avatar-label {
-//     background-color: var(--sun);
-//     color: #fff;
-//     width: 30px;
-//     height: 30px;
-//     border-radius: 50%;
-//     text-align: center;
-//     cursor: pointer;
-// }
 
 .title-profile {
     font-family: var(--title);
@@ -81,8 +67,6 @@ img {
     font-size: 2rem;
     text-align: center;
 }
-
-
 
 .name-container p {
     display: flex;

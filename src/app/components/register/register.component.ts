@@ -18,11 +18,10 @@ export interface RegisterUser {
 })
 export class RegisterComponent {
   @Output() registrationStatus = new EventEmitter<{ success: boolean; submitted: boolean; }>();
-
   passwordMatch = true;
   passwordStrong = false;
   isEmailValid = false;
-  confirmationPassword = '';
+  // confirmationPassword = '';
   formSubmitted = false;
   showPassword = false;
   userForm: FormGroup;

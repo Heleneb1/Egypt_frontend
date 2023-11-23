@@ -48,7 +48,6 @@ export class CommentsComponent implements OnInit {
     this.userConnected = this.authService.getUserConnected();
 
   }
-  //TODO mettre le commentaire en archive à sa création
   formatDate(date: Date | null): string {
     if (date === null || date === undefined) {
       return '';

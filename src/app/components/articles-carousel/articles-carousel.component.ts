@@ -52,11 +52,6 @@ export class ArticlesCarouselComponent implements OnInit {
     this.updateIndexes();
   }
 
-  // updateIndexes() {
-  //   this.leftIndex = (this.currentIndex - 1 + this.articles.length) % this.articles.length;
-  //   this.rightIndex = (this.currentIndex + 1) % this.articles.length;
-  // }
-
   nextArticle() {
     this.currentIndex = (this.currentIndex + 1) % this.articles.length;
     this.updateIndexes();

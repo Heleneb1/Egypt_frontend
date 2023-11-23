@@ -27,9 +27,10 @@ button {
   border: none;
   margin-top: 2rem;
   position: relative;
-  bottom: 4.5rem;
+  bottom: 4.3rem;
   left: 19rem;
   cursor: pointer;
+  color: var(--sun);
 }
 
 button:active {
@@ -140,7 +141,6 @@ input[type="text"]::placeholder {
 }
 
 .result {
-  // width: 100vw;
   padding: 1rem;
   margin: 2rem;
 }
@@ -167,25 +167,6 @@ input[type="text"]::placeholder {
   }
 }
 
-// @media (min-width: 768px) {
-//   #theme {
-//     width: 45rem;
-//     height: 2.5rem;
-//   }
-
-
-//   .image {
-//     display: flex;
-//     justify-content: center;
-//     height: 35rem;
-//   }
-
-//   .fa {
-//     font-weight: 900;
-//     font-size: 1.8rem;
-//   }
-
-// }
 
 @media (max-width: 768px) {
   .fa-search:before {
@@ -218,8 +199,7 @@ input[type="text"]::placeholder {
 
   button {
     left: 40%;
-    bottom: 4rem;
-    // margin-top: 2.2rem;
+    bottom: 4.1rem;
   }
 
   .option {
@@ -230,14 +210,3 @@ input[type="text"]::placeholder {
     }
   }
 }
-
-// .selected {
-//   p {
-//     width: 20rem;
-//     font-size: 1rem;
-//     padding: 0.5rem;
-//     .color {
-//       color: var(--turquoise);
-//     }
-//   }
-// }

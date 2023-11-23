@@ -18,7 +18,7 @@ export class ArticleDetailsComponent {
   articles: Article[] = [];
   article: any = [];
   articleId: any;
-  userId: any;
+  // userId: any;
   isVoteModified: boolean = false;
   currentRating!: number;
   // authorName: any;
@@ -26,17 +26,14 @@ export class ArticleDetailsComponent {
   isConnected: boolean = false;
   showComment: boolean = false;
   commentList: any[] = [];
-  articleCommentId: any;
+  // articleCommentId: any;
   rating: any;
 
   constructor (
     private articlesService: ArticlesService,
     private toastr: ToastrService,
     private route: ActivatedRoute,
-    // private router: Router,
-    // private http: HttpClient,
     private datePipe: DatePipe,
-    // private sanitizer: DomSanitizer,
     private authService: AuthService,
 
   ) { }
@@ -70,16 +67,6 @@ export class ArticleDetailsComponent {
 
   }
 
-  // onRatingChanged(rating: number) {
-  //   this.currentRating = rating;
-  //   this.isVoteModified = true;
-
-  // }
-
-  // saveRating(rating: number) {
-  //   this.articlesService.addRating(this.articleId, rating);
-  //   this.isVoteModified = false;
-  // }
   onComment() {
     this.showComment = !this.showComment;
   }
@@ -93,8 +80,6 @@ export class ArticleDetailsComponent {
       this.articlesService.addRating(this.articleId, this.currentRating);
       this.isVoteModified = false;
       this.article.rating = this.currentRating;
-      // this.showSuccess();
-      // alert(`Vous avez évalué cet Article à ${this.currentRating} étoiles`);
       this.toastr.success(`Vous avez évalué cet Article à ${this.currentRating} étoiles`);
     } else {
 
@@ -105,10 +90,5 @@ export class ArticleDetailsComponent {
     this.isVoteModified = true;
 
   }
-
-
-  // showSuccess() {
-  //   this.toastr.success(`Vous avez évalué cet Article à ${this.currentRating} étoiles`);
-  // }
 
 }

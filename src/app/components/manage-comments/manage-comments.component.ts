@@ -16,10 +16,10 @@ import { UserService } from 'src/app/services/user.service';
 export class ManageCommentsComponent implements OnInit {
   commentList: any[] = [];
   showComments: boolean = false;
-  isArchived!: boolean;
-  authorId!: string;
+  // isArchived!: boolean;
+  // authorId!: string;
   articleId!: string;
-  comment: any[] = []
+  // comment: any[] = []
 
   constructor (private commentsService: CommentsService, private toastr: ToastrService, private sendEmail: SendEmailService, private userService: UserService) { }
 

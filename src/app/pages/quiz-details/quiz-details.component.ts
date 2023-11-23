@@ -21,21 +21,22 @@ export class QuizDetailsComponent {
   userId: any;
   isVoteModified: boolean = false;
   currentRating: number = 3.5;
-  authorName: any;
-  questionTitles: any = [];
   questionsMap: any = [];
-  articlesMap: any = [];
-  questions: any;
-  userAnswers: string[] = [];
-  selectedOption!: any[];
   progress: number = 0;
   totalNumberOfQuestions: number = 0;
   numberOfAnsweredQuestions: number = 0;
   showModal: boolean = false;
   badgeId: string = '';
   userConnected: any;
-  badges: any[] = [];
   isLoaded = false;
+  // authorName: any;
+  // questionTitles: any = [];
+  // articlesMap: any = [];
+  // questions: any;
+  // userAnswers: string[] = [];
+  // selectedOption!: any[];
+  // badges: any[] = [];
+
 
   constructor (
     private quizService: QuizService,
@@ -76,18 +77,8 @@ export class QuizDetailsComponent {
         console.log("Quiz", this.quiz.id);
 
         console.log(this.quiz);
-        // this.badgeId = this.quiz.badge;
-        // this.badgeId = this.badgeId.toString();//TODO: A supprimer
         this.userService.getUsers;
         console.log(this.userService.getUsers);
-
-        //   this.userService.getUserName(this.quiz.authorId).subscribe((authorData) => {
-
-        //     this.authorName = authorData;
-        //     console.log('Auteur', this.quiz.authorId);
-
-        //   });
-
         this.articlesService.getArticleContent(this.quiz.article).subscribe((article: any) => {
           this.quiz.article = article;
           console.log(this.quiz.article.title);
@@ -118,10 +109,7 @@ export class QuizDetailsComponent {
     //verification de event.target nonnull et a une propriété value
     if (event.target && 'value' in event.target) {
       let selectedOption = (<HTMLInputElement>event.target).value;
-
-
       let question = this.questionsMap.find((question: { id: string; }) => question.id === questionId);
-
       if (question) {
         question.selectedOption = selectedOption;
       }
@@ -141,7 +129,6 @@ export class QuizDetailsComponent {
       this.isVoteModified = false;
       this.quiz.rating = this.currentRating;
       this.toastr.success(`Vous avez évalué ce Quiz à ${this.currentRating} étoiles`);
-      // alert(`Vous avez évalué ce Quiz à ${this.currentRating} étoiles`);
     }
   }
   onRatingChanged(rating: number) {
@@ -178,11 +165,9 @@ export class QuizDetailsComponent {
     console.log("Pourcentage de bonnes réponses :", percentage + "%");
     if (percentage >= 80) {
       this.toastr.success(`Félicitations ! Vous avez obtenu un score supérieur à 80%. ${percentage}% de bonnes réponses.`);
-      // alert("Félicitations ! Vous avez obtenu un score supérieur à 80%. " + percentage + "% de bonnes réponses.");
       this.showModal = true;
     } else {
       this.toastr.warning(`Continuez à travailler pour améliorer votre score. ${percentage}% de bonnes réponses.`);
-      // alert("Continuez à travailler pour améliorer votre score. " + percentage + "% de bonnes réponses.");
     }
   }
 

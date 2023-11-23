@@ -4,7 +4,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { Observable, map } from 'rxjs';
 import jwtDecode from 'jwt-decode';
 import { environment } from 'src/environments/environment.development';
-import { NgcCookieConsent, NgcCookieConsentService } from 'ngx-cookieconsent';
+import { NgcCookieConsentService } from 'ngx-cookieconsent';
 
 @Injectable({
   providedIn: 'root',

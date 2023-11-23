@@ -82,10 +82,6 @@ const cookieConfig: NgcCookieConsentConfig = {
   }
 };
 
-// 5 seconds after the page loads, the cookie popup will appear
-
-//modif de app.component.ts pour metrre en place un delai de 5s avant l'apparition de la banniere de cookie
-
 
 setTimeout(() => {
   cookieConfig.enabled = true;

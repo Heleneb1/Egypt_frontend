@@ -6,25 +6,6 @@
         <img [src]="'assets/images/Gizeah.jpg'" alt="Gizeh" />
     </div>
 </div>
-<!-- <div class="quiz-main-image" *ngIf="isUserConnected">
-    <div class="image">
-        <img [src]="'assets/images/Gizeah.jpg'" alt="Gizeh" />
-    </div>
-
-</div> -->
-<!-- <div class="main-image" *ngIf="!isUserConnected">
-    <div class="image">
-        <img [src]="'assets/images/Gizeah.jpg'" alt="Gizeh" />
-    </div> -->
-<!-- <div class="text-container" *ngIf="!isUserConnected">
-        Vous devez être connecté pour accéder aux quiz.
-        Veuillez vous connecter ou créer un compte.
-    </div> -->
-<!-- <div class="text-container" *ngIf="isUserConnected; then content else other_content">
-        <ng-template #content>Répondez aux questions, et gagnez des badges</ng-template>
-        <ng-template #other_content> Vous devez être connecté pour accéder aux quiz. Veuillez vous connecter ou créer un
-            compte.</ng-template>
-    </div> -->
 <div class="text">
     <div *ngIf="isUserConnected; else noCourses">
         <div class="text-container">
@@ -38,7 +19,6 @@
         </div>
     </ng-template>
 </div>
-<!-- </div> -->
 <div class="no-connected">
     <div class="button" *ngIf="!isUserConnected">
         <div class="button-container">
@@ -67,7 +47,6 @@
 
             <div class="quiz-card">
                 <div class="header-card">
-                    <!-- <img src="{{ quiz.picture }}" /> -->
                     <img [src]="quiz.picture ? quiz.picture : defaultImage" alt="Image du quiz" />
                 </div>
                 <div class="body-card">
@@ -79,15 +58,12 @@
                             </div>
                             <div>
                                 <div class="rating">
-
                                     <app-star-rating [totalStars]="5" [rating]="quiz.rating"></app-star-rating>
-
                                 </div>
 
                                 <a class="quiz-detail-button" [routerLink]="['/quiz', quiz.id]"
                                     (click)="selectedQuizById(quiz.id)">
                                     <p>Details</p>
-
 
                                 </a>
 

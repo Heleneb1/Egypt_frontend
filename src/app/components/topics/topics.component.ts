@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { User } from 'src/app/models/user';
+import { forkJoin } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { TopicsService } from 'src/app/services/topics.service';
 import { UserService } from 'src/app/services/user.service';
@@ -12,12 +12,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class TopicsComponent implements OnInit {
 
-  userId: string = '';
   topics: any[] = [];
-  topicId: string = '';
-  authorId: string = '';
-  receiverId: string = '';
-  answers: any[] = [];
   existingAnswers: any[] = [];
   selectedTopic: any;
   topic: any;
@@ -27,6 +22,8 @@ export class TopicsComponent implements OnInit {
   topicMessage: string = '';
   editAnswer: boolean = false;
   answerMessage: string = '';
+  searchQuery: string = '';
+  tag: string = '';
 
   constructor (
     private authService: AuthService,
@@ -40,53 +37,49 @@ export class TopicsComponent implements OnInit {
       this.topics = topics;
       console.log(this.topics);
 
-      // Pour chaque sujet, récupérez le nom de l'auteur
       this.topics.forEach((topic: any) => {
         this.userService.getUserName(topic.authorId).subscribe((authorName: string) => {
           topic.authorName = authorName;
           console.log("Author name", authorName);
+          this.userService.getUserAvatarForComment(topic.authorId).subscribe((avatarBlob: Blob) => {
+            const avatarUrl = URL.createObjectURL(avatarBlob);
+            topic.authorAvatar = avatarUrl;
+          });
         });
       });
 
-      // Pour chaque réponse, récupérez le nom de l'auteur
-      this.topicsService.getAnswers().subscribe((answers: any) => {
-        this.existingAnswers.forEach((answer: any) => {
-          this.userService.getUserById(answer.authorId).subscribe((author: User) => {
-            answer.authorId = author;
-            console.log("Author", author);
-
-            this.userService.getUserName(answer.authorId).subscribe((authorName: string) => {
-              answer.authorName = authorName;
-              console.log("Author name for answers", authorName);
-            });
-          });
-        }
-        );
-      });
     });
-
-
-
-
-
-    // Rest of your code...
-
-    // this.topics.forEach((topic: any) => {
-    //   this.userService.getUserAvatarForComment(topic.author).subscribe((avatarBlob: Blob) => {
-    //     const avatarUrl = URL.createObjectURL(avatarBlob);
-    //     topic.authorAvatar = avatarUrl;
-    //   });
-    // });
-
-
-
-
     this.authService.getUserConnected().subscribe((user: any) => {
       this.userConnected = user;
       console.log("User connected", this.userConnected);
     });
   }
+  searchTopics() {
+    this.topicsService.getTopicsByTag(this.searchQuery).subscribe(
+      (topics: any) => {
+        this.topics = topics;
+        console.log(this.topics);
 
+        setTimeout(() => {
+          this.loadAvatars();
+        }, 500);
+
+        this.searchQuery = '';
+      },
+      (error: any) => {
+        console.error('Error fetching topics:', error);
+      }
+    );
+  }
+
+  loadAvatars() {
+    this.topics.forEach((topic: any) => {
+      this.userService.getUserAvatarForComment(topic.authorId).subscribe((avatarBlob: Blob) => {
+        const avatarUrl = URL.createObjectURL(avatarBlob);
+        topic.authorAvatar = avatarUrl;
+      });
+    });
+  }
 
   getTopicById(id: string) {
     this.topicsService.getTopicById(id).subscribe((topic: any) => {
@@ -103,34 +96,58 @@ export class TopicsComponent implements OnInit {
 
   getAnswersByTopic(topicId: any) {
     console.log("For getting answers by topic", topicId);
+
     this.topicsService.getAnswersByTopicId(topicId).subscribe((answers: any) => {
-      this.existingAnswers = answers;
-      this.existingAnswers = answers.filter((answer: any) => answer.topicId === topicId);
-      this.existingAnswers.sort((a: any, b: any) => {
-        return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
-      }
-      );
-      console.log("Les réponses", this.existingAnswers);
-      setTimeout(() => {
-        this.goBottom();
-      }, 500);
+      const authorObservables = answers.map((answer: any) => {
+        return this.userService.getUserName(answer.authorId);
+      });
+      const authorAvatarObservables = answers.map((answer: any) => {
+        return this.userService.getUserAvatarForComment(answer.authorId);
+      });
+
+      // Utilisez forkJoin pour attendre que tous les observables se terminent
+      forkJoin<string[]>(authorObservables).subscribe((authorNames: string[],) => {
+        // Assignez les noms d'auteurs aux réponses correspondantes
+        forkJoin<Blob[]>(authorAvatarObservables).subscribe((avatars: Blob[]) => {
+          this.existingAnswers = answers.map((answer: any, index: number) => {
+            return { ...answer, authorName: authorNames[index], authorAvatar: URL.createObjectURL(avatars[index]) };
+          });
+
+          this.existingAnswers = this.existingAnswers.filter((answer: any) => answer.topicId === topicId);
+          this.existingAnswers.sort((a: any, b: any) => {
+            return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+          });
+
+          console.log("Les réponses", this.existingAnswers);
+
+          setTimeout(() => {
+            this.goBottom();
+          }, 500);
+        });
+      });
     });
   }
-
   createTopic() {
     if (this.userConnected) {
       const authorTopicId = this.userConnected.id;
       console.log("Topic", this.topic);
       const data = {
         message: this.topicMessage,
+        tag: this.tag
       };
       console.log("Data", data);
+      if (this.topicMessage.length < 10 || this.tag.length < 1) {
+        this.toastr.error("Votre message doit contenir au moins 10 caractères et un tag", "Erreur");
+        return;
+      }
+
 
       this.topicsService.postTopic(data, authorTopicId).subscribe((topic: any) => {
         this.topic = topic;
         this.toastr.success("Topic créé avec succès", "Succès");
         this.ngOnInit();
         this.topicMessage = "";
+        this.tag = "";
         this.editTopic = false;
       });
     }

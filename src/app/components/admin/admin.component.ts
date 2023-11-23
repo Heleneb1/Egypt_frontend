@@ -106,7 +106,6 @@ export class AdminComponent implements OnInit {
   }
 
 
-  // Ajoute un badge au quiz sélectionné
   addBadgeToQuiz(selectedQuiz: any, selectedBadge: any) {
     if (this.selectedQuiz && this.selectedBadge) {
       console.log("quizId", this.selectedQuiz);
@@ -117,17 +116,14 @@ export class AdminComponent implements OnInit {
     }
   }
 
-  // Met à jour les questions sélectionnées
   onQuestionsSelected(selectedQuestions: any) {
     this.selectedQuestions = selectedQuestions;
   }
 
-  // Met à jour la catégorie sélectionnée
   onCategorySelected(selectedCategory: string) {
     this.selectedCategory = selectedCategory;
   }
 
-  // Ajoute les questions sélectionnées au quiz
   addSelectedQuestionsToQuiz(selectedCategory: string) {
     if (this.selectedQuiz && this.selectedQuestions.length > 0) {
       console.log("quizId", this.selectedQuiz.id);

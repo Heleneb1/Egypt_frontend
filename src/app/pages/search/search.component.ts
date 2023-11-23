@@ -10,10 +10,8 @@ import { Article } from '../../models/article';
 })
 export class SearchComponent implements OnInit {
   articles: Article[] = [];
-  articleSearch = '';
-  author!: string;
-  title!: string;
-  filteredArticles: Article[] = [];
+  searchQuery: string = "";
+  animateCard = false;
   selectedTag: string[] = [];
   selectedTitle: string[] = [];
   selectedAuthor: string[] = [];
@@ -23,10 +21,13 @@ export class SearchComponent implements OnInit {
   titleOptions!: string[];
   articleAuthor = "";
   authorOptions!: string[];
-  currentRating!: number;
-  rating: number = 3.5;
-  searchQuery: string = "";
-  animateCard = false;
+  // currentRating!: number;
+  // rating: number = 3.5;
+  // articleSearch = '';
+  // author!: string;
+  // title!: string;
+  // filteredArticles: Article[] = [];
+
 
   constructor (private articlesService: ArticlesService) { }
   getArticles(): void {
@@ -39,7 +40,6 @@ export class SearchComponent implements OnInit {
     this.loadTitle();
     this.loadAuthors();
   }
-  //TODO revoir la fonction
   searchArticles() {
     this.resetOtherFilters("tag");
     this.resetOtherFilters("title");
@@ -47,8 +47,6 @@ export class SearchComponent implements OnInit {
 
     this.articlesService.getArticlesByAuthorTitleTag(
       this.searchQuery,
-      // this.searchQuery,
-      // this.searchQuery
     ).subscribe(
       (response: Article[]) => {
         console.log('Articles par auteur, titre ou tag :', response);

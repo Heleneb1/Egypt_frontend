@@ -30,18 +30,11 @@ export class ViewComponent implements OnInit {
       }
     });
 
-    // Fetch coordinates when the component is initialized
     this.route.queryParams.subscribe((params) => {
       this.latitude = parseFloat(params['lat']);
       this.longitude = parseFloat(params['lng']);
     });
 
-    // this.viewService.getCoordinatesFromDatabase().subscribe((data) => {
-    //   this.data = data;
-    //   console.log(this.data);
-    //   console.log(this.data.picture);
-
-    // });
   }
   openFullPage(imageUrl: string): void {
     this.fullPageService.setImageUrl(imageUrl);

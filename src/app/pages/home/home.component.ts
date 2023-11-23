@@ -23,7 +23,6 @@ export class HomeComponent implements OnInit {
         this.fogEffect = false;
       }, 4000);
     } else {
-      // L'utilisateur est connecté, vous pouvez ajuster les propriétés en conséquence.
       this.isLoaded = true;
       this.fogEffect = false;
       this.glow = false;

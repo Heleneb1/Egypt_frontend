@@ -16,10 +16,12 @@ export class TopicsService {
   getTopics() {
     return this.httpClient.get(this.topicsUrl);
   }
+  getTopicsByTag(tag: string) {
+    return this.httpClient.get(`${this.topicsUrl}/byTag/${tag}`);
+  }
   getTopicById(id: string) {
     return this.httpClient.get(`${this.topicsUrl}/${id}`);
   }
-  // @PostMapping("/{authorId}/{receiverId}/create")
   postTopic(topic: any, authorId: string) {
     return this.httpClient.post(`${this.topicsUrl}/${authorId}/create`, topic);
   }
@@ -30,12 +32,10 @@ export class TopicsService {
   getAnswerById(id: string) {
     return this.httpClient.get(`${this.answersUrl}/${id}`);
   }
-  //@PostMapping("/{topicId}/{authorId}/create-answers")
   postAnswer(answer: any, topicId: string, authorId: string) {
     return this.httpClient.post(`${this.answersUrl}/${topicId}/${authorId}/create-answers`, answer);
 
   }
-  // @GetMapping("/{authorId}/{topicId}")
   getAnswersByTopicId(topicId: string) {
     console.log(`${this.answersUrl}/topics/${topicId}`);
 

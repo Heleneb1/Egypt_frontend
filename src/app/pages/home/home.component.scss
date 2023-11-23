@@ -67,7 +67,6 @@ $lineHeight: 1.5;
     font-family: var(--title);
     font-size: 1.5rem;
     color: var(--white);
-    // padding: 2rem;
     margin-bottom: 1rem;
   }
 
@@ -107,7 +106,6 @@ $lineHeight: 1.5;
   height: 100%;
   background-color: var(--sun);
   animation: fogAnimation 2s ease-in-out forwards;
-  // animation-delay: 2s; /* Ajoutez le délai souhaité (par exemple, 2 secondes) */
 }
 
 .glow-effect {
@@ -116,7 +114,6 @@ $lineHeight: 1.5;
   position: fixed;
   top: 0;
   left: 0;
-  // z-index: -1;
   background: radial-gradient(circle, #f1c787, rgba(255, 255, 255, 0) 50%);
   animation: glow 1s ease-in-out forwards;
   border-radius: 100%;

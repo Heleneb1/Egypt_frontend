@@ -25,7 +25,6 @@
                             </p>
                         </div>
                         <div class="avatar">
-                            <!-- <img [src]="avatarUrl" alt="Avatar de {{ comment.authorName }}" /> -->
                             <img [src]="comment.authorAvatar || defaultAvatarUrl"
                                 alt="Avatar de l'auteur du commentaire" />
                             <p> {{ comment.authorName }}</p>
@@ -34,8 +33,6 @@
                                 <button (click)="deleteMyComment(comment.id, comment.author)" type="button"
                                     class="deleteMyComment">Supprimer
                                     le commentaire</button>
-                                <!-- <img [src]="comment.authorAvatar" alt="Avatar de {{ comment.authorName }}" />
-                            <p> {{ comment.authorName }}</p> -->
                             </div>
                         </div>
                     </div>
@@ -43,13 +40,7 @@
             </ul>
         </div>
         <div class="comment-button">
-
-
-
             <button (click)="onComment()" type="button" class="comment-btn">Afficher les commentaires</button>
         </div>
     </form>
-
-
-
 </div>

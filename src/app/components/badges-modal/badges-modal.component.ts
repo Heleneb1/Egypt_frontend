@@ -22,24 +22,21 @@ export class BadgesModalComponent implements OnInit {
   closeModal(): void {
     this.showModal = false;
   }
-  constructor(private router: Router, private badgesService: BadgesService, private userService: UserService) { }
+  constructor (private router: Router, private badgesService: BadgesService, private userService: UserService) { }
 
   ngOnInit(): void {
     this.badgesService.getBadges().subscribe((data: any) => {
       console.log("ModalData", data);
       console.log("badgeId dans BadgesModalComponent", this.badgeId);
-      // this.badgeId pour récupérer les informations du badge
       this.badge = this.badgesService.getBadgesById(this.badgeId);
-      this.getContent(this.badgeId); // pour récupérer le contenu du badge
+      this.getContent(this.badgeId);
     });
   }
   getContent(badgeId: any) {
     this.badgesService.getBadgeContent(badgeId).subscribe((badge: any) => {
       this.badge = badge;
       console.log("badge", badge);
-
     });
-
   }
 
 

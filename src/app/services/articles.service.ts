@@ -26,7 +26,7 @@ export class ArticlesService {
 
 
   constructor (private httpClient: HttpClient) { }
-  getArticles(): Observable<Article[]> { // Typer la réponse comme un tableau d'articles
+  getArticles(): Observable<Article[]> {
     return this.httpClient.get<Article[]>(`${this.articlesDataUrl}`);
   }
   getArticleById(id: string) {

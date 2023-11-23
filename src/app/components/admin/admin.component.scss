@@ -19,10 +19,8 @@
     }
 
     button:active,
-    /* Appliquer la mise à l'échelle lors du clic */
     button:focus {
         transform: scale(1.1);
-        /* Mettre à l'échelle le bouton au clic */
     }
 
 
@@ -39,7 +37,6 @@
 .notify {
     display: flex;
     flex-direction: row;
-    // gap: 1rem;
     justify-content: flex-end;
     margin-left: 1rem;
 }
@@ -79,8 +76,6 @@ i.fa-envelope {
     border-radius: 0.5rem;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
     font-family: var(--text);
-    // overflow: auto;
-    ;
 }
 
 .contact_message_title {
@@ -108,14 +103,3 @@ i.fa-envelope {
         transform: translateX(0);
     }
 }
-
-
-
-// .number {
-//     background-color: var(--sun);
-//     width: 2rem;
-//     height: 2rem;
-//     padding: 1rem;
-//     border-radius: 1rem;
-//     color: var(--white);
-// }

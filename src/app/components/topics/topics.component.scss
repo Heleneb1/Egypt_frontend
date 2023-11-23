@@ -17,6 +17,9 @@
         border-radius: 100%;
         border: 1px solid var(--sun);
         margin: 1rem;
+        shape-outside: margin-box;
+        margin: 0 0.5rem 0.5rem 0;
+        float: left;
     }
 
     .form-group {
@@ -42,6 +45,19 @@
                 justify-content: center;
                 align-items: center;
 
+                input#topic-tag {
+                    background-color: var(--blue);
+                    color: var(--white);
+                    width: 60%;
+                    height: 2rem;
+                    display: flex;
+                    justify-content: center;
+                    border: 0.2rem solid var(--white);
+                    border-top-right-radius: 1.5rem;
+                    border-top-left-radius: 1.5rem;
+                    padding: 1rem;
+                }
+
                 textarea {
                     background-color: var(--blue);
                     color: var(--white);
@@ -50,8 +66,10 @@
                     display: flex;
                     justify-content: center;
                     border: 0.2rem solid var(--white);
-                    border-radius: 1.5rem;
+                    border-bottom-left-radius: 1.5rem;
+                    border-bottom-right-radius: 1.5rem;
                     padding: 1rem;
+                    border-top: none;
                 }
 
                 .btn-add-topic {
@@ -73,7 +91,8 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
-        /* Adjust as needed */
+        padding: 0;
+
     }
 
     li {
@@ -82,11 +101,12 @@
         color: var(--blue);
         padding: 1rem 0.5rem;
         width: calc(48% - 1rem);
-        /* Adjust as1 needed */
         margin: 1rem;
-        /* Adjust as needed */
         box-sizing: border-box;
     }
+
+
+
 
     button {
         background-color: var(--sun);
@@ -100,6 +120,10 @@
     p {
         color: var(--blue);
     }
+
+    p::first-letter {
+        text-transform: uppercase;
+    }
 }
 
 .see-answer {
@@ -110,6 +134,39 @@
 }
 
 
+.name-search {
+    margin: 2rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .search-button {
+        font-size: 1.7rem;
+
+        background: transparent;
+        border-radius: 2rem;
+        border: none;
+        margin-top: 2rem;
+        position: relative;
+        bottom: 4.5rem;
+        left: 19rem;
+        cursor: pointer;
+        color: var(--sun);
+
+    }
+
+}
+
+#theme {
+    color: var(--blue);
+    background: var(--white);
+    border-radius: 2rem;
+    padding-left: 2rem;
+    font-size: 1.5rem;
+    height: 2.2rem;
+    width: 45rem;
+}
 
 
 .answer {
@@ -163,7 +220,6 @@
         margin-top: 1rem;
     }
 
-    /* Additional styling for response content */
     textarea {
         background-color: var(--blue);
         color: var(--white);
@@ -175,4 +231,76 @@
         border-radius: 1.5rem;
         padding: 1rem;
     }
+}
+
+@media screen and (max-width: 768px) {
+    .all-topics {
+        ul {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            flex-direction: column;
+            padding: 0;
+            align-items: center;
+
+        }
+
+        li {
+            background-color: var(--white);
+            border-radius: 0.5rem;
+            width: 20rem;
+        }
+
+        .answer {
+            ul {
+                min-width: 71rem;
+
+                li {
+                    background-color: var(--white);
+                    border-radius: 0.5rem;
+                    color: var(--blue);
+                    width: 21rem;
+                    padding: 1rem 0.5rem;
+                    box-sizing: border-box;
+                }
+            }
+        }
+    }
+
+    .name-search {
+        margin: 2rem 0.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+
+        .search-button {
+            font-size: 1.7rem;
+
+            background: transparent;
+            border-radius: 2rem;
+            border: none;
+            margin-top: 2rem;
+            position: relative;
+            bottom: 4.6rem;
+            left: 8rem;
+            cursor: pointer;
+            color: var(--sun);
+
+        }
+    }
+
+    #theme {
+        color: var(--blue);
+        background: var(--white);
+        border-radius: 2rem;
+        padding-left: 2rem;
+        font-size: 1.5rem;
+        height: 2.2rem;
+        width: 18rem;
+
+    }
+
+
 }

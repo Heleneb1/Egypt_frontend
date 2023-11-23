@@ -1,6 +1,3 @@
-<!-- manage-comments.component.html -->
-
-
 <div class="show-comments" *ngIf="showComments">
     <div *ngFor="let comment of commentList" class="comment">
         <div class="comment-details">
@@ -23,10 +20,7 @@
                 <button (click)="archiveCommentByArticle(comment)" type="button" class="archived-button">
                     {{ comment.archive ? 'Restaurer' : 'Archiver' }}
                 </button>
-
-
                 <button (click)="deleteComment(comment.id)" class="delete-button archived-button">Supprimer</button>
-                <!-- <button (click)="saveChanges()" class="button-badge">Enregistrer</button> -->
             </div>
         </div>
     </div>
