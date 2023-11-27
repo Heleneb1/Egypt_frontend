@@ -1,6 +1,9 @@
 <div class="register-box">
+
   <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+
     <div class="user-box">
+
       <input type="text" formControlName="lastname" required />
       <div class="input-title">
         <h3>Nom</h3>
@@ -55,6 +58,12 @@
           <i [class]="showPassword ? 'fa fa-eye-slash' : 'fa fa-eye'"></i>
         </div>
       </button>
+    </div>
+    <div *ngIf="isPasswordConfirmed">
+
+      <div class="modal">
+        <app-gcu *ngIf="showModal" (isAcceptedChange)="onIsAcceptedChange($event)"></app-gcu>
+      </div>
     </div>
     <div class="button">
       <div class="button-container">

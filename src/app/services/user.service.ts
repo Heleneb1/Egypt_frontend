@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable, Output } from '@angular/core';
 import { Observable, map, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './auth.service';
@@ -7,8 +7,10 @@ import { AuthService } from './auth.service';
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
 
+export class UserService {
+  @Output() registrationStatus = new EventEmitter<{ success: boolean; submitted: boolean; }>();
+  formSubmitted = false;
   awardBadgeToCurrentUser(badgeId: any, userId: any) {
     return this.httpClient.put<any>(environment.apiUrl + `/users/${userId}/badges/${badgeId}`, {});
   }
@@ -56,6 +58,42 @@ export class UserService {
     const url = environment.apiUrl + `/users/${userId}`;
     return this.httpClient.put(url, body);
   }
+  acceptation(userId: string, body: { isAccepted: boolean }): Observable<any> {
+    const url = `${environment.apiUrl}/users/${userId}`;
+    return this.httpClient.put(url, body);
+  }
+  // updateArticle(id: string, updatedArticle: Article): Observable<Article> {
+  //   const url = `${this.dataUrl}/articles/${id}`;
+  //   return this.httpClient.put<Article>(url, updatedArticle);
+  // }
+
+  registerUser(user: any): Observable<any> {
+    console.log('Requête HTTP - Corps:', user);
+
+    return this.httpClient
+      .post(environment.apiUrl + '/api/auth/register', user, {
+        observe: 'response',
+      })
+      .pipe(
+        map((response) => {
+          if (response.status === 200 || response.status === 201) {
+            this.registrationStatus.emit({
+              success: true,
+              submitted: this.formSubmitted,
+            });
+          } else if (response.status >= 400) {
+            this.registrationStatus.emit({
+              success: false,
+              submitted: this.formSubmitted,
+            });
+          }
+          console.log('Réponse HTTP:', response);
+
+          return response;
+        })
+      );
+  }
+
 
   getAvatar(filename: string): Observable<Blob> {
     return this.httpClient.get(environment.apiUrl + `/users/avatar/${filename}`, { responseType: 'blob' });

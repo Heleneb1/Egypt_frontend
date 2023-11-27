@@ -44,7 +44,14 @@
 }
 
 .top-bar-form-item-selected {
-  background-color: var(--sun);
+  color: var(--white);
+  text-decoration: underline;
+  text-underline-offset: 10px;
+
+  .top-bar-form-item-text {
+    color: var(--sun);
+
+  }
 }
 
 .top-bar-form-container {
@@ -57,13 +64,19 @@
 }
 
 .info-submitted-validation {
+
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
 }
 
 .info-submitted-validation-text {
-  font-size: 16px;
   font-weight: bold;
-  padding: 10px;
+  color: var(--sun);
+  background-color: var(--white);
+  padding: 0.5rem 2rem;
   border-radius: 5px;
 }
 

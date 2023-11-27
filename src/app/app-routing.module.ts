@@ -17,6 +17,7 @@ import { AdminGuardService } from './services/admin-guard.service';
 import { BadgesModalComponent } from './components/badges-modal/badges-modal.component';
 import { ViewComponent } from './components/view/view.component';
 import { TopicsComponent } from './components/topics/topics.component';
+import { GCUComponent } from './components/gcu/gcu.component';
 
 const routes: Routes = [
 
@@ -81,7 +82,11 @@ const routes: Routes = [
   },
   {
     path: 'view', component: ViewComponent
+  },
+  {
+    path: 'gcu', component: GCUComponent
   }
+
 ];
 
 

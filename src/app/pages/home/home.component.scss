@@ -37,10 +37,19 @@ $lineHeight: 1.5;
     align-items: center;
   }
 
+  .main-image-home {
+    width: 100vw;
+    height: 30rem;
+  }
+
   img {
-    width: auto;
+    width: 98vw;
+    display: flex;
+    height: 100%;
     object-fit: cover;
-    height: 57%;
+    justify-content: center;
+    align-items: center;
+
   }
 
   .home-title {
@@ -84,6 +93,7 @@ $lineHeight: 1.5;
 
   .paragraph {
     margin-bottom: 2rem;
+    padding-bottom: 2rem;
   }
 
   p {
@@ -118,6 +128,15 @@ $lineHeight: 1.5;
   animation: glow 1s ease-in-out forwards;
   border-radius: 100%;
   animation-duration: 7s;
+}
+
+.gcu {
+  text-decoration: none;
+
+  a {
+    color: var(--sun);
+    font-family: var(--text);
+  }
 }
 
 @keyframes fogAnimation {

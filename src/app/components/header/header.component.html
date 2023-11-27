@@ -20,7 +20,9 @@
                                 <a routerLink="/authentication">Connexion</a>
                             </li>
                             <ng-template #disConnect>
-                                <li><a (click)="logout()">Déconnexion</a></li>
+                                <li>
+                                    <p class="logout" (click)="logout()">Déconnexion</p>
+                                </li>
                             </ng-template>
 
                             <li><a routerLink="/contact">Nous Contacter</a></li>
@@ -29,7 +31,7 @@
                         </ul>
                     </div>
                     <div class="logo">
-                        <a routerLink="/home">
+                        <a aria-label="Aller à la page d\'Accueil" routerLink="/home">
                             <app-logo3-d></app-logo3-d>
                         </a>
                     </div>

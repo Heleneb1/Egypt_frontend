@@ -2,7 +2,8 @@
     <div *ngIf="userConnected" class="form-group">
         <form (submit)="createTopic()">
             <label for="topic"></label>
-            <button type="button" class="topic-btn" (click)="toggleEdit()">Créer un nouveau sujet</button>
+            <button type="button" title="create-topic-btn" class="topic-btn" (click)="toggleEdit()">Créer un nouveau
+                sujet</button>
             <div class="create-topic-form" *ngIf="editTopic">
                 <div class="edit">
                     <input type="text" id="topic-tag" placeholder="Thème" [(ngModel)]="tag" name="tag" required />
@@ -16,17 +17,20 @@
     <div *ngIf="userConnected" class="name-search">
         <label for="theme"></label>
         <input type="text" id="theme" placeholder="Rechercher" [(ngModel)]="searchQuery" />
-        <button type="button" class="search-button" (click)="searchTopics()">
+        <button type="button" id="searchButton" title="Search" (click)="searchTopics()">
+
             <i class="fa fa-search"></i>
         </button>
     </div>
     <div class="see-topics">
         <ul *ngIf="topics && topics.length > 0; else noTopics">
             <li *ngFor="let topic of topics">
-                <button (click)="getTopicById(topic.id)">Participer</button>
+                <button type="button" title="participation" (click)="getTopicById(topic.id)">Participer</button>
                 <p>Tag: {{topic.tag}}</p>
                 <p>Par: {{ topic.authorName }}</p>
-                <img [src]="topic.authorAvatar" alt="Avatar de l'auteur du commentaire" />
+                <div class="author-avatar">
+                    <img [src]="topic.authorAvatar" alt="Avatar de l'auteur du commentaire" />
+                </div>
                 <div>Sujet: {{ topic.message }}</div>
                 <p>Date de création: {{ topic.creationDate|date:"medium" }}</p>
             </li>
@@ -54,9 +58,11 @@
         </div>
         <ul *ngIf="existingAnswers && existingAnswers.length > 0; else noAnswers">
             <li *ngFor="let answer of existingAnswers">
+                <div class="author-avatar">
+                    <img [src]="answer.authorAvatar" alt="Avatar de l'auteur du commentaire" />
+                </div>
                 <p>Réponse: {{ answer.answer }}</p>
                 <p>auteur :{{answer.authorName}}</p>
-                <img [src]="answer.authorAvatar" alt="Avatar de l'auteur du commentaire" />
 
             </li>
         </ul>

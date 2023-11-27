@@ -138,6 +138,22 @@ nav.header-container {
   cursor: pointer;
 }
 
+.link {
+  // text-decoration: none;
+  // color: var(--sun);
+  // font-size: 1.5rem;
+  // margin-top: 10px;
+  // cursor: pointer;
+
+  .logout {
+    color: var(--sun);
+    font-size: 1.5rem;
+    margin-top: 10px;
+    cursor: pointer;
+    font-family: var(--title);
+  }
+}
+
 @media screen and (min-width: 768px) {
   .header-all {
     margin: 0;
@@ -191,8 +207,10 @@ nav.header-container {
 
   .menu .nav-mobile ul {
     list-style: none;
-    margin: 0 3rem;
+    margin: 0 2.5rem;
+    padding-right: 1rem;
     text-align: center;
+
   }
 
   .menu li a {

@@ -46,26 +46,38 @@ import { Logo3DComponent } from './components/logo3-d/logo3-d.component';
 import { ViewComponent } from './components/view/view.component';
 import { FullPageImageComponent } from './components/full-page-image/full-page-image.component';
 import { TopicsComponent } from './components/topics/topics.component';
+import { GCUComponent } from './components/gcu/gcu.component';
 
+export interface NgcPalette {
+  background?: string;
+  border?: string;
+  link?: string;
+  text?: string;
+}
 const cookieConfig: NgcCookieConsentConfig = {
+
   cookie: {
     domain: 'localhost' // or 'your.domain.com'
 
   },
   palette: {
     popup: {
-      background: 'var(--sun)',
-
-
+      background: 'var(--blue)',
+      border: '1px solid #fff',
     },
     button: {
+
       background: 'var(--blue)',
+      border: '1px solid #fff', // Ajoutez cette ligne pour la bordure
     },
     highlight: {
       background: 'var(--blue)',
+
     },
   },
+
   theme: 'edgeless',
+
   type: 'opt-out',
   position: 'bottom-left',
   enabled: false,
@@ -73,14 +85,20 @@ const cookieConfig: NgcCookieConsentConfig = {
     regionalLaw: true,
     countryCode: 'FR',
   },
-
   content: {
-    message: "Un petit cookie pour la route?\n Avant de s'immerger dans l'Égypte des Pharaons ?",
-    allow: 'Accepter',
-    deny: 'Refuser',
-    link: 'En savoir plus',
+    header: 'Utilisation des cookies sur ce site',
+    close: 'Fermer',
+    textShadow: '2px 2px 2px rgba(0, 0, 0, 0.5)',
+    message: "Acceptez-vous un petit cookie pour la route, avant de vous immerger dans l'Égypte des Pharaons ? <a href='https://www.cnil.fr/fr/cookies-traceurs-que-dit-la-loi'>En savoir plus sur les cookies</a>",
+    allow: 'Oui, j\'accepte',
+    deny: 'Non, je refuse',
+    link: 'Plus d\'informations',
+    policy: "Notre politique de cookies",
   }
+
+
 };
+
 
 
 setTimeout(() => {
@@ -123,6 +141,7 @@ setTimeout(() => {
     ViewComponent,
     FullPageImageComponent,
     TopicsComponent,
+    GCUComponent,
   ],
   imports: [
     BrowserModule,

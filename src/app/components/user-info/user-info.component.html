@@ -36,12 +36,13 @@
     </div>
     <div class="badge-container">
         <div class="reward">
-            <h4>Badges gagnés : {{badges.name}}</h4>
+            <h3>Badges gagnés : {{badges.name}}</h3>
         </div>
         <div class="badge-list">
             <div *ngFor="let badge of badges" class="badge-item">
-
-                <img [src]="badge.image" [alt]="badge.name" class="badge-image" />
+                <div class="badge-image">
+                    <img [src]="badge.image" [alt]="badge.name" />
+                </div>
                 <p>{{ badge.name }}</p>
 
             </div>

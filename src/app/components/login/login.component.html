@@ -24,7 +24,7 @@
         <span *ngIf="password.errors?.['required']">Mot de passe requis</span>
 
       </div>
-      <button type="button" class="show-password" (click)="click()"
+      <button title="password-visibility" type="button" class="show-password" (click)="click()"
         style="color: var(--sun); background-color: var(--white);">
         <div class="eye">
           <i [class]="showPassword ? 'fa fa-eye-slash' : 'fa fa-eye'"></i>

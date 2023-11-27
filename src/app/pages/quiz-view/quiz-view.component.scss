@@ -11,6 +11,7 @@
     padding: 2rem;
     position: relative;
     bottom: 11rem;
+    min-width: 42rem;
     height: 12rem;
     background: rgba(0, 0, 0, 0.48);
     color: #fdfdfd;
@@ -80,7 +81,8 @@
     button {
         background-color: var(--sun);
         font-family: var(--title);
-        font-size: 1rem;
+        font-size: 1.3rem;
+        text-shadow: 1px 1px 1px #000000;
         color: var(--white);
         width: 10rem;
         height: 3rem;
@@ -92,6 +94,7 @@
     .create-quiz-button {
         background-color: var(--sun);
         font-family: var(--title);
+        text-shadow: 1px 1px 1px #000000;
         font-size: 1.3rem;
         color: var(--white);
         border-radius: 4rem;
@@ -172,6 +175,7 @@
                 background-color: var(--sun);
                 font-family: var(--title);
                 font-size: 1rem;
+                text-shadow: 1px 1px 1px #000000;
                 color: var(--white);
                 width: 10rem;
                 border: none;
@@ -215,5 +219,13 @@
 
     justify-content: flex-end;
     margin: 2rem;
+
+}
+
+@media screen and (max-width: 768px) {
+    .text-container {
+        min-width: 12rem;
+        height: 12rem;
+    }
 
 }

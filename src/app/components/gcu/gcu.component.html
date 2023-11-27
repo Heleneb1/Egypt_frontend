@@ -1,0 +1,162 @@
+<div class="GCU-all">
+    <form [formGroup]="gcuForm">
+        <section id="legal-notice">
+            <h1>Mentions Légales</h1>
+            <article>
+                <h2>Éditeur du site</h2>
+                <p>[Votre Nom / Nom de l'entreprise]<br>
+                    [Adresse]<br>
+                    [Numéro de téléphone]<br>
+                    [Adresse e-mail]</p>
+            </article>
+
+            <article>
+                <h2>Directeur de la publication</h2>
+                <p>[Votre Nom]</p>
+            </article>
+
+            <article>
+                <h2>Hébergeur du site</h2>
+                <p>[Nom de l'hébergeur]<br>
+                    [Adresse de l'hébergeur]<br>
+                    [Numéro de téléphone de l'hébergeur]<br>
+                    [Adresse e-mail de l'hébergeur]</p>
+            </article>
+
+            <article>
+                <h2>Propriété intellectuelle</h2>
+                <p>Le contenu du site, y compris mais sans s'y limiter, les textes, images, vidéos, logos, et autres
+                    éléments, est la propriété exclusive de [Votre Nom / Nom de l'entreprise] sauf indication contraire.
+                    Toute utilisation non autorisée du contenu du site est interdite.</p>
+            </article>
+
+            <article>
+                <h2>Collecte et traitement des données personnelles</h2>
+                <p>Les informations personnelles collectées sur ce site sont traitées conformément à notre politique de
+                    confidentialité, disponible à [lien vers la politique de confidentialité].</p>
+            </article>
+        </section>
+
+        <section id="terms-of-use">
+            <h1>Conditions d'Utilisation</h1>
+            <article>
+                <h2>Acceptation des conditions</h2>
+                <p>En accédant et en utilisant ce site, l'utilisateur accepte pleinement et sans réserve les présentes
+                    conditions d'utilisation.</p>
+            </article>
+
+            <article>
+                <h2>Contenu du site</h2>
+                <p>Le contenu du site est fourni à titre informatif. [Votre Nom / Nom de l'entreprise] se réserve le
+                    droit
+                    de modifier, mettre à jour, ou supprimer toute partie du site sans préavis.</p>
+            </article>
+
+            <article>
+                <h2>Utilisation du forum et commentaires</h2>
+                <p>L'utilisateur s'engage à respecter les règles de courtoisie sur le forum. [Votre Nom / Nom de
+                    l'entreprise] se réserve le droit de supprimer tout contenu jugé inapproprié.</p>
+            </article>
+
+            <article>
+                <h2>Quiz et badges</h2>
+                <p>La participation aux quiz et l'obtention des badges sont soumises aux règles définies sur le site.
+                    [Votre
+                    Nom / Nom de l'entreprise] se réserve le droit de modifier ces règles à tout moment.</p>
+            </article>
+
+            <article>
+                <h2>Responsabilité</h2>
+                <p>[Votre Nom / Nom de l'entreprise] décline toute responsabilité en cas de dommage direct ou indirect
+                    résultant de l'utilisation du site.L'éditeur ne peut être tenu responsable en cas de
+                    dysfonctionnement, panne, difficulté ou interruption de fonctionnement, empêchant l'accès au site ou
+                    à une de ses fonctionnalités.</p>
+            </article>
+
+            <article>
+                <h2>Liens externes</h2>
+                <p>Le site peut contenir des liens vers des sites externes. [Votre Nom / Nom de l'entreprise] n'assume
+                    aucune responsabilité quant au contenu de ces sites.</p>
+            </article>
+
+            <article>
+                <h2>Contact</h2>
+                <p>Pour toute question ou préoccupation concernant le site, veuillez nous contacter à [adresse e-mail de
+                    contact] ou via le formulaire de contact disponible sur la page dédiée.</p>
+            </article>
+            <article>
+                <h2>Cookies</h2>
+                <p> Le site utilise des cookies pour améliorer l'expérience utilisateur et réaliser des statistiques de
+                    visite. En utilisant ce site, vous acceptez l'utilisation de cookies conformément à notre politique
+                    de cookies.</p>
+
+            </article>
+        </section>
+
+        <section id="privacy-policy">
+            <h1>Politique de Confidentialité</h1>
+
+            <article>
+                <h2>Collecte d'Informations Personnelles</h2>
+                <p>Nous collectons les noms, prénoms et adresses e-mail dans le but de [précisez la finalité, par
+                    exemple,
+                    faciliter la participation aux quiz et au forum]. En fournissant ces informations, vous consentez
+                    explicitement à leur utilisation à ces fins.</p>
+            </article>
+
+            <article>
+                <h2>Consentement</h2>
+                <p>En utilisant notre site, vous consentez au traitement de vos données personnelles conformément à
+                    cette
+                    politique de confidentialité.</p>
+            </article>
+
+            <article>
+                <h2>Durée de Conservation</h2>
+                <p>Nous conservons vos données aussi longtemps que nécessaire pour atteindre les objectifs spécifiés et
+                    conformément à la législation applicable.</p>
+            </article>
+
+            <article>
+                <h2>Partage des Données</h2>
+                <p>Nous ne partageons pas vos informations avec des tiers, sauf autorisation de votre part ou si requis
+                    par
+                    la loi.</p>
+            </article>
+
+            <article>
+                <h2>Droits des Utilisateurs</h2>
+                <p>Vous avez le droit d'accéder à vos données, de les corriger, de les supprimer ou de vous opposer à
+                    leur
+                    traitement. Pour exercer ces droits, veuillez nous contacter à [adresse e-mail de contact].</p>
+            </article>
+
+            <article>
+                <h2>Sécurité des Données</h2>
+                <p>Nous mettons en place des mesures de sécurité pour protéger vos données, y compris les noms, prénoms
+                    et
+                    adresses e-mail.</p>
+            </article>
+
+            <article>
+                <h2>Communication en Cas de Viol de Données</h2>
+                <p>En cas de violation de données, vous serez informé conformément à la législation en vigueur.</p>
+            </article>
+            <div class="form-check" *ngIf="showCheckbox">
+                <input class="form-check-input" type="checkbox" id="isAccepted" formControlName="accepted">
+                <label class="form-check-label" for="isAccepted">J'ai lu et j'accepte les conditions
+                    d'utilisation</label>
+            </div>
+            <div class="error-gcu" *ngIf="showCheckbox">
+                <p> Vous devez accepter les conditions d'utilisation pour vous inscrire.</p>
+            </div>
+
+            <footer>
+                <a routerLink="/contact">
+                    <p>Contactez-nous pour toute question concernant cette politique de confidentialité
+                        via le formulaire de contact disponible sur le site (Cliquez ici).</p>
+                </a>
+            </footer>
+        </section>
+    </form>
+</div>
