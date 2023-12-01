@@ -30,7 +30,7 @@ export class ArticlesCarouselComponent implements OnInit {
 
   }
   showArticles() {
-    this.articlesService.getArticles().subscribe((articles: any) => {
+    this.articlesService.getArticles$().subscribe((articles: any) => {
       this.articles = articles;
       this.currentIndex = this.articles.length;
       this.updateIndexes();

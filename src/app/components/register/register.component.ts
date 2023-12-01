@@ -89,9 +89,10 @@ export class RegisterComponent {
   onIsAcceptedChange(accepted: boolean) {
     this.accepted = accepted;
     console.log('La case à cocher est acceptée dans l\'autre composant :', accepted);
+    this.showModal = false;
   }
 
-  //TODO: revoir enregistrement accepted
+
   registerUser() {
 
     const user: RegisterUser = {
@@ -119,7 +120,9 @@ export class RegisterComponent {
           submitted: this.formSubmitted,
         });
       }
+
     );
+
   }
 
   togglePasswordVisibility() {

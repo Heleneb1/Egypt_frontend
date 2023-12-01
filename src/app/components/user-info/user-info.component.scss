@@ -17,7 +17,6 @@ $text: var(--text);
     font-size: $size;
     font-family: $family;
     color: $color;
-
     text-align: center;
     width: 100%;
     display: flex;
@@ -98,10 +97,6 @@ $text: var(--text);
 
 }
 
-.bio-editing-button {
-
-    cursor: pointer;
-}
 
 .edit-button {
     width: 20px;
@@ -203,8 +198,7 @@ $text: var(--text);
         display: flex;
         justify-content: center;
         margin-bottom: 2rem;
-
-
+        font-size: 1.7rem;
     }
 
     .badge-list {

@@ -1,3 +1,4 @@
 export const environment = {
-  apiUrl: 'https://brainwave-api.bastienvps.ddns.net',
+  //TODO modifier l'apiUrl pour qu'il pointe vers l'api de votre projet
+  // apiUrl: 'https://brainwave-api.bastienvps.ddns.net',
 };

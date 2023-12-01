@@ -227,14 +227,6 @@ input[type="checkbox"]:checked+label::after {
   transform: rotate(45deg);
 }
 
-.cc-color-override-1405961331.cc-window {
-  color: rgb(255, 255, 255);
-  background-color: var(--blue);
-  border: 3px solid var(--sun);
-  border-radius: 0.5rem;
-  margin: 1rem;
-  padding: 0.7rem;
-}
 
 .cc-floating.cc-theme-edgeless .cc-btn+.cc-btn {
   margin-left: 0;
@@ -245,4 +237,11 @@ input[type="checkbox"]:checked+label::after {
   color: rgb(255, 255, 255);
   border: 1px var(--sun) solid;
   background-color: var(--blue);
+}
+
+.cc-color-override-124423810.cc-window {
+  color: rgb(255, 255, 255);
+  background-color: var(--blue);
+  border: var(--sun) 1px solid;
+  border-radius: 0.5rem;
 }
