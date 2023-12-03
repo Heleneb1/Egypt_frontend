@@ -6,8 +6,9 @@
   <div class="home-title">
     <h1>Les Mystères de l’Égypte Antique</h1>
   </div>
-  <img [src]="'assets/images/Gizeah.jpg'" alt="Gizeh" />
-
+  <div class="main-image-home">
+    <img [src]="'assets/images/Gizeah_2.jpg'" alt="Gizeh" />
+  </div>
   <div class="content">
     <div class="introduction">
       <div class="sub-title">
@@ -50,7 +51,7 @@
       </section>
       <p class="paragraph">
         Notre catalogue regorge d'articles approfondis, de photographies
-        envoûtantes et de vidéos fascinantes qui vous permettront de plonger au
+        envoûtantes qui vous permettront de plonger au
         cœur de l'histoire ancienne. Explorez les grandes épopées, les légendes
         mythologiques, les découvertes archéologiques et bien plus encore.
       </p>
@@ -97,8 +98,10 @@
         l'histoire et ouvrez la porte aux mystères du passé.
       </p>
     </div>
+    <div class="gcu">
+      <a routerLink="/gcu">Mentions légales, politique de confidentialité et conditions générales d'utilisation</a>
+    </div>
+    <div class="scroll-home">
+      <app-scroll-to-top></app-scroll-to-top>
+    </div>
   </div>
-  <div class="scroll-home">
-    <app-scroll-to-top></app-scroll-to-top>
-  </div>
-</div>

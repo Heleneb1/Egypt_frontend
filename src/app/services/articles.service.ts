@@ -23,10 +23,10 @@ export class ArticlesService {
     );
   }
 
-
+  //TODO: convention de nommage sur les observables : https://angular.io/guide/rx-library#naming-conventions-for-observables
 
   constructor (private httpClient: HttpClient) { }
-  getArticles(): Observable<Article[]> { // Typer la réponse comme un tableau d'articles
+  getArticles$(): Observable<Article[]> {
     return this.httpClient.get<Article[]>(`${this.articlesDataUrl}`);
   }
   getArticleById(id: string) {
@@ -46,27 +46,27 @@ export class ArticlesService {
       })
     );
   }
-  getArticleId(id: number): Observable<Article> {
+  getArticleId$(id: number): Observable<Article> {
     return this.httpClient.get<Article>(`${this.articlesDataUrl}/${id}`);
   }
 
 
-  getArticlesByAuthor(author: string): Observable<Article[]> {
+  getArticlesByAuthor$(author: string): Observable<Article[]> {
     return this.httpClient.get<Article[]>(
       `${this.articlesDataUrl}/byAuthor/${author}`
     );
   }
-  getArticlesByTag(tag: string): Observable<Article[]> {
+  getArticlesByTag$(tag: string): Observable<Article[]> {
     return this.httpClient.get<Article[]>(
       `${this.articlesDataUrl}/byTag/${tag}`
     );
   }
-  getArticlesByTitle(title: string): Observable<Article[]> {
+  getArticlesByTitle$(title: string): Observable<Article[]> {
     return this.httpClient.get<Article[]>(
       `${this.articlesDataUrl}/byTitle/${title}`
     );
   }
-  getUniqueTags(): Observable<string[]> {
+  getUniqueTags$(): Observable<string[]> {
     return this.httpClient.get<Article[]>(this.articlesDataUrl).pipe(
       map((articles: Article[]) => {
         const uniqueTag = new Set<string>();
@@ -83,7 +83,7 @@ export class ArticlesService {
       })
     );
   }
-  getTitle(): Observable<string[]> {
+  getTitle$(): Observable<string[]> {
     return this.httpClient.get<Article[]>(this.articlesDataUrl).pipe(
       map((articles: Article[]) => {
         const uniqueTitle = new Set<string>();
@@ -98,7 +98,7 @@ export class ArticlesService {
       })
     );
   }
-  getUniqueAuthors(): Observable<string[]> {
+  getUniqueAuthors$(): Observable<string[]> {
     return this.httpClient.get<Article[]>(this.articlesDataUrl).pipe(
       map((articles: Article[]) => {
         const uniqueAuthor = new Set<string>();
@@ -115,7 +115,7 @@ export class ArticlesService {
       })
     );
   }
-  getArticlesByAuthorTitleTag(articleAuthor?: string, articleTitle?: string, articleTag?: string): Observable<Article[]> {
+  getArticlesByAuthorTitleTag$(articleAuthor?: string, articleTitle?: string, articleTag?: string): Observable<Article[]> {
     let searchUrl = this.articlesDataUrl;
     if (articleAuthor) {
       searchUrl += '/search/' + encodeURIComponent(articleAuthor);

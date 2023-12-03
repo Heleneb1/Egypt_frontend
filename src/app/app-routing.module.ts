@@ -15,8 +15,12 @@ import { ContactComponent } from './components/contact/contact.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { AdminGuardService } from './services/admin-guard.service';
 import { BadgesModalComponent } from './components/badges-modal/badges-modal.component';
+import { ViewComponent } from './components/view/view.component';
+import { TopicsComponent } from './components/topics/topics.component';
+import { GCUComponent } from './components/gcu/gcu.component';
 
 const routes: Routes = [
+
   {
     path: '',
     component: SplashPageComponent,
@@ -51,6 +55,10 @@ const routes: Routes = [
     component: ConnectionComponent,
   },
   {
+    path: 'topics',
+    component: TopicsComponent,
+  },
+  {
     path: 'profile',
     component: UserProfileComponent,
     canActivate: [AuthGuard],
@@ -72,6 +80,13 @@ const routes: Routes = [
     component: AdminComponent,
     canActivate: [AdminGuardService],
   },
+  {
+    path: 'view', component: ViewComponent
+  },
+  {
+    path: 'gcu', component: GCUComponent
+  }
+
 ];
 
 

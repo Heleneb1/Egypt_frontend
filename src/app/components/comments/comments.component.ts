@@ -35,6 +35,7 @@ export class CommentsComponent implements OnInit {
   objectURL: any;
   user: any = [];
   isArchived: boolean = true;
+  showCodeOfConduct: boolean = false;
 
   constructor (
     private authService: AuthService,
@@ -48,7 +49,6 @@ export class CommentsComponent implements OnInit {
     this.userConnected = this.authService.getUserConnected();
 
   }
-  //TODO mettre le commentaire en archive à sa création
   formatDate(date: Date | null): string {
     if (date === null || date === undefined) {
       return '';
@@ -88,8 +88,12 @@ export class CommentsComponent implements OnInit {
     });
   }
 
-
-
+  showCodeOfConductModal() {
+    this.showCodeOfConduct = !this.showCodeOfConduct;
+  }
+  closeCodeOfConductModal() {
+    this.showCodeOfConduct = false;
+  }
 
   onEditComment() {
     this.editComment = !this.editComment;
@@ -108,9 +112,11 @@ export class CommentsComponent implements OnInit {
         content: this.commentContent,
         user: authorCommentId,
         article: this.articleCommentId,
+
         archive: this.isArchived,
       };
       console.log(data);
+      console.log("article", this.articleCommentId);
 
       this.httpClient.put(url, data).subscribe(
         (response: any) => {

@@ -67,7 +67,6 @@ export class LoginComponent {
     this.showPassword = !this.showPassword;
   }
 
-
 }
 
 

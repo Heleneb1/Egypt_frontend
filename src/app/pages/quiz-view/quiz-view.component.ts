@@ -10,13 +10,14 @@ import { QuizService } from 'src/app/services/quiz.service';
 })
 export class QuizViewComponent implements OnInit {
   quizzes: any[] = [];
-  quizData: any;
+  // quizData: any;
   currentRating!: number;
-  isVoteModified: boolean = false;
+  // isVoteModified: boolean = false;
   quiz: any;
   quizId: any;
   defaultImage: string = 'assets/images/Gizeah.jpg';
   isUserConnected: boolean = false;
+
 
   constructor (private quizService: QuizService, private router: Router, private authService: AuthService) { }
 

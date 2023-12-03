@@ -1,6 +1,9 @@
 <div class="register-box">
+
   <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+
     <div class="user-box">
+
       <input type="text" formControlName="lastname" required />
       <div class="input-title">
         <h3>Nom</h3>
@@ -56,6 +59,12 @@
         </div>
       </button>
     </div>
+    <div *ngIf="isPasswordConfirmed">
+
+      <div class="modal">
+        <app-gcu *ngIf="showModal" (isAcceptedChange)="onIsAcceptedChange($event)"></app-gcu>
+      </div>
+    </div>
     <div class="button">
       <div class="button-container">
         <button type="submit" class="button">S'inscrire</button>
@@ -63,5 +72,3 @@
     </div>
   </form>
 </div>
-<!-- Jesuisle@mdp1 -->
-<!-- JesuisleMdp1 -->

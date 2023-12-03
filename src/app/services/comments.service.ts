@@ -18,11 +18,12 @@ export class CommentsService {
   }
 
   getCommentsByArticle(article: string): Observable<Comment[]> {
+    console.log(article);
     return this.httpClient.get<Comment[]>(
       `${this.commentsDataUrl}?article=${article}`
     );
   }
-  //  @GetMapping("/byArticle/{aticleId}/")
+
   getCommentsByArticleId(articleId: string): Observable<Comment[]> {
     return this.httpClient.get<Comment[]>(
       `${this.commentsDataUrl}/byArticle/${articleId}`
@@ -30,20 +31,26 @@ export class CommentsService {
   }
   updateComment(id: string, comment: any) {
     console.log('Comment to update:', id, comment);
-
     const url = `${this.commentsDataUrl}/${id}`;
     return this.httpClient.put(url, comment);
   }
-  deleteCommentByAuthor(commentId: string, authorId: string) {
-    console.log('Comment to delete:', commentId, authorId);
 
-    const url = `${this.commentsDataUrl}/${commentId}/${authorId}`;
+  updateCommentByArticleId(id: string, comment: any): Observable<any> {
+    const updateUrl = `${this.commentsDataUrl}/${id}/archive`;
+    return this.httpClient.put(updateUrl, comment);
+  }
+
+  deleteCommentByAuthor(id: string, authorId: string) {
+    console.log('Comment to delete:', id, authorId);
+    const url = `${this.commentsDataUrl}/${id}/${authorId}`;
     return this.httpClient.delete(url);
   }
+
   deleteComment(id: string, content: string) {
     console.log('Comment to delete:', id);
-
     const url = `${this.commentsDataUrl}/${id}`;
+    console.log(url);
+
     return this.httpClient.delete(url, { body: { content } });
   }
 

@@ -17,7 +17,6 @@ $text: var(--text);
     font-size: $size;
     font-family: $family;
     color: $color;
-
     text-align: center;
     width: 100%;
     display: flex;
@@ -34,14 +33,17 @@ $text: var(--text);
 }
 
 .image-container {
-    width: 100%;
-    height: 15rem;
-}
 
-img {
-    height: 200px;
     width: 200px;
-    border-radius: 100%;
+    height: 200px;
+    overflow: hidden;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 100%;
+    }
 }
 
 .add-avatar {
@@ -53,25 +55,11 @@ img {
 
 .avatar-button {
     display: none;
-    // color: var(--white);
-    // border: 1px solid var(--white);
-    // width: 2rem;
-    // height: 2rem;
-    // border-radius: 100%;
-    // background-color: var(--sun);
     cursor: pointer;
+    height: 3rem;
+    width: 3rem;
+    background-color: var(--white);
 }
-
-
-// .add-avatar-label {
-//     background-color: var(--sun);
-//     color: #fff;
-//     width: 30px;
-//     height: 30px;
-//     border-radius: 50%;
-//     text-align: center;
-//     cursor: pointer;
-// }
 
 .title-profile {
     font-family: var(--title);
@@ -81,8 +69,6 @@ img {
     font-size: 2rem;
     text-align: center;
 }
-
-
 
 .name-container p {
     display: flex;
@@ -111,10 +97,6 @@ img {
 
 }
 
-.bio-editing-button {
-
-    cursor: pointer;
-}
 
 .edit-button {
     width: 20px;
@@ -216,8 +198,7 @@ img {
         display: flex;
         justify-content: center;
         margin-bottom: 2rem;
-
-
+        font-size: 1.7rem;
     }
 
     .badge-list {
@@ -230,12 +211,16 @@ img {
 
 
     .badge-item {
-        flex: 1;
+        display: flex;
         flex: 0 0 20%;
         margin-bottom: 10px;
         text-align: center;
-        font-family: $text;
+        font-family: var(--text);
         font-size: 1rem;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
 
         p {
             margin-top: 1rem;
@@ -244,7 +229,16 @@ img {
 
     .badge-image {
         border: 2px solid var(--white);
-        height: 100px;
         width: 100px;
+        height: 100px;
+        overflow: hidden;
+        border-radius: 100%;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+
+        }
     }
 }

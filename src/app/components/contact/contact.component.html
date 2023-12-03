@@ -1,60 +1,62 @@
-<div class="contact-container">
-    <div class="contact-intro">
-        <div class="sub-title">
-            <h2>Les Mystères de l’Égypte Antique</h2>
-        </div>
-
-        <div class="main-image">
-            <div class="image">
-                <img [src]="'assets/images/Gizeah.jpg'" alt="Gizeh" />
+<div class="all-contact" [ngClass]="{
+    'transition-bottom': animate
+  }">
+    <div class="contact-container">
+        <div class="contact-intro">
+            <div class="sub-title">
+                <h2>Les Mystères de l’Égypte Antique</h2>
             </div>
 
-            <div class="text-container">
-                Un commentaire, une suggestion, un signalement , laissez votre message, notre scribe vous repondra
-                rapidement
-            </div>
-        </div>
-    </div>
-</div>
-<div class="sub-title">
-    <h2>Message</h2>
-</div>
-<div class="contact">
-    <form [formGroup]="contactForm" (ngSubmit)="sendMessage()">
-        <div class="form-group">
-            <label for="username">Nom et Prénom :</label>
-            <input type="text" id="nom" formControlName="username" required>
-            <div *ngIf="contactForm.controls['username'].invalid && (contactForm.controls['username'].dirty || contactForm.controls['username'].touched)"
-                class="no-authorize">
-                Le nom est requis et doit comporter au moins 5 caractères.
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="email">Email :</label>
-            <input type="email" id="email" formControlName="email" required>
-            <div *ngIf="contactForm.controls['email'].invalid && (contactForm.controls['email'].dirty || contactForm.controls['email'].touched)"
-                class="no-authorize">
-                Un email valide est requis.
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="content">Votre message :</label>
-            <textarea id="message" formControlName="content" required></textarea>
-            <div *ngIf="contactForm.controls['content'].invalid && (contactForm.controls['content'].dirty || contactForm.controls['content'].touched)"
-                class="no-authorize">
-                Un message est requis et doit comporter au moins 50 caractères.
-            </div>
-        </div>
-        <div class="send-button">
-            <div class="button">
-                <div class="button-container">
-                    <button type="submit" class="button">Envoyer</button>
+            <div class="main-image">
+                <div class="image">
+                    <img [src]="'assets/images/Gizeah.jpg'" alt="Gizeh" />
+                </div>
+                <div class="text-container">
+                    Un commentaire, une suggestion, un signalement , laissez votre message, notre scribe vous repondra
+                    rapidement
                 </div>
             </div>
         </div>
+    </div>
+    <div class="sub-title">
+        <h2>Message</h2>
+    </div>
+    <div class="contact" [ngClass]="{
+        'transition-right-corner': fly
+      }">
+        <form [formGroup]="contactForm" (ngSubmit)="sendMessage()">
+            <div class="form-group">
+                <label for="username">Nom et Prénom :</label>
+                <input type="text" id="nom" formControlName="username" required>
+                <div *ngIf="contactForm.controls['username'].invalid && (contactForm.controls['username'].dirty || contactForm.controls['username'].touched)"
+                    class="no-authorize">
+                    Le nom est requis et doit comporter au moins 5 caractères.
+                </div>
+            </div>
 
-    </form>
+            <div class="form-group">
+                <label for="email">Email :</label>
+                <input type="email" id="email" formControlName="email" required>
+                <div *ngIf="contactForm.controls['email'].invalid && (contactForm.controls['email'].dirty || contactForm.controls['email'].touched)"
+                    class="no-authorize">
+                    Un email valide est requis.
+                </div>
+            </div>
 
-</div>
+            <div class="form-group">
+                <label for="content">Votre message :</label>
+                <textarea id="message" formControlName="content" required></textarea>
+                <div *ngIf="contactForm.controls['content'].invalid && (contactForm.controls['content'].dirty || contactForm.controls['content'].touched)"
+                    class="no-authorize">
+                    Un message est requis et doit comporter au moins 50 caractères.
+                </div>
+            </div>
+            <div class="send-button">
+                <div class="button">
+                    <div class="button-container">
+                        <button type="submit" class="button">Envoyer</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>

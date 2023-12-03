@@ -10,15 +10,8 @@ import { ArticlesService } from 'src/app/services/articles.service';
 })
 export class ResultCardComponent {
   @Input() filteredArticle: Article[] = [];
-  @Input() tag: string = '';
-  @Input() ratings: any;
   selectedArticle: Article | null = null;
   defaultImage: string = 'assets/images/Gizeh.jpg';
-  isOpen = false;
-  article: any = [];
-  articleId: any;
-  currentRating!: number;
-
 
   constructor (private router: Router, private articlesService: ArticlesService) { }
 

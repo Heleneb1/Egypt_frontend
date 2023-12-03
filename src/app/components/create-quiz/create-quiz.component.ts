@@ -23,7 +23,7 @@ export class CreateQuizComponent implements AfterViewInit, OnInit {
   type: string = '';
   difficulty: string = '';
   createdQuizId: string = '';
-  userConnected: any; // Type should be defined
+  userConnected: any;
   userId: string = '';
   isArchived: boolean = true;
 
@@ -60,14 +60,9 @@ export class CreateQuizComponent implements AfterViewInit, OnInit {
     this.quill = new Quill('#editor', {
       modules: {
         toolbar: toolbarOptions,
-        // 'emoji-toolbar': true,
-        // 'emoji-textarea': true,
-        // 'emoji-shortname': true,
       },
       theme: 'snow',
     });
-    // const emojiButton: any = this.quill.getModule('emoji-toolbar'); // Type should be defined
-    // emojiButton.initToolbar();
   }
 
   createQuiz(): void {

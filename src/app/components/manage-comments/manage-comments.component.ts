@@ -1,10 +1,12 @@
-// Import necessary modules and components
+
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/models/user';
+import { Comment } from 'src/app/models/comment';
 import { CommentsService } from 'src/app/services/comments.service';
 import { SendEmailService } from 'src/app/services/send-email.service';
 import { UserService } from 'src/app/services/user.service';
+
 
 @Component({
   selector: 'app-manage-comments',
@@ -14,8 +16,10 @@ import { UserService } from 'src/app/services/user.service';
 export class ManageCommentsComponent implements OnInit {
   commentList: any[] = [];
   showComments: boolean = false;
-  isArchived!: boolean;
-  authorId!: string;
+  // isArchived!: boolean;
+  // authorId!: string;
+  articleId!: string;
+  // comment: any[] = []
 
   constructor (private commentsService: CommentsService, private toastr: ToastrService, private sendEmail: SendEmailService, private userService: UserService) { }
 
@@ -24,11 +28,13 @@ export class ManageCommentsComponent implements OnInit {
   }
 
   fetchComments() {
+    console.log("fetch managecomments", this.articleId);
     this.commentsService.getComments().subscribe(
+
+
       (data: any) => {
         this.commentList = data;
 
-        // Sort the commentList by the 'archive' property in descending order
         this.commentList.sort((a, b) => {
           return b.archive - a.archive;
         });
@@ -41,18 +47,19 @@ export class ManageCommentsComponent implements OnInit {
     );
   }
 
-  archiveComment(id: string) {
-    console.log('Comment to archive:', id);
-
-    const commentToArchive = this.commentList.find(comment => comment.id === id);
-
-    if (commentToArchive) {
-      commentToArchive.archive = true;
-      this.commentsService.updateComment(id, commentToArchive).subscribe(() => {
-        console.log('Comment archived successfully:', commentToArchive);
-        this.toastr.info('Commentaire archivé');
-        this.fetchComments(); // Actualisez la liste ici
-      });
+  archiveCommentByArticle(comment: Comment) {
+    console.log('Comment to archive:', comment);
+    if (comment && confirm('Voulez-vous vraiment changer l\'état de ce commentaire ?')) {
+      this.commentsService.updateCommentByArticleId(comment.id, comment).subscribe(
+        (updatedComment: any) => {
+          console.log('Comment state changed successfully:', updatedComment);
+          this.toastr.info(`Commentaire ${updatedComment.archive ? 'archivé' : 'restauré'}`);
+          this.fetchComments();
+        },
+        (error: any) => {
+          console.error('Erreur lors de la mise à jour du commentaire:', error);
+        }
+      );
     }
   }
 

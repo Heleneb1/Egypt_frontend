@@ -1,4 +1,3 @@
-/* Styles pour l'ensemble du header */
 .header-all {
   margin-bottom: 8rem;
   width: 100vw;
@@ -22,12 +21,10 @@ nav.header-container {
   margin-bottom: 3rem;
 }
 
-/* Styles pour le contenu du header */
 .header-content {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* Pour aligner le logo complètement à droite */
 }
 
 .logo {
@@ -128,7 +125,6 @@ nav.header-container {
   cursor: pointer;
 }
 
-/* Styles pour les icônes */
 .icons {
   display: flex;
   align-items: center;
@@ -142,7 +138,22 @@ nav.header-container {
   cursor: pointer;
 }
 
-/* Media query pour les écrans de 768px ou plus */
+.link {
+  // text-decoration: none;
+  // color: var(--sun);
+  // font-size: 1.5rem;
+  // margin-top: 10px;
+  // cursor: pointer;
+
+  .logout {
+    color: var(--sun);
+    font-size: 1.5rem;
+    margin-top: 10px;
+    cursor: pointer;
+    font-family: var(--title);
+  }
+}
+
 @media screen and (min-width: 768px) {
   .header-all {
     margin: 0;
@@ -177,7 +188,6 @@ nav.header-container {
     align-items: center;
     height: 100%;
     justify-content: space-between;
-    // position: absolute;
 
     ul {
       padding: 0;
@@ -197,8 +207,10 @@ nav.header-container {
 
   .menu .nav-mobile ul {
     list-style: none;
-    margin: 0 3rem;
+    margin: 0 2.5rem;
+    padding-right: 1rem;
     text-align: center;
+
   }
 
   .menu li a {

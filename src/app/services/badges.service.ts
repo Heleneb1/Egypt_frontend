@@ -41,18 +41,5 @@ export class BadgesService {
   deleteBadge(id: string) {
     return this.httpClient.delete(`${this.badgeDataUrl}/${id}`);
   }
-  // addRating(promotionId: string, userRating: number, authorId: string) {
-  //     const url = environment.apiUrl + `/promotions/${promotionId}/users/${authorId}`;
-
-  //     this.httpClient.put<any>(url, { rating: userRating }).subscribe(
-  //       updatedPromotion => {
-  //         console.log('Promotion mise à jour avec le vote :', updatedPromotion);
-  //       },
-  //       error => {
-  //         console.error('Erreur lors de la mise à jour de la promotion :', error);
-  //       }
-  //     );
-  //   }
-
 
 }

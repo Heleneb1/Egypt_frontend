@@ -15,7 +15,7 @@ export class AdminService {
   constructor (private articleservice: ArticlesService, private userService: UserService,
     private httpClient: HttpClient) { }
   getArticles() {
-    return this.articleservice.getArticles();
+    return this.articleservice.getArticles$();
   }
   getArticleById(id: string) {
     return this.articleservice.getArticleById(id);
@@ -23,7 +23,7 @@ export class AdminService {
   deleteArticle(id: string) {
     return this.httpClient.delete(`${this.dataUrl}/articles/${id}`);
   }
-  updateArticle(id: string, updatedArticle: Article): Observable<Article> {
+  updateArticle$(id: string, updatedArticle: Article): Observable<Article> {
     const url = `${this.dataUrl}/articles/${id}`;
     return this.httpClient.put<Article>(url, updatedArticle);
   }
@@ -33,7 +33,7 @@ export class AdminService {
   getImage(image: string) {
     return this.httpClient.get(`${this.dataUrl}/images`);
   }
-  addNewArticle(article: Article): Observable<Article> {
+  addNewArticle$(article: Article): Observable<Article> {
     console.log('Article:', article);
 
     return this.httpClient.post<Article>(`${this.dataUrl}/articles/create`, article);

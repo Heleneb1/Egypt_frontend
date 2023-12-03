@@ -16,7 +16,7 @@ export class ManageQuizComponent {
   updateQuizForm!: FormGroup;
   showQuestions: boolean = false;
   allQuestions: any[] = [];
-  questionTitles: any;
+  // questionTitles: any;
 
   constructor (
     private quizService: QuizService, private badgesService: BadgesService, private toastr: ToastrService, private formBuilder: FormBuilder) { }

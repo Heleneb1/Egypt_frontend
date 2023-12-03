@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AnimationComponent } from './animation.component';
+import { ViewComponent } from './view.component';
 
-describe('AnimationComponent', () => {
-  let component: AnimationComponent;
-  let fixture: ComponentFixture<AnimationComponent>;
+describe('ViewComponent', () => {
+  let component: ViewComponent;
+  let fixture: ComponentFixture<ViewComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [AnimationComponent]
+      declarations: [ViewComponent]
     });
-    fixture = TestBed.createComponent(AnimationComponent);
+    fixture = TestBed.createComponent(ViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

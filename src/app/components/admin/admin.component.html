@@ -1,8 +1,40 @@
+<div class="notify">
+    <div *ngIf="contact.length>0" class="message-count">
+        <div ngClass="animate: shake" class="icon" (click)="showMessage()">
+            <i class="fa fa-envelope"></i>
+            <span class="number">{{contactCount }}</span>
+        </div>
+    </div>
+    <div *ngIf="commentList.length>0" class="message-count">
+        <div ngClass="animate: shake" class="icon" (click)=" onClickShowCommentsArchived()">
+            <i class="fa fa-bell"></i>
+            <span class="number">{{archivedCommentCount}}</span>
+        </div>
+    </div>
+</div>
 <div class="admin">
+    <div class="contact" *ngIf="showArchivedComments">
+        <div class="contact_message" *ngFor="let comments of archivedComments">
+            <p>{{comments.content}}</p>
+        </div>
+    </div>
+    <div class="contact" *ngIf="showMsg">
+
+
+        <div class="contact_message" *ngFor="let message of contact">
+            <h2>Message de : {{message.username}} </h2>
+            <p><span class="contact_message_title">Nom : </span>{{message.username}}</p>
+            <p><span class="contact_message_title">Email : </span>{{message.email}}</p>
+            <p><span class="contact_message_title">Message : </span>{{message.content}}</p>
+            <br>
+            <button (click)="deleteMessage(message.id)" class="button">Supprimer</button>
+        </div>
+    </div>
     <app-manage-users></app-manage-users>
 
     <div class="addMore" *ngIf="selectedBadge && selectedQuiz">
-        <button (click)="addBadgeToQuiz(selectedBadge, selectedQuiz)" class="button">Ajouter le badge au quiz</button>
+        <button (click)="addBadgeToQuiz(selectedBadge, selectedQuiz)" class="button">Ajouter le badge au
+            quiz</button>
     </div>
     <app-manage-article></app-manage-article>
     <div class="addMore" *ngIf="selectedQuiz && selectedQuestions">

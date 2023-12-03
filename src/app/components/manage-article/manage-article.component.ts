@@ -20,7 +20,6 @@ export class ManageArticleComponent {
   articlesOpen = false;
   newAuthor: string = '';
   newTag: string = '';
-  newDifficulty: string = '';
   newRating: number = 3.5;
 
   constructor (private adminService: AdminService, private toastr: ToastrService) { }
@@ -45,7 +44,6 @@ export class ManageArticleComponent {
     if (confirm('Êtes-vous sûr de vouloir supprimer cet article ?')) {
       this.adminService.deleteArticle(id).subscribe(() => {
         this.toastr.success('Article supprimé', 'Suppression');
-        // alert('Article supprimé');
         this.getArticles();
       });
     }
@@ -74,11 +72,9 @@ export class ManageArticleComponent {
       this.existingArticle.author = this.newAuthor;
       this.existingArticle.tag = this.newTag;
       this.existingArticle.ratings = this.newRating;
-      this.adminService.updateArticle(this.existingArticle.id, this.existingArticle).subscribe(() => {
+      this.adminService.updateArticle$(this.existingArticle.id, this.existingArticle).subscribe(() => {
         this.getArticles();
 
-        // this.showArticleForm = !this.showArticleForm;
-        // alert('Article modifié');
         this.toastr.success('Article modifié', 'Modification');
       });
     }
@@ -87,10 +83,10 @@ export class ManageArticleComponent {
   archivedArticle(article: Article) {
     this.existingArticle = article;
     this.existingArticle.archive = this.isArchived;
-    this.adminService.updateArticle(this.existingArticle.id, this.existingArticle).subscribe(() => {
+    this.adminService.updateArticle$(this.existingArticle.id, this.existingArticle).subscribe(() => {
       this.getArticles();
       this.showArticleForm = !this.showArticleForm;
-      // alert('Article archivé');
+
       this.toastr.success('Article archivé', 'Archivage');
 
     });
@@ -98,7 +94,6 @@ export class ManageArticleComponent {
 
   cancelChanges() {
 
-    // alert('Annulation');
     this.toastr.info('Annulation', 'Annulation');
     this.showArticleForm = !this.showArticleForm;
   }
@@ -129,13 +124,12 @@ export class ManageArticleComponent {
     this.showArticleForm = !this.showArticleForm;
     console.log(newArticle);
 
-    this.adminService.addNewArticle(newArticle).subscribe((response: any) => {
+    this.adminService.addNewArticle$(newArticle).subscribe((response: any) => {
       const newArticleWithID: Article = response;
       console.log("createId", newArticleWithID);
 
       this.getArticles();
       this.toastr.success('Article ajouté avec succès. ID de l\'article : ' + newArticleWithID.id);
-      // alert('Article ajouté avec succès. ID de l\'article : ' + newArticleWithID.id);
     });
 
     this.newTitle = '';

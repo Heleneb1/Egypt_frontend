@@ -25,16 +25,12 @@ export class ManageQuestionComponent implements OnInit {
   isSelectingQuestions: boolean = false;
   categoriesOptions: string[] = [];
   selectedCategory: string = '';
-  question: any;
-  quiz: any;
   questionsToAdd: any[] = [];
   selectCategory: string = '';
-  existingQuestion!: QuizQuestion;
   showUpdateForm = false;
-  questionId!: string;
   selected: any;
-  updatedQuestion: any;
   isShow: boolean = false;
+
   ngOnInit() {
     this.loadCategories();
   }
@@ -99,7 +95,7 @@ export class ManageQuestionComponent implements OnInit {
 
 
       this.quizService.createQuestion(newQuestion).subscribe((response: any) => {
-        // this.showQuestionForm = false;
+
         this.createQuestion();
         this.toastr.success('Question ajoutée', 'Ajout');
 
@@ -123,8 +119,8 @@ export class ManageQuestionComponent implements OnInit {
     if (this.selectCategory) {
       this.quizService.getAllQuestionByCategory(this.selectCategory).subscribe((questions: any) => {
         this.questions = questions;
-        this.selectCategoryEmit(this.selectCategory); // Passer la catégorie sélectionnée
-        this.selectQuestionsEmit(this.questions); // Passer les questions
+        this.selectCategoryEmit(this.selectCategory);
+        this.selectQuestionsEmit(this.questions);
         console.log("Les questions", this.questions);
         console.log("categorie", this.selectCategory);
         this.isShow = !this.isShow;
@@ -143,7 +139,6 @@ export class ManageQuestionComponent implements OnInit {
         if (categories) {
           this.categoriesOptions = categories;
         } else {
-          // Gére le cas où categories est null
           console.error("Aucune catégorie n'a été renvoyée par le service.");
         }
       },
@@ -157,8 +152,8 @@ export class ManageQuestionComponent implements OnInit {
     this.quizService.getQuestionsByCategory(selectedCategory).subscribe(
       (questions: any[]) => {
         this.questions = questions;
-        this.selectCategoryEmit(this.selectCategory); // Passer la catégorie sélectionnée
-        this.selectQuestionsEmit(this.questions); // Passer les questions
+        this.selectCategoryEmit(this.selectCategory);
+        this.selectQuestionsEmit(this.questions);
       },
       (error) => {
         console.error("Une erreur s'est produite :", error);
@@ -172,7 +167,6 @@ export class ManageQuestionComponent implements OnInit {
 
       this.quizService.deleteQuestion(questionId).subscribe(() => {
         this.selectQuestionsByCategory();
-        // alert('Question supprimée');
         this.toastr.success('Question supprimée', 'Suppression');
       });
     }
@@ -180,8 +174,6 @@ export class ManageQuestionComponent implements OnInit {
 
   updateQuestion(questionId: string, existingQuestion: any) {
     console.log("existingQuestion", existingQuestion);
-    //retourner les valeurs de existingQuestion
-
 
     if (existingQuestion && questionId) {
       existingQuestion.question_title = this.question_title;
@@ -197,10 +189,8 @@ export class ManageQuestionComponent implements OnInit {
       () => {
         console.log("Mise à jour", existingQuestion);
         this.toastr.success('Question modifiée', 'Modification');
-        this.showUpdateForm = false; // Fermer le formulaire de mise à jour
-        this.getQuestionByCategory(this.category); // Recharger la liste des questions
-
-
+        this.showUpdateForm = false;
+        this.getQuestionByCategory(this.category);
       },
       (error) => {
         console.error("Une erreur s'est produite :", error);
@@ -215,7 +205,6 @@ export class ManageQuestionComponent implements OnInit {
     this.option_3 = existingQuestion.option_3;
     this.right_answer = existingQuestion.right_answer;
     this.right_answer_2 = existingQuestion.right_answer_2;
-
     this.showUpdateForm = true;
   }
 

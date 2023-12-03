@@ -20,9 +20,6 @@ export class ManageBadgesComponent implements OnInit {
   description: string = '';
   image: string = '';
   showBadgeForm: boolean = false;
-  selectedBadge: any;
-  badgeId: string = '';
-  quizIdForBadge: string = '';
   selectedQuiz: string = '';
 
 

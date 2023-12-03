@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -9,14 +10,23 @@ export class HomeComponent implements OnInit {
   fogEffect = true;
   glow = true;
   isLoaded = false;
+  isConnect = false;
 
-  constructor () { }
+  constructor (private authService: AuthService) { }
 
   ngOnInit() {
+    if (!this.authService.isLoggedIn()) {
+      this.isConnect = true;
 
-    setTimeout(() => {
+      setTimeout(() => {
+        this.isLoaded = true;
+        this.fogEffect = false;
+      }, 4000);
+    } else {
       this.isLoaded = true;
       this.fogEffect = false;
-    }, 4000);
+      this.glow = false;
+    }
+
   }
 }

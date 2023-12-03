@@ -13,13 +13,11 @@
 
         <button class="rating-button" *ngIf="isVoteModified" (click)="saveVote()">Enregistrer le
             vote</button>
-        <!-- Empecher l'affichage des balises html dans le contenu du quiz innerHTML-->
         <div class="quiz-infos">
             <p>Contenu: <span [innerHTML]="quiz.content"></span></p>
 
             <p>Difficulté: {{ quiz.difficulty }}</p>
             <p>Date de création: {{ formatDate(quiz.creationDate) }}</p>
-            <!-- <p>Article associé: {{ quiz.article?.title }}</p> -->
 
             <div class="quiz-badges">
                 Badge: {{quiz.badge?.name}}
@@ -75,6 +73,4 @@
     </div>
 </div>
 
-<!-- <app-badges-modal *ngIf="showModal"></app-badges-modal> -->
 <app-badges-modal *ngIf="showModal" [userId]="userId" [badgeId]="quiz.badge?.id"></app-badges-modal>
-<!-- <app-badges-modal [badgeId]="quiz.badge.id" [userId]="userId"></app-badges-modal> -->

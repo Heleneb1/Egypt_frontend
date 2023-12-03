@@ -13,7 +13,6 @@ import { AppComponent } from './app.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './pages/home/home.component';
 import { SplashPageComponent } from './pages/splash-page/splash-page.component';
-// import { AnimationComponent } from './components/animation/animation.component';
 import { SearchComponent } from './pages/search/search.component';
 import { ConnectionComponent } from './pages/connection/connection.component';
 import { LoginComponent } from './components/login/login.component';
@@ -27,7 +26,6 @@ import { ScrollToTopComponent } from './components/scroll-to-top/scroll-to-top.c
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { UserInfoComponent } from './components/user-info/user-info.component';
 import { NgcCookieConsentModule, NgcCookieConsentConfig } from 'ngx-cookieconsent';
-
 import { QuizViewComponent } from './pages/quiz-view/quiz-view.component';
 import { StarRatingComponent } from './components/star-rating/star-rating.component';
 import { QuizDetailsComponent } from './pages/quiz-details/quiz-details.component';
@@ -45,39 +43,74 @@ import { ManageBadgesComponent } from './components/manage-badges/manage-badges.
 import { ManageUsersComponent } from './components/manage-users/manage-users.component';
 import { ManageCommentsComponent } from './components/manage-comments/manage-comments.component';
 import { Logo3DComponent } from './components/logo3-d/logo3-d.component';
+import { ViewComponent } from './components/view/view.component';
+import { FullPageImageComponent } from './components/full-page-image/full-page-image.component';
+import { TopicsComponent } from './components/topics/topics.component';
+import { GCUComponent } from './components/gcu/gcu.component';
+import { CodeOfConductComponent } from './components/code-of-conduct/code-of-conduct.component';
 
+export interface NgcPalette {
+  background?: string;
+  border?: string;
+  link?: string;
+  text?: string;
+}
 const cookieConfig: NgcCookieConsentConfig = {
+
   cookie: {
     domain: 'localhost' // or 'your.domain.com'
 
   },
   palette: {
     popup: {
-      background: 'var(--sun)',
+      background: 'var(--blue)',
+      border: '1px solid #fff',
     },
     button: {
+
       background: 'var(--blue)',
-    }
+      border: '1px solid #fff', // Ajoutez cette ligne pour la bordure
+    },
+    highlight: {
+      background: 'var(--blue)',
+
+    },
   },
+
   theme: 'edgeless',
+
   type: 'opt-out',
-
-  // revokable: false,
+  position: 'bottom-left',
+  enabled: false,
+  law: {
+    regionalLaw: true,
+    countryCode: 'FR',
+  },
   content: {
-
-    message: "Un petit cookie pour la route?\n Avant de s'immerger dans l'Égypte des Pharaons ?",
-    allow: 'Accepter',
-    deny: 'Refuser',
-    link: 'En savoir plus',
+    message: "Acceptez-vous un petit cookie pour la route, avant de vous immerger dans l'Égypte des Pharaons ? ",
+    allow: 'Oui, j\'accepte',
+    deny: 'Non, je refuse',
+    link: 'Plus d\'informations',
+    href: 'https://www.cnil.fr/fr/cookies-traceurs-que-dit-la-loi',
+    policy: "Notre politique de cookies",
   }
+
+
 };
+
+
+
+setTimeout(() => {
+  cookieConfig.enabled = true;
+}, 5000);
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     SplashPageComponent,
-    // AnimationComponent,
     SearchComponent,
     ConnectionComponent,
     LoginComponent,
@@ -104,6 +137,11 @@ const cookieConfig: NgcCookieConsentConfig = {
     ManageUsersComponent,
     ManageCommentsComponent,
     Logo3DComponent,
+    ViewComponent,
+    FullPageImageComponent,
+    TopicsComponent,
+    GCUComponent,
+    CodeOfConductComponent,
   ],
   imports: [
     BrowserModule,

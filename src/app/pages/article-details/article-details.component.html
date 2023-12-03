@@ -2,7 +2,8 @@
     <h2>Les Mystères de l’Égypte Antique</h2>
 </div>
 <div class="text-container">
-    Votre article...<br>{{ article?.title }}
+    Votre article...<br>
+    <p>{{ article?.title }}</p>
 </div>
 <div class="article-main-image">
     <div class="image">
@@ -14,36 +15,17 @@
 <div class="articles-details-container">
 
     <div class="article-details">
-
-        <!-- <app-star-rating [totalStars]="5" [rating]="currentRating"
-            (ratingChanged)="onRatingChanged($event)"></app-star-rating> -->
-
         <app-star-rating [totalStars]="5" [rating]="article.ratings"
             (ratingChanged)="onRatingChanged($event)"></app-star-rating>
 
-
-
         <button class="rating-button" *ngIf="isVoteModified && isConnected" (click)="saveVote()">Enregistrer le
             vote</button>
-
-
         <article class="content">
             <img [src]="article?.image" alt="description de l'image">
-
-
-
             <p><span>
                     <h2 class="article-title">{{ article?.title }}</h2>
                 </span>{{ article?.content }}</p>
-            <!-- <p><span class="article-title">{{ article?.title }}</span>{{ article?.content }}</p> -->
-
-
         </article>
-        <!-- <p>lorem100</p> -->
-        <!-- <img [src]="article?.image ?article?.image : defaultImage" alt="Image de l'article" /> -->
-        <!-- Empecher l'affichage des balises html dans le contenu du quiz innerHTML-->
-        <!-- <p><span [innerHTML]="article?.content"></span></p> -->
-
         <div class="author-info">
             <p>Auteur: {{ article?.author}}</p>
         </div>
@@ -71,5 +53,4 @@
         </div>
 
     </div>
-    <!-- <app-scroll-to-top></app-scroll-to-top> -->
 </div>

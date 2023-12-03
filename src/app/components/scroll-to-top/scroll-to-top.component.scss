@@ -5,7 +5,6 @@
 .button-scroll-to-top {
     display: flex;
     flex-direction: row-reverse;
-    // margin: 2rem;
     position: fixed;
     opacity: 0;
     transition: all .2s ease-in-out;
@@ -25,8 +24,7 @@
     width: 3rem;
     height: 3rem;
     border-radius: 100%;
-    background: #fc9900;
+    background: var(--sun);
     cursor: pointer;
-    // margin: -1rem;
     opacity: 1;
 }

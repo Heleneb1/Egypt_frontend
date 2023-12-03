@@ -10,10 +10,8 @@ import { Article } from '../../models/article';
 })
 export class SearchComponent implements OnInit {
   articles: Article[] = [];
-  articleSearch = '';
-  author!: string;
-  title!: string;
-  filteredArticles: Article[] = [];
+  searchQuery: string = "";
+  animateCard = false;
   selectedTag: string[] = [];
   selectedTitle: string[] = [];
   selectedAuthor: string[] = [];
@@ -23,13 +21,11 @@ export class SearchComponent implements OnInit {
   titleOptions!: string[];
   articleAuthor = "";
   authorOptions!: string[];
-  currentRating!: number;
-  rating: number = 3.5;
-  searchQuery: string = "";
+
 
   constructor (private articlesService: ArticlesService) { }
   getArticles(): void {
-    this.articlesService.getArticles().subscribe((articles: Article[]) => {
+    this.articlesService.getArticles$().subscribe((articles: Article[]) => {
       this.articles = articles;
     });
   }
@@ -38,16 +34,13 @@ export class SearchComponent implements OnInit {
     this.loadTitle();
     this.loadAuthors();
   }
-  //TODO revoir la fonction
   searchArticles() {
     this.resetOtherFilters("tag");
     this.resetOtherFilters("title");
     this.resetOtherFilters("author");
 
-    this.articlesService.getArticlesByAuthorTitleTag(
+    this.articlesService.getArticlesByAuthorTitleTag$(
       this.searchQuery,
-      // this.searchQuery,
-      // this.searchQuery
     ).subscribe(
       (response: Article[]) => {
         console.log('Articles par auteur, titre ou tag :', response);
@@ -57,13 +50,17 @@ export class SearchComponent implements OnInit {
         console.error("Une erreur s'est produite :", error);
       }
     );
+    this.animateCard = true;
+    setTimeout(() => {
+      this.animateCard = false;
+    }, 5000);
 
     this.searchQuery = '';
   }
 
   onAuthorSearchChange(selectedAuthor: string) {
     this.resetOtherFilters("author");
-    this.articlesService.getArticlesByAuthor(selectedAuthor).subscribe(
+    this.articlesService.getArticlesByAuthor$(selectedAuthor).subscribe(
       (articles: Article[]) => {
         this.articles = articles;
       },
@@ -71,6 +68,10 @@ export class SearchComponent implements OnInit {
         console.error("Une erreur s'est produite :", error);
       }
     );
+    this.animateCard = true;
+    setTimeout(() => {
+      this.animateCard = false;
+    }, 5000);
   }
 
 
@@ -78,10 +79,10 @@ export class SearchComponent implements OnInit {
     this.resetOtherFilters("tag");
 
 
-    this.articlesService.getArticlesByTag(selectedTag).subscribe(
+    this.articlesService.getArticlesByTag$(selectedTag).subscribe(
       (articles: Article[]) => {
         this.articles = articles;
-        console.log('Articles par tag :', this.articles);
+
 
 
       },
@@ -89,10 +90,14 @@ export class SearchComponent implements OnInit {
         console.error("Une erreur s'est produite lors de la recherche d'articles par tag :", error);
       }
     );
+    this.animateCard = true;
+    setTimeout(() => {
+      this.animateCard = false;
+    }, 5000);
   }
 
   loadTitle() {
-    this.articlesService.getTitle().subscribe(
+    this.articlesService.getTitle$().subscribe(
       (titles: string[]) => {
         this.titleOptions = titles;
       },
@@ -103,7 +108,7 @@ export class SearchComponent implements OnInit {
   }
 
   loadAuthors() {
-    this.articlesService.getUniqueAuthors().subscribe(
+    this.articlesService.getUniqueAuthors$().subscribe(
       (authors: string[]) => {
         this.authorOptions = authors;
       },
@@ -114,7 +119,7 @@ export class SearchComponent implements OnInit {
   }
 
   loadTags() {
-    this.articlesService.getUniqueTags().subscribe(
+    this.articlesService.getUniqueTags$().subscribe(
       (tags: string[]) => {
         this.tagOptions = tags;
       },
@@ -128,7 +133,7 @@ export class SearchComponent implements OnInit {
 
   onTitleSearchChange(selectedTitle: string) {
     this.resetOtherFilters("title");
-    this.articlesService.getArticlesByTitle(selectedTitle).subscribe(
+    this.articlesService.getArticlesByTitle$(selectedTitle).subscribe(
       (articles: Article[]) => {
         this.articles = articles;
       },
@@ -136,6 +141,10 @@ export class SearchComponent implements OnInit {
         console.error("Une erreur s'est produite :", error);
       }
     );
+    this.animateCard = true;
+    setTimeout(() => {
+      this.animateCard = false;
+    }, 5000);
   }
   resetOtherFilters(filter: string) {
     if (filter !== "tag") {

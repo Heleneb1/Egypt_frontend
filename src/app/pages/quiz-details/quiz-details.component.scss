@@ -113,7 +113,6 @@ input[type="radio"]:checked {
 
 .option input[type="radio" i] {
     appearance: none;
-    // background-color: var(--white);
     border: 1px solid var(--white);
     cursor: pointer;
     color: var(--white);
@@ -137,7 +136,6 @@ input[type="radio"]:checked {
 .options-container {
     display: flex;
     flex-wrap: wrap;
-    // gap: 10rem;
 }
 
 .option-column1 {
@@ -204,11 +202,9 @@ input[type="radio"]:checked {
 
 
     .option-colum1 {
-        /* margin-left: 3rem; */
         flex: 1;
         display: flex;
         justify-content: center;
-        /* padding: 1rem; */
         flex-direction: column;
     }
 }

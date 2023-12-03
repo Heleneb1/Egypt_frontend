@@ -5,30 +5,31 @@
 
   <div class="name-search">
     <label for="theme"></label>
-    <!-- <input type="text" id="theme" placeholder="Rechercher" [(ngModel)]="author" /> -->
     <input type="text" id="theme" placeholder="Rechercher" [(ngModel)]="searchQuery" />
-    <button (click)="searchArticles()">
+    <button title="searchArticles" (click)="searchArticles()">
       <i class="fa fa-search"></i>
     </button>
-    <!-- <app-result-card [filteredArticle]="articles"></app-result-card> -->
   </div>
   <div class="filter-container">
     <label for="tagSearh"></label>
-    <select class="option" [(ngModel)]="articleTag" (change)="onTagSearchChange(articleTag)">
+
+    <select aria-label="searchTag" class="option" [(ngModel)]="articleTag" (change)="onTagSearchChange(articleTag)">
       <option value="">Tag</option>
       <option class="filter-option" *ngFor="let tag of tagOptions" [value]="tag">
         {{ tag }}
       </option>
     </select>
     <label for="titleSearch"></label>
-    <select class="option" [(ngModel)]="articleTitle" (change)="onTitleSearchChange(articleTitle)">
+    <select aria-label="searchTitle" class="option" [(ngModel)]="articleTitle"
+      (change)="onTitleSearchChange(articleTitle)">
       <option value="">Titre</option>
       <option class="filter-option" *ngFor="let title of titleOptions" [value]="title">
         {{ title }}
       </option>
     </select>
     <label for="authorSearch"></label>
-    <select class="option" [(ngModel)]="articleAuthor" (change)="onAuthorSearchChange(articleAuthor)">
+    <select aria-label="searchAuthor" class="option" [(ngModel)]="articleAuthor"
+      (change)="onAuthorSearchChange(articleAuthor)">
       <option value="">Auteur</option>
       <option class="filter-option" *ngFor="let author of authorOptions" [value]="author">
         {{ author }}
@@ -36,7 +37,7 @@
     </select>
 
   </div>
-  <div class="result">
+  <div class="result" [ngClass]="{ 'transition-right': animateCard }">
     <app-result-card [filteredArticle]="articles"></app-result-card>
   </div>
   <div class="Search-all">

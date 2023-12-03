@@ -17,6 +17,7 @@
   border-radius: 2rem;
   padding-left: 2rem;
   font-size: 1.5rem;
+  font-weight: bold;
   height: 2.2rem;
   width: 45rem;
 }
@@ -27,9 +28,10 @@ button {
   border: none;
   margin-top: 2rem;
   position: relative;
-  bottom: 4.5rem;
+  bottom: 4.3rem;
   left: 19rem;
   cursor: pointer;
+  color: var(--sun);
 }
 
 button:active {
@@ -46,12 +48,48 @@ button:active {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  width: 100%;
+  // overflow: hidden;
 
-  .image img {
-    width: 100vw;
-    height: 50vh;
-    object-fit: cover;
+  .image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 99%;
+    overflow: hidden;
+
+    img {
+      width: 100vw;
+      height: 50vh;
+      object-fit: cover;
+    }
   }
+
+  // .author-avatar {
+  //   width: 5rem;
+  //   height: 5rem;
+  //   overflow: hidden;
+  //   border-radius: 100%;
+  //   shape-outside: margin-box;
+  //   margin: 0 0.5rem 0.5rem 0;
+  //   float: left;
+
+  //   img {
+  //       width: 96%;
+  //       height: 96%;
+  //       object-fit: cover;
+  //       border-radius: 100%;
+  //       border: 1px solid var(--sun);
+  //       margin: 1rem;
+  //       shape-outside: margin-box;
+  //       margin: 0 0.5rem 0.5rem 0;
+  //       float: left;
+  //   }
+
+  // }
+
+
 
   .text-container {
     padding: 2rem;
@@ -84,11 +122,12 @@ button:active {
 select,
 option {
   appearance: none;
-  font-size: 1rem;
+  font-size: 1.5rem;
+  font-weight: 400;
 }
 
 .option {
-  font-size: 1rem;
+  font-size: 1.3rem;
 }
 
 .filter-container select {
@@ -140,7 +179,6 @@ input[type="text"]::placeholder {
 }
 
 .result {
-  // width: 100vw;
   padding: 1rem;
   margin: 2rem;
 }
@@ -150,25 +188,23 @@ input[type="text"]::placeholder {
   justify-content: center;
 }
 
-// @media (min-width: 768px) {
-//   #theme {
-//     width: 45rem;
-//     height: 2.5rem;
-//   }
+.transition-right {
+  transform: translateX(0rem, 100%);
+  animation: appear2 3s forwards;
+}
 
+@keyframes appear2 {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
 
-//   .image {
-//     display: flex;
-//     justify-content: center;
-//     height: 35rem;
-//   }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
 
-//   .fa {
-//     font-weight: 900;
-//     font-size: 1.8rem;
-//   }
-
-// }
 
 @media (max-width: 768px) {
   .fa-search:before {
@@ -201,8 +237,7 @@ input[type="text"]::placeholder {
 
   button {
     left: 40%;
-    bottom: 4rem;
-    // margin-top: 2.2rem;
+    bottom: 4.1rem;
   }
 
   .option {
@@ -213,14 +248,3 @@ input[type="text"]::placeholder {
     }
   }
 }
-
-// .selected {
-//   p {
-//     width: 20rem;
-//     font-size: 1rem;
-//     padding: 0.5rem;
-//     .color {
-//       color: var(--turquoise);
-//     }
-//   }
-// }

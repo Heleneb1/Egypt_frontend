@@ -1,6 +1,4 @@
 .contact-intro {
-    // margin-top: 5rem;
-
     img {
         height: 25rem
     }
@@ -24,7 +22,6 @@
         justify-content: center;
         flex-direction: column;
         align-items: center;
-        // margin-top: 4rem;
 
         label {
             font-size: 1.5rem;
@@ -49,11 +46,7 @@
     .form-group {
         display: flex;
         flex-direction: column;
-        // gap: 2rem;
         width: 75%;
-
-
-
 
         textarea#message {
             height: 13rem;
@@ -76,10 +69,11 @@
     .send-button {
         display: flex;
         width: 80%;
-        margin: 2rem;
         flex-direction: row-reverse;
 
         .button {
+            margin: 0;
+
             .button-container {
                 position: relative;
                 top: 5rem;
@@ -88,6 +82,49 @@
     }
 
 }
+
+.transition-bottom {
+    transform: translateY(-100%);
+    animation: appear 5s forwards;
+}
+
+.transition-right-corner {
+    transform: translateX(0);
+    animation: disappear 3s forwards;
+}
+
+
+@keyframes appear {
+    0% {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes disappear {
+    0% {
+        opacity: 1;
+        transform: translateX(0)scale(0.1);
+    }
+
+    30% {
+        opacity: 1;
+        transform: translateX(-40%)scale(0.1);
+    }
+
+
+
+    100% {
+        opacity: 0;
+        transform: translateX(100%)scale(0.1);
+    }
+}
+
 
 @media screen and (max-width: 768px) {
     .contact-intro {
@@ -99,7 +136,6 @@
     }
 
     .contact {
-        // height: 65%;
         width: 100vw;
         background: url("/assets/images/background.svg") no-repeat;
         background-size: cover;
@@ -107,8 +143,6 @@
         .form-group {
             display: flex;
             flex-direction: column;
-            // gap: 2rem;
-
         }
     }
 }

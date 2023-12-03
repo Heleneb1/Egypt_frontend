@@ -28,7 +28,6 @@ export class ManageUsersComponent {
 
       this.userService.deleteUsers(id).subscribe(() => {
         this.getUsers();
-        // alert('Utilisateur supprimé');
         this.toastr.success('Utilisateur supprimé', 'Suppression');
       });
     }

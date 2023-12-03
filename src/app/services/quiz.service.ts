@@ -10,9 +10,6 @@ import { QuizQuestion } from "../models/quiz-question";
 })
 export class QuizService {
 
-    // deleteBadge(id: string) {
-    //     throw new Error('Method not implemented.');
-    // }
 
     private quizDataUrl = environment.apiUrl + '/quizzes';
     private questionDataUrl = environment.apiUrl + '/questions';
@@ -130,12 +127,6 @@ export class QuizService {
         return this.httpClient.put(`${this.quizDataUrl}/${id}`, updatedQuiz);
     }
 
-
-    // updateQuestion(id: string, updatedQuestion: any) {
-    //     console.log("MaJ", updatedQuestion);
-
-    //     return this.httpClient.put(`${this.questionDataUrl}/${id}`, updatedQuestion);
-    // }
     updateQuestion(id: string, updatedQuestion: any): Observable<any> {
         const url = `${this.questionDataUrl}/${id}`;
         console.log("MaJ", updatedQuestion);
