@@ -12,6 +12,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class TopicsComponent implements OnInit {
 
+  showCodeOfConduct: boolean = false;
   topics: any[] = [];
   existingAnswers: any[] = [];
   selectedTopic: any;
@@ -70,6 +71,13 @@ export class TopicsComponent implements OnInit {
         console.error('Error fetching topics:', error);
       }
     );
+  }
+  closeCodeOfConductModal() {
+    this.showCodeOfConduct = false;
+  }
+
+  showCodeOfConductModal() {
+    this.showCodeOfConduct = !this.showCodeOfConduct;
   }
 
   loadAvatars() {

@@ -1,14 +1,18 @@
 .GCU-all {
-    color: var(--white);
-    border: 1px solid var(--white);
-    border-radius: 0.5rem;
-    margin: 1rem;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-bottom: 2rem;
-    gap: 2rem;
+    flex-direction: column;
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    border: 1px solid var(--sun);
+    background-color: var(--blue);
+    color: var(--white);
+    font-family: var(--text);
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
 
     form {
         display: flex;
@@ -25,7 +29,7 @@
         h1 {
             font-family: var(--title);
             text-align: center;
-            margin: 2.5rem;
+            // margin: 2.5rem;
             padding: 2rem;
             color: var(--sun);
             font-size: 2rem;

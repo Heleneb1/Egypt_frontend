@@ -147,7 +147,7 @@
 
 
 
-    button {
+    .participation {
         background-color: var(--sun);
         color: var(--white);
         text-shadow: 1px 1px 1px var(--blue);
@@ -274,6 +274,56 @@
         padding: 1rem;
     }
 }
+
+.codeOfConduct-btn {
+    background: transparent;
+    font-style: var(--text);
+    color: var(--sun);
+    border: none;
+    cursor: pointer;
+    font-style: italic;
+}
+
+.codeOfconduct {
+    height: 2rem;
+    margin: 1rem 0;
+    width: 100%;
+}
+
+.closeModal {
+    width: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.close-btn {
+    background: var(--sun);
+    border: none;
+    font-size: 1.1rem;
+    color: var(--white);
+    cursor: pointer;
+    border-radius: 0.5rem;
+}
+
+.showCodeOfConduct {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    border: 1px solid var(--sun);
+    background-color: var(--blue);
+    color: var(--white);
+    font-family: var(--text);
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+
+}
+
 
 @media screen and (max-width: 768px) {
     .all-topics {

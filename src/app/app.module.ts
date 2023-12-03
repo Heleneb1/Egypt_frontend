@@ -47,6 +47,7 @@ import { ViewComponent } from './components/view/view.component';
 import { FullPageImageComponent } from './components/full-page-image/full-page-image.component';
 import { TopicsComponent } from './components/topics/topics.component';
 import { GCUComponent } from './components/gcu/gcu.component';
+import { CodeOfConductComponent } from './components/code-of-conduct/code-of-conduct.component';
 
 export interface NgcPalette {
   background?: string;
@@ -140,6 +141,7 @@ setTimeout(() => {
     FullPageImageComponent,
     TopicsComponent,
     GCUComponent,
+    CodeOfConductComponent,
   ],
   imports: [
     BrowserModule,

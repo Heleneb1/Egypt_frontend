@@ -35,6 +35,7 @@ export class CommentsComponent implements OnInit {
   objectURL: any;
   user: any = [];
   isArchived: boolean = true;
+  showCodeOfConduct: boolean = false;
 
   constructor (
     private authService: AuthService,
@@ -87,8 +88,12 @@ export class CommentsComponent implements OnInit {
     });
   }
 
-
-
+  showCodeOfConductModal() {
+    this.showCodeOfConduct = !this.showCodeOfConduct;
+  }
+  closeCodeOfConductModal() {
+    this.showCodeOfConduct = false;
+  }
 
   onEditComment() {
     this.editComment = !this.editComment;

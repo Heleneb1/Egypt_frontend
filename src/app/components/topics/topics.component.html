@@ -1,5 +1,6 @@
 <div class="all-topics">
     <div *ngIf="userConnected" class="form-group">
+
         <form (submit)="createTopic()">
             <label for="topic"></label>
             <button type="button" title="create-topic-btn" class="topic-btn" (click)="toggleEdit()">Créer un nouveau
@@ -14,6 +15,23 @@
             </div>
         </form>
     </div>
+    <div class="codeOfconduct">
+        <button title="code-of-conduct" (click)="showCodeOfConductModal()" type="button" class="codeOfConduct-btn">Plus
+            d'informations
+        </button>
+    </div>
+    <div class="showCodeOfConduct" *ngIf="showCodeOfConduct">
+        <div class="closeModal">
+            <button title="close" (click)="closeCodeOfConductModal()" type="button" class="close-btn"><strong>X</strong>
+            </button>
+        </div>
+        <app-code-of-conduct></app-code-of-conduct>
+        <div class="closeModal">
+            <button title="close" (click)="closeCodeOfConductModal()" type="button"
+                class="close-btn"><strong>Fermer</strong>
+            </button>
+        </div>
+    </div>
     <div *ngIf="userConnected" class="name-search">
         <label for="theme"></label>
         <input type="text" id="theme" placeholder="Rechercher" [(ngModel)]="searchQuery" />
@@ -25,7 +43,8 @@
     <div class="see-topics">
         <ul *ngIf="topics && topics.length > 0; else noTopics">
             <li *ngFor="let topic of topics">
-                <button type="button" title="participation" (click)="getTopicById(topic.id)">Participer</button>
+                <button class="participation" type="button" title="participation"
+                    (click)="getTopicById(topic.id)">Participer</button>
                 <p>Tag: {{topic.tag}}</p>
                 <p>Par: {{ topic.authorName }}</p>
                 <div class="author-avatar">
@@ -37,7 +56,7 @@
         </ul>
     </div>
     <ng-template #noTopics>
-        <p class="noTopics">Veuillez vous connecter pour accéder aux discussions.</p>
+        <p class="noTopics">Aucune discussion, concernant ce sujet, vous pouvez en créer une si vous le souhaitez.</p>
     </ng-template>
 
     <div class="answer" *ngIf="selectedTopic">
@@ -70,3 +89,4 @@
             <p>Aucune réponse disponible pour ce sujet.</p>
         </ng-template>
     </div>
+    <app-scroll-to-top></app-scroll-to-top>

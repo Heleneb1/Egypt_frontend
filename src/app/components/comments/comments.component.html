@@ -1,5 +1,22 @@
 <div class="comment-container">
     <h2>Commentaire</h2>
+    <div class="codeOfconduct">
+        <button title="code-of-conduct" (click)="showCodeOfConductModal()" type="button" class="codeOfConduct-btn">Plus
+            d'informations
+        </button>
+    </div>
+    <div class="showCodeOfConduct" *ngIf="showCodeOfConduct">
+        <div class="closeModal">
+            <button title="close" (click)="closeCodeOfConductModal()" type="button" class="close-btn"><strong>X</strong>
+            </button>
+        </div>
+        <app-code-of-conduct></app-code-of-conduct>
+        <div class="closeModal">
+            <button title="close" (click)="closeCodeOfConductModal()" type="button"
+                class="close-btn"><strong>Fermer</strong>
+            </button>
+        </div>
+    </div>
     <form (ngSubmit)="addComment()">
         <div class="form-group">
             <label for="comment"></label>
