@@ -31,13 +31,16 @@
             ],
             "styles": [
               "src/styles.scss",
+              "node_modules/ngx-toastr/toastr.css",
               "node_modules/quill/dist/quill.snow.css",
               "node_modules/quill/dist/quill.bubble.css",
               "node_modules/quill/dist/quill.core.css",
-              "node_modules/quill-emoji/dist/quill-emoji.css"
+              "node_modules/quill-emoji/dist/quill-emoji.css",
+              "node_modules/cookieconsent/build/cookieconsent.min.css"
             ],
             "scripts": [
-              "node_modules/quill/dist/quill.js"
+              "node_modules/quill/dist/quill.js",
+              "node_modules/cookieconsent/build/cookieconsent.min.js"
             ]
           },
           "configurations": {
@@ -54,7 +57,13 @@
                   "maximumError": "4kb"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.production.ts"
+                }
+              ]
             },
             "development": {
               "buildOptimizer": false,
@@ -62,7 +71,13 @@
               "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
-              "namedChunks": true
+              "namedChunks": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.development.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"

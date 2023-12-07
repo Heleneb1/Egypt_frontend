@@ -5,6 +5,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { environment } from 'src/environments/environment.development';
 import Quill from 'quill';
 import 'quill-emoji/dist/quill-emoji.js';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-create-quiz',
@@ -22,77 +23,90 @@ export class CreateQuizComponent implements AfterViewInit, OnInit {
   type: string = '';
   difficulty: string = '';
   createdQuizId: string = '';
-  userConnected: any; // Type should be defined
+  userConnected: any;
   userId: string = '';
+  isArchived: boolean = true;
 
-  constructor(
+
+  constructor (
     private http: HttpClient,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private toastr: ToastrService
   ) {
     this.userConnected = this.authService.getUserConnected();
     this.authService.getUserConnected().subscribe((user: any) => {
       this.userConnected = user;
       this.userId = user?.userId;
+
     });
   }
 
   ngOnInit(): void {
-    // Initialize code here if needed
   }
 
   ngAfterViewInit() {
     const toolbarOptions = [
-      ['bold', 'italic', 'underline', 'strike', 'blockquote', 'code-block', 'script', 'header', 'indent', 'list', 'direction', 'align', 'clean'],
-      ['emoji', 'link', 'image', 'video', 'formula', 'checklist', 'chart', 'code', 'table', 'fullscreen'],
+      ['bold', 'italic', 'underline', 'strike', 'blockquote', 'code-block', 'script', 'header',
+        'indent', 'list', 'direction', 'align', 'clean'],
+      ['emoji', 'link', 'image', 'video', 'formula', 'code', 'table'],
       [{ color: [] }, { background: [] }],
       ['clean'],
       [{ size: ['small', false, 'large', 'huge'] }],
+
     ];
 
 
     this.quill = new Quill('#editor', {
       modules: {
         toolbar: toolbarOptions,
-        'emoji-toolbar': true,
-        'emoji-textarea': true,
-        'emoji-shortname': true,
       },
       theme: 'snow',
     });
-
-    const emojiButton: any = this.quill.getModule('emoji-toolbar'); // Type should be defined
-    emojiButton.initToolbar();
   }
 
   createQuiz(): void {
     const descriptionText = this.quill.root.innerHTML;
-
     const userId = this.userConnected.id;
-    const url = environment.apiUrl + `/quizzes/${userId}`;
+    const url = environment.apiUrl + `/quizzes/create/${userId}`;
+    console.log(url);
 
     const data = {
-      description: descriptionText,
-      name: this.textValue,
+      content: descriptionText,
+      title: this.textValue,
       picture: this.picture,
       tag: this.tag,
-      type: this.type,
       difficulty: this.difficulty,
+      archive: this.isArchived,
     };
 
-    // Use the HttpClient to send a POST request with the 'data' to the 'url'
-    // Uncomment and modify this code based on your API endpoint and data structure
-    // this.http.post(url, data).subscribe(
-    //   (response: any) => {
-    //     const createdquizzeId = response.id;
-    //     localStorage.setItem('createdquizzeId', createdquizzeId);
-    //     alert('La quizze est créée avec succès !');
-    //     this.createdQuizId = createdquizzeId;
-    //     this.showModal = true;
-    //   },
-    //   (error) => {
-    //     console.error('Failed to create quizze', error);
-    //   }
-    // );
+    this.http.post(url, data).subscribe(
+
+      (response: any) => {
+        console.log('Quiz created', response);
+        console.log(data);
+      },
+      (error) => {
+        console.error('Failed to create quiz', error);
+        console.log(data);
+
+      }
+    );
+    this.resetForm();
+    this.router.navigate(['/profile']);
+    this.toastr.success('Le quiz est créé avec succès !');
+  }
+
+  resetForm(): void {
+    this.textValue = '';
+    this.picture = '';
+    this.tag = '';
+    this.difficulty = '';
+    this.isArchived = true;
+    this.quill.root.innerHTML = '';
   }
 }
+
+
+
+

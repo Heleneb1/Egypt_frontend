@@ -1,0 +1,47 @@
+<div class="sub-title">
+    <h2>Les Mystères de l’Égypte Antique</h2>
+</div>
+<div class="quiz-main-image">
+    <div class="image">
+        <img [src]="'assets/images/Gizeah.jpg'" alt="Gizeh" />
+    </div>
+</div>
+
+<div class="no-user" *ngIf="isUserConnected; else noCourses">
+    <h2 class="sub-title"> L'Egypte Antique en image</h2>
+    <div class="text-container">
+        Cliquez sur l'image pour Contempler et sur le bouton pour un voyage virtuel...
+    </div>
+</div>
+
+<ng-template #noCourses>
+    <div class="text-container">
+        Vous devez être connecté pour comptempler ces merveilles. Veuillez vous connecter ou créer un compte.
+    </div>
+</ng-template>
+
+<div class="all-view">
+
+    <div class="monument-card" *ngFor="let monument of data">
+        <div class="card">
+            <!-- <p>Latitude: {{ monument.latitude }}</p>
+            <p>Longitude: {{ monument.longitude }}</p> -->
+            <p> {{ monument.monumentName }}</p>
+            <div class="image-container">
+                <img [src]="monument.picture" alt="{{ monument.monumentName }}"
+                    (click)="openFullPage(monument.picture)">
+                <h3 class="author-picture">{{monument.author_picture}}</h3>
+            </div>
+            <div *ngIf="monument.link; else noLink">
+                <button (click)="openStreetView(monument.link)">Voyager</button>
+            </div>
+
+            <ng-template #noLink>
+                <div class="text-sorry">
+                    Pas de voyage, pour le moment.
+                </div>
+            </ng-template>
+        </div>
+    </div>
+    <app-full-page-image></app-full-page-image>
+    <app-scroll-to-top></app-scroll-to-top>

@@ -1,0 +1,105 @@
+.admin {
+    margin: 1rem;
+    padding: 2rem 0;
+}
+
+.addMore {
+    button {
+        display: flex;
+        border: none;
+        height: 2rem;
+        border-radius: 1.5em;
+        padding: 1rem;
+        margin: 1rem;
+        color: var(--white);
+        background-color: var(--sun);
+        align-items: center;
+        justify-content: center;
+
+    }
+
+    button:active,
+    button:focus {
+        transform: scale(1.1);
+    }
+
+
+}
+
+.icon {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: 3rem;
+
+}
+
+.notify {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-left: 1rem;
+}
+
+.icon i.fa-bell,
+i.fa-envelope {
+    color: var(--white);
+    font-size: 1.7rem;
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.icon .number {
+    color: var(--white);
+    background-color: var(--sun);
+    border-radius: 100%;
+    font-weight: bold;
+    font-family: var(--text);
+    height: 1rem;
+    width: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.3rem;
+}
+
+.shake {
+    animation: shake 0.3s;
+    animation-iteration-count: 10 !important;
+    animation-timing-function: linear;
+}
+
+.contact_message {
+    background-color: var(--white);
+    margin: 1rem;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    font-family: var(--text);
+}
+
+.contact_message_title {
+    width: fit-content;
+}
+
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-2px);
+    }
+
+    50% {
+        transform: translateX(2px);
+    }
+
+    75% {
+        transform: translateX(-2px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}

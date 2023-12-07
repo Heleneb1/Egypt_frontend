@@ -1,0 +1,63 @@
+<div class="comment-container">
+    <h2>Commentaire</h2>
+    <div class="codeOfconduct">
+        <button title="code-of-conduct" (click)="showCodeOfConductModal()" type="button" class="codeOfConduct-btn">Plus
+            d'informations
+        </button>
+    </div>
+    <div class="showCodeOfConduct" *ngIf="showCodeOfConduct">
+        <div class="closeModal">
+            <button title="close" (click)="closeCodeOfConductModal()" type="button" class="close-btn"><strong>X</strong>
+            </button>
+        </div>
+        <app-code-of-conduct></app-code-of-conduct>
+        <div class="closeModal">
+            <button title="close" (click)="closeCodeOfConductModal()" type="button"
+                class="close-btn"><strong>Fermer</strong>
+            </button>
+        </div>
+    </div>
+    <form (ngSubmit)="addComment()">
+        <div class="form-group">
+            <label for="comment"></label>
+            <button (click)="onEditComment()" type="button" class="comment-btn">Laisser un commentaire...
+            </button>
+            <div *ngIf="editComment">
+                <div class="edit">
+                    <textarea id="comment" class="form-control" [(ngModel)]="commentContent" name="commentContent"
+                        required></textarea>
+                    <button type="submit" class="btn-add-comment">Ajouter le commentaire</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="comment-content" *ngIf="showComment && commentList && commentList.length > 0">
+            <h2>Commentaires déjà en ligne </h2>
+            <ul>
+                <li *ngFor="let comment of commentList">
+                    <div class="comment-card">
+                        <div class="comment-text">
+                            <h3>{{ comment.content }}</h3>
+                            <p *ngIf="comment?.creationDate">Date : {{ formatDate(comment.creationDate) }}
+                            </p>
+                        </div>
+                        <div class="avatar">
+                            <img [src]="comment.authorAvatar || defaultAvatarUrl"
+                                alt="Avatar de l'auteur du commentaire" />
+                            <p> {{ comment.authorName }}</p>
+
+                            <div *ngIf="userConnected.id === comment.author">
+                                <button (click)="deleteMyComment(comment.id, comment.author)" type="button"
+                                    class="deleteMyComment">Supprimer
+                                    le commentaire</button>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="comment-button">
+            <button (click)="onComment()" type="button" class="comment-btn">Afficher les commentaires</button>
+        </div>
+    </form>
+</div>

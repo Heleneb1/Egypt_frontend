@@ -1,17 +1,21 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import jwtDecode from 'jwt-decode';
 import { environment } from 'src/environments/environment.development';
+import { NgcCookieConsentService } from 'ngx-cookieconsent';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private http: HttpClient, private cookieService: CookieService) {}
+
+
+  constructor (private http: HttpClient, private cookieService: CookieService, private cookieConsentService: NgcCookieConsentService) { }
   logout() {
     this.cookieService.delete('token');
+    this.cookieConsentService.destroy();
   }
 
   isLoggedIn() {
@@ -28,5 +32,13 @@ export class AuthService {
     const userId = this.getUserToken();
     const userConnectedUrl = environment.apiUrl + `/users/${userId}`;
     return this.http.get<string>(userConnectedUrl);
+  }
+  getUserRole(): Observable<string> {
+    return this.getUserConnected().pipe(
+      map((userData: any) => {
+        console.log("userData", userData);
+        return userData.role;
+      })
+    );
   }
 }

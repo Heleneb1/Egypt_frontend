@@ -1,0 +1,4 @@
+<div *ngIf="userData">
+    <app-user-info [userData]="userData"></app-user-info>
+</div>
+<div class="loading" *ngIf="!userData">loading...</div>

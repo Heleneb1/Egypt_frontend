@@ -1,39 +1,45 @@
-<nav class="header-container">
-    <div class="header-content">
-        
-        <div class="menu-burger" [ngClass]="{ open: isMenuOpen }" (click)="toggleMenu()">
-            <div class="line"></div>
-            <div class="line"></div>
-            <div class="line"></div>
-        </div>
-
-        <div class="menu" [ngClass]="{ open: isMenuOpen }">
-            <div class="nav-mobile">
-                <ul>
-                    <li><a routerLink="/home">Accueil</a></li>
-                    <li><a routerLink="/article">Articles</a></li>
-                    <li><a routerLink="/create-quiz">Quiz</a></li>
-                    <li><a routerLink="/authentication">Connexion</a></li>
-                   <li> <a (click)="logout()">Déconnexion</a></li>
-                    <!-- <img src="assets/images/Brain.png" alt="Image 2" class="menu-image" /> -->
-                </ul>
-                <div class="menu-image">
-                <img [src]="'assets/images/logo-bleu.svg'" alt="logo" class="menu-image" />
+<div class="header-all">
+    <nav class="header-container">
+        <div class="header-content">
+            <div class="menu-burger" [ngClass]="{ open: isMenuOpen }" (click)="toggleMenu()">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
             </div>
+
+            <div class="menu" [ngClass]="{ open: isMenuOpen }">
+                <div class="nav-mobile">
+                    <div class="link">
+
+                        <ul>
+                            <li><a routerLink="/home">Accueil</a></li>
+                            <li><a routerLink="/article">Articles</a></li>
+                            <li><a routerLink="/quiz">Quiz</a></li>
+                            <li><a routerLink="/profile">Profil</a></li>
+                            <li *ngIf="!isConnected; else disConnect">
+                                <a routerLink="/authentication">Connexion</a>
+                            </li>
+                            <ng-template #disConnect>
+                                <li>
+                                    <p class="logout" (click)="logout()">Déconnexion</p>
+                                </li>
+                            </ng-template>
+
+                            <li><a routerLink="/contact">Nous Contacter</a></li>
+                            <li><a routerLink="/topics">Forum</a></li>
+                            <li><a routerLink="/view">En image</a></li>
+                        </ul>
+                    </div>
+                    <div class="logo">
+                        <a aria-label="Aller à la page d\'Accueil" routerLink="/home">
+                            <app-logo3-d></app-logo3-d>
+                        </a>
+                    </div>
+                    <div class="title-for-mobile">
+                        <h3>Les Mystères de l'Égypte Antique</h3>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-
-    <div class="icons">
-        <a routerLink="/dashboard" class="icon">
-            <i class="fa fa-user"></i>
-        </a>
-        <div class="icon"><i class="fa fa-envelope"></i></div>
-        <div class="icon"><i class="fa fa-bell"></i></div>
-        
-    </div>
-    <div class="logo">
-        <img [src]="'assets/images/logo-bleu.svg'" alt="logo"  />
-    </div>
-
-</nav>
+    </nav>
+</div>

@@ -1,52 +1,114 @@
+.Search-all {
+  height: 100%;
+}
+
 .name-search {
+  margin: 2rem 0.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
 }
+
 #theme {
   color: var(--blue);
   background: var(--white);
   border-radius: 2rem;
   padding-left: 2rem;
   font-size: 1.5rem;
+  font-weight: bold;
+  height: 2.2rem;
+  width: 45rem;
 }
+
 button {
   background: transparent;
   border-radius: 2rem;
   border: none;
   margin-top: 2rem;
   position: relative;
-  bottom: 4.5rem;
+  bottom: 4.3rem;
   left: 19rem;
   cursor: pointer;
+  color: var(--sun);
 }
 
 button:active {
   transform: scale(1.3);
 }
-.fas {
+
+.fa {
   font-weight: 900;
   font-size: 1.8rem;
 }
-.image img {
-  width: 100vw;
-}
-.text-container {
-  position: relative;
-  bottom: 20rem;
-  //   width: 20rem;
-  height: 12rem;
-  background: rgba(0, 0, 0, 0.48);
-  color: #fdfdfd;
-  text-align: center;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  font-family: Kaushan Script;
-  font-size: 24px;
+
+.search-image {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  // overflow: hidden;
+
+  .image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 99%;
+    overflow: hidden;
+
+    img {
+      width: 100vw;
+      height: 50vh;
+      object-fit: cover;
+    }
+  }
+
+  // .author-avatar {
+  //   width: 5rem;
+  //   height: 5rem;
+  //   overflow: hidden;
+  //   border-radius: 100%;
+  //   shape-outside: margin-box;
+  //   margin: 0 0.5rem 0.5rem 0;
+  //   float: left;
+
+  //   img {
+  //       width: 96%;
+  //       height: 96%;
+  //       object-fit: cover;
+  //       border-radius: 100%;
+  //       border: 1px solid var(--sun);
+  //       margin: 1rem;
+  //       shape-outside: margin-box;
+  //       margin: 0 0.5rem 0.5rem 0;
+  //       float: left;
+  //   }
+
+  // }
+
+
+
+  .text-container {
+    padding: 2rem;
+    width: 50%;
+    position: relative;
+    bottom: 22rem;
+    height: 12rem;
+    background: rgba(0, 0, 0, 0.48);
+    color: #fdfdfd;
+    text-align: center;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: Kaushan Script;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
+
 .filter-container {
   display: flex;
   align-items: center;
@@ -60,17 +122,20 @@ button:active {
 select,
 option {
   appearance: none;
-  font-size: 1rem;
+  font-size: 1.5rem;
+  font-weight: 400;
 }
+
 .option {
-  font-size: 1rem;
+  font-size: 1.3rem;
 }
+
 .filter-container select {
   width: 16rem;
   height: 3rem;
   background: var(--white);
   color: var(--blue);
-  padding: 0.5rem;
+  padding: 0.3rem;
   display: flex;
   justify-content: center;
   text-align: center;
@@ -86,10 +151,13 @@ option {
 
 input[type="text"]::placeholder {
   color: var(--blue);
+
 }
+
 .filter-container {
-  margin-bottom: 3rem;
+  margin: 2rem 0.5rem;
 }
+
 .filter-container select:first-of-type {
   border-top-left-radius: 2rem;
   border-bottom-left-radius: 2rem;
@@ -100,34 +168,53 @@ input[type="text"]::placeholder {
   border-bottom-right-radius: 2rem;
 }
 
+.text-container {
+  position: relative;
+  bottom: 30rem;
+  width: 45rem;
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.result {
+  padding: 1rem;
+  margin: 2rem;
+}
+
 .result-card {
   display: flex;
   justify-content: center;
 }
 
-@media (min-width: 768px) {
-  #theme {
-    width: 45rem;
-    height: 2.5rem;
-  }
-  .image {
-    display: flex;
-    justify-content: center;
-    height: 35rem;
-  }
-  .fas {
-    font-weight: 900;
-    font-size: 1.8rem;
-  }
-  
+.transition-right {
+  transform: translateX(0rem, 100%);
+  animation: appear2 3s forwards;
 }
+
+@keyframes appear2 {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+
 @media (max-width: 768px) {
   .fa-search:before {
     content: "\f002";
-}
-#theme {
-  width: 90%;
-}
+  }
+
+  #theme {
+    width: 90%;
+    height: 2rem;
+  }
 
   .filter-container select {
     width: 100%;
@@ -150,9 +237,9 @@ input[type="text"]::placeholder {
 
   button {
     left: 40%;
-    bottom: 4rem;
-    // margin-top: 2.2rem;
+    bottom: 4.1rem;
   }
+
   .option {
     width: 80%;
 
@@ -161,13 +248,3 @@ input[type="text"]::placeholder {
     }
   }
 }
-// .selected {
-//   p {
-//     width: 20rem;
-//     font-size: 1rem;
-//     padding: 0.5rem;
-//     .color {
-//       color: var(--turquoise);
-//     }
-//   }
-// }

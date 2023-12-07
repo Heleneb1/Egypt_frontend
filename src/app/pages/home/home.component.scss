@@ -1,63 +1,99 @@
+$textWidth: 55vw;
+$moblieWidth: 80%;
+$lineHeight: 1.5;
+
+.loader {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--blue);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  font-size: 3rem;
+  font-family: var(--title);
+  color: var(--sun);
+  transition: all 0.3s ease-in-out;
+  animation: fadeIn 4s ease-in-out forwards;
+
+}
+
 .home {
   text-align: center;
   height: 100vh;
   display: flex;
   flex-direction: column;
+
   .content {
     display: flex;
-
-    // padding: 3rem;
-    // margin: 2rem;
+    margin: 2rem;
+    padding: 0 2rem;
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
+
+  .main-image-home {
+    width: 100vw;
+    height: 30rem;
+  }
+
   img {
-    width: auto;
+    width: 98vw;
+    display: flex;
+    height: 100%;
     object-fit: cover;
-    height: 50%;
+    justify-content: center;
+    align-items: center;
+
   }
 
   .home-title {
     color: var(--sun);
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     font-family: var(--title);
+
     h1 {
       font-size: 2.7em;
-      margin: 1rem;
+      margin: 3rem;
     }
   }
-  // .sub-title {
-  //   margin-bottom: 2rem;
 
-  //   font-family: var(--title);
-  //   color: var(--sun);
-  //   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  //   h2 {
-  //     font-size: 2.2rem;
-  //     margin-bottom: 2rem;
-  //   }
-  // }
   .introduction {
-    margin: 2rem;
+    margin: 0 2rem;
     justify-content: space-around;
-    // height: 20rem;
+    padding: 2rem;
+    width: $textWidth;
+    line-height: $lineHeight;
+
   }
+
   .title h3 {
     font-family: var(--title);
     font-size: 1.5rem;
     color: var(--white);
+    margin-bottom: 1rem;
   }
+
   .description {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     margin: 2em;
-    padding-bottom: 2rem;
+    padding: 2rem;
     justify-content: center;
+    width: $textWidth;
+    line-height: $lineHeight;
+
   }
+
   .paragraph {
     margin-bottom: 2rem;
+    padding-bottom: 2rem;
   }
 
   p {
@@ -71,6 +107,7 @@
     justify-content: center;
   }
 }
+
 .fog-effect {
   position: fixed;
   top: 0;
@@ -79,61 +116,120 @@
   height: 100%;
   background-color: var(--sun);
   animation: fogAnimation 2s ease-in-out forwards;
-  // animation-delay: 2s; /* Ajoutez le délai souhaité (par exemple, 2 secondes) */
 }
+
 .glow-effect {
   width: 100%;
   height: 100%;
   position: fixed;
   top: 0;
   left: 0;
-  // z-index: -1;
   background: radial-gradient(circle, #f1c787, rgba(255, 255, 255, 0) 50%);
-  animation: glow 0s ease-in-out forwards;
+  animation: glow 1s ease-in-out forwards;
   border-radius: 100%;
-  animation-duration: 10s;
+  animation-duration: 7s;
+}
+
+.gcu {
+  text-decoration: none;
+
+  a {
+    color: var(--sun);
+    font-family: var(--text);
+  }
 }
 
 @keyframes fogAnimation {
   0% {
     opacity: 1;
   }
+
   50% {
     opacity: 1;
   }
+
   100% {
     opacity: 0;
   }
 }
+
 @keyframes glow {
   0% {
     transform: translate(-50%, -50%) scale(0.5);
     opacity: 0.5;
   }
+
   50% {
     transform: translate(-50%, -50%) scale(2);
     opacity: 0.2;
   }
+
   100% {
     transform: translate(-100%, -100%) scale(0.5);
     opacity: 1;
   }
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 1;
+
+  }
+
+  to {
+    opacity: 0;
+
+  }
+}
+
+
 @media (max-width: 768px) {
   .home {
     .home-title h1 {
       font-size: 1.6rem;
     }
+
     .content {
       margin: 0;
       padding: 0;
     }
+
     .sub-title h2 {
       font-size: 1.3rem;
     }
+
+    .introduction {
+      padding: 0;
+      margin: 2rem;
+      width: $moblieWidth;
+      line-height: $lineHeight;
+
+
+    }
+
+    .description {
+      margin: 2rem;
+      padding: 0;
+      line-height: $lineHeight;
+      width: $moblieWidth;
+    }
+
+    .title {
+      margin: 0;
+      padding: 0;
+    }
+
     .title h3 {
       font-size: 1.3rem;
+      padding: 0;
+      margin-bottom: 1rem;
     }
   }
+}
+
+.scroll-home {
+  display: flex;
+
+  justify-content: flex-end;
+  margin: 2rem;
 }

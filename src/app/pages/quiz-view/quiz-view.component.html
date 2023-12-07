@@ -1,0 +1,85 @@
+<div class="sub-title">
+    <h2>Les Mystères de l’Égypte Antique</h2>
+</div>
+<div class="quiz-main-image">
+    <div class="image">
+        <img [src]="'assets/images/Gizeah.jpg'" alt="Gizeh" />
+    </div>
+</div>
+<div class="text">
+    <div *ngIf="isUserConnected; else noCourses">
+        <div class="text-container">
+            Répondez aux questions et gagnez des badges.
+        </div>
+    </div>
+
+    <ng-template #noCourses>
+        <div class="text-container">
+            Vous devez être connecté pour accéder aux quiz. Veuillez vous connecter ou créer un compte.
+        </div>
+    </ng-template>
+</div>
+<div class="no-connected">
+    <div class="button" *ngIf="!isUserConnected">
+        <div class="button-container">
+            <a routerLink="/authentication" class="no-connected">Connexion</a>
+        </div>
+    </div>
+</div>
+<div class="view">
+
+    <div class="quiz-count" *ngIf="isUserConnected">
+        <p>
+            Actuellement,
+            <span class="number">{{ quizzes.length }} </span>
+            quiz sont disponibles
+        </p>
+    </div>
+    <div class="create-quiz" *ngIf="isUserConnected">
+        <button>
+            <a class="create-quiz-button" [routerLink]="['/create-quiz']">
+                <p>Créez un quiz</p>
+            </a>
+        </button>
+    </div>
+    <div class="quiz-card-container">
+        <div class="quiz-card" *ngFor="let quiz of quizzes">
+
+            <div class="quiz-card">
+                <div class="header-card">
+                    <img [src]="quiz.picture ? quiz.picture : defaultImage" alt="Image du quiz" />
+                </div>
+                <div class="body-card">
+                    <h3>{{ quiz.title }}</h3>
+                    <div class="quiz-detail-container">
+                        <div class="footer">
+                            <div>
+                                <p>niveau: {{ quiz.difficulty? quiz.difficulty: "facile" }}</p>
+                            </div>
+                            <div>
+                                <div class="rating">
+                                    <app-star-rating [totalStars]="5" [rating]="quiz.rating"></app-star-rating>
+                                </div>
+
+                                <a class="quiz-detail-button" [routerLink]="['/quiz', quiz.id]"
+                                    (click)="selectedQuizById(quiz.id)">
+                                    <p>Details</p>
+
+                                </a>
+
+                            </div>
+                        </div>
+                        <ng-template #loader>
+                            <div class="loader-container" [@fadeInOut]>
+                                <p>Loading...</p>
+                            </div>
+                        </ng-template>
+                        <div *ngIf="!quizzes">
+                            <p>quiz not found.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

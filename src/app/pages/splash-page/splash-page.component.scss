@@ -13,64 +13,76 @@
   transition: all 2s ease-in-out;
 }
 
-.left-div {
+.left-div,
+.right-div {
   background-size: cover;
   object-fit: cover;
   background-repeat: no-repeat;
 }
+
 .left-div img {
   background-size: cover;
   transform: scaleX(-1);
-  // object-fit: cover;
   background-repeat: no-repeat;
   width: 100%;
   height: 100%;
 }
 
-.right-div {
-  animation-name: crawl;
-  // background-image: url("../../../assets/images/doorR.png");
-  background-size: cover;
-  object-fit: cover;
-  background-repeat: no-repeat;
-}
+
 .right-div img {
   background-size: cover;
-  // object-fit: cover;
   background-repeat: no-repeat;
   width: 100%;
   height: 100%;
 }
-/* style.css */
+
 .shake-animation {
-  animation-delay: 1.5s; /* Commence après 1 seconde */
+  animation-delay: 1.5s;
   animation: shake 0.1s ease-in-out infinite;
 }
+
 .open-doorL {
   animation: openDoorsLeft 3s ease-in-out forwards;
 }
+
 .open-doorR {
   animation: openDoorsRight 3s ease-in-out forwards;
+}
+
+.fog-effect {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--white);
+  animation-delay: 4s;
+  animation: fogAnimation 4s ease-in-out forwards;
 }
 
 @keyframes openDoorsLeft {
   0% {
     transform: translateX(0);
   }
+
   50% {
     transform: translateX(-100%);
   }
+
   100% {
     transform: translateX(-100%);
   }
 }
+
 @keyframes openDoorsRight {
   0% {
     transform: translateX(0);
   }
+
   50% {
     transform: translateX(100%);
   }
+
   100% {
     transform: translateX(100%);
   }
@@ -78,39 +90,39 @@
 
 @keyframes shake {
   0% {
-    transform: rotate(0);
+    transform: translateX(0);
   }
+
   25% {
-    transform: rotate(1deg);
+    transform: translateX(-2px);
   }
+
   50% {
-    transform: rotate(-1deg);
+    transform: translateX(2px);
   }
+
   75% {
-    transform: rotate(1deg);
+    transform: translateX(-2px);
   }
+
   100% {
-    transform: rotate(0);
+    transform: translateX(0);
   }
 }
-.fog-effect {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #fc9900;
-  animation-delay: 4s; /* Ajoutez le délai souhaité (par exemple, 2 secondes) */
-  animation: fogAnimation 4s ease-in-out forwards;
-}
+
+
+
+
 
 @keyframes fogAnimation {
   0% {
     opacity: 0;
   }
+
   75% {
     opacity: 0.3;
   }
+
   100% {
     opacity: 1;
   }

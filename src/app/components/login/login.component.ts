@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment.development';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -11,8 +12,12 @@ import { environment } from 'src/environments/environment.development';
 export class LoginComponent {
   user = new loginUser();
   isEmailValid = false;
+
+  showPassword: boolean = false;
+
   @Output() loginError = new EventEmitter<string>();
-  constructor(private http: HttpClient, private router: Router) {}
+  userRole: string = '';
+  constructor (private http: HttpClient, private router: Router, private authService: AuthService) { }
 
   checkEmail() {
     if (this.user.email !== undefined || this.user.email !== '') {
@@ -38,11 +43,18 @@ export class LoginComponent {
         .subscribe(
           (response) => {
             if (response.status === 200) {
-              this.router.navigate(['/article']);
+              this.authService.getUserRole().subscribe((userRole) => {
+                this.userRole = userRole;
+                if (userRole === 'ADMIN') {
+                  this.router.navigate(['/admin']);
+                } else {
+                  this.router.navigate(['/profile']);
+                }
+              });
             }
           },
           () => {
-            this.loginError.emit('De mauvais identifiants ont été saisis');
+            this.loginError.emit('Mauvais identifiants saisis');
           }
         );
     } else {
@@ -50,14 +62,21 @@ export class LoginComponent {
       return false;
     }
   }
+
+  click() {
+    this.showPassword = !this.showPassword;
+  }
+
 }
+
 
 export class loginUser {
   email: string;
   password: string;
 
-  constructor() {
+  constructor () {
     this.email = '';
     this.password = '';
   }
+
 }

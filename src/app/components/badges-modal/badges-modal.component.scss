@@ -1,0 +1,95 @@
+.modal-content {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal {
+    height: 30rem;
+}
+
+.modal-content h2 {
+    background-color: var(--sun);
+    height: 20rem;
+    width: 20rem;
+    border-radius: 3%;
+    text-align: center;
+    color: var(--white);
+    font-family: var(--title);
+    padding: 2rem;
+
+}
+
+
+.badge-image {
+    height: 12rem;
+    width: 12rem;
+    border-radius: 60%;
+}
+
+.modal-content h3 {
+    color: var(--white);
+}
+
+
+.modal-content p {
+    color: var(--white);
+}
+
+.modal {
+    height: 20rem;
+}
+
+
+.modal-container {
+    height: 92vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--blue);
+
+
+    .modal-content {
+        width: 25rem;
+        height: 25rem;
+        background-color: var(--sun);
+        color: var(--white);
+        border-radius: 3%;
+        text-align: center;
+        padding: 2rem;
+    }
+
+    .badge-details {
+        color: var(--white);
+        font-size: 2rem;
+        font-family: var(--title);
+    }
+
+    .reward_button {
+        margin: 1rem;
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+    .modal-container {
+        height: 100vh;
+
+        .modal-content {
+            width: 20rem;
+            height: 20rem;
+            background-color: var(--sun);
+            color: var(--white);
+            border-radius: 3%;
+            text-align: center;
+            padding: 2rem;
+        }
+    }
+}

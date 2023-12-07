@@ -10,33 +10,68 @@ import { Observable, map } from 'rxjs';
 export class ArticlesService {
   private articlesDataUrl = environment.apiUrl + '/articles';
 
-  constructor(private httpClient: HttpClient) { }
-  getArticles() {
-    return this.httpClient.get(this.articlesDataUrl);
-  }
-  getArticleById(id: string) {
-    return this.httpClient.get(this.articlesDataUrl + '/' + id);
+
+  addRating(articleId: string, userRating: number) {
+    const url = `${this.articlesDataUrl}/${articleId}/add-rating`;
+    this.httpClient.put<any>(url, { rating: userRating }).subscribe(
+      updatedArticle => {
+        console.log('Quiz mis à jour avec le vote :', updatedArticle);
+      },
+      error => {
+        console.error('Erreur lors de la mise à jour du quiz :', error);
+      }
+    );
   }
 
-  getArticlesByAuthor(author: string): Observable<Article[]> {
+  //TODO: convention de nommage sur les observables : https://angular.io/guide/rx-library#naming-conventions-for-observables
+
+  constructor (private httpClient: HttpClient) { }
+  getArticles$(): Observable<Article[]> {
+    return this.httpClient.get<Article[]>(`${this.articlesDataUrl}`);
+  }
+  getArticleById(id: string) {
+    return this.httpClient.get(`${this.articlesDataUrl}/${id}`);
+  }
+  getArticleContent(articleId: string): any {
+    return this.getArticleById(articleId).pipe(
+      map((article: any) => {
+        return {
+          title: article.title,
+          id: article.id,
+          archive: article.archive,
+          author: article.author,
+          content: article.content,
+          rating: article.rating,
+        };
+      })
+    );
+  }
+  getArticleId$(id: number): Observable<Article> {
+    return this.httpClient.get<Article>(`${this.articlesDataUrl}/${id}`);
+  }
+
+
+  getArticlesByAuthor$(author: string): Observable<Article[]> {
     return this.httpClient.get<Article[]>(
       `${this.articlesDataUrl}/byAuthor/${author}`
     );
   }
-  getArticlesByTag(tag: string): Observable<Article[]> {
+  getArticlesByTag$(tag: string): Observable<Article[]> {
     return this.httpClient.get<Article[]>(
       `${this.articlesDataUrl}/byTag/${tag}`
     );
   }
-  getArticlesByTitle(title: string): Observable<Article[]> {
+  getArticlesByTitle$(title: string): Observable<Article[]> {
     return this.httpClient.get<Article[]>(
       `${this.articlesDataUrl}/byTitle/${title}`
     );
   }
-  getUniqueTags(): Observable<string[]> {
+  getUniqueTags$(): Observable<string[]> {
     return this.httpClient.get<Article[]>(this.articlesDataUrl).pipe(
       map((articles: Article[]) => {
         const uniqueTag = new Set<string>();
+        console.log(articles);
+
 
         articles.forEach((article: Article) => {
           const individualTag = article.tag.split(',').map(t => t.trim());
@@ -48,7 +83,7 @@ export class ArticlesService {
       })
     );
   }
-  getTitle(): Observable<string[]> {
+  getTitle$(): Observable<string[]> {
     return this.httpClient.get<Article[]>(this.articlesDataUrl).pipe(
       map((articles: Article[]) => {
         const uniqueTitle = new Set<string>();
@@ -63,52 +98,34 @@ export class ArticlesService {
       })
     );
   }
-  getUniqueAuthors(): Observable<string[]> {
+  getUniqueAuthors$(): Observable<string[]> {
     return this.httpClient.get<Article[]>(this.articlesDataUrl).pipe(
       map((articles: Article[]) => {
         const uniqueAuthor = new Set<string>();
-  
+
         articles.forEach((article: Article) => {
           if (article.author) {
             const individualAuthor = article.author.split(',').map(t => t.trim());
             individualAuthor.forEach(t => uniqueAuthor.add(t));
           }
         });
-  
+
         // Conversion du Set en tableau
         return Array.from(uniqueAuthor);
       })
     );
   }
-  // getArticlesByAuthor(author: string): Observable<Article[]> {
-  //   return this.httpClient.get<Article[]>(
-  //     `${this.articlesDataUrl}/byAuthor/${author}`
-  //   );
-  // }
-
-  getArticlesByAuthorTitleTag(articleAuthor?: string, articleTitle?: string, articleTag?: string): Observable<Article[]> {
-    // Construct the URL based on the provided parameters
-    let searchUrl = this.articlesDataUrl + '/search';
-  
-    // Build the query parameters
-    const queryParams = [];
+  getArticlesByAuthorTitleTag$(articleAuthor?: string, articleTitle?: string, articleTag?: string): Observable<Article[]> {
+    let searchUrl = this.articlesDataUrl;
     if (articleAuthor) {
-      queryParams.push(`author=${encodeURIComponent(articleAuthor)}`);
+      searchUrl += '/search/' + encodeURIComponent(articleAuthor);
+    } else if (articleTitle) {
+      searchUrl += '/search/' + encodeURIComponent(articleTitle);
+    } else if (articleTag) {
+      searchUrl += '/search/' + encodeURIComponent(articleTag);
     }
-    if (articleTitle) {
-      queryParams.push(`title=${encodeURIComponent(articleTitle)}`);
-    }
-    if (articleTag) {
-      queryParams.push(`tag=${encodeURIComponent(articleTag)}`);
-    }
-  
-    // Add the query parameters to the URL if any are provided
-    if (queryParams.length > 0) {
-      searchUrl += '?' + queryParams.join('&');
-    }
-  
-    // Specify the response type as Article[]
     return this.httpClient.get<Article[]>(searchUrl);
   }
-}  
+
+}
 

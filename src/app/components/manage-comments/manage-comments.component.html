@@ -1,0 +1,30 @@
+<div class="show-comments" *ngIf="showComments">
+    <div *ngFor="let comment of commentList" class="comment">
+        <div class="comment-details">
+            <p> contenu : {{ comment?.content }}</p>
+            <p> auteur : {{ comment?.author }}</p>
+            <p>article : {{ comment?.article}}</p>
+            <p>{{ comment?.creationDate | date: 'medium' }}</p>
+        </div>
+        <div class="archived">
+            <p>État: {{ comment?.archive ? 'Archivé' : 'Non archivé' }}</p>
+            <div class="archive-options">
+                <input type="radio" id="archiveYes_{{comment.id}}" name="archive_{{comment.id}}"
+                    [(ngModel)]="comment.archive" [value]="true">
+                <label for="archiveYes_{{comment.id}}">Oui</label>
+                <input type="radio" id="archiveNo_{{comment.id}}" name="archive_{{comment.id}}"
+                    [(ngModel)]="comment.archive" [value]="false">
+                <label for="archiveNo_{{comment.id}}">Non</label>
+            </div>
+            <div class="update-button">
+                <button (click)="archiveCommentByArticle(comment)" type="button" class="archived-button">
+                    {{ comment.archive ? 'Restaurer' : 'Archiver' }}
+                </button>
+                <button (click)="deleteComment(comment.id)" class="delete-button archived-button">Supprimer</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="show-all-comments">
+    <button class="comment-main-btn" title="toggleComments" (click)="toggleComments()">Commentaires</button>
+</div>

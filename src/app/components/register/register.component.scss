@@ -1,8 +1,37 @@
 .register-box {
   width: 80vw;
 }
+
+.show-password {
+  position: relative;
+  top: 4.5rem;
+  left: 85%;
+  width: 2rem;
+  height: 1.5rem;
+  display: flex;
+  font-size: 25px;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+}
+
+.modal {
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  transform: translate(-50%, -17%);
+  background-color: var(--blue);
+}
+
 @media (min-width: 768px) {
   .register-box {
     width: 60vw;
   }
+
+  .modal {
+    left: 50%;
+    transform: translate(-50%, -31%);
+    background-color: var(--blue);
+  }
+
 }

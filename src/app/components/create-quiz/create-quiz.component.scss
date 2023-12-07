@@ -1,11 +1,15 @@
+.createQuiz {
+  height: 100vh;
+}
+
 .all-fields {
-  background: url("../../../assets/images/background.svg") no-repeat;
+  background: url("/assets/images/background.svg") no-repeat;
   background-size: cover;
 }
 
 #editor {
   margin: 1rem auto;
-  width: 90%;
+  width: 75%;
   height: 30rem;
   border: 2px solid;
   border-color: var(--blue);
@@ -70,9 +74,9 @@
 }
 
 input {
-  width: 30rem;
   margin-left: 0.5rem;
   border-color: var(--sun);
+  color: var(--blue);
   border-radius: 3rem;
   padding: 0.5rem;
   background-color: rgba(255, 255, 255, 0.7);

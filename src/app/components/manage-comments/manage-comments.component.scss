@@ -1,0 +1,106 @@
+.show-all-comments {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.comment-main-btn {
+    background-color: var(--blue);
+    border-radius: 2rem;
+    font-size: 1.5rem;
+    width: 16rem;
+    height: 3rem;
+    color: var(--white);
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    align-items: center;
+}
+
+.delete-button {
+
+    width: 10rem;
+    background-color: var(--sun);
+    border-radius: 2rem;
+    height: 2rem;
+    color: var(--white);
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    align-items: center;
+
+}
+
+
+.main-button {
+    display: flex;
+    justify-content: center;
+
+    .button-badges {
+        background-color: var(--blue);
+        border-radius: 2rem;
+        font-size: 1.5rem;
+        width: 16rem;
+        height: 3rem;
+        color: var(--white);
+        display: flex;
+        justify-content: center;
+        cursor: pointer;
+        align-items: center;
+    }
+}
+
+.comment {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    .comment-details {
+        p {
+            margin-bottom: 10px;
+        }
+    }
+
+    .archived {
+        p {
+            margin-bottom: 10px;
+        }
+
+        .archive-options {
+            input[type="radio"] {
+                margin-right: 5px;
+            }
+        }
+
+        .update-button {
+            button {
+                margin-top: 10px;
+            }
+        }
+    }
+}
+
+.archived-button {
+    width: 10rem;
+    border-radius: 2rem;
+    height: 2rem;
+    color: var(--white);
+    background-color: var(--blue);
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    align-items: center;
+}
+
+.delete-button {
+    background-color: var(--sun);
+}

@@ -1,61 +1,53 @@
-<div class="sub-title"><h2>Les Mystères de l’Égypte Antique</h2></div>
+<div class="sub-title">
+  <h2>Les Mystères de l’Égypte Antique</h2>
+</div>
 <section class="main-informations-container">
-  <div class="image">
-    <img [src]="'../../../assets/images/Gizeah.jpg'" alt="" />
-  </div>
-  <div class="text-container">
-    Inscrivez-vous et bénéficiez des toutes dernières informations disponibles,
-    jouez et gagnez des badges
-  </div>
+
   <div class="top-bar-form-container">
     <div class="top-bar-form" (click)="selectTab($event)">
-      <div
-        class="top-bar-form-item-connection"
-        [class.top-bar-form-item-selected]="selectedTab === 'login'"
-        [class.unselected]="selectedTab !== 'login'"
-      >
-        <p class="top-bar-form-item-text">Connexion</p>
+      <div class="top-bar-form-item-connection" [class.top-bar-form-item-selected]="selectedTab === 'login'"
+        [class.unselected]="selectedTab !== 'login'">
+        <h3 class="top-bar-form-item-text">Connexion</h3>
       </div>
-      <div
-        class="top-bar-form-item-register"
-        [class.top-bar-form-item-selected]="selectedTab === 'register'"
-        [class.unselected]="selectedTab !== 'register'"
-      >
-        <p class="top-bar-form-item-text">Inscription</p>
+      <div class="top-bar-form-item-register" [class.top-bar-form-item-selected]="selectedTab === 'register'"
+        [class.unselected]="selectedTab !== 'register'">
+        <h3 class="top-bar-form-item-text">Inscription</h3>
       </div>
     </div>
   </div>
+
 </section>
 <section class="select-container">
   <div class="connection-container">
-    <div
-      class="info-submitted-validation"
-      *ngIf="formSubmitted || errorMessage"
-    >
-      <p
-        class="info-submitted-validation-text"
-        [class.info-submitted-validation-valid]="registrationSuccessful"
+    <div class="info-submitted-validation" *ngIf="formSubmitted || errorMessage">
+      <p class="info-submitted-validation-text" [class.info-submitted-validation-valid]="registrationSuccessful"
         [class.info-submitted-validation-error]="
           !registrationSuccessful || errorMessage
-        "
-      >
+        ">
         {{
-          registrationSuccessful
-            ? registrationPhrase.success
-            : errorMessage || registrationPhrase.failure
+        registrationSuccessful
+        ? registrationPhrase.success
+        : errorMessage || registrationPhrase.failure
         }}
       </p>
     </div>
-    <app-login
-      (loginError)="handleLoginError($event)"
-      class="login-form-container"
-      *ngIf="selectedTab === 'login'"
-    ></app-login>
+    <app-login (loginError)="handleLoginError($event)" class="login-form-container"
+      *ngIf="selectedTab === 'login'"></app-login>
     <div *ngIf="selectedTab === 'register'">
-      <app-register
-        class="register-form-container"
-        (registrationStatus)="onRegistrationStatus($event)"
-      ></app-register>
+      <app-register class="register-form-container" (registrationStatus)="onRegistrationStatus($event)"></app-register>
+    </div>
+    <div class="red-line">
+      <div class="main-image">
+        <div class="image">
+          <img [src]="'assets/images/Gizeah.jpg'" alt="Gizeh" />
+        </div>
+
+        <div class="text-container">
+          Inscrivez-vous et bénéficiez des toutes dernières informations disponibles,
+          jouez et gagnez des badges...
+        </div>
+      </div>
     </div>
   </div>
+
 </section>
