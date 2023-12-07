@@ -1,16 +1,19 @@
+.global {
+  justify-content: center;
+  display: flex;
+}
+
 .result-container {
   width: 40rem;
   background-color: var(--white);
   border-color: transparent;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  @extend .global;
   align-items: center;
+  flex-direction: column;
 }
 
 .result-image {
-  display: flex;
-  justify-content: center;
+  @extend .global;
   width: 8rem;
   border-radius: 0.3rem;
   border-color: transparent;
@@ -28,8 +31,7 @@
 }
 
 .card {
-  display: flex;
-  justify-content: center;
+  @extend .global;
   flex-direction: row-reverse;
   margin: 2.5rem 1.5rem;
   gap: 0.4rem;
@@ -42,8 +44,7 @@
 }
 
 .title {
-  display: flex;
-  justify-content: center;
+  @extend .global;
   font-size: 1.5rem;
   margin-bottom: 2rem;
   font-family: var(--title);
@@ -66,15 +67,13 @@
   -webkit-box-orient: vertical;
 }
 
-
 .result-content {
   font-family: var(--inter);
   font-size: 1.3rem;
   color: var(--turquoise);
   line-height: 1.8rem;
   margin-top: 0.5rem;
-  display: flex;
-  justify-content: center;
+  @extend .global;
 }
 
 .result-rating {
@@ -94,12 +93,10 @@
   animation: appear2 3s forwards;
 }
 
-
 @media screen and (min-width: 768px) {
   .result-content {
     font-family: var(--text);
     font-size: 0.8rem;
-
     margin: 0;
     display: flex;
     justify-content: center;
@@ -125,8 +122,6 @@
     .result-image {
       width: 30%;
       height: auto;
-
-
     }
   }
 
@@ -139,8 +134,6 @@
   }
 }
 
-
-
 .result-name {
   text-align: center;
   width: 15rem;
@@ -152,13 +145,9 @@
 }
 
 h3 {
-  display: flex;
-  justify-content: center;
+  @extend .global;
   align-items: center;
 }
-
-
-
 
 .show-details-button {
   background-color: var(--sun);

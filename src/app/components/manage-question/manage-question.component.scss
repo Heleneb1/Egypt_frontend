@@ -4,12 +4,11 @@
     gap: 1rem;
     flex-direction: column;
     align-items: center;
-
 }
 
 .question-container {
     background-color: var(--white);
-    border-radius: 0.5rem;
+    border-radius: .5rem;
     width: 80vw;
 }
 
@@ -25,15 +24,11 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 0.5rem;
+    margin: .5rem;
 }
 
 .button {
-    display: flex;
-    margin: 2rem;
-    justify-content: center;
     align-items: center;
-    width: fit-content;
 
     button {
         background-color: var(--blue);
@@ -45,6 +40,7 @@
         display: flex;
         justify-content: center;
         cursor: pointer;
+        margin: 2rem;
     }
 }
 
@@ -62,39 +58,31 @@
 
 .create-question h2 {
     font-size: 24px;
-    // 
     width: 100%;
-
 }
 
 .select-option {
-    display: flex;
-    justify-content: center;
     align-self: self-start;
-    margin: 2rem;
     width: max-content;
     border-radius: 2rem;
     height: 2rem;
+    optionselectbackground-color: var(--blue);
+    color: var(--white);
+    display: flex;
+    justify-content: center;
     cursor: pointer;
-
-    option,
-    select {
-
-        background-color: var(--blue);
-
-
-        color: var(--white);
-        display: flex;
-        justify-content: center;
-        cursor: pointer;
-        align-items: center;
-    }
+    align-items: center;
+    margin: 2rem;
 }
 
 select {
-
     color: var(--white);
     background-color: var(--blue);
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    padding: 5px;
 }
 
 label {
@@ -104,21 +92,9 @@ label {
 
 input[type="text"] {
     width: 100%;
-    padding: 5px;
     border: 1px solid #ddd;
     border-radius: 5px;
-}
-
-.create-button {
-    margin-top: 20px;
-}
-
-select {
-    width: 100%;
     padding: 5px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin-bottom: 20px;
 }
 
 h2 {
@@ -132,14 +108,12 @@ ul {
 }
 
 li {
-    padding: 2rem;
     border: 1px solid #ddd;
+    padding: 2rem;
 }
 
 .save-question,
 .update-question {
-    cursor: pointer;
-
     button {
         width: 10rem;
         background-color: var(--blue);
@@ -162,9 +136,7 @@ li {
 }
 
 .delete-question {
-    display: inline-block;
     margin-right: 10px;
-    cursor: pointer;
 
     button {
         width: 10rem;
@@ -185,9 +157,10 @@ input[type="radio"] {
 
 .info-message {
     margin-top: 20px;
-    font-weight: bold;
+    font-weight: 700;
 }
 
+.create-button,
 .selected-category {
     margin-top: 20px;
 }

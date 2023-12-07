@@ -1,19 +1,30 @@
-.all {
-    margin: 20px;
+.global {
+    align-items: center;
+    color: var(--white);
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.limit {
     padding: 20px;
-    border: 1px solid #ddd;
-    background-color: #f5f5f5;
+    margin: 20px;
+}
+
+.radius-shadow {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1)
+}
+
+.all {
+    background-color: var(--white);
+    @extend .limit;
+    @extend .radius-shadow
 }
 
 .quiz {
-    margin: 20px;
-    padding: 20px;
-    border: 1px solid #ddd;
-    background-color: #f5f5f5;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    @extend .limit;
+    @extend .radius-shadow;
 }
 
 .button-container {
@@ -21,17 +32,12 @@
     justify-content: center;
 
     .button {
-
         background-color: var(--blue);
         border-radius: 2rem;
         font-size: 1.5rem;
         width: 16rem;
         height: 3rem;
-        color: var(--white);
-        display: flex;
-        justify-content: center;
-        cursor: pointer;
-        align-items: center;
+        @extend .global;
     }
 }
 
@@ -50,11 +56,7 @@
         background-color: var(--blue);
         border-radius: 2rem;
         height: 2rem;
-        color: var(--white);
-        display: flex;
-        justify-content: center;
-        cursor: pointer;
-        align-items: center;
+        @extend .global
     }
 }
 
@@ -76,10 +78,7 @@ ul {
 li {
     margin-bottom: 20px;
     padding: 10px;
-    border: 1px solid #ddd;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    @extend .radius-shadow;
 }
 
 
@@ -97,11 +96,7 @@ li {
         background-color: var(--blue);
         border-radius: 2rem;
         height: 2rem;
-        color: var(--white);
-        display: flex;
-        justify-content: center;
-        cursor: pointer;
-        align-items: center;
+        @extend .global
     }
 }
 
@@ -111,29 +106,21 @@ li {
     padding: 2rem;
 
     .add-button {
-        width: 10rem;
         background-color: var(--blue);
+        width: 10rem;
         border-radius: 2rem;
         height: 2rem;
-        color: var(--white);
-        display: flex;
-        justify-content: center;
-        cursor: pointer;
-        align-items: center;
+        @extend .global
     }
 }
 
 .delete-button {
     button {
-        width: 10rem;
         background-color: var(--sun);
+        width: 10rem;
         border-radius: 2rem;
         height: 2rem;
-        color: var(--white);
-        display: flex;
-        justify-content: center;
-        cursor: pointer;
-        align-items: center;
+        @extend .global
     }
 }
 
@@ -151,8 +138,6 @@ h4 {
 }
 
 .question-button {
-    background-color: #007bff;
-    color: #fff;
     border: none;
     border-radius: 5px;
     padding: 10px 20px;
@@ -165,17 +150,11 @@ h4 {
 }
 
 .badge {
-    margin: 20px;
-    padding: 20px;
-    border: 1px solid #ddd;
-    background-color: #f5f5f5;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    @extend .limit;
+    @extend .radius-shadow;
 }
 
 .badge-button {
-    background-color: #007bff;
-    color: #fff;
     border: none;
     border-radius: 5px;
     padding: 10px 20px;
@@ -200,10 +179,7 @@ ul {
 li {
     margin-bottom: 20px;
     padding: 10px;
-    border: 1px solid #ddd;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    @extend .radius-shadow;
 }
 
 img {
@@ -214,8 +190,6 @@ img {
 }
 
 .select-badge-button {
-    background-color: #007bff;
-    color: #fff;
     border: none;
     border-radius: 5px;
     padding: 10px 20px;
@@ -235,7 +209,6 @@ img {
 .create-badge-form input[type="text"] {
     width: 100%;
     padding: 5px;
-    border: 1px solid #ddd;
     border-radius: 5px;
 }
 
