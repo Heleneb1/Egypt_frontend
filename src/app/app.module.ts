@@ -27,19 +27,24 @@ import { ConnectionComponent } from './pages/connection/connection.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { RouterModule } from '@angular/router';
+import { ResultCardComponent } from './components/result-card/result-card.component';
+import { HeaderComponent } from './components/header/header.component';
+import { CreateQuizComponent } from './components/create-quiz/create-quiz.component';
 import { QuillModule } from 'ngx-quill';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-
     SplashPageComponent,
     AnimationComponent,
     SearchComponent,
     ConnectionComponent,
     LoginComponent,
     RegisterComponent,
+    ResultCardComponent,
+    HeaderComponent,
+    CreateQuizComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-splash-page',
@@ -8,12 +9,14 @@ import { Router } from '@angular/router';
 })
 export class SplashPageComponent implements OnInit {
   constructor(private router: Router) {}
-
   shakeDoors = false;
   openDoors = false;
   fogEffect = false;
+  
 
   ngOnInit(): void {
+ 
+
     setTimeout(() => {
       this.shakeDoors = true;
     }, 1000);

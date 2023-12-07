@@ -1,0 +1,37 @@
+<div class="all-fields">
+    <div class="quiz">
+        <div class="label-style">
+            <label for="title">Titre:</label>
+            <input type="text" id="title" name="title" [(ngModel)]="textValue" placeholder="Entrez le titre du quiz" />
+        </div>
+    </div>
+    <div class="quiz">
+        <div class="label-style">
+            <label for="tag">Tag:</label>
+            <input type="text" id="tag" name="tag" [(ngModel)]="tag" placeholder="Entrez le tag du quiz" />
+        </div>
+    </div>
+    <div class="quiz">
+
+        <div class="label-style">
+            <label for="difficulty">Niveau:</label>
+            <input type="text" id="difficulty" name="difficulty" [(ngModel)]="difficulty"
+                placeholder="Entrez le niveau du quiz" />
+        </div>
+    </div>
+    <div class="quiz">
+
+        <div class="label-style">
+            <label for="image">Image:</label>
+            <input type="text" id="image" name="image" [(ngModel)]="picture" placeholder="Entrez le lien de l'image" />
+        </div>
+    </div>
+    <div id="editor"></div>
+</div>
+<div class="Send">
+    <div class="button">
+        <div class="button-container">
+            <button type="submit" class="button" (click)="createQuiz()">Soumettre</button>
+        </div>
+    </div>
+</div>
