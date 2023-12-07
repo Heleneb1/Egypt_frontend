@@ -57,17 +57,17 @@
         <div class="create-article" *ngIf="showArticleForm">
             <h2>Créer un nouvel article</h2>
             <label for="title">Titre:</label>
-            <input type="text" id="title" [(ngModel)]="newTitle">
+            <input placeholder="Titre de l'article" type="text" id="title" [(ngModel)]="newTitle">
             <label for="image">Image:</label>
             <input type="text" id="image" name="image" [(ngModel)]="newImage" placeholder="Entrez le lien de l'image" />
             <label for="content">Contenu:</label>
-            <textarea id="content" [(ngModel)]="newContent"></textarea>
+            <textarea placeholder="Placez ici le contenu de l'article" id="content" [(ngModel)]="newContent"></textarea>
             <label for="archive">Archiver:</label>
             <input type="radio" id="archive" [(ngModel)]="isArchived">
             <label for="author">Auteur:</label>
-            <input type="text" id="author" [(ngModel)]="newAuthor">
+            <input placeholder="Auteur ou source de l'article " type="text" id="author" [(ngModel)]="newAuthor">
             <label for="tag">Thème:</label>
-            <input type="text" id="tag" [(ngModel)]="newTag">
+            <input placeholder="Thème" type="text" id="tag" [(ngModel)]="newTag">
             <label for="rating">Évaluation:</label>
             <input type="number" id="rating" [(ngModel)]="newRating">
             <div class="create-button">

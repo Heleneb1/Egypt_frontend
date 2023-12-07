@@ -19,7 +19,6 @@
     }
 }
 
-
 .codeOfConduct-btn {
     background: transparent;
     font-style: var(--text);
@@ -66,7 +65,6 @@
     font-size: 1.1rem;
     font-weight: bold;
     cursor: pointer;
-
 }
 
 #comment {
@@ -133,7 +131,6 @@
 }
 
 .form-group {
-
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -183,9 +180,7 @@
 
 @media screen and (min-width: 768px) {
     #comment {
-
         width: 80vw;
-
     }
 
     .comment-container {
@@ -195,5 +190,4 @@
     .comment-card {
         width: 80vw;
     }
-
 }
