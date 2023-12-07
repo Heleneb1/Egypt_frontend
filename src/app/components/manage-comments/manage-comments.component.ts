@@ -6,6 +6,7 @@ import { Comment } from 'src/app/models/comment';
 import { CommentsService } from 'src/app/services/comments.service';
 import { SendEmailService } from 'src/app/services/send-email.service';
 import { UserService } from 'src/app/services/user.service';
+import { loginUser } from '../login/login.component';
 
 
 @Component({
@@ -62,34 +63,63 @@ export class ManageCommentsComponent implements OnInit {
       );
     }
   }
+  //TODO revoir la fonction pour l'archivage et la suppression car je supprime tous les commentaires de l'auteur
 
+  // deleteComment(id: string) {
+  //   console.log('Comment to delete:', id);
+
+  //   const commentToDelete = this.commentList.find(comment => comment.id === id);
+  //   console.log('Comment author:', commentToDelete.author); // Contains the author's id
+
+  //   if (commentToDelete && confirm('Voulez-vous vraiment supprimer ce commentaire ?')) {
+  //     this.userService.getUserById(commentToDelete.author).subscribe((user: User) => {
+  //       const author = user;
+  //       console.log('Comment author:', author);
+  //       this.userService.getUserEmail(author.id).subscribe((userEmail: string) => {
+  //         author.email = userEmail;
+  //         console.log('Comment author email:', userEmail);
+
+  //         this.commentsService.deleteComment(id, commentToDelete.content).subscribe(() => {
+  //           console.log('Comment deleted successfully:', commentToDelete);
+  //           this.toastr.info('Commentaire supprimé');
+
+  //           // Send email when comment is deleted
+  //           this.sendEmail.SendMessage(author);
+
+  //           this.fetchComments(); // Refresh the comment list here
+  //         });
+  //       });
+  //     });
+  //   }
+  // }
   deleteComment(id: string) {
     console.log('Comment to delete:', id);
 
     const commentToDelete = this.commentList.find(comment => comment.id === id);
-    console.log('Comment author:', commentToDelete.author); // Contains the author's id
 
     if (commentToDelete && confirm('Voulez-vous vraiment supprimer ce commentaire ?')) {
-      this.userService.getUserById(commentToDelete.author).subscribe((user: User) => {
-        const author = user;
-        console.log('Comment author:', author);
-        this.userService.getUserEmail(author.id).subscribe((userEmail: string) => {
-          author.email = userEmail;
-          console.log('Comment author email:', userEmail);
+      this.commentsService.deleteComment(id, commentToDelete.content).subscribe(() => {
+        console.log('Comment deleted successfully:', commentToDelete);
+        this.toastr.info('Commentaire supprimé');
 
-          this.commentsService.deleteComment(id, commentToDelete.content).subscribe(() => {
-            console.log('Comment deleted successfully:', commentToDelete);
-            this.toastr.info('Commentaire supprimé');
+        // Envoi du message à l'auteur
+        this.userService.getUserById(commentToDelete.author).subscribe((user: User) => {
+          const author = user;
+          this.userService.getUserEmail(author.id).subscribe((userEmail: string) => {
+            author.email = userEmail;
+            console.log('Comment author email:', userEmail);
 
-            // Send email when comment is deleted
+            // Utilisez un service ou une méthode pour envoyer le message à l'auteur
             this.sendEmail.SendMessage(author);
 
-            this.fetchComments(); // Refresh the comment list here
+            // Retirer le commentaire supprimé de la liste locale de commentaires
+            this.commentList = this.commentList.filter(comment => comment.id !== id);
           });
         });
       });
     }
   }
+
   toggleComments() {
     this.showComments = !this.showComments;
   }

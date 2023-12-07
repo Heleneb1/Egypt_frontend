@@ -68,6 +68,7 @@ export class AdminComponent implements OnInit {
 
   showComment() {
     this.showCmt = this.showArchivedComments;
+
   }
   toggleShake() {
     this.isShaking = !this.isShaking;
@@ -90,6 +91,10 @@ export class AdminComponent implements OnInit {
       this.isShaking = true;
     });
   }
+  openComment() {
+    this.showCmt = true;
+  }
+
 
   deleteMessage(id: number) {
     console.log("id", id);

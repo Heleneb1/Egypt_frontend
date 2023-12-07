@@ -125,7 +125,7 @@ export class TopicsComponent implements OnInit {
           this.existingAnswers.sort((a: any, b: any) => {
             return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
           });
-
+          this.filterByDate();
           console.log("Les réponses", this.existingAnswers);
 
           setTimeout(() => {
@@ -157,6 +157,7 @@ export class TopicsComponent implements OnInit {
         this.topicMessage = "";
         this.tag = "";
         this.editTopic = false;
+
       });
     }
   }
@@ -180,14 +181,20 @@ export class TopicsComponent implements OnInit {
         this.toastr.success("Réponse créée avec succès", "Succès");
         this.answerMessage = "";
         this.editAnswer = false;
+        this.getAnswersByTopic(this.selectedTopic.id);
 
       });
     }
   }
 
-
+  filterByDate() {
+    this.topics.sort((a: any, b: any) => {
+      return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+    });
+  }
   toggleAnswer() {
     this.editAnswer = !this.editAnswer;
+
     console.log('editAnswer:', this.editAnswer);
 
   }

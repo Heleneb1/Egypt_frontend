@@ -6,7 +6,7 @@
         </div>
     </div>
     <div *ngIf="commentList.length>0" class="message-count">
-        <div ngClass="animate: shake" class="icon" (click)=" onClickShowCommentsArchived()">
+        <div ngClass="animate: shake" class="icon" (click)=" onClickShowCommentsArchived(); openComment()">
             <i class="fa fa-bell"></i>
             <span class="number">{{archivedCommentCount}}</span>
         </div>
@@ -16,6 +16,7 @@
     <div class="contact" *ngIf="showArchivedComments">
         <div class="contact_message" *ngFor="let comments of archivedComments">
             <p>{{comments.content}}</p>
+            <p>{{comments.author}}</p>
         </div>
     </div>
     <div class="contact" *ngIf="showMsg">

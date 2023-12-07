@@ -172,6 +172,23 @@
     padding: 1rem;
     text-align: justify;
 
+
+
+}
+
+.answer {
+    ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 0;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    li {
+        width: 100%;
+    }
 }
 
 
@@ -339,6 +356,7 @@
             padding: 0;
             align-items: center;
 
+
         }
 
         li {
@@ -349,7 +367,8 @@
 
         .answer {
             ul {
-                min-width: 71rem;
+                // min-width: 71rem;
+
 
                 li {
                     background-color: var(--white);
@@ -358,7 +377,7 @@
                     // width: 21rem;
                     padding: 1rem 0.5rem;
                     box-sizing: border-box;
-
+                    // padding-inline-start: 0;
 
                     .author-avatar {
                         width: 5rem;
