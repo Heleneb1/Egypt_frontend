@@ -2,6 +2,7 @@
 # build environment
 FROM node:lts-slim as build
 WORKDIR /build
+COPY package*.json ./
 COPY . .
 ENV PATH ./node_modules/.bin:$PATH
 RUN npm ci
