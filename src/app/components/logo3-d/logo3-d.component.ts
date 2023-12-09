@@ -53,6 +53,7 @@ export class Logo3DComponent implements OnInit, AfterViewInit {
     const canvasSizes = {
       width: 125, // ajustez la largeur selon vos besoins
       height: 90, // ajustez la hauteur selon vos besoins
+      marginTop: '10px',
       background: '#152131',
     };
 

@@ -17,7 +17,7 @@
         font-size: 1.5rem;
         width: 16rem;
         height: 3rem;
-        color: var(--white);
+        color: white;
         display: flex;
         justify-content: center;
         cursor: pointer;
@@ -46,14 +46,13 @@
     margin-top: 10px;
 }
 
-
 .delete-button {
     button {
         width: 10rem;
         background-color: var(--sun);
         border-radius: 2rem;
         height: 2rem;
-        color: var(--white);
+        color: white;
         display: flex;
         justify-content: center;
         cursor: pointer;

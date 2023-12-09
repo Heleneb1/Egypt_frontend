@@ -17,12 +17,10 @@
     width: 20rem;
     border-radius: 3%;
     text-align: center;
-    color: var(--white);
+    color: white;
     font-family: var(--title);
     padding: 2rem;
-
 }
-
 
 .badge-image {
     height: 12rem;
@@ -31,18 +29,16 @@
 }
 
 .modal-content h3 {
-    color: var(--white);
+    color: white;
 }
 
-
 .modal-content p {
-    color: var(--white);
+    color: white;
 }
 
 .modal {
     height: 20rem;
 }
-
 
 .modal-container {
     height: 92vh;
@@ -55,19 +51,18 @@
     width: 100%;
     background-color: var(--blue);
 
-
     .modal-content {
         width: 25rem;
         height: 25rem;
         background-color: var(--sun);
-        color: var(--white);
+        color: white;
         border-radius: 3%;
         text-align: center;
         padding: 2rem;
     }
 
     .badge-details {
-        color: var(--white);
+        color: white;
         font-size: 2rem;
         font-family: var(--title);
     }
@@ -75,7 +70,6 @@
     .reward_button {
         margin: 1rem;
     }
-
 }
 
 @media screen and (max-width: 768px) {
@@ -86,7 +80,7 @@
             width: 20rem;
             height: 20rem;
             background-color: var(--sun);
-            color: var(--white);
+            color: white;
             border-radius: 3%;
             text-align: center;
             padding: 2rem;

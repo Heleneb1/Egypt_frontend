@@ -16,7 +16,7 @@
     font-size: 1.5rem;
     width: 16rem;
     height: 3rem;
-    color: var(--white);
+    color: white;
     display: flex;
     justify-content: center;
     cursor: pointer;
@@ -24,19 +24,16 @@
 }
 
 .delete-button {
-
     width: 10rem;
     background-color: var(--sun);
     border-radius: 2rem;
     height: 2rem;
-    color: var(--white);
+    color: white;
     display: flex;
     justify-content: center;
     cursor: pointer;
     align-items: center;
-
 }
-
 
 .main-button {
     display: flex;
@@ -48,7 +45,7 @@
         font-size: 1.5rem;
         width: 16rem;
         height: 3rem;
-        color: var(--white);
+        color: white;
         display: flex;
         justify-content: center;
         cursor: pointer;
@@ -93,7 +90,7 @@
     width: 10rem;
     border-radius: 2rem;
     height: 2rem;
-    color: var(--white);
+    color: white;
     background-color: var(--blue);
     display: flex;
     justify-content: center;

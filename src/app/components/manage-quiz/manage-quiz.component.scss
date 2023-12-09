@@ -1,232 +1,162 @@
-.global {
-    align-items: center;
-    color: var(--white);
-    display: flex;
-    justify-content: center;
-    cursor: pointer;
-}
-
-.limit {
-    padding: 20px;
-    margin: 20px;
-}
-
-.radius-shadow {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-}
-
 .all {
-    background-color: var(--white);
-    @extend .limit;
-    @extend .radius-shadow
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--bleu);
+    margin: 1.5rem;
+    border-radius: 0.5rem;
 }
 
 .quiz {
-    @extend .limit;
-    @extend .radius-shadow;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .button-container {
     display: flex;
     justify-content: center;
-
-    .button {
-        background-color: var(--blue);
-        border-radius: 2rem;
-        font-size: 1.5rem;
-        width: 16rem;
-        height: 3rem;
-        @extend .global;
-    }
+}
+.quiz-view {
+    margin: 1rem;
+    border: 1px solid var(--blue);
+    padding: 1rem;
+}
+.button {
+    display: flex;
+    background-color: var(--blue);
+    border-radius: 2rem;
+    color: white;
+    cursor: pointer;
+    width: 14rem;
+    font-size: 1.5rem;
+    height: 3rem;
+    margin: 1rem;
+    align-items: center;
+    justify-content: center;
+}
+.quiz-btn-style {
+    display: flex;
+    justify-content: space-between;
+    background: var(--blue);
+    border-radius: 2rem;
+    color: white;
+    color: white;
+    padding: 0.5rem 1rem;
 }
 
 .quiz-form {
     display: flex;
     flex-direction: column;
+    align-items: center;
+}
+
+.quiz-form label {
+    margin-bottom: 5px;
+}
+
+.quiz-form input {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    box-sizing: border-box;
+    border-radius: 3rem;
+}
+
+.create-button {
+    display: flex;
     justify-content: center;
+    width: 80%;
+    margin: 2rem;
+}
+
+.create-button .add-button {
+    width: 14rem;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin: 1rem;
+    padding: 1rem;
+    border: 1px solid var(--blue);
+}
+img {
+    width: 10rem;
+    height: 10rem;
+}
+.update-quiz {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.update-quiz form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.update-quiz label {
+    margin-bottom: 5px;
+}
+
+.update-quiz input {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    box-sizing: border-box;
+    border-radius: 3rem;
+}
+
+.update-quiz,
+.cancel-update {
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem;
+}
+
+.delete-button {
+    margin-top: 1rem;
+}
+
+.delete-button button {
+    background-color: var(--sun);
+    border-radius: 2rem;
+    width: 13rem;
+    color: white;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+    border: none;
+}
+
+.archived {
+    margin-top: 1rem;
+}
+
+.archived input {
+    margin-right: 0.5rem;
 }
 
 .button-create {
     display: flex;
     justify-content: center;
-
-    .button {
-        width: 10rem;
-        background-color: var(--blue);
-        border-radius: 2rem;
-        height: 2rem;
-        @extend .global
-    }
+    // margin-top: 1rem;
 }
 
-.quizzesOpen {
-    margin-top: 20px;
+.button-create .button {
+    width: 14rem;
 }
 
-
-h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
-}
-
-ul {
-    list-style: none;
-    padding: 0;
-}
-
-li {
-    margin-bottom: 20px;
-    padding: 10px;
-    @extend .radius-shadow;
-}
-
-
-
-
-.cancel-update,
-.delete-question {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 2rem;
-    flex-direction: column;
-
-    button {
-        width: 10rem;
-        background-color: var(--blue);
-        border-radius: 2rem;
-        height: 2rem;
-        @extend .global
-    }
-}
-
-.button-add {
-    width: max-content;
-    margin: 2rem;
-    padding: 2rem;
-
-    .add-button {
-        background-color: var(--blue);
-        width: 10rem;
-        border-radius: 2rem;
-        height: 2rem;
-        @extend .global
-    }
-}
-
-.delete-button {
-    button {
-        background-color: var(--sun);
-        width: 10rem;
-        border-radius: 2rem;
-        height: 2rem;
-        @extend .global
-    }
-}
-
-input[type="radio"] {
-    margin-right: 5px;
-}
-
-.questions-container {
-    margin-top: 20px;
-}
-
-h4 {
-    font-size: 18px;
-    margin-bottom: 10px;
-}
-
-.question-button {
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-    margin-top: 10px;
-}
-
-.question-details {
-    margin-top: 10px;
-}
-
-.badge {
-    @extend .limit;
-    @extend .radius-shadow;
-}
-
-.badge-button {
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-    margin-bottom: 20px;
-}
-
-.badgesOpen {
-    margin-top: 20px;
-}
-
-h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
-}
-
-ul {
-    list-style: none;
-    padding: 0;
-}
-
-li {
-    margin-bottom: 20px;
-    padding: 10px;
-    @extend .radius-shadow;
-}
-
-img {
-    height: 8rem;
-    width: 8rem;
-    object-fit: cover;
-    margin: 1rem;
-}
-
-.select-badge-button {
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-    margin-top: 10px;
-}
-
-.create-badge-form {
-    margin-top: 20px;
-}
-
-.create-badge-form label {
-    display: block;
-    margin-top: 10px;
-}
-
-.create-badge-form input[type="text"] {
-    width: 100%;
-    padding: 5px;
-    border-radius: 5px;
-}
-
-.create-badge-button {
-    margin-top: 20px;
-}
-
-.info-message {
-    margin-top: 20px;
-    font-weight: bold;
-}
-
-@media screen and (min-width: 768px) {
-
-    .cancel-update,
-    .delete-question {
-        display: flex;
-        justify-content: space-between;
-        flex-direction: row;
-    }
+.quiz img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-top: 1rem;
 }

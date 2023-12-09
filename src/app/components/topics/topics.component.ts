@@ -12,6 +12,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class TopicsComponent implements OnInit {
 
+
   showCodeOfConduct: boolean = false;
   topics: any[] = [];
   existingAnswers: any[] = [];
@@ -200,5 +201,10 @@ export class TopicsComponent implements OnInit {
   }
   goBottom() {
     window.scrollTo(0, document.body.scrollHeight || document.documentElement.scrollHeight);
+  }
+  getAnswerAuthorName(authorId: any) {
+    this.userService.getUserName(authorId).subscribe((authorName: string) => {
+      return authorName;
+    });
   }
 }

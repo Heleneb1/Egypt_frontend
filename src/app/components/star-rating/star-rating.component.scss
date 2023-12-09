@@ -6,26 +6,22 @@
         transition: color 0.2s ease-in-out;
 
         &.fa-star-half::before {
-            content: '\f089';
+            content: "\f089";
             position: absolute;
             width: 50%;
             overflow: hidden;
             color: var(--sun);
         }
     }
-
-
 }
 
 .rating-info p {
     font-size: 1rem;
     font-family: var(--text);
     background-color: var(--sun);
-    color: var(--white);
+    color: white;
     font-weight: bold;
     margin-left: 1rem;
     padding: 1rem;
     border-radius: 0.5rem;
-
-
 }

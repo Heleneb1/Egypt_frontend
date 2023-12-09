@@ -1,173 +1,101 @@
 .question-all {
     display: flex;
-    justify-content: center;
-    gap: 1rem;
     flex-direction: column;
     align-items: center;
-}
-
-.question-container {
-    background-color: var(--white);
-    border-radius: .5rem;
-    width: 80vw;
+    background-color: white;
+    border-radius: 0.5rem;
+    margin: 1.5rem;
 }
 
 .create-question {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0 2rem;
 }
 
-.update-form {
-    width: 80%;
+.button button {
+    background-color: var(--blue);
+    border-radius: 2rem;
     display: flex;
-    flex-direction: column;
+    color: white;
+    cursor: pointer;
+    width: 14rem;
+    font-size: 1.5rem;
+    height: 3rem;
+    margin: 1rem;
     justify-content: center;
-    margin: .5rem;
-}
-
-.button {
     align-items: center;
-
-    button {
-        background-color: var(--blue);
-        border-radius: 2rem;
-        font-size: 1.5rem;
-        width: 16rem;
-        height: 3rem;
-        color: var(--white);
-        display: flex;
-        justify-content: center;
-        cursor: pointer;
-        margin: 2rem;
-    }
 }
 
 .create-form {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    width: 80%;
-}
-
-.error-message {
-    color: var(--sun);
-}
-
-.create-question h2 {
-    font-size: 24px;
     width: 100%;
 }
 
-.select-option {
-    align-self: self-start;
-    width: max-content;
-    border-radius: 2rem;
-    height: 2rem;
-    optionselectbackground-color: var(--blue);
-    color: var(--white);
+.create-form label {
+    margin-bottom: 5px;
+}
+
+.create-form input {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    box-sizing: border-box;
+    border-radius: 3rem;
+}
+
+.create-button {
     display: flex;
-    justify-content: center;
-    cursor: pointer;
-    align-items: center;
+    width: 80%;
     margin: 2rem;
 }
 
-select {
-    color: var(--white);
-    background-color: var(--blue);
-    width: 100%;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    padding: 5px;
+.create-button .button {
+    width: 14rem;
 }
 
-label {
-    display: block;
-    margin-top: 10px;
-}
-
-input[type="text"] {
-    width: 100%;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 5px;
-}
-
-h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
+.select-option {
+    // width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    box-sizing: border-box;
+    border-radius: 3rem;
 }
 
 ul {
-    list-style: none;
+    list-style-type: none;
     padding: 0;
 }
 
 li {
-    border: 1px solid #ddd;
-    padding: 2rem;
-}
-
-.save-question,
-.update-question {
-    button {
-        width: 10rem;
-        background-color: var(--blue);
-        border-radius: 2rem;
-        height: 2rem;
-        color: var(--white);
-        display: flex;
-        justify-content: center;
-        cursor: pointer;
-        align-items: center;
-        gap: 1rem;
-    }
+    margin: 1rem 0;
 }
 
 .update-delete {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 1rem;
+    justify-content: space-between;
+    margin-top: 1rem;
 }
 
-.delete-question {
-    margin-right: 10px;
-
-    button {
-        width: 10rem;
-        background-color: var(--sun);
-        border-radius: 2rem;
-        height: 2rem;
-        color: var(--white);
-        display: flex;
-        justify-content: center;
-        cursor: pointer;
-        align-items: center;
-    }
+.update-question button {
+    background-color: var(--blue);
+    border-radius: 2rem;
+    color: white;
+    cursor: pointer;
 }
 
-input[type="radio"] {
-    margin-right: 5px;
+.delete-question button {
+    background-color: var(--sun);
+    border-radius: 2rem;
+    color: white;
+    cursor: pointer;
 }
 
-.info-message {
-    margin-top: 20px;
-    font-weight: 700;
-}
-
-.create-button,
-.selected-category {
-    margin-top: 20px;
-}
-
-@media screen and (min-width: 768px) {
-    .question-container {
-        width: 95vw;
-    }
-
+.save-question button {
+    background-color: var(--blue);
+    border-radius: 2rem;
+    color: white;
+    cursor: pointer;
 }

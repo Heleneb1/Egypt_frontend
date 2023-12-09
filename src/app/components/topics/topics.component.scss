@@ -1,316 +1,222 @@
-.display-center {
+.all-topics .form-group form,
+.all-topics .form-group form .edit,
+.answer,
+.create-answer-form,
+.display-center,
+.edit {
     align-items: center;
     justify-content: center;
     flex-direction: column;
     display: flex;
 }
 
-.blue-white {
-    color: var(--white);
+.all-topics,
+.all-topics .form-group form .edit input#topic-tag,
+.all-topics .form-group form .edit textarea,
+.blue-white,
+.create-answer-form,
+.create-answer-form textarea {
+    color: #fff;
     background-color: var(--blue);
 }
 
 .all-topics {
     font-family: var(--text);
-    @extend .blue-white;
     padding: 1rem;
+}
 
-    .noTopics {
-        text-align: center;
-        margin: 2rem;
-        font-size: 1.5rem;
-        font-family: var(--title);
-        color: var(--sun);
-    }
+.all-topics .noTopics {
+    text-align: center;
+    margin: 2rem;
+    font-size: 1.5rem;
+    font-family: var(--title);
+    color: var(--sun);
+}
 
-    .author-avatar {
-        width: 5rem;
-        height: 5rem;
-        overflow: hidden;
-        border-radius: 100%;
-        shape-outside: margin-box;
-        margin: 0 0.5rem 0.5rem 0;
-        float: left;
+.all-topics .author-avatar,
+.all-topics .author-avatar img {
+    border-radius: 100%;
+    shape-outside: margin-box;
+    margin: 0 0.5rem 0.5rem 0;
+    float: left;
+}
 
-        img {
-            width: 96%;
-            height: 96%;
-            object-fit: cover;
-            border-radius: 100%;
-            border: 1px solid var(--sun);
-            margin: 1rem;
-            shape-outside: margin-box;
-            margin: 0 0.5rem 0.5rem 0;
-            float: left;
-        }
-    }
+.all-topics .author-avatar {
+    width: 5rem;
+    height: 5rem;
+    overflow: hidden;
+}
 
-    .form-group {
-        form {
-            @extend .display-center;
+.all-topics .author-avatar img {
+    width: 96%;
+    height: 96%;
+    object-fit: cover;
+    border: 1px solid var(--sun);
+}
 
-            .topic-btn {
-                background-color: var(--sun);
-                color: var(--white);
-                display: flex;
-                margin: 1rem;
-                padding: 1rem;
-                border-radius: 2rem;
-                cursor: pointer;
-                font-weight: bold;
-            }
+.all-topics .form-group form .topic-btn {
+    background-color: var(--sun);
+    color: #fff;
+    display: flex;
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 2rem;
+    cursor: pointer;
+    font-weight: 700;
+}
 
-            .edit {
-                @extend .display-center;
+.all-topics .form-group form .edit input#topic-tag,
+.all-topics .form-group form .edit textarea {
+    width: 60%;
+    border: 0.2rem solid #fff;
+    border-radius: 1.5rem;
+    padding: 1rem;
+    margin-top: 1rem;
+}
 
-                input#topic-tag,
-                textarea {
-                    @extend .blue-white;
-                    width: 60%;
-                    border: 0.2rem solid var(--white);
-                    border-radius: 1.5rem;
-                    padding: 1rem;
-                    margin-top: 1rem;
-                }
+.all-topics .form-group form .edit .btn-add-topic,
+.all-topics .participation {
+    background-color: var(--sun);
+    color: #fff;
+    border-radius: 1rem;
+    border: 0;
+    cursor: pointer;
+    padding: 0.5rem 2rem;
+}
 
-                .btn-add-topic {
-                    background-color: var(--sun);
-                    color: var(--white);
-                    border-radius: 1rem;
-                    border: none;
-                    padding: 0.5rem 2rem;
-                    cursor: pointer;
-                    margin-top: 1rem;
-                }
-            }
-        }
-    }
+.all-topics .form-group form .edit .btn-add-topic {
+    margin-top: 1rem;
+}
 
-    ul {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        padding: 0;
+.all-topics ul,
+.answer ul {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    justify-content: center;
+}
 
-        li {
-            background-color: var(--white);
-            border-radius: 0.5rem;
-            color: var(--blue);
-            padding: 1rem;
-            width: calc(48% - 1rem);
-            min-width: min-content;
-            margin: 1rem 0;
-            box-sizing: border-box;
-            line-height: 1.5rem;
-        }
-    }
+.all-topics ul li,
+.see-answer {
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 0.5rem;
+}
 
-    .participation {
-        background-color: var(--sun);
-        color: var(--white);
-        text-shadow: 1px 1px 1px var(--blue);
-        border-radius: 1rem;
-        border: none;
-        cursor: pointer;
-        padding: 0.5rem 2rem;
-        font-weight: bold;
-    }
+.all-topics ul li {
+    color: var(--blue);
+    width: calc(48% - 1rem);
+    min-width: min-content;
+    margin: 1rem;
+    box-sizing: border-box;
+    line-height: 1.5rem;
+}
 
-    p {
-        color: var(--blue);
+.all-topics .participation {
+    text-shadow: 1px 1px 1px var(--blue);
+    font-weight: 700;
+}
 
-        &::first-letter {
-            text-transform: uppercase;
-        }
-    }
+#theme,
+.all-topics p {
+    color: var(--blue);
+}
+
+.all-topics p::first-letter {
+    text-transform: uppercase;
 }
 
 .see-answer {
     margin: 0 1rem;
-    padding: 1rem;
     text-align: justify;
+    border: 1px solid var(--sun);
+    width: 80vw;
+}
+
+.answer ul {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.answer li {
+    width: 50rem;
+    margin-bottom: 1rem;
 }
 
 .answer {
-    ul {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        padding: 0;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    li {
-        width: 100%;
-    }
-
-    p {
-        min-width: 50rem;
-    }
-}
-
-.name-search {
-    margin: 2rem 0.5rem;
-    @extend .display-center;
-
-
-    #searchButton {
-        font-size: 1.7rem;
-        background: transparent;
-        border-radius: 2rem;
-        border: none;
-        margin-top: 2rem;
-        position: relative;
-        bottom: 4.5rem;
-        left: 19rem;
-        cursor: pointer;
-        color: var(--sun);
-    }
-}
-
-#theme {
-    color: var(--blue);
-    background: var(--white);
-    border-radius: 2rem;
-    padding-left: 2rem;
-    font-size: 1.5rem;
-    height: 2.2rem;
-    width: 45rem;
-    font-weight: bold;
-}
-
-.answer {
-    @extend .display-center;
     line-height: 1.3rem;
 }
 
-.answer-btn {
+.answer-btn,
+.create-answer-form .btn-add-topic {
     background-color: var(--sun);
-    color: var(--white);
+    color: #fff;
     border-radius: 1rem;
-    border: none;
-    cursor: pointer;
+    border: 0;
     padding: 0.5rem 2rem;
+    cursor: pointer;
+}
+
+.answer-btn,
+.edit {
     margin: 1rem;
 }
 
 .edit {
-    @extend .display-center;
-    margin: 1rem;
     width: 100vw;
 }
 
 .create-answer-form {
-    @extend .display-center;
     gap: 1rem;
     margin: 1rem;
     padding: 1rem;
     border-radius: 2rem;
-    @extend .blue-white;
     font-family: var(--text);
-
-    .btn-add-topic {
-        background-color: var(--sun);
-        color: var(--white);
-        border-radius: 1rem;
-        border: none;
-        padding: 0.5rem 2rem;
-        cursor: pointer;
-        margin-top: 1rem;
-    }
-
-    textarea {
-        @extend .blue-white;
-        width: 60%;
-        height: 15rem;
-        display: flex;
-        justify-content: center;
-        border: 0.2rem solid var(--white);
-        border-radius: 1.5rem;
-        padding: 1rem;
-    }
 }
 
-.codeOfConduct-btn {
-    background: transparent;
-    font-style: var(--text);
-    color: var(--sun);
-    border: none;
-    cursor: pointer;
-    font-style: italic;
+.create-answer-form .btn-add-topic {
+    margin-top: 1rem;
 }
 
-.codeOfconduct {
-    height: 2rem;
-    margin: 1rem 0;
-    width: 100%;
-}
-
-.closeModal {
-    width: 100%;
+.create-answer-form textarea {
+    width: 60%;
+    height: 15rem;
     display: flex;
-    flex-direction: row-reverse;
-}
-
-.close-btn {
-    background: var(--sun);
-    border: none;
-    font-size: 1.1rem;
-    color: var(--white);
-    cursor: pointer;
-    border-radius: 0.5rem;
-}
-
-.showCodeOfConduct {
-    @extend .display-center;
-    margin: 1rem;
+    justify-content: center;
+    border: 0.2rem solid #fff;
+    border-radius: 1.5rem;
     padding: 1rem;
-    border-radius: 1rem;
-    border: 1px solid var(--sun);
-    @extend .blue-white;
-    font-family: var(--text);
-    font-size: 1.1rem;
-    font-weight: bold;
-    cursor: pointer;
 }
 
 @media screen and (max-width: 768px) {
+    .all-topics .searchButton {
+        left: 7rem;
+    }
+
+    .all-topics ul {
+        padding: 0;
+    }
+
+    .all-topics ul li {
+        border-radius: 0.5rem;
+        width: 20rem;
+    }
+
+    .all-topics .answer ul li {
+        width: 100%;
+        margin: 1rem 0;
+    }
+
+    .all-topics .answer ul li p {
+        min-width: 20rem;
+    }
+
     .all-topics {
-        #searchButton {
-            left: 7rem;
-        }
+        left: 8rem;
+    }
 
-        ul {
-            width: 100%;
-            padding: 0;
-
-            li {
-                border-radius: 0.5rem;
-                width: 20rem;
-            }
-        }
-
-        .answer {
-            ul {
-                li {
-                    width: 100%;
-
-                    p {
-                        min-width: 20rem;
-                    }
-                }
-            }
-        }
-
-        .name-search {
-            #searchButton {
-                left: 8rem;
-            }
-        }
-
-        #theme {
-            width: 18rem;
-        }
+    .all-topics #theme {
+        width: 18rem;
     }
 }

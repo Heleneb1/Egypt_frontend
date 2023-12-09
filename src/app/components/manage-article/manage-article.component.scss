@@ -3,13 +3,22 @@
     align-items: center;
     display: flex;
 }
-
-.content-btn {
+.create-article {
+    .create {
+        color: var(--bleu);
+    }
+}
+.content-btn,
+.button {
     display: flex;
     justify-content: center;
     cursor: pointer;
     align-items: center;
-    color: var(--white);
+    color: white;
+}
+.update-button {
+    display: flex;
+    justify-content: space-between;
 }
 
 .height-width {
@@ -17,62 +26,44 @@
     width: 8rem;
 }
 
-.input-hw {
-    height: 2rem;
-    width: 15rem;
-    padding-left: 1.5rem;
+.input-hw,
+.input-hw textarea {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    box-sizing: border-box;
     border-radius: 3rem;
-    margin: 0.5rem;
 }
 
 .update-articles {
-    background-color: var(--white);
+    display: flex;
+    background-color: white;
     margin: 1.2rem;
     padding: 2rem;
     color: var(--bleu);
     flex-direction: column;
-    @extend .center-content;
     border-radius: 5px;
-}
-
-.update-articles .content p {
-    margin: 1rem;
-    font-family: var(--text);
-}
-
-.update-articles .button {
-    display: flex;
-    width: 80%;
-    margin: 2rem;
-}
-
-.update-articles .button button {
-    width: 10rem;
-    background-color: var(--blue);
-    border-radius: 2rem;
-    height: 2rem;
-    color: var(--white);
-    @extend .center-content;
-    cursor: pointer;
-}
-
-.update-articles .all-articles {
-    background-color: var(--blue);
-    border-radius: 2rem;
-    font-size: 1.5rem;
-    width: 16rem;
-    height: 3rem;
-    @extend .content-btn;
+    align-items: center;
 }
 
 .update-articles .articles-container {
-    width: 80vw;
+    // width: 80vw;
     padding: 2rem;
     margin: 1rem;
     flex-direction: column;
-    @extend .center-content;
     border: 1px solid var(--blue);
     border-radius: 2rem;
+}
+
+.update-articles .button button,
+.update-articles .all-articles {
+    background-color: var(--blue);
+    border-radius: 2rem;
+    color: #fff;
+    cursor: pointer;
+    width: 14rem;
+    font-size: 1.5rem;
+    height: 3rem;
 }
 
 .update-articles .image {
@@ -80,216 +71,49 @@
     @extend .center-content;
     margin: 0.5rem;
 }
-
-.update-articles .image img {
-    @extend .height-width;
-    @extend .center-content;
-    margin: 0.5rem;
-}
-
-.update-articles .update-form {
-    flex-direction: column;
-    @extend .center-content;
-    width: 100%;
-}
-
-.update-articles .update-form .u-form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.update-articles .update-form .u-form button,
-.update-articles .update-form .u-form input[type="text"]#image {
-    background-color: var(--blue);
-    border-radius: 2rem;
-    width: 16rem;
-    height: 2rem;
-    color: var(--white);
-    margin: 0.5rem;
-}
-
-.update-articles .title h2 {
-    font-family: var(--title);
-}
-
-.update-articles .update-button {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    padding: 1rem;
-    font-size: 1rem;
-}
-
-.update-articles .update-button button {
-    color: var(--white);
-    background: var(--blue);
-    width: 10rem;
-    height: 1.8rem;
-    font-family: var(--text);
-    border-radius: 2rem;
-    font-size: 1rem;
-    cursor: pointer;
-}
-
-.update-articles .update-button .delete-button {
-    color: var(--white);
-    background: var(--sun);
-    width: 10rem;
-    height: 1.8rem;
-    font-family: var(--text);
-    border-radius: 2rem;
-    font-size: 1rem;
-    cursor: pointer;
-    margin: 0 0.5rem;
-}
-
-.update-articles .archived {
-    width: 80%;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-}
-
-// .add-article {
-//     flex-direction: column;
-//     @extend .center-content;
-//     color: var(--white);
-// }
-
-.create-article label {
-    flex-direction: column;
-    @extend .center-content;
-    color: var(--blue);
-    font-family: var(--text);
-    font-size: 1.5rem;
-    width: 100%;
-}
-
-.add-article .create-article #title,
-.add-article .create-article #tag,
-.add-article .create-article #author,
-.add-article .create-article #rating,
-.add-article .create-article input#image {
-    @extend .input-hw;
-
-}
-
-.add-article .create-article textarea#content {
-    width: 15.5rem;
-    height: 5rem;
-    padding-left: 1.5rem;
-    border-radius: 1rem;
-    margin: 0.5rem;
-}
-
-.add-article .article-form {
-    flex-direction: column;
-    @extend .center-content;
-    color: var(--white);
-    width: 100%;
-}
-
-#editTitle,
-#editContent,
-#editTag,
-#editAuthor,
-#editRating,
-input#editImage {
-    @extend .input-hw;
-
-}
-
-.imageUpdate {
-    flex-direction: column;
-    @extend .center-content;
-    margin: 0.5rem;
-}
-
 .imageUpdate img {
     @extend .height-width;
     @extend .center-content;
     margin: 0.5rem;
+    border-radius: 50%;
+    border: 1px solid var(--blue);
 }
 
-.create-button {
-    display: flex;
-    width: 80%;
-    margin: 2rem;
+.update-articles .update-button button,
+.update-articles .update-button .delete-button {
+    background-color: var(--blue);
+    border-radius: 2rem;
+    color: white;
+    width: 10rem;
+    height: 1.8rem;
+    font-family: var(--text);
+    font-size: 1rem;
+    cursor: pointer;
 }
 
 @media screen and (min-width: 768px) {
-    .add-article {
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        color: var(--white);
-        align-items: center;
-    }
-
+    .add-article,
     .add-article .create-article {
         display: flex;
-        flex-direction: column;
+        font-family: var(--text);
         justify-content: center;
+        flex-direction: column;
+        color: var(--bleu);
         align-items: center;
-        color: var(--white);
-        width: 100%;
+        input {
+            width: 30rem;
+            margin: 1rem;
+            display: flex;
+        }
     }
-
-    .add-article .create-article #title,
-    .add-article .create-article #tag,
-    .add-article .create-article #author,
-    .add-article .create-article #rating {
-        width: 85%;
-        height: 2rem;
-        padding-left: 1.5rem;
-        border-radius: 3rem;
-        margin: 0.5rem;
-    }
-
-    .add-article .create-article input#image {
-        width: 85%;
-        height: 2rem;
-        padding-left: 1.5rem;
-        border-radius: 3rem;
-        margin: 0.5rem;
-    }
-
-    .add-article .create-article textarea#content {
-        width: 85%;
-        height: 5rem;
-        padding-left: 1.5rem;
-        border-radius: 1rem;
-        margin: 0.5rem;
-    }
-
-    #editTitle,
-    #editTag,
-    #editAuthor,
-    #editRating {
-        width: 85%;
-        height: 2rem;
-        padding-left: 1.5rem;
-        border-radius: 3rem;
-        margin: 0.5rem;
-    }
-
+    .add-article .create-article textarea#content,
     #editContent {
-        width: 100%;
+        width: 30rem;
         height: 8rem;
         padding-left: 1.5rem;
         border-radius: 1rem;
         margin: 0.5rem;
         display: flex;
         justify-content: center;
-    }
-
-    input#editImage {
-        width: 85%;
-        height: 2rem;
-        padding-left: 1.5rem;
-        border-radius: 3rem;
-        margin: 0.5rem;
     }
 }

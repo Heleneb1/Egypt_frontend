@@ -8,7 +8,7 @@
     border-radius: 1rem;
     border: 1px solid var(--sun);
     background-color: var(--blue);
-    color: var(--white);
+    color: white;
     font-family: var(--text);
     font-size: 1.1rem;
     font-weight: bold;
@@ -38,13 +38,13 @@
         h2 {
             font-family: var(--text);
             margin: 1.5rem;
-            color: var(--white);
+            color: white;
             font-size: 1.5rem;
         }
 
         h2::before {
             content: "\f0c6";
-            font-family: 'FontAwesome';
+            font-family: "FontAwesome";
             margin-right: 0.5em;
             font-size: 1rem;
         }
@@ -70,13 +70,11 @@
         font-family: var(--text);
 
         p {
-
             display: flex;
             justify-content: center;
             align-items: center;
             margin-bottom: 2rem;
         }
-
     }
 
     footer p {

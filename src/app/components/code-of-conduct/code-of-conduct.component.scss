@@ -10,17 +10,20 @@ h1 {
 h2 {
     font-family: var(--text);
     margin: 1.5rem;
-    color: var(--white);
+    color: white;
     font-size: 1.5rem;
 }
 
 h2::before {
     content: "\f0c6";
-    font-family: 'FontAwesome';
+    font-family: "FontAwesome";
     margin-right: 0.5em;
     font-size: 1rem;
 }
 
 p {
     text-align: justify;
+}
+li {
+    margin-bottom: 0.5rem;
 }

@@ -3,12 +3,12 @@
         <div class="button-container">
             <button (click)="getQuiz()" type="button" class="button">Quiz</button>
         </div>
-        <div *ngIf="quizzesOpen">
+        <div class="quiz-view" *ngIf="quizzesOpen">
             <h2>Liste des quiz</h2>
             <div>
                 <label for="searchInput">Rechercher un quiz par titre :</label>
                 <input type="text" id="searchInput" [(ngModel)]="searchTitle">
-                <button (click)="searchQuiz()">Rechercher</button>
+                <button title="search" class="quiz-btn-style" (click)="searchQuiz()">Rechercher</button>
             </div>
             <ul>
                 <li *ngFor="let quiz of quizzes">
@@ -50,15 +50,16 @@
                                 formControlName="isArchived">Non
 
                             <div class="cancel-update">
-                                <button (click)="cancelEdit()">Annuler</button>
-                                <button type="submit">Mettre à jour</button>
+                                <button class="quiz-btn-style" (click)="cancelEdit()">Annuler</button>
+                                <button class="quiz-btn-style" type="submit">Mettre à jour</button>
                             </div>
                         </form>
                     </div>
                     <div class="delete-button">
                         <button (click)="deleteQuiz(quiz.id)">Supprimer le quiz</button>
                     </div>
-                    <button (click)="seeQuestionsOfQuiz()">Afficher les questions du quiz</button>
+                    <button class="quiz-btn-style" (click)="seeQuestionsOfQuiz()">Afficher les questions du
+                        quiz</button>
 
                     <h4>Questions :</h4>
                     <ul *ngIf="showQuestions">
@@ -98,8 +99,10 @@
                         <input type="radio" id="archiveNo" name="archive_{{quiz.id}}" [(ngModel)]="quiz.isArchived"
                             [value]="false"> Non
                         <div class="cancel-update">
-                            <button (click)="archivedQuiz(quiz)">Archiver</button>
-                            <button (click)="editQuiz(quiz)" type="button">Modifier</button>
+                            <button title="archived" class="quiz-btn-style"
+                                (click)="archivedQuiz(quiz)">Archiver</button>
+                            <button title="change" class="quiz-btn-style" (click)="editQuiz(quiz)"
+                                type="button">Modifier</button>
 
                         </div>
                     </div>
@@ -137,7 +140,7 @@
         <div class="create-button">
             <div class="button-add">
 
-                <button (click)="onCreateQuiz()" type="button" class="add-button">Ajouter le quiz</button>
+                <button (click)="onCreateQuiz()" type="button" class="quiz-btn-style">Ajouter le quiz</button>
             </div>
         </div>
     </div>

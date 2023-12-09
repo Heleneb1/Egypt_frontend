@@ -2,39 +2,30 @@
   align-items: center;
   display: flex;
 }
-
 .header-all {
   margin-bottom: 8rem;
   width: 100vw;
 }
-
 nav.header-container {
   height: 3rem;
   position: fixed;
   top: 0;
-  left: 0;
   width: 99%;
-  @extend .display-global;
-  justify-content: space-between;
   padding: 10px;
-  background: var(--blue);
   border-bottom: #fc9900 1px solid;
-  color: white;
+  background-color: var(--blue);
   z-index: 2;
-  margin-bottom: 3rem;
 }
-
 .header-content {
   @extend .display-global;
   justify-content: space-between;
+  margin-top: 1rem;
 }
-
 .logo {
   @extend .display-global;
   justify-content: center;
   margin-top: 3rem;
 }
-
 .title-for-mobile {
   @extend .display-global;
   justify-content: center;
@@ -42,7 +33,6 @@ nav.header-container {
   font-family: var(--title);
   margin-top: 1rem;
 }
-
 .menu-burger {
   display: flex;
   flex-direction: column;
@@ -53,30 +43,24 @@ nav.header-container {
   z-index: 3;
   transition: transform 0.3s ease-in-out;
 }
-
 .menu-burger .line {
   width: 100%;
   height: 5px;
   background-color: var(--sun);
   transition: transform 0.3s ease-in-out;
 }
-
 .menu-burger.open {
   position: fixed;
 }
-
 .menu-burger.open .line:nth-child(1) {
   transform: translateY(15px) rotate(45deg);
 }
-
 .menu-burger.open .line:nth-child(2) {
   opacity: 0;
 }
-
 .menu-burger.open .line:nth-child(3) {
   transform: translateY(-10px) rotate(-45deg);
 }
-
 .menu {
   top: 100%;
   right: 0;
@@ -87,7 +71,6 @@ nav.header-container {
   flex-direction: column;
   justify-content: center;
 }
-
 .menu.open {
   display: flex;
   position: fixed;
@@ -98,13 +81,11 @@ nav.header-container {
   background-color: var(--blue);
   z-index: 1;
 }
-
 .menu .nav-mobile ul {
   list-style: none;
   margin: 0 3rem;
   text-align: center;
 }
-
 .menu li {
   font-family: var(--title);
   color: var(--sun);
@@ -112,24 +93,10 @@ nav.header-container {
   @extend .display-global;
   justify-content: flex-start;
 }
-
 .menu li a {
   text-decoration: none;
   color: var(--sun);
   font-size: 1.5rem;
-  margin-top: 10px;
-  cursor: pointer;
-}
-
-.icons {
-  @extend .display-global;
-}
-
-.icon {
-  margin-left: 20px;
-  margin-right: 20px;
-  color: var(--sun);
-  font-size: 20px;
   cursor: pointer;
 }
 
@@ -137,7 +104,6 @@ nav.header-container {
   .logout {
     color: var(--sun);
     font-size: 1.5rem;
-    margin-top: 10px;
     cursor: pointer;
     font-family: var(--title);
   }
@@ -175,37 +141,13 @@ nav.header-container {
     width: 97vw;
     display: flex;
     align-items: center;
-    height: 100%;
     justify-content: space-between;
-
-    ul {
-      padding: 0;
-      display: flex;
-      align-items: center;
-      height: 100%;
-    }
   }
 
   .menu ul {
-    list-style: none;
     display: flex;
     margin: 0;
     padding: 0;
     width: 100%;
-  }
-
-  .menu .nav-mobile ul {
-    list-style: none;
-    margin: 0 2.5rem;
-    padding-right: 1rem;
-    text-align: center;
-
-  }
-
-  .menu li a {
-    text-decoration: none;
-    color: var(--sun);
-    font-size: 1.5rem;
-    margin-top: 10px;
   }
 }

@@ -10,7 +10,6 @@ $text: var(--text);
     padding: 20px;
     height: 100vh;
     display: flex;
-
 }
 
 .user-info-container {
@@ -25,7 +24,6 @@ $text: var(--text);
 }
 
 .user-sub-info-container {
-
     width: 80%;
     display: flex;
     padding: 2rem;
@@ -33,7 +31,6 @@ $text: var(--text);
 }
 
 .image-container {
-
     width: 200px;
     height: 200px;
     overflow: hidden;
@@ -58,7 +55,7 @@ $text: var(--text);
     cursor: pointer;
     height: 3rem;
     width: 3rem;
-    background-color: var(--white);
+    background-color: white;
 }
 
 .title-profile {
@@ -93,16 +90,12 @@ $text: var(--text);
     position: relative;
     font-family: $text;
     font-size: 1.2rem;
-
-
 }
-
 
 .edit-button {
     width: 20px;
     height: 20px;
 }
-
 
 .bio-form {
     display: none;
@@ -140,7 +133,7 @@ $text: var(--text);
     justify-content: center;
     align-items: center;
     font-size: 12px;
-    font-family: 'laton', sans-serif;
+    font-family: "laton", sans-serif;
     color: white;
     cursor: pointer;
 
@@ -151,7 +144,7 @@ $text: var(--text);
 }
 
 .input-text-area-bio {
-    background-color: var(--white);
+    background-color: white;
     width: 80%;
     height: 100%;
     text-align: center;
@@ -169,7 +162,7 @@ $text: var(--text);
     background-color: var(--sun);
     font-family: var(--title);
     font-size: 1rem;
-    color: var(--white);
+    color: white;
     width: 10rem;
     border: none;
     margin: 1.1rem;
@@ -208,8 +201,6 @@ $text: var(--text);
         justify-content: center;
     }
 
-
-
     .badge-item {
         display: flex;
         flex: 0 0 20%;
@@ -221,14 +212,13 @@ $text: var(--text);
         justify-content: center;
         align-items: center;
 
-
         p {
             margin-top: 1rem;
         }
     }
 
     .badge-image {
-        border: 2px solid var(--white);
+        border: 2px solid white;
         width: 100px;
         height: 100px;
         overflow: hidden;
@@ -238,7 +228,6 @@ $text: var(--text);
             width: 100%;
             height: 100%;
             object-fit: cover;
-
         }
     }
 }

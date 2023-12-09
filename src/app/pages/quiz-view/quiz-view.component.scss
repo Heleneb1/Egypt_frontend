@@ -1,11 +1,13 @@
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .text {
     width: 100%;
-    display: flex;
+    @extend .center;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
 }
-
 .text-container {
     margin: 2rem;
     padding: 2rem;
@@ -19,35 +21,25 @@
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     font-family: Kaushan Script;
     font-size: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @extend .center;
 }
-
 .view {
     position: relative;
     bottom: 11rem;
 }
-
 .loader-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @extend .center;
     height: 100vh;
     width: 100vw;
-    color: var(--white);
+    color: white;
     font-family: var(--title);
     transform: translate(-50%, -50%);
 }
-
 .quiz-main-image {
     height: 30vh;
     width: 100vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @extend .center;
     flex-direction: column;
-
     .image img {
         position: relative;
         top: 7rem;
@@ -56,87 +48,71 @@
         object-fit: cover;
     }
 }
-
 .quiz-count {
-    color: var(--white);
+    color: white;
     font-family: var(--text);
     margin: 1.5rem;
     display: flex;
     justify-content: center;
     padding: 2rem;
-
-
     .number {
         font-family: var(--title);
         color: var(--sun);
         padding-right: 5px;
     }
 }
-
 .create-quiz {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
+    @extend .center;
     button {
         background-color: var(--sun);
         font-family: var(--title);
         font-size: 1.3rem;
         text-shadow: 1px 1px 1px #000000;
-        color: var(--white);
+        color: white;
         width: 10rem;
         height: 3rem;
         border-radius: 4rem;
         cursor: pointer;
         text-decoration: none;
     }
-
     .create-quiz-button {
         background-color: var(--sun);
         font-family: var(--title);
         text-shadow: 1px 1px 1px #000000;
         font-size: 1.3rem;
-        color: var(--white);
+        color: white;
         border-radius: 4rem;
         cursor: pointer;
         text-decoration: none;
     }
 }
-
 .no-connected {
-
     background: transparent;
     border: none;
-    color: var(--white);
+    color: white;
     font-family: var(--title);
     font-size: 1.5rem;
     text-shadow: #fffcfc 0px 0px 10px;
     cursor: pointer;
     transition: transform 0.2s ease-in-out;
     text-decoration: none;
-
 }
-
 .quiz-card-container {
-    display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
     display: flex;
     justify-content: center;
     text-transform: capitalize;
-
     .description {
         width: 80%;
         margin: 1rem;
         text-transform: capitalize;
     }
 }
-
 .quiz-card {
     margin: 20px;
     display: flex;
     width: 25rem;
-
     .header-card {
         img {
             object-fit: cover;
@@ -147,48 +123,42 @@
             box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
         }
     }
-
     .body-card {
-        background-color: (var(--white));
+        background-color: (white);
         height: 12rem;
         width: 100%;
         border: 0.3px solid black;
         display: flex;
         flex-direction: column;
         align-items: center;
-
         h3 {
             font-family: var(--title);
             text-align: center;
         }
-
         .quiz-detail-container {
             display: flex;
             justify-content: flex-end;
-
             a {
                 text-decoration: none;
                 color: white;
             }
-
             .quiz-detail-button {
                 background-color: var(--sun);
                 font-family: var(--title);
                 font-size: 1rem;
                 text-shadow: 1px 1px 1px #000000;
-                color: var(--white);
+                color: white;
                 width: 10rem;
                 border: none;
                 margin: 1.1rem;
                 border-radius: 4rem;
                 cursor: pointer;
                 text-decoration: none;
-
                 p {
                     background-color: var(--sun);
                     font-family: var(--title);
                     font-size: 1rem;
-                    color: var(--white);
+                    color: white;
                     width: 10rem;
                     border: none;
                     margin: 1.1rem;
@@ -197,13 +167,9 @@
                     text-decoration: none;
                     position: relative;
                     bottom: 1rem;
-
                 }
-
-
             }
         }
-
         p {
             margin: 0;
             font-size: 16px;
@@ -212,20 +178,14 @@
         }
     }
 }
-
-
 .no-connected {
     display: flex;
-
     justify-content: flex-end;
     margin: 2rem;
-
 }
-
 @media screen and (max-width: 768px) {
     .text-container {
         min-width: 12rem;
         height: 12rem;
     }
-
 }

@@ -1,6 +1,6 @@
 .contact-intro {
     img {
-        height: 25rem
+        height: 25rem;
     }
 }
 
@@ -15,7 +15,6 @@
         height: 100%;
         object-fit: cover;
     }
-
 
     form {
         display: flex;
@@ -60,7 +59,7 @@
     .no-authorize {
         font-weight: 900;
         background-color: var(--sun);
-        color: var(--white);
+        color: white;
         padding: 0.5rem;
         border-radius: 0.5rem;
         text-decoration-style: double;
@@ -80,7 +79,6 @@
             }
         }
     }
-
 }
 
 .transition-bottom {
@@ -92,7 +90,6 @@
     transform: translateX(0);
     animation: disappear 3s forwards;
 }
-
 
 @keyframes appear {
     0% {
@@ -109,29 +106,26 @@
 @keyframes disappear {
     0% {
         opacity: 1;
-        transform: translateX(0)scale(0.1);
+        transform: translateX(0) scale(0.1);
     }
 
     30% {
         opacity: 1;
-        transform: translateX(-40%)scale(0.1);
+        transform: translateX(-40%) scale(0.1);
     }
-
-
 
     100% {
         opacity: 0;
-        transform: translateX(100%)scale(0.1);
+        transform: translateX(100%) scale(0.1);
     }
 }
-
 
 @media screen and (max-width: 768px) {
     .contact-intro {
         height: 52vh;
 
         img {
-            height: 21rem
+            height: 21rem;
         }
     }
 

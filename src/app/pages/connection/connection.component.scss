@@ -40,17 +40,16 @@
   margin: 0;
   font-weight: bold;
   font-size: 1.3rem;
-  color: var(--white);
+  color: white;
 }
 
 .top-bar-form-item-selected {
-  color: var(--white);
+  color: white;
   text-decoration: underline;
   text-underline-offset: 10px;
 
   .top-bar-form-item-text {
     color: var(--sun);
-
   }
 }
 
@@ -58,31 +57,28 @@
   margin-top: 0;
 }
 
-
 .form-container {
   padding: 20px;
 }
 
 .info-submitted-validation {
-
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
 
 .info-submitted-validation-text {
   font-weight: bold;
   color: var(--sun);
-  background-color: var(--white);
+  background-color: white;
   padding: 0.5rem 2rem;
   border-radius: 5px;
 }
 
 .info-submitted-validation-valid {
   color: var(--sun);
-  background-color: var(--white);
+  background-color: white;
 }
 
 .info-submitted-validation-error {
@@ -94,7 +90,6 @@
   margin-top: 9rem;
 
   .main-image img {
-
     margin: 0;
   }
 }
@@ -115,7 +110,6 @@
     margin-top: 7rem;
 
     .main-image img {
-
       margin-top: 0;
     }
   }

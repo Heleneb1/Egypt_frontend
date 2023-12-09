@@ -53,23 +53,38 @@
     </div>
 
     <div class="add-article">
-
         <div class="create-article" *ngIf="showArticleForm">
-            <h2>Créer un nouvel article</h2>
-            <label for="title">Titre:</label>
-            <input placeholder="Titre de l'article" type="text" id="title" [(ngModel)]="newTitle">
-            <label for="image">Image:</label>
-            <input type="text" id="image" name="image" [(ngModel)]="newImage" placeholder="Entrez le lien de l'image" />
-            <label for="content">Contenu:</label>
-            <textarea placeholder="Placez ici le contenu de l'article" id="content" [(ngModel)]="newContent"></textarea>
-            <label for="archive">Archiver:</label>
-            <input type="radio" id="archive" [(ngModel)]="isArchived">
-            <label for="author">Auteur:</label>
-            <input placeholder="Auteur ou source de l'article " type="text" id="author" [(ngModel)]="newAuthor">
-            <label for="tag">Thème:</label>
-            <input placeholder="Thème" type="text" id="tag" [(ngModel)]="newTag">
-            <label for="rating">Évaluation:</label>
-            <input type="number" id="rating" [(ngModel)]="newRating">
+            <h2 class="create">Créer un nouvel article</h2>
+            <div class="form-group">
+                <label for="title">Titre:</label>
+                <input placeholder="Titre de l'article" type="text" id="title" [(ngModel)]="newTitle">
+            </div>
+            <div class="form-group">
+                <label for="image">Image:</label>
+                <input type="text" id="image" name="image" [(ngModel)]="newImage"
+                    placeholder="Entrez le lien de l'image" />
+            </div>
+            <div class="form-group">
+                <label for="content">Contenu:</label>
+                <textarea placeholder="Placez ici le contenu de l'article" id="content"
+                    [(ngModel)]="newContent"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="archive">Archivé :</label>
+                <input type="radio" id="archive" [(ngModel)]="isArchived">
+            </div>
+            <div class="form-group">
+                <label for="author">Auteur:</label>
+                <input placeholder="Auteur ou source de l'article " type="text" id="author" [(ngModel)]="newAuthor">
+            </div>
+            <div class="form-group">
+                <label for="tag">Thème:</label>
+                <input placeholder="Thème" type="text" id="tag" [(ngModel)]="newTag">
+            </div>
+            <div class="form-group">
+                <label for="rating">Évaluation:</label>
+                <input type="number" id="rating" [(ngModel)]="newRating">
+            </div>
             <div class="create-button">
                 <div class="button">
                     <button (click)="addArticle()" type="button" class="button">Ajouter l'article</button>
@@ -77,3 +92,4 @@
             </div>
         </div>
     </div>
+</div>

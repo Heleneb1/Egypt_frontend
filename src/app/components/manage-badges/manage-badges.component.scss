@@ -9,33 +9,27 @@
 
 .button-badge {
     .button {
-
         width: 10rem;
         background-color: var(--blue);
         border-radius: 2rem;
         height: 2rem;
-        color: var(--white);
+        color: white;
         display: flex;
         justify-content: center;
         cursor: pointer;
         align-items: center;
-
-
-
     }
 
     .delete-button {
-
         width: 10rem;
         background-color: var(--sun);
         border-radius: 2rem;
         height: 2rem;
-        color: var(--white);
+        color: white;
         display: flex;
         justify-content: center;
         cursor: pointer;
         align-items: center;
-
     }
 }
 
@@ -49,7 +43,7 @@
         font-size: 1.5rem;
         width: 16rem;
         height: 3rem;
-        color: var(--white);
+        color: white;
         display: flex;
         justify-content: center;
         cursor: pointer;
@@ -60,13 +54,9 @@
 input[type="checkbox" i] {
     accent-color: var(--sun);
 
-    color: var(--white);
+    color: white;
     border-radius: 5px;
 }
-
-
-
-
 
 h2 {
     font-size: 24px;
@@ -92,7 +82,7 @@ li {
     background-color: var(--blue);
     border-radius: 2rem;
     height: 2rem;
-    color: var(--white);
+    color: white;
     display: flex;
     justify-content: center;
     cursor: pointer;
@@ -123,7 +113,6 @@ input[type="text"] {
 .create-button {
     margin-top: 20px;
 }
-
 
 img {
     max-width: 100%;

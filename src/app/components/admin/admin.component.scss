@@ -11,19 +11,16 @@
         border-radius: 1.5em;
         padding: 1rem;
         margin: 1rem;
-        color: var(--white);
+        color: white;
         background-color: var(--sun);
         align-items: center;
         justify-content: center;
-
     }
 
     button:active,
     button:focus {
         transform: scale(1.1);
     }
-
-
 }
 
 .icon {
@@ -31,7 +28,6 @@
     justify-content: flex-end;
     align-items: center;
     margin-right: 3rem;
-
 }
 
 .notify {
@@ -43,14 +39,14 @@
 
 .icon i.fa-bell,
 i.fa-envelope {
-    color: var(--white);
+    color: white;
     font-size: 1.7rem;
     cursor: pointer;
     transform: scale(1.1);
 }
 
 .icon .number {
-    color: var(--white);
+    color: white;
     background-color: var(--sun);
     border-radius: 100%;
     font-weight: bold;
@@ -70,7 +66,7 @@ i.fa-envelope {
 }
 
 .contact_message {
-    background-color: var(--white);
+    background-color: white;
     margin: 1rem;
     padding: 2rem;
     border-radius: 0.5rem;

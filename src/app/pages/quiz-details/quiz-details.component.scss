@@ -17,18 +17,17 @@
     max-width: 80%;
 
     line-height: 1.8;
-
 }
 
 .quiz-infos {
-    color: var(--white);
+    color: white;
     font-family: var(--text);
     padding: 1rem 0.5rem;
 }
 
 .quiz-details strong {
     font-weight: bold;
-    color: var(--white);
+    color: white;
     font-family: var(--text);
 }
 
@@ -56,7 +55,6 @@ ul {
     position: fixed;
     width: 75%;
     top: 80%;
-
 }
 
 #progressBarContainer {
@@ -64,7 +62,7 @@ ul {
     width: 100%;
     padding: 0.2rem;
     margin: 0.5rem;
-    background-color: var(--white);
+    background-color: white;
     border-radius: 2rem;
 }
 
@@ -84,9 +82,8 @@ ul {
     right: 0;
     margin-left: 0.5rem;
     transform: translateY(-50%);
-    color: var(--white);
+    color: white;
     font-size: 2.5rem;
-
 }
 
 .nested-star {
@@ -99,7 +96,7 @@ ul {
 }
 
 .radio-selected {
-    color: var(--sun)
+    color: var(--sun);
 }
 
 input[type="radio"]:checked {
@@ -107,24 +104,22 @@ input[type="radio"]:checked {
     border-radius: 3rem;
     background-color: var(--sun);
     padding: 0.5rem;
-    color: var(--white);
-
+    color: white;
 }
 
 .option input[type="radio" i] {
     appearance: none;
-    border: 1px solid var(--white);
+    border: 1px solid white;
     cursor: pointer;
-    color: var(--white);
+    color: white;
     height: 1rem;
     width: 1rem;
 }
 
 .quiz-questions {
-    color: var(--white);
+    color: white;
     font-family: var(--text);
     margin-bottom: 3rem;
-
 }
 
 .question-card {
@@ -145,7 +140,6 @@ input[type="radio"]:checked {
     justify-content: center;
     padding: 1rem;
     flex-direction: column;
-
 }
 
 .option-column2 {
@@ -155,14 +149,13 @@ input[type="radio"]:checked {
     padding: 1rem;
     flex-direction: column;
     align-items: center;
-
 }
 
 .rating-button {
     background-color: var(--sun);
     font-family: var(--title);
     font-size: 1rem;
-    color: var(--white);
+    color: white;
     width: 10rem;
     border: none;
     margin: 1.1rem;
@@ -188,9 +181,7 @@ input[type="radio"]:checked {
     color: var(--sun);
     transition: all 0.3s ease-in-out;
     animation: fadeIn 4s ease-in-out forwards;
-
 }
-
 
 @media (min-width: 768px) {
     .options-container {
@@ -198,8 +189,6 @@ input[type="radio"]:checked {
         flex-wrap: wrap;
         gap: 10rem;
     }
-
-
 
     .option-colum1 {
         flex: 1;
