@@ -31,12 +31,10 @@ export class ContactComponent {
 
 
   sendMessage() {
-    console.log(this.contactForm.value);
 
     if (this.contactForm.valid) {
       const formData = this.contactForm.value;
       this.sendEmail.sendEmail(formData); // Add a semicolon here
-      console.log(formData);
       this.toastr.success('Votre message a bien été envoyé.Merci...', 'Message envoyé');
 
       this.contactForm.reset();
