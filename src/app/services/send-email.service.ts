@@ -22,7 +22,6 @@ export class SendEmailService {
   }
 
   sendEmail(contact: Contact) {
-    console.log("Nom", contact);
     return this.httpClient.post(this.emailUrl + '/send', contact)
       .subscribe((response) => this.toastr.success('Votre message a bien été envoyé', 'Message envoyé'),);
 
@@ -45,7 +44,6 @@ export class SendEmailService {
       this.httpClient.post(this.emailUrl + '/send-after-comment', emailData, { responseType: 'text' }).subscribe(
         (response: any) => {
           //reponse du backend une chaine de caractère erreur: "Unexpected token 'N', \"Notificati\"... is not valid JSON"
-          console.log('Réponse du backend :', response);
           this.handleSendMessageSuccess();
         },
         (error) => {

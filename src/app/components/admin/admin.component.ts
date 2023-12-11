@@ -37,7 +37,6 @@ export class AdminComponent implements OnInit {
     this.sendEmailService.getContact().subscribe((contact: any) => {
       this.contact = contact;
       this.contactCount = contact.length;
-      console.log("contact", this.contactCount);
     });
 
     this.commentsService.getComments().subscribe(
@@ -45,7 +44,6 @@ export class AdminComponent implements OnInit {
         this.commentList = data;
         const archivedComments = this.commentList.filter(comment => comment.archive);
         this.archivedCommentCount = archivedComments.length;
-        console.log("Commentaires archivés", this.archivedCommentCount);
         this.commentList.sort((a, b) => {
           return b.archive - a.archive;
         });
@@ -86,7 +84,6 @@ export class AdminComponent implements OnInit {
   getContact() {
     this.sendEmailService.getContact().subscribe((contact: any) => {
       this.contact = contact;
-      console.log("contact", contact);
       this.showMsg = true;
       this.isShaking = true;
     });
@@ -97,7 +94,6 @@ export class AdminComponent implements OnInit {
 
 
   deleteMessage(id: number) {
-    console.log("id", id);
 
     if (confirm("Voulez-vous supprimer ce message ?")) {
       this.sendEmailService.deleteContact(id).subscribe((response: any) => {
@@ -113,8 +109,6 @@ export class AdminComponent implements OnInit {
 
   addBadgeToQuiz(selectedQuiz: any, selectedBadge: any) {
     if (this.selectedQuiz && this.selectedBadge) {
-      console.log("quizId", this.selectedQuiz);
-      console.log("badgeId", this.selectedBadge);
       this.quizService.addBadgeToQuiz(this.selectedQuiz.id, this.selectedBadge.id).subscribe((response: any) => {
         this.toastr.success('Badge ajouté au quiz', 'Ajout');
       });
@@ -131,9 +125,6 @@ export class AdminComponent implements OnInit {
 
   addSelectedQuestionsToQuiz(selectedCategory: string) {
     if (this.selectedQuiz && this.selectedQuestions.length > 0) {
-      console.log("quizId", this.selectedQuiz.id);
-      console.log("questions", this.selectedQuestions);
-      console.log("category", selectedCategory);
 
       this.quizService.addQuestionByCategoryToQuiz(this.selectedQuiz.id, selectedCategory).subscribe((response: any) => {
         this.toastr.success('Questions ajoutées au quiz', 'Ajout');

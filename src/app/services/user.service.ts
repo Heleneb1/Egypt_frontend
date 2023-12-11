@@ -39,8 +39,7 @@ export class UserService {
   getUserEmail(userId: string): Observable<string> {
     return this.getUserById(userId).pipe(
       map((user: any) => {
-        console.log(userId);
-        console.log(user.email);
+
         return `${user.email}`;
       })
     );
@@ -68,7 +67,6 @@ export class UserService {
   // }
 
   registerUser(user: any): Observable<any> {
-    console.log('Requête HTTP - Corps:', user);
 
     return this.httpClient
       .post(environment.apiUrl + '/api/auth/register', user, {
@@ -87,7 +85,6 @@ export class UserService {
               submitted: this.formSubmitted,
             });
           }
-          console.log('Réponse HTTP:', response);
 
           return response;
         })
@@ -111,7 +108,6 @@ export class UserService {
 
   updateBio(userId: string, updatedBiography: string) {
     const url = environment.apiUrl + `/users/${userId}/update-bio`;
-    console.log(url);
 
     return this.httpClient.put(url, updatedBiography);
   }

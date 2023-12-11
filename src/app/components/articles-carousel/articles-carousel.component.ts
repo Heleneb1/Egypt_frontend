@@ -24,7 +24,6 @@ export class ArticlesCarouselComponent implements OnInit {
   ngOnInit(): void {
     this.showArticles();
     this.currentIndex = this.articles.length;
-    console.log("articles", this.currentIndex);
     this.updateIndexes();
 
 
@@ -34,7 +33,6 @@ export class ArticlesCarouselComponent implements OnInit {
       this.articles = articles;
       this.currentIndex = this.articles.length;
       this.updateIndexes();
-      console.log("articles", articles);
     });
   }
 
@@ -43,7 +41,6 @@ export class ArticlesCarouselComponent implements OnInit {
     this.leftIndex = (this.currentIndex - 1 + this.articles.length) % this.articles.length;
     this.rightIndex = (this.currentIndex + 1 + this.articles.length) % this.articles.length;
     this.visibleArticle = this.articles[this.currentIndex];
-    console.log("visibleArticle", this.visibleArticle);
 
   }
   updateArticles(newArticles: any[]) {

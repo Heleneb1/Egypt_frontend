@@ -31,7 +31,7 @@ export class ResultCardComponent {
 
   goToArticleDetails() {
     if (this.selectedArticle) {
-      console.log(this.selectedArticle.id);
+      console.info(this.selectedArticle.id);
 
       this.router.navigate(['/article', this.selectedArticle.id]);
     }

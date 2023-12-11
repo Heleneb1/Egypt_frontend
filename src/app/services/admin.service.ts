@@ -34,7 +34,6 @@ export class AdminService {
     return this.httpClient.get(`${this.dataUrl}/images`);
   }
   addNewArticle$(article: Article): Observable<Article> {
-    console.log('Article:', article);
 
     return this.httpClient.post<Article>(`${this.dataUrl}/articles/create`, article);
   }

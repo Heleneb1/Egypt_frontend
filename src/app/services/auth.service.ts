@@ -36,7 +36,6 @@ export class AuthService {
   getUserRole(): Observable<string> {
     return this.getUserConnected().pipe(
       map((userData: any) => {
-        console.log("userData", userData);
         return userData.role;
       })
     );

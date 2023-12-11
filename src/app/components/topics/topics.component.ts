@@ -37,12 +37,10 @@ export class TopicsComponent implements OnInit {
   ngOnInit(): void {
     this.topicsService.getTopics().subscribe((topics: any) => {
       this.topics = topics;
-      console.log(this.topics);
 
       this.topics.forEach((topic: any) => {
         this.userService.getUserName(topic.authorId).subscribe((authorName: string) => {
           topic.authorName = authorName;
-          console.log("Author name", authorName);
           this.userService.getUserAvatarForComment(topic.authorId).subscribe((avatarBlob: Blob) => {
             const avatarUrl = URL.createObjectURL(avatarBlob);
             topic.authorAvatar = avatarUrl;
@@ -53,14 +51,12 @@ export class TopicsComponent implements OnInit {
     });
     this.authService.getUserConnected().subscribe((user: any) => {
       this.userConnected = user;
-      console.log("User connected", this.userConnected);
     });
   }
   searchTopics() {
     this.topicsService.getTopicsByTag(this.searchQuery).subscribe(
       (topics: any) => {
         this.topics = topics;
-        console.log(this.topics);
 
         setTimeout(() => {
           this.loadAvatars();
@@ -93,7 +89,6 @@ export class TopicsComponent implements OnInit {
   getTopicById(id: string) {
     this.topicsService.getTopicById(id).subscribe((topic: any) => {
       this.selectedTopic = topic;
-      console.log(this.selectedTopic);
       this.getAnswersByTopic(this.selectedTopic.id);
 
     });
@@ -104,7 +99,6 @@ export class TopicsComponent implements OnInit {
   }
 
   getAnswersByTopic(topicId: any) {
-    console.log("For getting answers by topic", topicId);
 
     this.topicsService.getAnswersByTopicId(topicId).subscribe((answers: any) => {
       const authorObservables = answers.map((answer: any) => {
@@ -127,7 +121,6 @@ export class TopicsComponent implements OnInit {
             return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
           });
           this.filterByDate();
-          console.log("Les réponses", this.existingAnswers);
 
           setTimeout(() => {
             this.goBottom();
@@ -139,12 +132,10 @@ export class TopicsComponent implements OnInit {
   createTopic() {
     if (this.userConnected) {
       const authorTopicId = this.userConnected.id;
-      console.log("Topic", this.topic);
       const data = {
         message: this.topicMessage,
         tag: this.tag
       };
-      console.log("Data", data);
       if (this.topicMessage.length < 10 || this.tag.length < 1) {
         this.toastr.error("Votre message doit contenir au moins 10 caractères et un tag", "Erreur");
         return;
@@ -171,11 +162,9 @@ export class TopicsComponent implements OnInit {
   createAnswer() {
     if (this.userConnected) {
       const authorAnswerId = this.userConnected.id;
-      console.log("Answer", this.answer);
       const data = {
         answer: this.answerMessage,
       };
-      console.log("Data", data);
 
       this.topicsService.postAnswer(data, this.selectedTopic.id, authorAnswerId).subscribe((answer: any) => {
         this.answer = answer;
@@ -196,7 +185,6 @@ export class TopicsComponent implements OnInit {
   toggleAnswer() {
     this.editAnswer = !this.editAnswer;
 
-    console.log('editAnswer:', this.editAnswer);
 
   }
   goBottom() {

@@ -59,7 +59,6 @@ export class ManageArticleComponent {
     this.newContent = article.content;
     this.isArchived = article.archive;
     this.showUpdateForm = !this.showUpdateForm;
-    console.log(this.existingArticle);
 
   }
 
@@ -122,11 +121,9 @@ export class ManageArticleComponent {
 
 
     this.showArticleForm = !this.showArticleForm;
-    console.log(newArticle);
 
     this.adminService.addNewArticle$(newArticle).subscribe((response: any) => {
       const newArticleWithID: Article = response;
-      console.log("createId", newArticleWithID);
 
       this.getArticles();
       this.toastr.success('Article ajouté avec succès. ID de l\'article : ' + newArticleWithID.id);

@@ -57,17 +57,14 @@ export class ManageQuizComponent {
     if (this.quizzesOpen) {
       this.quizService.getQuizzes().subscribe((quizzes: any) => {
         this.quizzes = quizzes;
-        console.log(quizzes);
 
         this.quizzes.forEach((quiz: any) => {
 
           if (quiz.badge) {
             const badgeId = quiz.badge; // Récupérer le badgeId pour chaque quiz
-            console.log("badgeId", badgeId);
 
             this.badgesService.getBadgeContent(badgeId).subscribe((badge: any) => {
               quiz.badgeContent = badge; // Stocker le contenu du badge dans l'objet quiz
-              console.log("Badge", badge);
             });
           }
         });
@@ -90,7 +87,6 @@ export class ManageQuizComponent {
 
       this.quizService.getQuizById(quizId).subscribe((quiz: any) => {
         this.quiz = quiz;
-        console.log("id", quizId);
         this.selectQuizEmit(quiz);
       });
     }
@@ -100,7 +96,6 @@ export class ManageQuizComponent {
       (question: any) => {
         if (question) {
           this.questions[questionId] = question; // Stockez les données dans l'objet "questions" avec l'ID de la question comme clé
-          console.log("Données de la question récupérées depuis le serveur :", this.questions[questionId]);
         } else {
           console.error("La réponse du serveur est vide ou indéfinie.");
         }
@@ -114,7 +109,6 @@ export class ManageQuizComponent {
     if (this.searchTitle) {
       this.quizService.getQuizByTitle(this.searchTitle).subscribe((quizzes: any) => {
         this.quizzes = quizzes;
-        console.log("quizzes", this.quizzes);
         this.reset();
       });
     } else {
@@ -130,7 +124,6 @@ export class ManageQuizComponent {
       if (this.selectedQuizId) {
         this.quizService.getQuizQuestions(this.selectedQuizId).subscribe((questions: any) => {
           this.allQuestions = questions; // Stockez les questions dans le tableau allQuestions
-          console.log("questions", questions);
         });
       }
     }
@@ -155,7 +148,7 @@ export class ManageQuizComponent {
     };
 
     this.quizService.createQuiz(newQuiz).subscribe((response: any) => {
-      console.log("Nouveau quiz créé :", response);
+      console.info("Nouveau quiz créé :", response);
       this.getQuiz();
       this.createQuizForm();
     });
@@ -180,9 +173,6 @@ export class ManageQuizComponent {
     });
   }
   updateQuiz(id: string, updatedQuiz: any) {
-    console.log("id", id);
-    console.log("updatedQuiz", updatedQuiz);
-
     this.editingQuiz.title = updatedQuiz.title;
     this.editingQuiz.difficulty = updatedQuiz.difficulty;
     this.editingQuiz.content = updatedQuiz.content;
@@ -206,13 +196,5 @@ export class ManageQuizComponent {
   cancelEdit() {
     this.editingQuiz = null;
   }
-  // addBadgeToQuiz(quizId: string, badgeId: string) {
-  //   console.log("quizId", quizId);
-  //   console.log("badgeId", badgeId);
-
-  //   this.quizService.addBadgeToQuiz(quizId, badgeId).subscribe((response: any) => {
-  //     console.log("Badge ajouté au quiz avec succès", response);
-  //   });
-  // }
 
 }

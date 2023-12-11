@@ -33,13 +33,12 @@ export class QuizViewComponent implements OnInit {
   getQuizzes(): void {
     this.quizService.getQuizzes().subscribe((quizzes: any) => {
       this.quizzes = quizzes.filter((quiz: any) => quiz.archive !== true);
-      console.log(this.quizzes);
+      console.info(this.quizzes);
     });
   }
 
   selectedQuizById(id: string) {
     this.quizId = id;
-    console.log(id);
     this.router.navigate(['/quiz', id]);
   }
 

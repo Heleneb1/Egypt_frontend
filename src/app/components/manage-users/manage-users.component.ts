@@ -18,7 +18,6 @@ export class ManageUsersComponent {
     if (this.usersOpen) {
       this.userService.getUsers().subscribe(users => {
         this.users = users;
-        console.log(users);
       });
     }
   }

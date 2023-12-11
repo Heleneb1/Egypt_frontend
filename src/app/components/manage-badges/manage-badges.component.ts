@@ -49,7 +49,6 @@ export class ManageBadgesComponent implements OnInit {
     };
 
     this.quizService.createBadge(newBadge).subscribe((response: any) => {
-      console.log("Nouveau badge créé :", response);
       this.createBadgeForm();
     });
     this.toastr.success('Badge créé', 'Création');
@@ -63,15 +62,12 @@ export class ManageBadgesComponent implements OnInit {
       this.quizService.getBadges().subscribe((badges: any) => {
         this.badges = badges;
         this.badges.sort((a, b) => a.name.localeCompare(b.name));
-        console.log(this.badges);
       });
     }
   }
   searchBadgeByName(name: string) {
-    console.log("searchName", name);
     this.badgesService.getBadgeByName(name).subscribe((badge: any) => {
       this.badge = badge;
-      console.log("badge", badge);
       this.badges = badge;
       this.reset();
 
@@ -88,7 +84,6 @@ export class ManageBadgesComponent implements OnInit {
 
       this.quizService.getBadgeById(badgeId).subscribe((badge: any) => {
         this.badgesArray = badge;
-        console.log("ID du badge sélectionné : ", badgeId);
         this.selectBadgeEmit(badge);
       });
     }
@@ -104,14 +99,10 @@ export class ManageBadgesComponent implements OnInit {
     }
   }
   addBadgeToQuiz(selectedQuiz: string, badgeId: string) {
-    console.log("ID du quiz : ", selectedQuiz);
-    console.log("ID du badge : ", badgeId);
-
     this.quizService.addBadgeToQuiz(selectedQuiz, badgeId).subscribe((response: any) => {
       if (response) {
         this.toastr.success('Badge ajouté au quiz', 'Ajout');
       }
-      console.log("Badge ajouté au quiz avec succès", response);
 
     });
   }

@@ -10,7 +10,6 @@ export class AuthGuard implements CanActivate {
   canActivate(_route: ActivatedRouteSnapshot, _state: RouterStateSnapshot): Observable<boolean> {
     return this.authService.isLoggedIn() ? this.authService.getUserRole().pipe(
       map(userRole => {
-        console.log("Role", userRole);
 
         if (userRole === 'USER') {
 

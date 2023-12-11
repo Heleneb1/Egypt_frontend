@@ -15,7 +15,6 @@ export class ArticlesService {
     const url = `${this.articlesDataUrl}/${articleId}/add-rating`;
     this.httpClient.put<any>(url, { rating: userRating }).subscribe(
       updatedArticle => {
-        console.log('Quiz mis à jour avec le vote :', updatedArticle);
       },
       error => {
         console.error('Erreur lors de la mise à jour du quiz :', error);
@@ -70,7 +69,6 @@ export class ArticlesService {
     return this.httpClient.get<Article[]>(this.articlesDataUrl).pipe(
       map((articles: Article[]) => {
         const uniqueTag = new Set<string>();
-        console.log(articles);
 
 
         articles.forEach((article: Article) => {

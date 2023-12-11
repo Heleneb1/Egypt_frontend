@@ -29,7 +29,6 @@ export class GCUComponent {
     // ...
 
     this.gcuForm.get('accepted')?.valueChanges.subscribe(value => {
-      console.log('La case à cocher est cochée :', value);
       this.showModal = false;
       this.isAcceptedChange.emit(value);
 

@@ -40,7 +40,6 @@ export class ManageQuestionComponent implements OnInit {
     if (this.isSelectingQuestions) {
       this.quizService.getAllQuestionByCategory(this.category).subscribe((questions: any) => {
         this.questions = selectedQuestionIds;
-        console.log(selectedQuestionIds);
         this.selectQuestionsEmit(questions);
       });
     }
@@ -62,7 +61,6 @@ export class ManageQuestionComponent implements OnInit {
     this.right_answer_2 = question.rightAnswer2;
     this.category = question.category;
     this.showUpdateForm = !this.showUpdateForm;
-    console.log(this.selected);
 
   }
 
@@ -105,14 +103,12 @@ export class ManageQuestionComponent implements OnInit {
   getQuestionByCategory(category: string) {
     this.quizService.getAllQuestionByCategory(category).subscribe((questions: any) => {
       this.questions = questions;
-      console.log("categorie", category);
     });
   }
 
   addQuestionToQuiz(quizSelectedId: string, category: string) {
     this.quizService.getAllQuestionByCategory(category).subscribe((questions: any) => {
       this.questionsToAdd = questions;
-      console.log(questions);
     });
   }
   selectQuestionsByCategory() {
@@ -121,8 +117,6 @@ export class ManageQuestionComponent implements OnInit {
         this.questions = questions;
         this.selectCategoryEmit(this.selectCategory);
         this.selectQuestionsEmit(this.questions);
-        console.log("Les questions", this.questions);
-        console.log("categorie", this.selectCategory);
         this.isShow = !this.isShow;
       });
     }
@@ -163,7 +157,6 @@ export class ManageQuestionComponent implements OnInit {
 
   deleteQuestion(questionId: string) {
     if (confirm('Êtes-vous sûr de vouloir supprimer cette question ?')) {
-      console.log("id question", questionId);
 
       this.quizService.deleteQuestion(questionId).subscribe(() => {
         this.selectQuestionsByCategory();
@@ -173,7 +166,6 @@ export class ManageQuestionComponent implements OnInit {
   }
 
   updateQuestion(questionId: string, existingQuestion: any) {
-    console.log("existingQuestion", existingQuestion);
 
     if (existingQuestion && questionId) {
       existingQuestion.question_title = this.question_title;
@@ -183,11 +175,9 @@ export class ManageQuestionComponent implements OnInit {
       existingQuestion.right_answer = this.right_answer;
       existingQuestion.right_answer_2 = this.right_answer_2;
     }
-    console.log("id question", questionId);
 
     this.quizService.updateQuestion(questionId, existingQuestion).subscribe(
       () => {
-        console.log("Mise à jour", existingQuestion);
         this.toastr.success('Question modifiée', 'Modification');
         this.showUpdateForm = false;
         this.getQuestionByCategory(this.category);

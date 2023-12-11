@@ -14,10 +14,8 @@ export class AdminGuardService implements CanActivate {
   canActivate(_route: ActivatedRouteSnapshot, _state: RouterStateSnapshot): Observable<boolean> {
     return this.authService.isLoggedIn() ? this.authService.getUserRole().pipe(
       map(userRole => {
-        console.log("Role", userRole);
 
         if (userRole === 'ADMIN') {
-          console.log("Role", userRole);
 
           return true;
         } else {

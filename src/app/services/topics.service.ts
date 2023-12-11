@@ -37,7 +37,6 @@ export class TopicsService {
 
   }
   getAnswersByTopicId(topicId: string) {
-    console.log(`${this.answersUrl}/topics/${topicId}`);
 
     return this.httpClient.get(`${this.answersUrl}/topics/${topicId}`);
   }

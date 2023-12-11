@@ -54,8 +54,6 @@ export class QuizDetailsComponent {
     this.auth.getUserConnected().subscribe((user: any) => {
       this.userConnected = user;
       this.userId = this.userConnected.id;
-      console.log("ID user", this.userId);
-      console.log(this.userConnected);
 
     });
   }
@@ -74,19 +72,14 @@ export class QuizDetailsComponent {
       this.quizId = params.get('id');
       this.quizService.getQuizById(this.quizId).subscribe((quiz) => {
         this.quiz = quiz;
-        console.log("Quiz", this.quiz.id);
 
-        console.log(this.quiz);
         this.userService.getUsers;
-        console.log(this.userService.getUsers);
         this.articlesService.getArticleContent(this.quiz.article).subscribe((article: any) => {
           this.quiz.article = article;
-          console.log(this.quiz.article.title);
         });
 
         this.badgeService.getBadgeContent(this.quiz.badge).subscribe((badge: any) => {
           this.quiz.badge = badge;
-          console.log("badge", this.quiz.badge.name);
 
         });
 
@@ -96,7 +89,6 @@ export class QuizDetailsComponent {
             this.questionsMap.push(question);
             this.totalNumberOfQuestions = this.questionsMap.length;
           });
-          console.log("Hello", this.questionsMap);
 
         });
       },
@@ -119,10 +111,6 @@ export class QuizDetailsComponent {
 
 
   saveVote() {
-
-    console.log(this.currentRating);
-    console.log(this.quizId);
-
 
     if (this.currentRating >= 0 && this.currentRating <= 5) {
       this.quizService.addRating(this.quizId, this.currentRating);
@@ -150,19 +138,13 @@ export class QuizDetailsComponent {
 
     for (const question of this.questionsMap) {
       const userAnswer = question.selectedOption;
-      console.log("reponse du joueur", userAnswer);
-      console.log("bonne", question.answer1);
-      console.log("Hello", this.questionsMap);
-
       if (userAnswer === question.answer1 || userAnswer === question.answer2) {
-        console.log("Bonne réponse", question.answer1, question.answer2);
         score++;
       }
     }
 
-    console.log("Score:", score);
     let percentage = (score / this.questionsMap.length) * 100;
-    console.log("Pourcentage de bonnes réponses :", percentage + "%");
+    console.info("Pourcentage de bonnes réponses :", percentage + "%");
     if (percentage >= 80) {
       this.toastr.success(`Félicitations ! Vous avez obtenu un score supérieur à 80%. ${percentage}% de bonnes réponses.`);
       this.showModal = true;
@@ -173,15 +155,14 @@ export class QuizDetailsComponent {
 
   answerQuestion(): void {
     const userProgress = (this.questionsMap.length / this.totalNumberOfQuestions) * 100;
-    console.log("Progression de l'utilisateur :", userProgress);
+    console.info("Progression de l'utilisateur :", userProgress);
 
     this.numberOfAnsweredQuestions++;
-    console.log("Nombre de questions répondues :", this.numberOfAnsweredQuestions);
+    console.info("Nombre de questions répondues :", this.numberOfAnsweredQuestions);
 
     this.progress = (this.numberOfAnsweredQuestions / this.totalNumberOfQuestions) * 100;
-    console.log("Nombre de questions répondues :", this.numberOfAnsweredQuestions);
-    console.log("Progression de l'utilisateur :", this.progress);
-    console.log("Nombre total de questions :", this.totalNumberOfQuestions);
+    console.info("Nombre de questions répondues :", this.numberOfAnsweredQuestions);
+    console.info("Nombre total de questions :", this.totalNumberOfQuestions);
     let progressBar = document.getElementById('progressBar') as HTMLElement;
     progressBar.style.width = this.progress + '%';
 
@@ -189,7 +170,7 @@ export class QuizDetailsComponent {
 
   awardBadgeToUser() {
     this.userService.awardBadgeToCurrentUser(this.userId, this.badgeId).subscribe();
-    console.log("badge aprés", this.badgeId);
+    console.info("badge aprés", this.badgeId);
     this.closeModal();
   }
 

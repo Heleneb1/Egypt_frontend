@@ -25,7 +25,6 @@ export class QuizService {
         const url = `${this.quizDataUrl}/${quizId}/add-rating`;
         this.httpClient.put<any>(url, { rating: userRating }).subscribe(
             updatedQuiz => {
-                console.log('Quiz mis à jour avec le vote :', updatedQuiz);
             },
             error => {
                 console.error('Erreur lors de la mise à jour du quiz :', error);
@@ -45,7 +44,6 @@ export class QuizService {
     }
 
     getQuestionByTitle(questionId: string): Observable<string> {
-        console.log(questionId);
 
         return this.getQuestionById(questionId).pipe(map((question: any) => `${question.question_title} `));
 
@@ -72,7 +70,6 @@ export class QuizService {
     }
     createQuestion(data: any) {
         this.questionDataUrl + '/question';
-        console.log(this.questionDataUrl + '/create', data);
 
         return this.httpClient.post(this.questionDataUrl + '/create', data);
     }
@@ -82,7 +79,6 @@ export class QuizService {
     }
     addQuestionByCategoryToQuiz(quizId: string, category: string) {
         const url = `${this.quizDataUrl}/${quizId}/add-questions`;
-        console.log(category);
 
         const requestBody = { category: category };
 
@@ -115,7 +111,6 @@ export class QuizService {
 
 
     createQuiz(data: any) {
-        console.log(data);
 
         return this.httpClient.post(this.quizDataUrl + '/create', data);
 
@@ -129,7 +124,6 @@ export class QuizService {
 
     updateQuestion(id: string, updatedQuestion: any): Observable<any> {
         const url = `${this.questionDataUrl}/${id}`;
-        console.log("MaJ", updatedQuestion);
 
         return this.httpClient.put<any>(url, updatedQuestion);
     }
@@ -146,8 +140,6 @@ export class QuizService {
         return this.httpClient.get<any[]>(this.badgeDataUrl);
     }
     createBadge(data: any) {
-        console.log(data);
-
         return this.httpClient.post(this.badgeDataUrl + '/create', data);
     }
     getBadgeById(badgeId: string) {
@@ -156,9 +148,6 @@ export class QuizService {
 
 
     addBadgeToQuiz(quizId: string, badgeId: string) {
-        console.log(quizId, badgeId);
-
-        console.log(`${this.quizDataUrl}/${quizId}/badges/${badgeId}/add-badge`);
 
 
         return this.httpClient.put(`${this.quizDataUrl}/${quizId}/badges/${badgeId}/add-badge`, { badgeId: badgeId });

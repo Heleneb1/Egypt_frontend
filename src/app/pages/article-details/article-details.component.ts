@@ -72,8 +72,6 @@ export class ArticleDetailsComponent {
   }
   saveVote() {
 
-    console.log(this.currentRating);
-    console.log(this.articleId);
 
 
     if (this.currentRating >= 0 && this.currentRating <= 5) {

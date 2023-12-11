@@ -43,7 +43,6 @@ export class SearchComponent implements OnInit {
       this.searchQuery,
     ).subscribe(
       (response: Article[]) => {
-        console.log('Articles par auteur, titre ou tag :', response);
         this.articles = response;
       },
       (error) => {

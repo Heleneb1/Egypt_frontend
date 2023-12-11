@@ -26,8 +26,6 @@ export class BadgesModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.badgesService.getBadges().subscribe((data: any) => {
-      console.log("ModalData", data);
-      console.log("badgeId dans BadgesModalComponent", this.badgeId);
       this.badge = this.badgesService.getBadgesById(this.badgeId);
       this.getContent(this.badgeId);
     });
@@ -35,14 +33,11 @@ export class BadgesModalComponent implements OnInit {
   getContent(badgeId: any) {
     this.badgesService.getBadgeContent(badgeId).subscribe((badge: any) => {
       this.badge = badge;
-      console.log("badge", badge);
     });
   }
 
 
   awardBadgeToUser(userId: any, badgeId: any) {
-    console.log("bm user", userId);
-    console.log("bm badge", badgeId);
     this.userService.awardBadgeToCurrentUser(badgeId, userId).subscribe((data: any) => {
       this.router.navigate(['/profile']);
     });

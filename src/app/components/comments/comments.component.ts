@@ -65,7 +65,6 @@ export class CommentsComponent implements OnInit {
     this.userConnected = this.authService.getUserConnected();
     this.userConnected.subscribe((user: any) => {
       this.userConnected = user;
-      console.log('User connected:', this.userConnected);
 
       this.commentsService.getCommentsByArticleId(this.articleCommentId).subscribe((comments: Comment[]) => {
         this.commentList = comments.filter((comment: Comment) => !comment.archive);
@@ -115,8 +114,6 @@ export class CommentsComponent implements OnInit {
 
         archive: this.isArchived,
       };
-      console.log(data);
-      console.log("article", this.articleCommentId);
 
       this.httpClient.put(url, data).subscribe(
         (response: any) => {
@@ -133,9 +130,6 @@ export class CommentsComponent implements OnInit {
   }
   deleteMyComment(commentId: string, authorId: string) {
     if (this.userConnected.id === authorId) {
-      console.log(this.userConnected.id);
-      console.log(authorId);
-      console.log(commentId);
 
 
       if (confirm('Voulez-vous vraiment supprimer ce commentaire ?')) {
@@ -148,7 +142,6 @@ export class CommentsComponent implements OnInit {
   }
   onComment() {
     if (this.commentList.length > 0) {
-      console.log("commentaire", this.commentList);
 
       this.showComment = !this.showComment;
     } else {

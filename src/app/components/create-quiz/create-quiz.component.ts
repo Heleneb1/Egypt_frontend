@@ -69,7 +69,6 @@ export class CreateQuizComponent implements AfterViewInit, OnInit {
     const descriptionText = this.quill.root.innerHTML;
     const userId = this.userConnected.id;
     const url = environment.apiUrl + `/quizzes/create/${userId}`;
-    console.log(url);
 
     const data = {
       content: descriptionText,
@@ -83,12 +82,9 @@ export class CreateQuizComponent implements AfterViewInit, OnInit {
     this.http.post(url, data).subscribe(
 
       (response: any) => {
-        console.log('Quiz created', response);
-        console.log(data);
       },
       (error) => {
         console.error('Failed to create quiz', error);
-        console.log(data);
 
       }
     );

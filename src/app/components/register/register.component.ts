@@ -88,7 +88,7 @@ export class RegisterComponent {
   }
   onIsAcceptedChange(accepted: boolean) {
     this.accepted = accepted;
-    console.log('La case à cocher est acceptée dans l\'autre composant :', accepted);
+    console.info('La case à cocher est acceptée dans l\'autre composant :', accepted);
     this.showModal = false;
   }
 
@@ -103,18 +103,16 @@ export class RegisterComponent {
       accepted: this.accepted,
     };
 
-    console.log("accepté", user.accepted)
 
     this.userService.registerUser(user).subscribe(
       (response) => {
-        console.log(response);
         this.registrationStatus.emit({
           success: true,
           submitted: this.formSubmitted,
         });
       },
       (error) => {
-        console.log(error);
+        console.error(error);
         this.registrationStatus.emit({
           success: false,
           submitted: this.formSubmitted,
@@ -130,7 +128,7 @@ export class RegisterComponent {
   }
   acceptConditions(event: { success: boolean; submitted: boolean }) {
     if (event.success && event.submitted) {
-      console.log('Conditions accepted!');
+      console.info('Conditions accepted!');
     }
   }
   openModal(): void {
