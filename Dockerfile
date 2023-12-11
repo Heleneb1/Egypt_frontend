@@ -38,7 +38,7 @@ COPY . .
 
 # production environment
 FROM nginx:stable-alpine-slim
-COPY --from=build /build/dist/ /usr/share/nginx/html 
+COPY --from=build /build/dist/ /usr/share/nginx/html
 COPY default.conf /etc/nginx/conf.d/
 EXPOSE 4200
 CMD ["nginx", "-g", "daemon off;"]
