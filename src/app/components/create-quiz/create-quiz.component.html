@@ -8,8 +8,8 @@
         </div>
 
         <div class="text-container">
-            Créez votre propre quiz.
-            Après un contrôle de notre scribe il sera présenté à l’ensemble de nos abonnés </div>
+            Créez votre propre quiz, avec un minimum de 5 questions.<br />
+            Après validation de notre scribe il sera visible de tous </div>
     </div>
     <div class="sub-title">
         <h2>Créer un quiz</h2>
@@ -44,15 +44,60 @@
                     placeholder="Entrez le lien de l'image" />
             </div>
         </div>
-        <div id="editor"></div>
-    </div>
-    <div class="Send">
-        <div class="button">
-            <div class="button-container">
-                <button type="submit" class="button" (click)="createQuiz()">Soumettre</button>
-            </div>
+        <div class="create-questions">
+            <form (ngSubmit)="onCreateQuestion()">
+                <div class="sub-title">
+                    <h2>Créer une question</h2>
+                </div>
+                <div class="input-container">
+                    <input placeholder="Question ?" id="question_title" [(ngModel)]="question_title"
+                        name="question_title">
+                    <input placeholder="Option 1" id="option_1" [(ngModel)]="option_1" name="option_1">
+                    <input placeholder="Option 2" id="option_2" [(ngModel)]="option_2" name="option_2">
+                    <input placeholder="Option 3" id="option_3" [(ngModel)]="option_3" name="option_3">
+                    <input placeholder="Bonne réponse" id="right_answer" [(ngModel)]="right_answer" name="right_answer">
+                    <input placeholder="Catégorie" type="text" id="category" [(ngModel)]="category" name="category">
+
+                    <div *ngIf="!category" class="error-message">
+                        <p>La catégorie ne peut pas être vide.</p>
+                    </div>
+                </div>
+
+                <div class="create-button">
+                    <div class="button">
+                        <button class="participation" type="submit" title="add-new-question">Ajouter</button>
+                    </div>
+                </div>
+            </form>
         </div>
-    </div>
+
+        <div class="createdQuestions-global-style" *ngIf="createdQuestions.length > 0">
+            <div class="sub-title">
+                <h2>Questions Créées</h2>
+            </div>
+            <div class="createdQuestions" *ngFor="let question of createdQuestions; let i = index">
+                <div class="question">
+                    <p>Question {{ i + 1 }}: {{ question.question_title }}</p>
+                    <p>Option 1: {{ question.option_1 }}</p>
+                    <p>Option 2: {{ question.option_2 }}</p>
+                    <p>Option 3: {{ question.option_3 }}</p>
+                    <p>Bonne réponse: {{ question.right_answer }}</p>
+                    <p>Category: {{ question.category }}</p>
+                </div>
+            </div>
 
 
-    <app-scroll-to-top></app-scroll-to-top>
+        </div>
+        <div class="Send">
+            <div class="button">
+                <div *ngIf="createdQuestions.length > 4" class="error-message">
+                    <p>Vous devez créer au moins 5 questions.</p>
+                    <div class="button-container">
+
+                        <button title="create-quiz-with-questions" type="submit" class="button"
+                            (click)="createQuiz()">Soumettre</button>
+                    </div>
+                </div>
+            </div>
+
+            <app-scroll-to-top></app-scroll-to-top>
