@@ -21,7 +21,6 @@ import { RouterModule } from '@angular/router';
 import { ResultCardComponent } from './components/result-card/result-card.component';
 import { HeaderComponent } from './components/header/header.component';
 import { CreateQuizComponent } from './components/create-quiz/create-quiz.component';
-import { QuillModule } from 'ngx-quill';
 import { ScrollToTopComponent } from './components/scroll-to-top/scroll-to-top.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { UserInfoComponent } from './components/user-info/user-info.component';
@@ -146,7 +145,6 @@ setTimeout(() => {
   imports: [
     BrowserModule,
     AppRoutingModule,
-    QuillModule.forRoot(),
     NgcCookieConsentModule.forRoot(cookieConfig),
     FormsModule,
     RouterModule,

@@ -3,7 +3,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inknut+Antiqua&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter+Tight&display=swap");
-@import '~font-awesome/css/font-awesome.min.css';
+@import "~font-awesome/css/font-awesome.min.css";
 
 html,
 body {
@@ -12,13 +12,14 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  cursor: url('../src/assets/images/Ankh-Horus-2.svg') 16 16, auto;
+  cursor:
+    url("../src/assets/images/Ankh-Horus-2.svg") 16 16,
+    auto;
 }
 
 svg {
   fill: var(--white);
   cursor: pointer;
-
 }
 
 h1,
@@ -41,8 +42,8 @@ p {
   --blue-e: #182034, #0d193af2;
   --white: #ffffff;
   --title: "Kaushan Script", cursive;
-  --text2: 'Inknut Antiqua', serif;
-  --text: 'Inter Tight', sans-serif;
+  --text2: "Inknut Antiqua", serif;
+  --text: "Inter Tight", sans-serif;
 }
 
 .user-box {
@@ -101,8 +102,6 @@ p {
 }
 
 @media (min-width: 768px) {
-
-
   .user-box input {
     padding: 0.5rem 1rem;
   }
@@ -127,7 +126,7 @@ p {
   border: 1px solid;
   border-color: #152131;
   box-sizing: border-box;
-  font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   padding: 8px;
 
   width: 75%;
@@ -166,7 +165,6 @@ span.ql-picker-label {
   flex-direction: column;
   margin-top: 6rem;
 
-
   .image img {
     margin-top: 14rem;
     width: 100vw;
@@ -197,13 +195,13 @@ input[type="checkbox"] {
   display: none;
 }
 
-input[type="checkbox"]+label {
+input[type="checkbox"] + label {
   position: relative;
   padding-left: 35px;
   cursor: pointer;
 }
 
-input[type="checkbox"]+label::before {
+input[type="checkbox"] + label::before {
   content: "";
   position: absolute;
   left: 0;
@@ -214,7 +212,7 @@ input[type="checkbox"]+label::before {
   border-radius: 3px;
 }
 
-input[type="checkbox"]:checked+label::after {
+input[type="checkbox"]:checked + label::after {
   content: "";
   position: absolute;
   left: 0.2rem;
@@ -227,8 +225,7 @@ input[type="checkbox"]:checked+label::after {
   transform: rotate(45deg);
 }
 
-
-.cc-floating.cc-theme-edgeless .cc-btn+.cc-btn {
+.cc-floating.cc-theme-edgeless .cc-btn + .cc-btn {
   margin-left: 0;
   border: 1px solid var(--sun);
 }
@@ -244,4 +241,14 @@ input[type="checkbox"]:checked+label::after {
   background-color: var(--blue);
   border: var(--sun) 1px solid;
   border-radius: 0.5rem;
+}
+.participation {
+  background-color: var(--sun);
+  color: var(--white);
+  text-shadow: 1px 1px 1px var(--blue);
+  border-radius: 1rem;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem 2rem;
+  font-weight: bold;
 }
