@@ -5,8 +5,10 @@ scss .createQuiz {
 .all-fields {
   background: url("/assets/images/background.svg") no-repeat;
   background-size: cover;
+  width: 100%;
   display: flex;
   flex-direction: column;
+  margin: 1rem;
 }
 
 .label-style {
@@ -32,7 +34,7 @@ scss .createQuiz {
   align-items: center;
   input {
     margin-left: 0.5rem;
-    border-color: var(--sun);
+    // border-color: var(--sun);
     color: var(--blue);
     border-radius: 3rem;
     padding: 0.5rem;
@@ -65,7 +67,7 @@ scss .createQuiz {
 .create-questions {
   display: flex;
   border-radius: 0.5rem;
-  border: 2px solid var(--blue);
+  // border: 2px solid var(--blue);
   background: antiquewhite;
   justify-content: center;
   align-items: center;
@@ -152,5 +154,13 @@ input:focus {
     border-radius: 0;
     border-bottom: none;
     padding: 0.5rem;
+  }
+  .all-fields {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 0;
   }
 }
