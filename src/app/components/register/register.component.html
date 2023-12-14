@@ -34,7 +34,7 @@
 
       <div class="error"
         *ngIf="formSubmitted && userForm.controls['password'].invalid && (userForm.controls['password'].dirty || userForm.controls['password']?.touched)">
-        Le mot de passe doit comporter au moins 12 caractères, 1 majuscule, 1 caractère spécial parmis @, #, $, %, ^, &,
+        Le mot de passe doit comporter au moins 12 caractères, 1 majuscule, 1 caractère spécial parmis &#64;, #, $, %, ^, &,
         +, = et 1 chiffre, sans espace.</div>
       <button type="button" class="show-password" (click)="togglePasswordVisibility()"
         style="color: var(--sun); background-color: white;">

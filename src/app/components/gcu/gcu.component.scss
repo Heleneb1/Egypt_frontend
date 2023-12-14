@@ -12,7 +12,6 @@
     font-family: var(--text);
     font-size: 1.1rem;
     font-weight: bold;
-    cursor: pointer;
 
     form {
         display: flex;
@@ -29,7 +28,6 @@
         h1 {
             font-family: var(--title);
             text-align: center;
-            // margin: 2.5rem;
             padding: 2rem;
             color: var(--sun);
             font-size: 2rem;
@@ -79,9 +77,31 @@
 
     footer p {
         margin-bottom: 2rem;
-        text-decoration: none;
+
         text-align: center;
+
+        color: var(--sun);
+    }
+    .link,
+    a {
+        position: relative;
+        color: var(--sun);
         cursor: pointer;
-        color: white;
+        text-decoration: none;
+    }
+
+    .link::before {
+        content: "";
+        position: absolute;
+        width: 0%;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: var(--sun);
+        transition: width 0.3s ease-in-out; /* La transition crée l'effet progressif */
+    }
+
+    .link:hover::before {
+        width: 100%;
     }
 }

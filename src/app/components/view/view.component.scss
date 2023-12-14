@@ -88,12 +88,10 @@
 .author-picture {
     position: absolute;
     font-family: var(--text);
-    bottom: 0;
-    right: 0;
+    font-size: 0.9rem;
     background: rgba(0, 0, 0, 0.7);
     color: white;
-    padding: 5px;
-    margin: 0;
+    margin-top: 5rem;
     opacity: 0;
     transition: opacity 0.5s;
 }
