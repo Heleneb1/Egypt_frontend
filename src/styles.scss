@@ -2,48 +2,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Inknut+Antiqua&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter+Tight&display=swap");
 @import "~font-awesome/css/font-awesome.min.css";
-
-html,
-body {
-  height: 100%;
-  background-color: var(--blue);
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  cursor:
-    url("../src/assets/images/Ankh-Horus-2.svg") 16 16,
-    auto;
-}
-
-svg {
-  fill: white;
-  cursor: pointer;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin: 8px 0;
-}
-
-p {
-  margin: 0;
-  font-family: var(--text);
-}
-
-:root {
-  --blue: #152131;
-  --sun: #fc9900;
-  --blue-e: #182034, #0d193af2;
-  --white: #ffffff;
-  --title: "Kaushan Script", cursive;
-  --text2: "Inknut Antiqua", serif;
-  --text: "Inter Tight", sans-serif;
-}
-
 .user-box {
   display: flex;
   flex-direction: column-reverse;
@@ -298,4 +256,45 @@ input[type="checkbox"]:checked + label::after {
   cursor: pointer;
   padding: 0.5rem 2rem;
   font-weight: bold;
+}
+
+html,
+body {
+  height: 100%;
+  background-color: var(--blue);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  cursor:
+    url("../src/assets/images/Ankh-Horus-2.svg") 16 16,
+    auto;
+}
+
+svg {
+  fill: white;
+  cursor: pointer;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 8px 0;
+}
+
+p {
+  margin: 0;
+  font-family: var(--text);
+}
+
+:root {
+  --blue: #152131;
+  --sun: #fc9900;
+  --blue-e: #182034, #0d193af2;
+  --white: #ffffff;
+  --title: "Kaushan Script", cursive;
+  --text2: "Inknut Antiqua", serif;
+  --text: "Inter Tight", sans-serif;
 }
