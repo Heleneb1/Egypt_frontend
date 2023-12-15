@@ -34,6 +34,7 @@
 FROM node:lts-slim as builder
 WORKDIR /usr/src/app
 COPY . .
+ENV PATH ./node_modules/.bin:$PATH
 RUN npm ci && npm run build:docker
 
 # Stage 2: Create production environment with Nginx
