@@ -116,7 +116,6 @@
     height: 50vh;
     @extend .center;
     flex-direction: column;
-    //TODO use CDN for images
 
     .image img {
         width: 100vw;
@@ -160,6 +159,6 @@
     }
 
     .text-container {
-        bottom: 25rem;
+        bottom: 23rem;
     }
 }

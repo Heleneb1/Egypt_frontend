@@ -1,6 +1,11 @@
 .Search-all {
   height: 100%;
 }
+.select-style {
+  color: var(--blue);
+  font-size: 1.3rem;
+  font-weight: bold;
+}
 .search-image {
   display: flex;
   align-items: center;
@@ -48,11 +53,7 @@
 select,
 option {
   appearance: none;
-  font-size: 1.5rem;
-  font-weight: 400;
-}
-.option {
-  font-size: 1.3rem;
+  color: var(--blue);
 }
 .filter-container select {
   width: 16rem;
@@ -80,16 +81,21 @@ input[type="text"]::placeholder {
 .filter-container select:first-of-type {
   border-top-left-radius: 2rem;
   border-bottom-left-radius: 2rem;
+  @extend .select-style;
+}
+.filter-container select {
+  @extend .select-style;
 }
 .filter-container select:last-child {
   border-top-right-radius: 2rem;
   border-bottom-right-radius: 2rem;
+  @extend .select-style;
 }
 .text-container {
   position: relative;
   bottom: 30rem;
   width: 45rem;
-  font-size: 2rem;
+  font-size: 1.5rem;
   display: flex;
   justify-content: center;
   align-items: center;

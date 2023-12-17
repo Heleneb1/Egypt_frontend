@@ -29,13 +29,6 @@ export class QuizDetailsComponent {
   badgeId: string = '';
   userConnected: any;
   isLoaded = false;
-  // authorName: any;
-  // questionTitles: any = [];
-  // articlesMap: any = [];
-  // questions: any;
-  // userAnswers: string[] = [];
-  // selectedOption!: any[];
-  // badges: any[] = [];
 
 
   constructor (

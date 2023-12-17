@@ -61,11 +61,6 @@ export class UserService {
     const url = `${environment.apiUrl}/users/${userId}`;
     return this.httpClient.put(url, body);
   }
-  // updateArticle(id: string, updatedArticle: Article): Observable<Article> {
-  //   const url = `${this.dataUrl}/articles/${id}`;
-  //   return this.httpClient.put<Article>(url, updatedArticle);
-  // }
-
   registerUser(user: any): Observable<any> {
 
     return this.httpClient
