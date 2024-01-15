@@ -57,7 +57,7 @@ export interface NgcPalette {
 const cookieConfig: NgcCookieConsentConfig = {
 
   cookie: {
-    domain: 'https://my-app.lesmysteresdelegypteantique.fr'
+    domain: 'https://app.lesmysteresdelegypteantique.fr'
   },
   palette: {
     popup: {

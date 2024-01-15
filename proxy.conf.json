@@ -1,0 +1,6 @@
+{
+    "/api": {
+        "target": "https://egypt-api.lesmysteresdelegypteantique.fr",
+        "secure": false
+    }
+}
