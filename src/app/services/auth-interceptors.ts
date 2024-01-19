@@ -10,7 +10,7 @@ import { CookieService } from 'ngx-cookie-service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor(private cookieService: CookieService) {}
+  constructor (private cookieService: CookieService) { }
   intercept(
     request: HttpRequest<unknown>,
     next: HttpHandler

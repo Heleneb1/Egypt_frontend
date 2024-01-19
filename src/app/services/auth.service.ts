@@ -3,8 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable, map } from 'rxjs';
 import jwtDecode from 'jwt-decode';
-import { environment } from 'src/environments/environment';
-//dernière modif import { environment } from '../../environments/environment a la place de 'src/environments/environment/developpement
+import { environment } from 'src/environments/environment.development';
 import { NgcCookieConsentService } from 'ngx-cookieconsent';
 
 @Injectable({
