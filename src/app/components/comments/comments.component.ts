@@ -7,7 +7,7 @@ import { Comment } from 'src/app/models/comment';
 import { CommentsService } from 'src/app/services/comments.service';
 import { UserService } from 'src/app/services/user.service';
 import { AuthService } from 'src/app/services/auth.service';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.development';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({

@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http"; // Assurez-vous d'importer HttpClient
-import { environment } from "src/environments/environment";
+import { environment } from "src/environments/environment.development";
 import { Observable, map } from "rxjs";
 import { QuizQuestion } from "../models/quiz-question";
 
