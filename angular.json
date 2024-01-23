@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist",
+            "outputPath": "dist/angular-template",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -52,13 +52,7 @@
                   "maximumError": "4kb"
                 }
               ],
-              "outputHashing": "all",
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.production.ts"
-                }
-              ]
+              "outputHashing": "all"
             },
             "development": {
               "buildOptimizer": false,
@@ -66,13 +60,7 @@
               "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
-              "namedChunks": true,
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.development.ts"
-                }
-              ]
+              "namedChunks": true
             }
           },
           "defaultConfiguration": "production"
@@ -81,10 +69,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "frontend-egypt:build:production"
+              "browserTarget": "angular-template:build:production"
             },
             "development": {
-              "browserTarget": "frontend-egypt:build:development"
+              "browserTarget": "angular-template:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -92,7 +80,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "frontend-egypt:build"
+            "browserTarget": "angular-template:build"
           }
         },
         "test": {
@@ -115,6 +103,15 @@
             ],
             "scripts": [
               "node_modules/cookieconsent/build/cookieconsent.min.js"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
             ]
           }
         }
