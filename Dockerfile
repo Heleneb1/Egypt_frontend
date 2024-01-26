@@ -6,7 +6,7 @@ COPY . .
 ENV PATH ./node_modules/.bin:$PATH
 
 RUN npm ci 
-RUN npx ng build --configuration production --output-path=dist
+RUN ng build --configuration production --output-path=dist --verbose
 
 
 # Stage 2: Create production environment with Nginx
