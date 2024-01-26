@@ -3,6 +3,11 @@
 FROM node:lts-slim as builder
 WORKDIR /usr/src/app
 COPY . .
+# Remove the Angular cache
+RUN rm -rf .angular/cache
+
+# Clear npm cache
+RUN npm cache clean --force
 ENV PATH ./node_modules/.bin:$PATH
 
 RUN npm ci 
