@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import { Observable, map, throwError } from 'rxjs';
-import { environment } from 'src/environments/environment.development';
+import { environment } from 'src//environments/environment';
 import { AuthService } from './auth.service';
 
 @Injectable({

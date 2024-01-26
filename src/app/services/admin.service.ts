@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ArticlesService } from './articles.service';
 import { UserService } from './user.service';
 import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment.development';
+import { environment } from 'src//environments/environment';
 import { Article } from '../models/article';
 import { Observable } from 'rxjs';
 

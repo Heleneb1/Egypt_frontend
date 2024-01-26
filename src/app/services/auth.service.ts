@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable, map } from 'rxjs';
 import jwtDecode from 'jwt-decode';
-import { environment } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';
 import { NgcCookieConsentService } from 'ngx-cookieconsent';
 
 @Injectable({
@@ -19,7 +19,20 @@ export class AuthService {
   }
 
   isLoggedIn() {
+    console.log('isLoggedIn', this.cookieService.check('token'));
+
     return this.cookieService.check('token');
+  }
+  setUserToken(token: string) {
+    const expires = 1; // par exemple, pour une expiration d'un jour
+    const path = '/authentication'; // spécifiez le chemin approprié
+    const domain = 'localhost:4200'; // spécifiez le domaine approprié
+    const secure = true;
+    const sameSite = 'None';
+
+    // Utilisez ngx-cookie-service pour définir le cookie
+    this.cookieService.set('token', token, expires, path, domain, secure, sameSite);
+    console.log('token2', token);
   }
 
   getUserToken(): string | null {
@@ -31,7 +44,7 @@ export class AuthService {
   getUserConnected(): Observable<string> {
     const userId = this.getUserToken();
     const userConnectedUrl = environment.apiUrl + `/users/${userId}`;
-    return this.http.get<string>(userConnectedUrl);
+    return this.http.get<string>(userConnectedUrl, { withCredentials: true });
   }
   getUserRole(): Observable<string> {
     return this.getUserConnected().pipe(

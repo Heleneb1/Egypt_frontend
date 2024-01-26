@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { environment } from 'src/environments/environment.development';
+import { environment } from 'src//environments/environment';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -35,6 +35,8 @@ export class LoginComponent {
 
   loginUser() {
     if (this.isEmailValid) {
+      console.log('loginUser', this.user);
+
       return this.http
         .post(environment.apiUrl + '/api/auth/login', this.user, {
           observe: 'response',
@@ -53,14 +55,16 @@ export class LoginComponent {
               });
             }
           },
-          () => {
-            this.loginError.emit('Mauvais identifiants saisis');
+          (error) => {
+            console.error('Erreur côté client :', error);
+            this.loginError.emit('Erreur côté client lors de l\'authentification');
           }
         );
     } else {
       this.loginError.emit('De mauvais identifiants ont été saisis');
       return false;
     }
+
   }
 
   click() {
