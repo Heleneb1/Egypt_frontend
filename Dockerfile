@@ -4,6 +4,7 @@ WORKDIR /usr/src/app
 COPY . .
 ENV PATH ./node_modules/.bin:$PATH
 RUN npm ci 
+RUN rm -rf .angular/cache
 RUN ng build  --output-path=dist --verbose
 # Stage 2: Create production environment with Nginx
 FROM nginx:stable-alpine-slim
