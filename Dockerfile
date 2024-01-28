@@ -4,11 +4,12 @@ WORKDIR /usr/src/app
 COPY . .
 ENV PATH ./node_modules/.bin:$PATH
 RUN npm ci 
-RUN rm -rf .angular/cache
-RUN ng build  --output-path=dist --verbose
+RUN ng build --output-path=dist
+
 # Stage 2: Create production environment with Nginx
 FROM nginx:stable-alpine-slim
 COPY --from=builder /usr/src/app/dist/ /usr/share/nginx/html
 COPY ./default.conf /etc/nginx/conf.d/
 EXPOSE 4200
 CMD ["nginx", "-g", "daemon off;"]
+
