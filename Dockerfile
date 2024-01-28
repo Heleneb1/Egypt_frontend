@@ -4,6 +4,8 @@ WORKDIR /usr/src/app
 COPY . .
 ENV PATH ./node_modules/.bin:$PATH
 RUN npm ci 
+RUN rm -fr .angular/cache
+RUN ng cache clean
 RUN ng build --output-path=dist --verbose
 
 # Stage 2: Create production environment with Nginx
