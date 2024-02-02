@@ -5,7 +5,7 @@ import {
   HttpEvent,
   HttpInterceptor,
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, catchError } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from './auth.service';
 
@@ -34,6 +34,11 @@ export class AuthInterceptor implements HttpInterceptor {
         withCredentials: true,
       });
     }
-    return next.handle(request);
+    return next.handle(request).pipe(
+      catchError((error) => {
+        console.error('Error in interceptor:', error);
+        throw error; // Rejeter l'erreur pour qu'elle soit traitée par le gestionnaire d'erreurs global
+      })
+    );
   }
 }
