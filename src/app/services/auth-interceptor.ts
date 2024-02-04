@@ -23,6 +23,8 @@ export class AuthInterceptor implements HttpInterceptor {
     console.log('request', request);
 
     const token = this.cookieService.get('token');
+    console.log(typeof token);
+
     console.log('token1', token);
 
     if (token !== undefined && token !== null && token !== '') {
