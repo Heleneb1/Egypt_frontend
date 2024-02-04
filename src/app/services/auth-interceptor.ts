@@ -19,6 +19,7 @@ export class AuthInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
+
     console.log('request', request);
 
     const token = this.cookieService.get('token');
@@ -41,4 +42,4 @@ export class AuthInterceptor implements HttpInterceptor {
       })
     );
   }
-}
+}  
