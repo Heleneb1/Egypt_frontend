@@ -26,7 +26,7 @@ export class AuthService {
   setUserToken(token: string) {
     const expires = 1; // par exemple, pour une expiration d'un jour
     const path = '/authentication'; // spécifiez le chemin approprié
-    const domain = 'localhost:4200'; // spécifiez le domaine approprié
+    const domain = 'egypt-api.lesmysteresdelegypteantique.fr'; // spécifiez le domaine approprié
     const secure = true;
     const sameSite = 'None';
 
