@@ -19,19 +19,8 @@ export class AuthInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-
-    console.log('request', request);
-
     const token = this.cookieService.get('token');
-    console.log(typeof token);
-
-    console.log('token1', token);
-
-    if (token !== undefined && token !== null && token !== '') {
-      // Définir le cookie avec les options nécessaires
-      this.authService.setUserToken(token);
-
-      // Mettre à jour la requête avec le token
+    if (token && token.trim() !== '') { // Ajout de cette vérification
       request = request.clone({
         setHeaders: { Authorization: `Bearer ${token}` },
         withCredentials: true,
