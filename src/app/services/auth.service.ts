@@ -37,6 +37,7 @@ export class AuthService {
 
   getUserToken(): string | null {
     const token = this.cookieService.get('token');
+    console.log('token3', token);
     const payload: any = jwtDecode(token);
     return payload?.userId;
   }
