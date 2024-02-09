@@ -19,7 +19,7 @@ export class AuthService {
   }
 
   isLoggedIn() {
-    console.log('isLoggedIn', this.cookieService.check('token'));
+
 
     return this.cookieService.check('token');
   }
@@ -32,12 +32,12 @@ export class AuthService {
 
     // Utilisez ngx-cookie-service pour définir le cookie
     this.cookieService.set('token', token, expires, path, domain, secure, sameSite);
-    console.log('token2', token);
+
   }
 
   getUserToken(): string | null {
     const token = this.cookieService.get('token');
-    console.log('token3', token);
+
     const payload: any = jwtDecode(token);
     return payload?.userId;
   }

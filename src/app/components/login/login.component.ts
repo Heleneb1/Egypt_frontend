@@ -35,7 +35,7 @@ export class LoginComponent {
 
   loginUser() {
     if (this.isEmailValid) {
-      console.log('loginUser', this.user);
+
 
       return this.http
         .post(environment.apiUrl + '/api/auth/login', this.user, {

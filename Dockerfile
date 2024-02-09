@@ -9,7 +9,6 @@ RUN ng build --output-path=dist --verbose
 
 # Stage 2: Create production environment with Nginx
 FROM nginx:stable-alpine-slim
-RUN mkdir -p /etc/nginx/conf.d/
 COPY --from=builder /usr/src/app/dist/ /usr/share/nginx/html
 COPY ./default.conf /etc/nginx/conf.d/
 EXPOSE 4200
