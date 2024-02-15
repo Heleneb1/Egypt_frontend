@@ -34,6 +34,7 @@ export class LoginComponent {
   }
 
   loginUser() {
+
     if (this.isEmailValid) {
 
 
@@ -41,6 +42,7 @@ export class LoginComponent {
         .post(environment.apiUrl + '/api/auth/login', this.user, {
           observe: 'response',
           withCredentials: true,
+
         })
         .subscribe(
           (response) => {
