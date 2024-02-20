@@ -41,6 +41,7 @@ export class AuthService {
     console.log('cookie', this.cookieService.get('token'));
     document.cookie = `${name}=${token}; expires=${expires}; path=${path}; domain=${domain}; secure=${secure}; samesite=${sameSite}; httponly=${HTTPOnly}`;
     console.log('cookie', document.cookie);
+    console.log('Cookie set:', this.cookieService.get(name));
 
 
   }
@@ -54,6 +55,8 @@ export class AuthService {
   // }
   getUserToken(): string | null {
     const token = this.cookieService.get('token');
+    console.log("authservice", token);
+
     if (!token) {
       console.error("Token is undefined or not found.");
       return null;
