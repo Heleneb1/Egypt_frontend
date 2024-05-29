@@ -11,29 +11,23 @@ import { AuthService } from './auth.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor (private cookieService: CookieService, private authService: AuthService) { }
+  constructor(private authService: AuthService) {}
   intercept(
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
+    const auth_token = localStorage.getItem('auth_token');
 
-    const token = this.cookieService.get('token');
-    console.log(typeof token);
-
-    console.log('token', token);
-
-
-    if (token !== undefined && token !== null && token !== '') {
+    if (auth_token !== undefined && auth_token !== null && auth_token !== '') {
       // Définir le cookie avec les options nécessaires
-      this.authService.setUserToken(token);
+      this.authService.setUserToken(auth_token);
 
       request = request.clone({
-        setHeaders: { Authorization: `Bearer ${token}` },
-        headers: request.headers.set("Authorization", "Bearer " + token),
+        setHeaders: { Authorization: `Bearer ${auth_token}` },
         withCredentials: true,
+        responseType: 'text',
       });
     }
-    console.log('request', request);
     return next.handle(request);
   }
 }

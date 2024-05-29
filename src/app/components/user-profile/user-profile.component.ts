@@ -1,20 +1,17 @@
-
 import { Component, OnInit } from '@angular/core';
-import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
-  styleUrls: ['./user-profile.component.scss']
+  styleUrls: ['./user-profile.component.scss'],
 })
 export class UserProfileComponent implements OnInit {
   userData: any;
 
-
-  constructor (private authService: AuthService, private cookieService: CookieService) { }
+  constructor(private authService: AuthService) {}
   ngOnInit() {
-    if (this.cookieService.get('token') === '') {
+    if (localStorage.getItem('auth_token') === null) {
       this.authService.logout();
     } else {
       this.authService.getUserConnected().subscribe((data) => {

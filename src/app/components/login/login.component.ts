@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { environment } from 'src//environments/environment';
 import { AuthService } from 'src/app/services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -12,15 +12,20 @@ import { AuthService } from 'src/app/services/auth.service';
 export class LoginComponent {
   user = new loginUser();
   isEmailValid = false;
-
   showPassword: boolean = false;
 
   @Output() loginError = new EventEmitter<string>();
   userRole: string = '';
-  constructor (private http: HttpClient, private router: Router, private authService: AuthService) { }
+  authError: string = '';
+
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private toastr: ToastrService
+  ) {}
 
   checkEmail() {
-    if (this.user.email !== undefined || this.user.email !== '') {
+    if (this.user.email) {
       this.isEmailValid = !!this.user.email.match(
         /^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/i
       );
@@ -28,61 +33,67 @@ export class LoginComponent {
   }
 
   onSubmit() {
-    if (this.user.email !== undefined && this.user.password !== undefined) {
+    if (this.isEmailValid && this.user.password) {
       this.loginUser();
     }
   }
 
   loginUser() {
+    // supprimer un ancien JWT avant de se connecter
+    localStorage.removeItem('auth_token');
+    this.authService.login(this.user.email, this.user.password).subscribe({
+      next: (response) => {
+        const { token, user } = response;
+        localStorage.setItem('auth_token', token);
+        localStorage.setItem('user', JSON.stringify(user));
+        this.toastr.success('Vous êtes connecté !');
+        this.handleUserRole();
+      },
+      error: (error: HttpErrorResponse) => {
+        this.handleError(error);
+      },
+    });
+  }
 
-    if (this.isEmailValid) {
+  handleUserRole() {
+    this.authService.getUserRole().subscribe({
+      next: (userRole) => {
+        this.userRole = userRole;
+        this.redirectUser(userRole);
+      },
+      error: () => {
+        this.authError = "Impossible de récupérer le rôle de l'utilisateur";
+      },
+    });
+  }
 
-
-      return this.http
-        .post(environment.apiUrl + '/api/auth/login', this.user, {
-          observe: 'response',
-          withCredentials: true,
-
-        })
-        .subscribe(
-          (response) => {
-            if (response.status === 200) {
-              this.authService.getUserRole().subscribe((userRole) => {
-                this.userRole = userRole;
-                if (userRole === 'ADMIN') {
-                  this.router.navigate(['/admin']);
-                } else {
-                  this.router.navigate(['/profile']);
-                }
-              });
-            }
-          },
-          (error) => {
-            console.error('Erreur côté client :', error);
-            this.loginError.emit('Erreur côté client lors de l\'authentification');
-          }
-        );
+  redirectUser(userRole: string) {
+    if (userRole == 'ADMIN') {
+      this.router.navigate(['/admin']);
     } else {
-      this.loginError.emit('De mauvais identifiants ont été saisis');
-      return false;
+      this.router.navigate(['/profile']);
     }
+  }
 
+  handleError(error: HttpErrorResponse) {
+    if (error.status === HttpStatusCode.Unauthorized) {
+      this.authError = 'Les identifiants sont incorrects';
+    } else {
+      this.authError = 'Une erreur est survenue';
+    }
   }
 
   click() {
     this.showPassword = !this.showPassword;
   }
-
 }
-
 
 export class loginUser {
   email: string;
   password: string;
 
-  constructor () {
+  constructor() {
     this.email = '';
     this.password = '';
   }
-
 }
