@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment.development';
 import { AuthService } from 'src/app/services/auth.service';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -16,16 +16,15 @@ export class LoginComponent {
 
   @Output() loginError = new EventEmitter<string>();
   userRole: string = '';
-  authError: string = '';
 
   constructor(
+    private http: HttpClient,
     private router: Router,
-    private authService: AuthService,
-    private toastr: ToastrService
+    private authService: AuthService
   ) {}
 
   checkEmail() {
-    if (this.user.email) {
+    if (this.user.email !== undefined || this.user.email !== '') {
       this.isEmailValid = !!this.user.email.match(
         /^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/i
       );
@@ -33,53 +32,59 @@ export class LoginComponent {
   }
 
   onSubmit() {
-    if (this.isEmailValid && this.user.password) {
+    if (this.user.email !== undefined && this.user.password !== undefined) {
       this.loginUser();
     }
   }
 
-  loginUser() {
-    // supprimer un ancien JWT avant de se connecter
-    localStorage.removeItem('auth_token');
-    this.authService.login(this.user.email, this.user.password).subscribe({
-      next: (response) => {
-        const { token, user } = response;
-        localStorage.setItem('auth_token', token);
-        localStorage.setItem('user', JSON.stringify(user));
-        this.toastr.success('Vous êtes connecté !');
-        this.handleUserRole();
-      },
-      error: (error: HttpErrorResponse) => {
-        this.handleError(error);
-      },
-    });
-  }
+  handleServerResponse(response: HttpResponse<any>) {
+    if (response.status === 200) {
+      const authHeader = response.headers.get('Authorization');
+      if (authHeader && authHeader.startsWith('Bearer ')) {
+        const token = authHeader.split(' ')[1];
+        this.authService.setToken(token);
 
-  handleUserRole() {
-    this.authService.getUserRole().subscribe({
-      next: (userRole) => {
-        this.userRole = userRole;
-        this.redirectUser(userRole);
-      },
-      error: () => {
-        this.authError = "Impossible de récupérer le rôle de l'utilisateur";
-      },
-    });
-  }
-
-  redirectUser(userRole: string) {
-    if (userRole == 'ADMIN') {
-      this.router.navigate(['/admin']);
-    } else {
-      this.router.navigate(['/profile']);
+        const tokenInfo = this.authService.getUserToken();
+        if (tokenInfo) {
+          if (tokenInfo.scope === 'ADMIN') {
+            this.router.navigate(['/admin']);
+          } else {
+            this.router.navigate(['/profile']);
+          }
+        } else {
+          this.loginError.emit(
+            'Erreur lors de la récupération du rôle utilisateur'
+          );
+        }
+      } else {
+        this.loginError.emit('Erreur lors de la récupération du token');
+      }
     }
   }
-
-  handleError(error: HttpErrorResponse) {
-    if (error.status === HttpStatusCode.Unauthorized) {
-      this.authError = 'Les identifiants sont incorrects';
+  loginUser() {
+    if (this.isEmailValid) {
+      this.http
+        .post<HttpResponse<any>>(
+          `${environment.apiUrl}/api/auth/login`,
+          this.user,
+          {
+            observe: 'response',
+            withCredentials: true,
+          }
+        )
+        .subscribe(
+          (response) => {
+            this.handleServerResponse(response);
+          },
+          (error) => {
+            console.error('Login error:', error);
+            this.loginError.emit('Mauvais identifiants saisis');
+          }
+        );
+      return;
     } else {
-      this.authError = 'Une erreur est survenue';
+      this.loginError.emit('De mauvais identifiants ont été saisis');
+      return false;
     }
   }
 

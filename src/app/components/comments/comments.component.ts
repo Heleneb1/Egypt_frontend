@@ -7,13 +7,13 @@ import { Comment } from 'src/app/models/comment';
 import { CommentsService } from 'src/app/services/comments.service';
 import { UserService } from 'src/app/services/user.service';
 import { AuthService } from 'src/app/services/auth.service';
-import { environment } from 'src//environments/environment';
+import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-comments',
   templateUrl: './comments.component.html',
-  styleUrls: ['./comments.component.scss']
+  styleUrls: ['./comments.component.scss'],
 })
 export class CommentsComponent implements OnInit {
   @Input() articleCommentId: any;
@@ -21,7 +21,8 @@ export class CommentsComponent implements OnInit {
   selectedFile: File | null = null;
   avatarFilename!: string;
   avatarUrl!: string;
-  defaultAvatarUrl: SafeUrl | string = 'https://cdn.pixabay.com/photo/2018/04/14/08/45/egypt-3318550_1280.jpg';
+  defaultAvatarUrl: SafeUrl | string =
+    'https://cdn.pixabay.com/photo/2018/04/14/08/45/egypt-3318550_1280.jpg';
   commentId!: string;
   comment!: Comment;
   userConnected: any;
@@ -36,8 +37,9 @@ export class CommentsComponent implements OnInit {
   user: any = [];
   isArchived: boolean = true;
   showCodeOfConduct: boolean = false;
+  creationDate: any = new Date();
 
-  constructor (
+  constructor(
     private authService: AuthService,
     private httpClient: HttpClient,
     private datePipe: DatePipe,
@@ -47,16 +49,10 @@ export class CommentsComponent implements OnInit {
     private sanitizer: DomSanitizer
   ) {
     this.userConnected = this.authService.getUserConnected();
-
   }
-  formatDate(date: Date | null): string {
-    if (date === null || date === undefined) {
-      return '';
-    }
-
-    const formattedDate = this.datePipe.transform(date, 'dd MMMM yyyy') || '';
-
-    return formattedDate;
+  formatDate(dateString: string | null): void {
+    this.creationDate = new Date(this.comment.creationDate);
+    console.log('Date de création:', this.creationDate);
   }
 
   ngOnInit() {
@@ -66,24 +62,34 @@ export class CommentsComponent implements OnInit {
     this.userConnected.subscribe((user: any) => {
       this.userConnected = user;
 
-      this.commentsService.getCommentsByArticleId(this.articleCommentId).subscribe((comments: Comment[]) => {
-        this.commentList = comments.filter((comment: Comment) => !comment.archive);
+      this.commentsService
+        .getCommentsByArticleId(this.articleCommentId)
+        .subscribe((comments: Comment[]) => {
+          this.commentList = comments.filter(
+            (comment: Comment) => !comment.archive
+          );
 
-        this.commentList.forEach((comment: Comment) => {
-          this.userService.getUserById(comment.author).subscribe((author: User) => {
-            const editId = comment.author = author.id;
-            this.userService.getUserName(editId).subscribe((authorName: string) => {
-              comment.authorName = authorName;
-            })
+          this.commentList.forEach((comment: Comment) => {
+            this.userService
+              .getUserById(comment.author)
+              .subscribe((author: User) => {
+                const editId = (comment.author = author.id);
+                this.userService
+                  .getUserName(editId)
+                  .subscribe((authorName: string) => {
+                    comment.authorName = authorName;
+                  });
+              });
+          });
+          this.commentList.forEach((comment: Comment) => {
+            this.userService
+              .getUserAvatarForComment(comment.author)
+              .subscribe((avatarBlob: Blob) => {
+                const avatarUrl = URL.createObjectURL(avatarBlob);
+                comment.authorAvatar = avatarUrl;
+              });
           });
         });
-        this.commentList.forEach((comment: Comment) => {
-          this.userService.getUserAvatarForComment(comment.author).subscribe((avatarBlob: Blob) => {
-            const avatarUrl = URL.createObjectURL(avatarBlob);
-            comment.authorAvatar = avatarUrl;
-          });
-        });
-      });
     });
   }
 
@@ -106,7 +112,9 @@ export class CommentsComponent implements OnInit {
         return;
       }
 
-      const url = environment.apiUrl + `/comments/${authorCommentId}/articles/${this.articleCommentId}/add-comment`;
+      const url =
+        environment.apiUrl +
+        `/comments/${authorCommentId}/articles/${this.articleCommentId}/add-comment`;
       const data = {
         content: this.commentContent,
         user: authorCommentId,
@@ -119,7 +127,9 @@ export class CommentsComponent implements OnInit {
         (response: any) => {
           this.ngOnInit();
           this.commentContent = '';
-          this.toastr.success('Commentaire ajouté avec succès, il sera visible après validation de notre Scribe.');
+          this.toastr.success(
+            'Commentaire ajouté avec succès, il sera visible après validation de notre Scribe.'
+          );
           this.editComment = false;
         },
         (error: any) => {
@@ -130,24 +140,22 @@ export class CommentsComponent implements OnInit {
   }
   deleteMyComment(commentId: string, authorId: string) {
     if (this.userConnected.id === authorId) {
-
-
       if (confirm('Voulez-vous vraiment supprimer ce commentaire ?')) {
-        this.commentsService.deleteCommentByAuthor(commentId, authorId).subscribe((response) => {
-          this.toastr.success('Commentaire supprimé avec succès.');
-          this.ngOnInit();
-        });
+        this.commentsService
+          .deleteCommentByAuthor(commentId, authorId)
+          .subscribe((response) => {
+            this.toastr.success('Commentaire supprimé avec succès.');
+            this.ngOnInit();
+          });
       }
     }
   }
   onComment() {
     if (this.commentList.length > 0) {
-
       this.showComment = !this.showComment;
     } else {
-      const message = 'Il n\'y a pas encore de commentaire pour cet article.';
+      const message = "Il n'y a pas encore de commentaire pour cet article.";
       this.toastr.info(message);
     }
   }
-
 }

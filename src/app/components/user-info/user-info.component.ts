@@ -6,15 +6,15 @@ import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-user-info',
   templateUrl: './user-info.component.html',
-  styleUrls: ['./user-info.component.scss']
+  styleUrls: ['./user-info.component.scss'],
 })
-
 export class UserInfoComponent {
   @Input()
   userData: any;
   selectedFile: File | null = null;
   avatarFilename!: string;
-  avatarUrl: SafeUrl | string = 'https://cdn.pixabay.com/photo/2018/04/14/08/45/egypt-3318550_1280.jpg';
+  avatarUrl: SafeUrl | string =
+    'https://cdn.pixabay.com/photo/2018/04/14/08/45/egypt-3318550_1280.jpg';
   isEditingBiography = false;
   inputBiography = '';
   editIcon = 'fa fa-pencil';
@@ -25,11 +25,17 @@ export class UserInfoComponent {
   // biography = '';
   badges: any;
 
-  constructor (private userService: UserService, private sanitizer: DomSanitizer, private badgesService: BadgesService) { }
+  constructor(
+    private userService: UserService,
+    private sanitizer: DomSanitizer,
+    private badgesService: BadgesService
+  ) {}
 
   onFileSelected(event: any) {
     this.selectedFile = <File>event.target.files[0];
-    this.userService.uploadAvatar(this.selectedFile, this.userData.id)?.subscribe(() => this.loadAvatar());
+    this.userService
+      .uploadAvatar(this.selectedFile, this.userData.id)
+      ?.subscribe(() => this.loadAvatar());
   }
 
   private objectURL: string | undefined;
@@ -41,14 +47,19 @@ export class UserInfoComponent {
     this.badges = [];
 
     userBadges.forEach((badgeId: string) => {
-      this.badgesService.getBadgeContent(badgeId).subscribe((badgeInfo: any) => {
-        this.badges.unshift(badgeInfo);
-        this.checkBadgeLimit();
-      });
+      this.badgesService
+        .getBadgeContent(badgeId)
+        .subscribe((badgeInfo: any) => {
+          this.badges.unshift(badgeInfo);
+          this.checkBadgeLimit();
+        });
     });
 
     while (this.badges.length < 10) {
-      this.badges.push({ name: 'Badge à venir', image: 'assets/images/wait.jpg' });
+      this.badges.push({
+        name: 'Badge à venir',
+        image: 'assets/images/wait.jpg',
+      });
       this.checkBadgeLimit();
     }
 
@@ -61,7 +72,6 @@ export class UserInfoComponent {
   }
 
   checkBadgeLimit() {
-
     if (this.badges.length > 10) {
       this.badges.splice(10); // Retirez les badges excédentaires
     }
@@ -88,7 +98,6 @@ export class UserInfoComponent {
     });
   }
 
-
   cancelUpdatedBiography() {
     if (this.isEditingBiography) {
       if (this.user.biography !== this.newBio) {
@@ -103,16 +112,17 @@ export class UserInfoComponent {
     }
   }
 
-
   onUpdateBio() {
     this.userService.updateBio(this.userData.id, this.inputBiography).subscribe(
       () => {
         this.isEditingBiography = false;
         this.user.biography = this.inputBiography;
-
       },
       (error) => {
-        console.error('Erreur lors de la mise à jour de la biographie :', error);
+        console.error(
+          'Erreur lors de la mise à jour de la biographie :',
+          error
+        );
       }
     );
   }
@@ -121,5 +131,4 @@ export class UserInfoComponent {
     this.isEditingBiography = true;
     this.inputBiography = this.userData.biography;
   }
-
 }

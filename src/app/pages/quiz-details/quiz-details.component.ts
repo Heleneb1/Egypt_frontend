@@ -13,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-quiz-details',
   templateUrl: './quiz-details.component.html',
-  styleUrls: ['./quiz-details.component.scss']
+  styleUrls: ['./quiz-details.component.scss'],
 })
 export class QuizDetailsComponent {
   quiz: any = [];
@@ -29,9 +29,9 @@ export class QuizDetailsComponent {
   badgeId: string = '';
   userConnected: any;
   isLoaded = false;
+  creationDate: any = new Date();
 
-
-  constructor (
+  constructor(
     private quizService: QuizService,
     private articlesService: ArticlesService,
     private userService: UserService,
@@ -47,17 +47,13 @@ export class QuizDetailsComponent {
     this.auth.getUserConnected().subscribe((user: any) => {
       this.userConnected = user;
       this.userId = this.userConnected.id;
-
     });
   }
-  formatDate(date: string | null): string {
-    if (date === null) {
-      return '';
-    }
-    return this.datePipe.transform(date, 'dd MMMM yyyy') || '';
+  formatDate(dateString: string | null): void {
+    this.creationDate = new Date(this.quiz.creationDate);
+    console.log('Date de création:', this.creationDate);
   }
   ngOnInit() {
-
     setTimeout(() => {
       this.isLoaded = true;
     }, 2000);
@@ -66,27 +62,30 @@ export class QuizDetailsComponent {
       this.quizService.getQuizById(this.quizId).subscribe((quiz) => {
         this.quiz = quiz;
 
+        this.formatDate(this.quiz.creationDate);
         this.userService.getUsers;
-        this.articlesService.getArticleContent(this.quiz.article).subscribe((article: any) => {
-          this.quiz.article = article;
-        });
-
-        this.badgeService.getBadgeContent(this.quiz.badge).subscribe((badge: any) => {
-          this.quiz.badge = badge;
-
-        });
-
-        this.quiz.questionsIds.forEach((questionId: string) => {
-          this.quizService.getQuestionContent(questionId).subscribe((question: any) => {
-            question.selectedOption = '';
-            this.questionsMap.push(question);
-            this.totalNumberOfQuestions = this.questionsMap.length;
+        this.articlesService
+          .getArticleContent(this.quiz.article)
+          .subscribe((article: any) => {
+            this.quiz.article = article;
           });
 
-        });
-      },
-      );
+        this.badgeService
+          .getBadgeContent(this.quiz.badge)
+          .subscribe((badge: any) => {
+            this.quiz.badge = badge;
+          });
 
+        this.quiz.questionsIds.forEach((questionId: string) => {
+          this.quizService
+            .getQuestionContent(questionId)
+            .subscribe((question: any) => {
+              question.selectedOption = '';
+              this.questionsMap.push(question);
+              this.totalNumberOfQuestions = this.questionsMap.length;
+            });
+        });
+      });
     });
   }
 
@@ -94,30 +93,29 @@ export class QuizDetailsComponent {
     //verification de event.target nonnull et a une propriété value
     if (event.target && 'value' in event.target) {
       let selectedOption = (<HTMLInputElement>event.target).value;
-      let question = this.questionsMap.find((question: { id: string; }) => question.id === questionId);
+      let question = this.questionsMap.find(
+        (question: { id: string }) => question.id === questionId
+      );
       if (question) {
         question.selectedOption = selectedOption;
       }
     }
   }
 
-
-
   saveVote() {
-
     if (this.currentRating >= 0 && this.currentRating <= 5) {
       this.quizService.addRating(this.quizId, this.currentRating);
       this.isVoteModified = false;
       this.quiz.rating = this.currentRating;
-      this.toastr.success(`Vous avez évalué ce Quiz à ${this.currentRating} étoiles`);
+      this.toastr.success(
+        `Vous avez évalué ce Quiz à ${this.currentRating} étoiles`
+      );
     }
   }
   onRatingChanged(rating: number) {
     this.currentRating = rating;
     this.isVoteModified = true;
-
   }
-
 
   openModal(): void {
     this.showModal = true;
@@ -137,35 +135,46 @@ export class QuizDetailsComponent {
     }
 
     let percentage = (score / this.questionsMap.length) * 100;
-    console.info("Pourcentage de bonnes réponses :", percentage + "%");
+    console.info('Pourcentage de bonnes réponses :', percentage + '%');
     if (percentage >= 80) {
-      this.toastr.success(`Félicitations ! Vous avez obtenu un score supérieur à 80%. ${percentage}% de bonnes réponses.`);
+      this.toastr.success(
+        `Félicitations ! Vous avez obtenu un score supérieur à 80%. ${percentage}% de bonnes réponses.`
+      );
       this.showModal = true;
     } else {
-      this.toastr.warning(`Continuez à travailler pour améliorer votre score. ${percentage}% de bonnes réponses.`);
+      this.toastr.warning(
+        `Continuez à travailler pour améliorer votre score. ${percentage}% de bonnes réponses.`
+      );
     }
   }
 
   answerQuestion(): void {
-    const userProgress = (this.questionsMap.length / this.totalNumberOfQuestions) * 100;
+    const userProgress =
+      (this.questionsMap.length / this.totalNumberOfQuestions) * 100;
     console.info("Progression de l'utilisateur :", userProgress);
 
     this.numberOfAnsweredQuestions++;
-    console.info("Nombre de questions répondues :", this.numberOfAnsweredQuestions);
+    console.info(
+      'Nombre de questions répondues :',
+      this.numberOfAnsweredQuestions
+    );
 
-    this.progress = (this.numberOfAnsweredQuestions / this.totalNumberOfQuestions) * 100;
-    console.info("Nombre de questions répondues :", this.numberOfAnsweredQuestions);
-    console.info("Nombre total de questions :", this.totalNumberOfQuestions);
+    this.progress =
+      (this.numberOfAnsweredQuestions / this.totalNumberOfQuestions) * 100;
+    console.info(
+      'Nombre de questions répondues :',
+      this.numberOfAnsweredQuestions
+    );
+    console.info('Nombre total de questions :', this.totalNumberOfQuestions);
     let progressBar = document.getElementById('progressBar') as HTMLElement;
     progressBar.style.width = this.progress + '%';
-
   }
 
   awardBadgeToUser() {
-    this.userService.awardBadgeToCurrentUser(this.userId, this.badgeId).subscribe();
-    console.info("badge aprés", this.badgeId);
+    this.userService
+      .awardBadgeToCurrentUser(this.userId, this.badgeId)
+      .subscribe();
+    console.info('badge aprés', this.badgeId);
     this.closeModal();
   }
-
 }
-

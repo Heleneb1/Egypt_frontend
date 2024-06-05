@@ -4,30 +4,50 @@ import {
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
+  HttpErrorResponse,
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { CookieService } from 'ngx-cookie-service';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { AuthService } from './auth.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
+  private publicEndpoints = [
+    '/articles',
+    '/articles/:id',
+    // Ajout endpoints publics si nécessaire
+  ];
   constructor(private authService: AuthService) {}
+
   intercept(
-    request: HttpRequest<unknown>,
+    request: HttpRequest<any>,
     next: HttpHandler
-  ): Observable<HttpEvent<unknown>> {
-    const auth_token = localStorage.getItem('auth_token');
+  ): Observable<HttpEvent<any>> {
+    const authToken = localStorage.getItem('auth_token');
 
-    if (auth_token !== undefined && auth_token !== null && auth_token !== '') {
-      // Définir le cookie avec les options nécessaires
-      this.authService.setUserToken(auth_token);
+    // Vérifier si l'URL de la requête est dans la liste des endpoints publics
+    const isPublicEndpoint = this.publicEndpoints.some((endpoint) => {
+      return request.url.startsWith(endpoint);
+    });
 
+    if (authToken && !isPublicEndpoint) {
       request = request.clone({
-        setHeaders: { Authorization: `Bearer ${auth_token}` },
+        setHeaders: {
+          Authorization: `Bearer ${authToken}`,
+        },
         withCredentials: true,
-        responseType: 'text',
       });
     }
-    return next.handle(request);
+
+    return next.handle(request).pipe(
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === 401 || error.status === 403) {
+          // Unauthorized or forbidden response, redirect to login page or handle as needed
+          console.error('Unauthorized or forbidden request:', error);
+          this.authService.logout(); // Example: Logout user on unauthorized access
+        }
+        return throwError(error);
+      })
+    );
   }
 }

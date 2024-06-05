@@ -9,10 +9,9 @@ import { QuizService } from 'src/app/services/quiz.service';
 @Component({
   selector: 'app-create-quiz',
   templateUrl: './create-quiz.component.html',
-  styleUrls: ['./create-quiz.component.scss']
+  styleUrls: ['./create-quiz.component.scss'],
 })
 export class CreateQuizComponent implements OnInit {
-
   showModal = false;
   textValue: string = '';
   picture: string = '';
@@ -33,12 +32,12 @@ export class CreateQuizComponent implements OnInit {
   createdQuiz: any;
   formValid: boolean = false;
 
-  constructor (
+  constructor(
     private http: HttpClient,
     private router: Router,
     private authService: AuthService,
     private toastr: ToastrService,
-    private quizService: QuizService,
+    private quizService: QuizService
   ) {
     this.userConnected = this.authService.getUserConnected();
     this.authService.getUserConnected().subscribe((user: any) => {
@@ -47,10 +46,16 @@ export class CreateQuizComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
   checkFormValidity(): boolean {
     // Vérifiez ici si tous les champs nécessaires sont remplis
-    return !!this.textValue && !!this.tag && !!this.difficulty && !!this.picture && this.createdQuestions.length > 4;
+    return (
+      !!this.textValue &&
+      !!this.tag &&
+      !!this.difficulty &&
+      !!this.descriptionText &&
+      this.createdQuestions.length > 0
+    );
   }
   createQuiz(): void {
     if (this.checkFormValidity()) {
@@ -58,25 +63,24 @@ export class CreateQuizComponent implements OnInit {
       const url = environment.apiUrl + `/quizzes/create/${userId}`;
 
       const data = {
-        content: this.descriptionText,
         title: this.textValue,
-        picture: this.picture,
+        picture: this.picture || 'assets/images/Gizeh.jpg',
         tag: this.tag,
         difficulty: this.difficulty,
+        content: this.descriptionText,
         archive: this.isArchived,
       };
 
       this.http.post(url, data).subscribe(
         (response: any) => {
           console.log('Quiz created', response);
-          this.createdQuiz = response;  // Sauvegardez le quiz créé
-          this.addQuestionsToQuiz(this.category);  // Ajoutez les questions au quiz
+          this.createdQuiz = response; // Sauvegardez le quiz créé
+          this.addQuestionsToQuiz(this.category); // Ajoutez les questions au quiz
         },
         (error) => {
           console.error('Failed to create quiz', error);
         }
       );
-
 
       this.resetForm();
       this.toastr.success('Le quiz est créé avec succès !');
@@ -109,9 +113,11 @@ export class CreateQuizComponent implements OnInit {
         category: this.category,
       };
 
-      this.quizService.createQuestion(newQuestion).subscribe((response: any) => {
-        this.createQuestion();
-      });
+      this.quizService
+        .createQuestion(newQuestion)
+        .subscribe((response: any) => {
+          this.createQuestion();
+        });
       this.createdQuestions.push(newQuestion);
     }
   }
@@ -126,15 +132,15 @@ export class CreateQuizComponent implements OnInit {
   }
   addQuestionsToQuiz(category: string) {
     if (this.createdQuiz && this.createdQuestions.length > 0) {
-      console.log("quizId", this.createdQuiz.id);
-      console.log("questions", this.createdQuestions);
-      console.log("category", category);
+      console.log('quizId', this.createdQuiz.id);
+      console.log('questions', this.createdQuestions);
+      console.log('category', category);
 
-      this.quizService.addQuestionByCategoryToQuiz(this.createdQuiz.id, category).subscribe((response: any) => {
-        this.toastr.success('Questions ajoutées au quiz', 'Ajout');
-      });
+      this.quizService
+        .addQuestionByCategoryToQuiz(this.createdQuiz.id, category)
+        .subscribe((response: any) => {
+          this.toastr.success('Questions ajoutées au quiz', 'Ajout');
+        });
     }
   }
-
 }
-

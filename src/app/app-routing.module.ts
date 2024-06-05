@@ -1,4 +1,3 @@
-
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ConnectionComponent } from './pages/connection/connection.component';
@@ -18,9 +17,9 @@ import { BadgesModalComponent } from './components/badges-modal/badges-modal.com
 import { ViewComponent } from './components/view/view.component';
 import { TopicsComponent } from './components/topics/topics.component';
 import { GCUComponent } from './components/gcu/gcu.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
-
   {
     path: '',
     component: SplashPageComponent,
@@ -28,10 +27,10 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
-  }, {
-
-    path: "badges",
-    component: BadgesModalComponent
+  },
+  {
+    path: 'badges',
+    component: BadgesModalComponent,
   },
 
   {
@@ -81,17 +80,20 @@ const routes: Routes = [
     canActivate: [AdminGuardService],
   },
   {
-    path: 'view', component: ViewComponent
+    path: 'view',
+    component: ViewComponent,
   },
   {
-    path: 'gcu', component: GCUComponent
-  }
+    path: 'gcu',
+    component: GCUComponent,
+  },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
 
+  { path: '**', component: PageNotFoundComponent },
 ];
-
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -8,11 +8,9 @@ import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-topics',
   templateUrl: './topics.component.html',
-  styleUrls: ['./topics.component.scss']
+  styleUrls: ['./topics.component.scss'],
 })
 export class TopicsComponent implements OnInit {
-
-
   showCodeOfConduct: boolean = false;
   topics: any[] = [];
   existingAnswers: any[] = [];
@@ -26,28 +24,35 @@ export class TopicsComponent implements OnInit {
   answerMessage: string = '';
   searchQuery: string = '';
   tag: string = '';
+  creationDate: any = new Date();
 
-  constructor (
+  constructor(
     private authService: AuthService,
     private topicsService: TopicsService,
     private userService: UserService,
     private toastr: ToastrService
-  ) { this.selectedTopic = null; }
+  ) {
+    this.selectedTopic = null;
+  }
 
   ngOnInit(): void {
     this.topicsService.getTopics().subscribe((topics: any) => {
       this.topics = topics;
 
+      this.formatDate(this.topic.creationDate);
       this.topics.forEach((topic: any) => {
-        this.userService.getUserName(topic.authorId).subscribe((authorName: string) => {
-          topic.authorName = authorName;
-          this.userService.getUserAvatarForComment(topic.authorId).subscribe((avatarBlob: Blob) => {
-            const avatarUrl = URL.createObjectURL(avatarBlob);
-            topic.authorAvatar = avatarUrl;
+        this.userService
+          .getUserName(topic.authorId)
+          .subscribe((authorName: string) => {
+            topic.authorName = authorName;
+            this.userService
+              .getUserAvatarForComment(topic.authorId)
+              .subscribe((avatarBlob: Blob) => {
+                const avatarUrl = URL.createObjectURL(avatarBlob);
+                topic.authorAvatar = avatarUrl;
+              });
           });
-        });
       });
-
     });
     this.authService.getUserConnected().subscribe((user: any) => {
       this.userConnected = user;
@@ -72,17 +77,21 @@ export class TopicsComponent implements OnInit {
   closeCodeOfConductModal() {
     this.showCodeOfConduct = false;
   }
-
+  formatDate(dateString: string | null): void {
+    this.creationDate = new Date(this.topic.creationDate);
+  }
   showCodeOfConductModal() {
     this.showCodeOfConduct = !this.showCodeOfConduct;
   }
 
   loadAvatars() {
     this.topics.forEach((topic: any) => {
-      this.userService.getUserAvatarForComment(topic.authorId).subscribe((avatarBlob: Blob) => {
-        const avatarUrl = URL.createObjectURL(avatarBlob);
-        topic.authorAvatar = avatarUrl;
-      });
+      this.userService
+        .getUserAvatarForComment(topic.authorId)
+        .subscribe((avatarBlob: Blob) => {
+          const avatarUrl = URL.createObjectURL(avatarBlob);
+          topic.authorAvatar = avatarUrl;
+        });
     });
   }
 
@@ -90,7 +99,6 @@ export class TopicsComponent implements OnInit {
     this.topicsService.getTopicById(id).subscribe((topic: any) => {
       this.selectedTopic = topic;
       this.getAnswersByTopic(this.selectedTopic.id);
-
     });
   }
 
@@ -99,64 +107,83 @@ export class TopicsComponent implements OnInit {
   }
 
   getAnswersByTopic(topicId: any) {
-
-    this.topicsService.getAnswersByTopicId(topicId).subscribe((answers: any) => {
-      const authorObservables = answers.map((answer: any) => {
-        return this.userService.getUserName(answer.authorId);
-      });
-      const authorAvatarObservables = answers.map((answer: any) => {
-        return this.userService.getUserAvatarForComment(answer.authorId);
-      });
-
-      // Utilisez forkJoin pour attendre que tous les observables se terminent
-      forkJoin<string[]>(authorObservables).subscribe((authorNames: string[],) => {
-        // Assignez les noms d'auteurs aux réponses correspondantes
-        forkJoin<Blob[]>(authorAvatarObservables).subscribe((avatars: Blob[]) => {
-          this.existingAnswers = answers.map((answer: any, index: number) => {
-            return { ...answer, authorName: authorNames[index], authorAvatar: URL.createObjectURL(avatars[index]) };
-          });
-
-          this.existingAnswers = this.existingAnswers.filter((answer: any) => answer.topicId === topicId);
-          this.existingAnswers.sort((a: any, b: any) => {
-            return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
-          });
-          this.filterByDate();
-
-          setTimeout(() => {
-            this.goBottom();
-          }, 500);
+    this.topicsService
+      .getAnswersByTopicId(topicId)
+      .subscribe((answers: any) => {
+        const authorObservables = answers.map((answer: any) => {
+          return this.userService.getUserName(answer.authorId);
         });
+        const authorAvatarObservables = answers.map((answer: any) => {
+          return this.userService.getUserAvatarForComment(answer.authorId);
+        });
+
+        // Utilisez forkJoin pour attendre que tous les observables se terminent
+        forkJoin<string[]>(authorObservables).subscribe(
+          (authorNames: string[]) => {
+            // Assignez les noms d'auteurs aux réponses correspondantes
+            forkJoin<Blob[]>(authorAvatarObservables).subscribe(
+              (avatars: Blob[]) => {
+                this.existingAnswers = answers.map(
+                  (answer: any, index: number) => {
+                    return {
+                      ...answer,
+                      authorName: authorNames[index],
+                      authorAvatar: URL.createObjectURL(avatars[index]),
+                    };
+                  }
+                );
+
+                this.existingAnswers = this.existingAnswers.filter(
+                  (answer: any) => answer.topicId === topicId
+                );
+                this.existingAnswers.sort((a: any, b: any) => {
+                  return (
+                    new Date(b.createdAt).getTime() -
+                    new Date(a.createdAt).getTime()
+                  );
+                });
+                this.filterByDate();
+
+                setTimeout(() => {
+                  this.goBottom();
+                }, 500);
+              }
+            );
+          }
+        );
       });
-    });
   }
   createTopic() {
     if (this.userConnected) {
       const authorTopicId = this.userConnected.id;
       const data = {
         message: this.topicMessage,
-        tag: this.tag
+        creationDate: new Date(),
+        tag: this.tag,
       };
       if (this.topicMessage.length < 10 || this.tag.length < 1) {
-        this.toastr.error("Votre message doit contenir au moins 10 caractères et un tag", "Erreur");
+        this.toastr.error(
+          'Votre message doit contenir au moins 10 caractères et un tag',
+          'Erreur'
+        );
         return;
       }
 
-
-      this.topicsService.postTopic(data, authorTopicId).subscribe((topic: any) => {
-        this.topic = topic;
-        this.toastr.success("Topic créé avec succès", "Succès");
-        this.ngOnInit();
-        this.topicMessage = "";
-        this.tag = "";
-        this.editTopic = false;
-
-      });
+      this.topicsService
+        .postTopic(data, authorTopicId)
+        .subscribe((topic: any) => {
+          this.topic = topic;
+          this.toastr.success('Topic créé avec succès', 'Succès');
+          this.ngOnInit();
+          this.topicMessage = '';
+          this.tag = '';
+          this.editTopic = false;
+        });
     }
   }
 
   toggleEdit() {
     this.editTopic = !this.editTopic;
-
   }
 
   createAnswer() {
@@ -166,14 +193,15 @@ export class TopicsComponent implements OnInit {
         answer: this.answerMessage,
       };
 
-      this.topicsService.postAnswer(data, this.selectedTopic.id, authorAnswerId).subscribe((answer: any) => {
-        this.answer = answer;
-        this.toastr.success("Réponse créée avec succès", "Succès");
-        this.answerMessage = "";
-        this.editAnswer = false;
-        this.getAnswersByTopic(this.selectedTopic.id);
-
-      });
+      this.topicsService
+        .postAnswer(data, this.selectedTopic.id, authorAnswerId)
+        .subscribe((answer: any) => {
+          this.answer = answer;
+          this.toastr.success('Réponse créée avec succès', 'Succès');
+          this.answerMessage = '';
+          this.editAnswer = false;
+          this.getAnswersByTopic(this.selectedTopic.id);
+        });
     }
   }
 
@@ -184,11 +212,12 @@ export class TopicsComponent implements OnInit {
   }
   toggleAnswer() {
     this.editAnswer = !this.editAnswer;
-
-
   }
   goBottom() {
-    window.scrollTo(0, document.body.scrollHeight || document.documentElement.scrollHeight);
+    window.scrollTo(
+      0,
+      document.body.scrollHeight || document.documentElement.scrollHeight
+    );
   }
   getAnswerAuthorName(authorId: any) {
     this.userService.getUserName(authorId).subscribe((authorName: string) => {

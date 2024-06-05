@@ -10,13 +10,11 @@ import { Observable, map } from 'rxjs';
 export class ArticlesService {
   private articlesDataUrl = environment.apiUrl + '/articles';
 
-
   addRating(articleId: string, userRating: number) {
     const url = `${this.articlesDataUrl}/${articleId}/add-rating`;
     this.httpClient.put<any>(url, { rating: userRating }).subscribe(
-      updatedArticle => {
-      },
-      error => {
+      (updatedArticle) => {},
+      (error) => {
         console.error('Erreur lors de la mise à jour du quiz :', error);
       }
     );
@@ -24,7 +22,7 @@ export class ArticlesService {
 
   //TODO: convention de nommage sur les observables : https://angular.io/guide/rx-library#naming-conventions-for-observables
 
-  constructor (private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
   getArticles$(): Observable<Article[]> {
     return this.httpClient.get<Article[]>(`${this.articlesDataUrl}`);
   }
@@ -49,7 +47,6 @@ export class ArticlesService {
     return this.httpClient.get<Article>(`${this.articlesDataUrl}/${id}`);
   }
 
-
   getArticlesByAuthor$(author: string): Observable<Article[]> {
     return this.httpClient.get<Article[]>(
       `${this.articlesDataUrl}/byAuthor/${author}`
@@ -70,10 +67,9 @@ export class ArticlesService {
       map((articles: Article[]) => {
         const uniqueTag = new Set<string>();
 
-
         articles.forEach((article: Article) => {
-          const individualTag = article.tag.split(',').map(t => t.trim());
-          individualTag.forEach(t => uniqueTag.add(t));
+          const individualTag = article.tag.split(',').map((t) => t.trim());
+          individualTag.forEach((t) => uniqueTag.add(t));
         });
 
         // Convertion du Set en tableau
@@ -87,8 +83,8 @@ export class ArticlesService {
         const uniqueTitle = new Set<string>();
 
         articles.forEach((article: Article) => {
-          const title = article.title.split(',').map(t => t.trim());
-          title.forEach(t => uniqueTitle.add(t));
+          const title = article.title.split(',').map((t) => t.trim());
+          title.forEach((t) => uniqueTitle.add(t));
         });
 
         // Convertion du Set en tableau
@@ -103,8 +99,10 @@ export class ArticlesService {
 
         articles.forEach((article: Article) => {
           if (article.author) {
-            const individualAuthor = article.author.split(',').map(t => t.trim());
-            individualAuthor.forEach(t => uniqueAuthor.add(t));
+            const individualAuthor = article.author
+              .split(',')
+              .map((t) => t.trim());
+            individualAuthor.forEach((t) => uniqueAuthor.add(t));
           }
         });
 
@@ -113,10 +111,14 @@ export class ArticlesService {
       })
     );
   }
-  getArticlesByAuthorTitleTag$(articleAuthor?: string, articleTitle?: string, articleTag?: string): Observable<Article[]> {
+  getArticlesByAuthorTitleTag$(
+    articleAuthor?: string,
+    articleTitle?: string,
+    articleTag?: string
+  ): Observable<Article[]> {
     let searchUrl = this.articlesDataUrl;
-    if (articleAuthor) {
-      searchUrl += '/search/' + encodeURIComponent(articleAuthor);
+    if (articleTitle) {
+      searchUrl += '/search/' + encodeURIComponent(articleTitle);
     } else if (articleTitle) {
       searchUrl += '/search/' + encodeURIComponent(articleTitle);
     } else if (articleTag) {
@@ -124,6 +126,4 @@ export class ArticlesService {
     }
     return this.httpClient.get<Article[]>(searchUrl);
   }
-
 }
-

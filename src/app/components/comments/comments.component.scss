@@ -4,13 +4,16 @@
     flex-direction: column;
     justify-content: center;
 }
+
 .comment-container {
     width: 82vw;
     @extend .global;
+
     h2 {
         color: var(--sun);
         font-family: var(--title);
     }
+
     form {
         width: 100%;
         @extend .global;
@@ -27,6 +30,7 @@
     font-size: 1.1rem;
     cursor: pointer;
 }
+
 #comment {
     height: 8rem;
     width: 95%;
@@ -34,16 +38,31 @@
     font-family: var(--text);
     color: var(--blue);
 }
+
 .comment-content {
     @extend .global;
+    width: max-content;
+
     ul {
         margin: 0;
         padding: 0;
+        display: flex;
+        justify-content: center;
     }
+
     ul li {
         list-style: none;
+        width: 100svw;
     }
 }
+
+.comment-text {
+    margin: 1rem;
+    width: 20rem;
+    overflow-wrap: break-word;
+
+}
+
 .comment-card {
     border-radius: 1.5rem;
     border: 1px solid var(--sun);
@@ -54,6 +73,7 @@
     flex-direction: row-reverse;
     justify-content: space-between;
     align-items: center;
+
     img {
         height: 5rem;
         width: 5rem;
@@ -61,20 +81,21 @@
         border: 1px solid var(--sun);
         margin: 1rem;
     }
-    .comment-text {
-        margin: 1rem;
-    }
+
 }
+
 .avatar {
     @extend .global;
     width: 7rem;
     text-align: center;
 }
+
 .form-group .edit {
     display: flex;
     justify-content: center;
     flex-direction: column;
 }
+
 .comment-btn {
     cursor: pointer;
     display: flex;
@@ -88,6 +109,7 @@
     font-weight: bolder;
     width: 18rem;
 }
+
 .btn-add-comment {
     background-color: var(--sun);
     font-family: var(--title);
@@ -100,19 +122,44 @@
     border-radius: 4rem;
     cursor: pointer;
 }
+
 .deleteMyComment {
     border-radius: 1.5rem;
     background-color: var(--sun);
     color: white;
 }
+
+.comment-content ul {
+    width: 20rem;
+}
+
+
 @media screen and (min-width: 768px) {
     #comment {
         width: 80vw;
     }
+
     .comment-container {
         width: 90vw;
     }
+
     .comment-card {
-        width: 80vw;
+        // width: 80vw;
     }
+
+
+    .comment-text {
+        margin: 1rem;
+        width: 20rem;
+        overflow-wrap: break-word;
+
+    }
+
+    .comment-text {
+        margin: 1rem;
+        width: 50rem;
+        overflow-wrap: break-word;
+
+    }
+
 }

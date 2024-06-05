@@ -1,7 +1,7 @@
 h1 {
     font-family: var(--title);
     text-align: center;
-    // margin: 2.5rem;
+    margin: 2.5rem;
     padding: 2rem;
     color: var(--sun);
     font-size: 2rem;
@@ -24,6 +24,7 @@ h2::before {
 p {
     text-align: justify;
 }
+
 li {
     margin-bottom: 0.5rem;
 }

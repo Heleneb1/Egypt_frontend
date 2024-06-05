@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticlesService } from '../../services/articles.service';
 import { Article } from '../../models/article';
-
+import {
+  Observable,
+  Subject,
+  debounceTime,
+  distinctUntilChanged,
+  switchMap,
+} from 'rxjs';
 
 @Component({
   selector: 'app-search',
@@ -9,56 +15,60 @@ import { Article } from '../../models/article';
   styleUrls: ['./search.component.scss'],
 })
 export class SearchComponent implements OnInit {
+  searchTerms = new Subject<string>();
+  articles$!: Observable<Article[]>;
   articles: Article[] = [];
-  searchQuery: string = "";
+  searchQuery: string = '';
   animateCard = false;
   selectedTag: string[] = [];
   selectedTitle: string[] = [];
   selectedAuthor: string[] = [];
-  articleTag = "";
-  articleTitle = "";
+  articleTag = '';
+  articleTitle = '';
   tagOptions!: string[];
   titleOptions!: string[];
-  articleAuthor = "";
+  articleAuthor = '';
   authorOptions!: string[];
 
+  constructor(private articlesService: ArticlesService) {}
 
-  constructor (private articlesService: ArticlesService) { }
-  getArticles(): void {
-    this.articlesService.getArticles$().subscribe((articles: Article[]) => {
-      this.articles = articles;
-    });
-  }
   ngOnInit(): void {
     this.loadTags();
     this.loadTitle();
     this.loadAuthors();
-  }
-  searchArticles() {
-    this.resetOtherFilters("tag");
-    this.resetOtherFilters("title");
-    this.resetOtherFilters("author");
 
-    this.articlesService.getArticlesByAuthorTitleTag$(
-      this.searchQuery,
-    ).subscribe(
-      (response: Article[]) => {
-        this.articles = response;
+    this.articles$ = this.searchTerms.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap((term: string) =>
+        this.articlesService.getArticlesByAuthorTitleTag$(term)
+      )
+    );
+
+    this.articles$.subscribe(
+      (articles: Article[]) => {
+        this.articles = articles;
       },
       (error) => {
         console.error("Une erreur s'est produite :", error);
       }
     );
-    this.animateCard = true;
-    setTimeout(() => {
-      this.animateCard = false;
-    }, 5000);
+  }
 
+  search(term: string) {
+    this.searchTerms.next(term);
+  }
+
+  searchArticles() {
+    this.resetOtherFilters('tag');
+    this.resetOtherFilters('title');
+    this.resetOtherFilters('author');
+    this.searchTerms.next(this.searchQuery);
     this.searchQuery = '';
   }
 
   onAuthorSearchChange(selectedAuthor: string) {
-    this.resetOtherFilters("author");
+    this.resetOtherFilters('author');
     this.articlesService.getArticlesByAuthor$(selectedAuthor).subscribe(
       (articles: Article[]) => {
         this.articles = articles;
@@ -73,20 +83,17 @@ export class SearchComponent implements OnInit {
     }, 5000);
   }
 
-
   onTagSearchChange(selectedTag: string) {
-    this.resetOtherFilters("tag");
-
-
+    this.resetOtherFilters('tag');
     this.articlesService.getArticlesByTag$(selectedTag).subscribe(
       (articles: Article[]) => {
         this.articles = articles;
-
-
-
       },
       (error) => {
-        console.error("Une erreur s'est produite lors de la recherche d'articles par tag :", error);
+        console.error(
+          "Une erreur s'est produite lors de la recherche d'articles par tag :",
+          error
+        );
       }
     );
     this.animateCard = true;
@@ -101,7 +108,10 @@ export class SearchComponent implements OnInit {
         this.titleOptions = titles;
       },
       (error) => {
-        console.error("Une erreur s'est produite lors du chargement des titres :", error);
+        console.error(
+          "Une erreur s'est produite lors du chargement des titres :",
+          error
+        );
       }
     );
   }
@@ -112,7 +122,10 @@ export class SearchComponent implements OnInit {
         this.authorOptions = authors;
       },
       (error) => {
-        console.error("Une erreur s'est produite lors du chargement des auteurs :", error);
+        console.error(
+          "Une erreur s'est produite lors du chargement des auteurs :",
+          error
+        );
       }
     );
   }
@@ -123,15 +136,16 @@ export class SearchComponent implements OnInit {
         this.tagOptions = tags;
       },
       (error) => {
-        console.error("Une erreur s'est produite lors du chargement des tags :", error);
+        console.error(
+          "Une erreur s'est produite lors du chargement des tags :",
+          error
+        );
       }
     );
   }
 
-
-
   onTitleSearchChange(selectedTitle: string) {
-    this.resetOtherFilters("title");
+    this.resetOtherFilters('title');
     this.articlesService.getArticlesByTitle$(selectedTitle).subscribe(
       (articles: Article[]) => {
         this.articles = articles;
@@ -145,20 +159,19 @@ export class SearchComponent implements OnInit {
       this.animateCard = false;
     }, 5000);
   }
+
   resetOtherFilters(filter: string) {
-    if (filter !== "tag") {
-      this.articleTag = "";
+    if (filter !== 'tag') {
+      this.articleTag = '';
       this.selectedTag = [];
     }
-    if (filter !== "title") {
-      this.articleTitle = "";
+    if (filter !== 'title') {
+      this.articleTitle = '';
       this.selectedTitle = [];
     }
-    if (filter !== "author") {
-      this.articleAuthor = "";
+    if (filter !== 'author') {
+      this.articleAuthor = '';
       this.selectedAuthor = [];
     }
-
   }
 }
-

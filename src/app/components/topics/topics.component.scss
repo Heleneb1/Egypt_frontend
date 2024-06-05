@@ -103,14 +103,19 @@
     border-radius: 0.5rem;
 }
 
+.see-topics {
+    overflow-wrap: break-word;
+}
+
 .all-topics ul li {
     color: var(--blue);
     width: calc(48% - 1rem);
-    min-width: min-content;
+    // min-width: min-content;
     margin: 1rem;
     box-sizing: border-box;
     line-height: 1.5rem;
 }
+
 
 .all-topics .participation {
     text-shadow: 1px 1px 1px var(--blue);
@@ -131,6 +136,7 @@
     text-align: justify;
     border: 1px solid var(--sun);
     width: 80vw;
+    overflow-wrap: break-word;
 }
 
 .answer ul {

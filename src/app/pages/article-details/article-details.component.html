@@ -1,56 +1,58 @@
 <div class="sub-title">
-    <h2>Les Mystères de l’Égypte Antique</h2>
+  <h2>Les Mystères de l’Égypte Antique</h2>
 </div>
 <div class="text-container">
-    Votre article...<br>
-    <p>{{ article?.title }}</p>
+  Votre article...<br />
+  <p>{{ article?.title }}</p>
 </div>
 <div class="article-main-image">
-    <div class="image">
-        <img [src]="'assets/images/Gizeah.jpg'" alt="Gizeh" />
-    </div>
-
+  <div class="image">
+    <img [src]="'assets/images/Gizeah.jpg'" alt="Gizeh" />
+  </div>
 </div>
 
 <div class="articles-details-container">
+  <div class="article-details">
+    <app-star-rating
+      [totalStars]="5"
+      [rating]="article.ratings"
+      (ratingChanged)="onRatingChanged($event)"
+    ></app-star-rating>
 
-    <div class="article-details">
-        <app-star-rating [totalStars]="5" [rating]="article.ratings"
-            (ratingChanged)="onRatingChanged($event)"></app-star-rating>
-
-        <button class="rating-button" *ngIf="isVoteModified && isConnected" (click)="saveVote()">Enregistrer le
-            vote</button>
-        <article class="content">
-            <img [src]="article?.image" alt="description de l'image">
-            <p><span>
-                    <h2 class="article-title">{{ article?.title }}</h2>
-                </span>{{ article?.content }}</p>
-        </article>
-        <div class="author-info">
-            <p>Auteur: {{ article?.author}}</p>
-        </div>
-        <p>Thème: {{ article?.tag }}</p>
-        <p>Date de création: {{ formatDate(article?.editionDate) }}</p>
-        <p>Quiz associé: {{ article?.quiz }}</p>
-
+    <button
+      class="rating-button"
+      *ngIf="isVoteModified && isConnected"
+      (click)="saveVote()"
+    >
+      Enregistrer le vote
+    </button>
+    <article class="content">
+      <img [src]="article?.image" alt="description de l'image" />
+      <p>
+        <span>
+          <h2 class="article-title">{{ article?.title }}</h2> </span
+        >{{ article?.content }}
+      </p>
+    </article>
+    <div class="author-info">
+      <p>Auteur: {{ article?.author }}</p>
     </div>
-    <div class="suggest-text">
-        <div class="sub-title">
-            <h2>Articles pouvant vous intérésser</h2>
-        </div>
+    <p>Thème: {{ article?.tag }}</p>
+    <!-- <p>Date de création: {{ article?.editionDate | date : "dd/MM/yyyy" }}</p> -->
+    <p>Quiz associé: {{ article?.quiz }}</p>
+  </div>
+  <div class="suggest-text">
+    <div class="sub-title">
+      <h2>Articles pouvant vous intérésser</h2>
     </div>
-    <div class="suggest">
+  </div>
+  <div class="suggest">
+    <app-articles-carousel [articles]="articles"></app-articles-carousel>
+  </div>
 
-        <app-articles-carousel [articles]="articles"></app-articles-carousel>
+  <div class="comment">
+    <div class="add-comment" *ngIf="isConnected">
+      <app-comments [articleCommentId]="article?.id"></app-comments>
     </div>
-
-    <div class="comment">
-
-
-        <div class="add-comment" *ngIf="isConnected">
-
-            <app-comments [articleCommentId]="article?.id"></app-comments>
-        </div>
-
-    </div>
+  </div>
 </div>

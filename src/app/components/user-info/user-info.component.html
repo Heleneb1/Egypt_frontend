@@ -1,50 +1,57 @@
 <div class="sub-title">
-    <h2>Les Mystères de l’Égypte Antique</h2>
+  <h2>Les Mystères de l’Égypte Antique</h2>
 </div>
 <div class="container">
-    <div class="user-info-container">
-        <div class="image-container">
-            <img [src]="avatarUrl" alt="image profile" />
-            <div class="add-avatar">
-                <input class="avatar-button" type="file" (change)="onFileSelected($event)" id="file" />
-                <label class="avatar-label" for="file"><i [class]="edit"></i></label>
-            </div>
-        </div>
-        <div class="title-profile">Mon Profil</div>
-
-
-        <div class="name-container">
-            <p>{{ userData.firstname }} {{ userData.lastname }}</p>
-
-        </div>
-        <div class="user-sub-info-container">
-            <div class="bio-container">
-                <div class="bio-editing-button" (click)="cancelUpdatedBiography()">
-                    <i [class]="isEditingBiography ? closeEditIcon : editIcon"></i>
-                </div>
-
-                <p *ngIf="!isEditingBiography">
-                    {{ userData.biography }}
-                </p>
-                <div class="bio-form" *ngIf="isEditingBiography">
-                    <textarea name="bio" id="bio" [(ngModel)]="inputBiography" class="input-text-area-bio"></textarea>
-                    <div (click)="onUpdateBio()" class="update-bio-button">Valider</div>
-                </div>
-            </div>
-        </div>
-
+  <div class="user-info-container">
+    <div class="image-container">
+      <img [src]="avatarUrl" alt="image profile" />
+      <div class="add-avatar">
+        <input
+          class="avatar-button"
+          type="file"
+          (change)="onFileSelected($event)"
+          id="file"
+        />
+        <label class="avatar-label" for="file"><i [class]="edit"></i></label>
+      </div>
     </div>
-    <div class="badge-container">
-        <div class="reward">
-            <h3>Badges gagnés : {{badges.name}}</h3>
-        </div>
-        <div class="badge-list">
-            <div *ngFor="let badge of badges" class="badge-item">
-                <div class="badge-image">
-                    <img [src]="badge.image" [alt]="badge.name" />
-                </div>
-                <p>{{ badge.name }}</p>
+    <div class="title-profile">Mon Profil</div>
 
-            </div>
-        </div>
+    <div class="name-container">
+      <p>{{ userData.firstname }} {{ userData.lastname }}</p>
     </div>
+    <div class="user-sub-info-container">
+      <div class="bio-container">
+        <div class="bio-editing-button" (click)="cancelUpdatedBiography()">
+          <i [class]="isEditingBiography ? closeEditIcon : editIcon"></i>
+        </div>
+
+        <p *ngIf="!isEditingBiography">
+          {{ userData.biography }}
+        </p>
+        <div class="bio-form" *ngIf="isEditingBiography">
+          <textarea
+            name="bio"
+            id="bio"
+            [(ngModel)]="inputBiography"
+            class="input-text-area-bio"
+          ></textarea>
+          <div (click)="onUpdateBio()" class="update-bio-button">Valider</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="badge-container">
+    <!-- <div class="reward">
+      <h3>Badges gagnés : {{ badges.name }}</h3>
+    </div> -->
+    <div class="badge-list">
+      <div *ngFor="let badge of badges" class="badge-item">
+        <div class="badge-image">
+          <img [src]="badge.image" [alt]="badge.name" />
+        </div>
+        <p>{{ badge.name }}</p>
+      </div>
+    </div>
+  </div>
+</div>

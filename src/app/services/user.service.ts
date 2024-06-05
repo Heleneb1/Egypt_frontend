@@ -5,14 +5,19 @@ import { environment } from 'src//environments/environment';
 import { AuthService } from './auth.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class UserService {
-  @Output() registrationStatus = new EventEmitter<{ success: boolean; submitted: boolean; }>();
+  @Output() registrationStatus = new EventEmitter<{
+    success: boolean;
+    submitted: boolean;
+  }>();
   formSubmitted = false;
   awardBadgeToCurrentUser(badgeId: any, userId: any) {
-    return this.httpClient.put<any>(environment.apiUrl + `/users/${userId}/badges/${badgeId}`, {});
+    return this.httpClient.put<any>(
+      environment.apiUrl + `/users/${userId}/badges/${badgeId}`,
+      {}
+    );
   }
 
   getData() {
@@ -20,7 +25,10 @@ export class UserService {
   }
   private userData = environment.apiUrl + '/users';
 
-  constructor (private httpClient: HttpClient, private authService: AuthService) { }
+  constructor(
+    private httpClient: HttpClient,
+    private authService: AuthService
+  ) {}
 
   getUsers(): Observable<any> {
     return this.httpClient.get(this.userData);
@@ -31,7 +39,9 @@ export class UserService {
     return this.httpClient.get<any>(url);
   }
   getUserName(userId: string): Observable<string> {
-    return this.getUserById(userId).pipe(map((user: any) => `${user.firstname} ${user.lastname}`));
+    return this.getUserById(userId).pipe(
+      map((user: any) => `${user.firstname} ${user.lastname}`)
+    );
   }
   getUserAvatar(userId: string): Observable<string> {
     return this.getUserById(userId).pipe(map((user: any) => `${user.avatar}`));
@@ -39,15 +49,16 @@ export class UserService {
   getUserEmail(userId: string): Observable<string> {
     return this.getUserById(userId).pipe(
       map((user: any) => {
-
         return `${user.email}`;
       })
     );
   }
 
-
   getUserAvatarForComment(userId: string): Observable<Blob> {
-    return this.httpClient.get(`${environment.apiUrl}/users/avatar/user/${userId}`, { responseType: 'blob' });
+    return this.httpClient.get(
+      `${environment.apiUrl}/users/avatar/user/${userId}`,
+      { responseType: 'blob' }
+    );
   }
 
   getUserAvatarComment(userId: string): Observable<string> {
@@ -62,7 +73,6 @@ export class UserService {
     return this.httpClient.put(url, body);
   }
   registerUser(user: any): Observable<any> {
-
     return this.httpClient
       .post(environment.apiUrl + '/api/auth/register', user, {
         observe: 'response',
@@ -86,16 +96,21 @@ export class UserService {
       );
   }
 
-
-  getAvatar(filename: string): Observable<Blob> {
-    return this.httpClient.get(environment.apiUrl + `/users/avatar/${filename}`, { responseType: 'blob' });
+  getAvatar(avatarFilename: string) {
+    return this.httpClient.get(
+      environment.apiUrl + `/users/avatar/${avatarFilename}`,
+      { responseType: 'blob' }
+    );
   }
 
   uploadAvatar(selectedFile: File | null, userId: string) {
     if (selectedFile) {
       const fd = new FormData();
       fd.append('avatar', selectedFile, selectedFile?.name);
-      return this.httpClient.put<any>(environment.apiUrl + `/users/${userId}/avatar`, fd);
+      return this.httpClient.put<any>(
+        environment.apiUrl + `/users/${userId}/avatar`,
+        fd
+      );
     } else {
       return;
     }
@@ -109,6 +124,4 @@ export class UserService {
   deleteUsers(id: any) {
     return this.httpClient.delete(environment.apiUrl + `/users/${id}`);
   }
-
-
 }

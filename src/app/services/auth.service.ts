@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
-import { Observable, map } from 'rxjs';
+import { Observable, catchError, map, of } from 'rxjs';
 import jwtDecode from 'jwt-decode';
 
 import { environment } from 'src/environments/environment';
@@ -11,6 +11,7 @@ import { NgcCookieConsentService } from 'ngx-cookieconsent';
   providedIn: 'root',
 })
 export class AuthService {
+  token!: string;
   constructor(
     private http: HttpClient,
 
@@ -36,44 +37,64 @@ export class AuthService {
   isLoggedIn() {
     return localStorage.getItem('auth_token') !== null;
   }
-  setUserToken(token: string) {
-    const authToken = localStorage.getItem('auth_token');
+  setToken(token: string) {
+    this.token = token;
+    localStorage.setItem('auth_token', token);
   }
 
-  getUserToken(): string | null {
+  getUserToken(): { userId: string; scope: string } | null {
     const token = localStorage.getItem('auth_token');
 
     if (!token) {
-      console.error('Token is undefined or not found.');
       return null;
     }
 
     try {
       const payload: any = jwtDecode(token);
-      if (!payload || !payload.userId) {
+      if (!payload || !payload.userId || !payload.scope) {
         console.error('Invalid token payload:', payload);
         return null;
       }
-      return payload.userId;
+
+      return {
+        userId: payload.userId,
+        scope: payload.scope,
+      };
     } catch (error) {
       console.error('Error decoding token:', error);
       return null;
     }
   }
-  getUserConnected(): Observable<string> {
-    const userId = this.getUserToken();
+  getUserConnected(): Observable<any> {
+    const tokenInfo = this.getUserToken();
 
-    const userConnectedUrl = environment.apiUrl + `/users/${userId}`;
+    if (!tokenInfo) {
+      return of(null);
+    }
+
+    const userConnectedUrl = `${environment.apiUrl}/users/${tokenInfo.userId}`;
     return this.http.get<string>(userConnectedUrl, { withCredentials: true });
   }
   getUserRole(): Observable<string> {
-    return this.getUserConnected().pipe(
-      map((userData: any) => {
-        const user = JSON.parse(userData); //transforme une chaîne de caractères formatée en JSON en un objet JavaScript.
-        const userRole = user.role;
-
-        return userRole;
-      })
-    );
+    // Simulating an API call to get user role based on token
+    const tokenInfo = this.getUserToken();
+    if (tokenInfo && tokenInfo.scope) {
+      // Replace this with actual API call if needed
+      return of(tokenInfo.scope).pipe(
+        map((scope) => {
+          if (scope === 'ADMIN') {
+            return 'ADMIN';
+          } else {
+            return 'USER';
+          }
+        }),
+        catchError((error) => {
+          console.error('Error fetching user role:', error);
+          throw error;
+        })
+      );
+    } else {
+      return of('USER'); // Default role assumed
+    }
   }
 }
