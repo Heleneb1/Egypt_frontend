@@ -1,18 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
-import { environment } from 'src//environments/environment';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class BadgesService {
-
-
   private badgeDataUrl = environment.apiUrl + '/badges';
 
   questionTitles: any = [];
-  constructor (private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
 
   getBadges() {
     return this.httpClient.get(this.badgeDataUrl);
@@ -39,5 +37,4 @@ export class BadgesService {
   deleteBadge(id: string) {
     return this.httpClient.delete(`${this.badgeDataUrl}/${id}`);
   }
-
 }

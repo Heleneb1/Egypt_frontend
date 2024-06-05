@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { environment } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({

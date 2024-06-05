@@ -1,17 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from 'src//environments/environment';
+import { environment } from 'src/environments/environment';
 import { Comment } from '../models/comment';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CommentsService {
-
   private commentsDataUrl = environment.apiUrl + '/comments';
 
-  constructor (private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
 
   getComments() {
     return this.httpClient.get(this.commentsDataUrl);
@@ -48,6 +47,4 @@ export class CommentsService {
 
     return this.httpClient.delete(url, { body: { content } });
   }
-
-
 }

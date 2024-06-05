@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { CookieService } from 'ngx-cookie-service';
 import { Observable, catchError, map, of } from 'rxjs';
 import jwtDecode from 'jwt-decode';
 

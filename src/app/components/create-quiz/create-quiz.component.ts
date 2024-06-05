@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
-import { environment } from 'src//environments/environment';
+import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr';
 import { QuizService } from 'src/app/services/quiz.service';
 

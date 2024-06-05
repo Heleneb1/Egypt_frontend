@@ -1,17 +1,19 @@
 import { Injectable } from '@angular/core';
-import { environment } from 'src//environments/environment';
+import { environment } from 'src/environments/environment';
 import { AuthService } from './auth.service';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TopicsService {
   private topicsUrl = environment.apiUrl + '/topics';
   private answersUrl = environment.apiUrl + '/answers';
 
-
-  constructor (private authService: AuthService, private httpClient: HttpClient) { }
+  constructor(
+    private authService: AuthService,
+    private httpClient: HttpClient
+  ) {}
   getTopics() {
     return this.httpClient.get(this.topicsUrl);
   }
@@ -32,11 +34,12 @@ export class TopicsService {
     return this.httpClient.get(`${this.answersUrl}/${id}`);
   }
   postAnswer(answer: any, topicId: string, authorId: string) {
-    return this.httpClient.post(`${this.answersUrl}/${topicId}/${authorId}/create-answers`, answer);
-
+    return this.httpClient.post(
+      `${this.answersUrl}/${topicId}/${authorId}/create-answers`,
+      answer
+    );
   }
   getAnswersByTopicId(topicId: string) {
-
     return this.httpClient.get(`${this.answersUrl}/topics/${topicId}`);
   }
 }
