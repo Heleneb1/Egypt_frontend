@@ -18,9 +18,19 @@
 # Stage 1: Build Angular application
 FROM node:lts-slim as build
 WORKDIR /build
-COPY . .
+COPY package.json package-lock.json ./
 ENV PATH ./node_modules/.bin:$PATH
-RUN npm ci 
+
+# Installer uniquement les dépendances de production
+RUN npm ci
+
+# Copier le reste des fichiers après l'installation des dépendances
+COPY . .
+
+# Augmenter la mémoire allouée à Node.js pendant la compilation Angular
+ENV NODE_OPTIONS=--max_old_space_size=4096
+
+# Construire l'application Angular
 RUN ng build --output-path=dist --verbose
 
 # Stage 2: Create production environment with Nginx
