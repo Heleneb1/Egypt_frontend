@@ -54,7 +54,7 @@ export class CreateQuizComponent implements OnInit {
       !!this.tag &&
       !!this.difficulty &&
       !!this.descriptionText &&
-      this.createdQuestions.length > 0
+      this.createdQuestions.length > 4
     );
   }
   createQuiz(): void {
