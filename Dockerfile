@@ -1,11 +1,11 @@
 # Stage 1: Build Angular application
 FROM node:lts-slim as builder
 WORKDIR /usr/src/app
-COPY . .
+COPY package.json package-lock.json ./
 ENV PATH ./node_modules/.bin:$PATH
 RUN npm ci 
 RUN ng cache clean
-RUN ng build --configuration production --output-path=dist
+RUN ng build --output-path=dist
 
 # Stage 2: Create production environment with Nginx
 FROM nginx:stable-alpine-slim
