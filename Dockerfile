@@ -4,7 +4,6 @@ WORKDIR /usr/src/app
 COPY package.json package-lock.json ./
 ENV PATH ./node_modules/.bin:$PATH
 RUN npm ci 
-RUN ng cache clean
 RUN ng build --output-path=dist
 
 # Stage 2: Create production environment with Nginx
