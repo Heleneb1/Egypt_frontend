@@ -1,5 +1,10 @@
-<div *ngIf="showHeader">
-  <app-header></app-header>
-</div>
+<div class="main">
+  <div *ngIf="showHeader">
+    <app-header></app-header>
+  </div>
 
-<router-outlet></router-outlet>
+  <router-outlet></router-outlet>
+  <!-- <div *ngIf="showHeader">
+    <app-footer></app-footer>
+  </div> -->
+</div>

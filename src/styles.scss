@@ -112,6 +112,22 @@ p {
     color: var(--sun);
   }
 
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  .content {
+    flex: 1;
+  }
+
   @media (min-width: 768px) {
     .user-box input {
       padding: 0.5rem 1rem;

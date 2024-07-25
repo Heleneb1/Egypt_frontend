@@ -48,6 +48,7 @@ import { TopicsComponent } from './components/topics/topics.component';
 import { GCUComponent } from './components/gcu/gcu.component';
 import { CodeOfConductComponent } from './components/code-of-conduct/code-of-conduct.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 export interface NgcPalette {
   background?: string;
@@ -142,6 +143,7 @@ setTimeout(() => {
     GCUComponent,
     CodeOfConductComponent,
     PageNotFoundComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
