@@ -2,13 +2,23 @@
   width: 80vw;
 }
 
-.show-password {
+.user-box {
   position: relative;
-  top: 4.5rem;
-  left: 85%;
+  /* Pour que .show-password soit bien positionné à l'intérieur */
+}
+
+
+.show-password {
+  position: absolute;
+  top: 76%;
+  right: 10px;
+  color: var(--sun);
+  transform: translateY(-50%);
   width: 2rem;
   height: 1.5rem;
   display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 25px;
   cursor: pointer;
   border: none;

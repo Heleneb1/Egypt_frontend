@@ -17,7 +17,7 @@ export class AuthInterceptor implements HttpInterceptor {
     '/articles/:id',
     // Ajout endpoints publics si nécessaire
   ];
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) { }
 
   intercept(
     request: HttpRequest<any>,

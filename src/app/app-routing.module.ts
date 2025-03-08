@@ -18,6 +18,7 @@ import { ViewComponent } from './components/view/view.component';
 import { TopicsComponent } from './components/topics/topics.component';
 import { GCUComponent } from './components/gcu/gcu.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { SocialNetworksComponent } from './social-networks/social-networks.component';
 
 const routes: Routes = [
   {
@@ -87,6 +88,11 @@ const routes: Routes = [
     path: 'gcu',
     component: GCUComponent,
   },
+  {
+    path: 'social-networks',
+    component: SocialNetworksComponent,
+
+  },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 
   { path: '**', component: PageNotFoundComponent },
@@ -96,4 +102,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

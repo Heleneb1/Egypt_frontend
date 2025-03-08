@@ -49,6 +49,7 @@ import { GCUComponent } from './components/gcu/gcu.component';
 import { CodeOfConductComponent } from './components/code-of-conduct/code-of-conduct.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { SocialNetworksComponent } from './social-networks/social-networks.component';
 
 export interface NgcPalette {
   background?: string;
@@ -56,10 +57,14 @@ export interface NgcPalette {
   link?: string;
   text?: string;
 }
-const cookieConfig: NgcCookieConsentConfig = {
 
+const cookieConfig: NgcCookieConsentConfig = {
   cookie: {
-    domain: 'https://app.lesmysteresdelegypteantique.fr'
+    domain: "localhost",
+    // domain: 'lesmysteresdelegypteantique.fr', // Suppression du 'https://app.' au début
+    name: 'cookieconsent_status', // Nom du cookie pour stocker le statut
+    expiryDays: 365, // Durée de validité du cookie en jours
+    path: '/' // Chemin où le cookie est valide
   },
   palette: {
     popup: {
@@ -67,21 +72,17 @@ const cookieConfig: NgcCookieConsentConfig = {
       border: '1px solid #fff',
     },
     button: {
-
       background: 'var(--blue)',
-      border: '1px solid #fff', // Ajoutez cette ligne pour la bordure
+      border: '1px solid #fff',
     },
     highlight: {
       background: 'var(--blue)',
-
     },
   },
-
   theme: 'edgeless',
-
   type: 'opt-out',
   position: 'bottom-left',
-  enabled: false,
+  enabled: true,
   law: {
     regionalLaw: true,
     countryCode: 'FR',
@@ -94,16 +95,7 @@ const cookieConfig: NgcCookieConsentConfig = {
     href: 'https://www.cnil.fr/fr/cookies-traceurs-que-dit-la-loi',
     policy: "Notre politique de cookies",
   }
-
-
 };
-
-
-
-setTimeout(() => {
-  cookieConfig.enabled = true;
-}, 5000);
-
 
 
 @NgModule({
@@ -144,6 +136,7 @@ setTimeout(() => {
     CodeOfConductComponent,
     PageNotFoundComponent,
     FooterComponent,
+    SocialNetworksComponent,
   ],
   imports: [
     BrowserModule,

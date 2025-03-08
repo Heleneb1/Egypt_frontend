@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, catchError, map, of } from 'rxjs';
+import { Observable, catchError, map, of, throwError } from 'rxjs';
 import jwtDecode from 'jwt-decode';
 
 import { environment } from 'src/environments/environment';
@@ -15,15 +15,13 @@ export class AuthService {
     private http: HttpClient,
 
     private cookieConsentService: NgcCookieConsentService
-  ) {}
-  login(email: string, password: string) {
-    const formData = {
-      email: email,
-      password: password,
-    };
-    return this.http.post<any>(
-      `${environment.apiUrl}/api/auth/login`,
-      formData
+  ) { }
+  login(email: string, password: string): Observable<any> {
+    return this.http.post<any>(`${environment.apiUrl}/api/auth/login`, { email, password }).pipe(
+      catchError(error => {
+        console.error('Erreur de connexion', error);
+        return throwError(() => new Error('Connexion impossible'));
+      })
     );
   }
 
@@ -33,12 +31,20 @@ export class AuthService {
     this.cookieConsentService.destroy();
   }
 
-  isLoggedIn() {
-    return localStorage.getItem('auth_token') !== null;
-  }
+  // isLoggedIn() {
+  //   return localStorage.getItem('auth_token') !== null;
+  // }
+  // setToken(token: string) {
+  //   this.token = token;
+  //   localStorage.setItem('auth_token', token);
+  // }
   setToken(token: string) {
     this.token = token;
     localStorage.setItem('auth_token', token);
+  }
+
+  isLoggedIn(): boolean {
+    return localStorage.getItem('auth_token') !== null;
   }
 
   getUserToken(): { userId: string; scope: string } | null {

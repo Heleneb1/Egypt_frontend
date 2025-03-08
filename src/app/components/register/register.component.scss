@@ -2,13 +2,22 @@
   width: 80vw;
 }
 
-.show-password {
+.user-box {
   position: relative;
-  top: 4.5rem;
-  left: 85%;
+  /* Pour que .show-password soit bien positionné à l'intérieur */
+}
+
+.show-password {
+  position: absolute;
+  top: 76%;
+  right: 10px;
+  color: var(--sun);
+  transform: translateY(-50%);
   width: 2rem;
   height: 1.5rem;
   display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 25px;
   cursor: pointer;
   border: none;
@@ -16,11 +25,31 @@
 }
 
 .modal {
-  position: relative;
+  position: absolute;
   width: 100vw;
   left: 50%;
-  transform: translate(-50%, -17%);
+  transform: translate(-50%, -7%);
   background-color: var(--blue);
+}
+
+.show-modal .text-container,
+.show-modal .button-container,
+.show-modal .image {
+  display: none !important;
+
+}
+
+/* Ajout d'un overlay pour assombrir l'arrière-plan */
+.modal::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100dvh;
+  background: rgba(0, 0, 0, 0.5);
+  /* Assombri l'arrière-plan */
+  z-index: -1;
 }
 
 @media (min-width: 768px) {
@@ -30,7 +59,7 @@
 
   .modal {
     left: 50%;
-    transform: translate(-50%, -31%);
+    transform: translate(-50%, -15%);
     background-color: var(--blue);
   }
 }

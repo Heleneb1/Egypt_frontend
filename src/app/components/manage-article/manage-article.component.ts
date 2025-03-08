@@ -6,7 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-manage-article',
   templateUrl: './manage-article.component.html',
-  styleUrls: ['./manage-article.component.scss']
+  styleUrls: ['./manage-article.component.scss'],
 })
 export class ManageArticleComponent {
   articles: Article[] = [];
@@ -22,12 +22,14 @@ export class ManageArticleComponent {
   newTag: string = '';
   newRating: number = 3.5;
 
-  constructor (private adminService: AdminService, private toastr: ToastrService) { }
+  constructor(
+    private adminService: AdminService,
+    private toastr: ToastrService
+  ) {}
   getArticles() {
     this.articlesOpen = !this.articlesOpen;
     if (this.articlesOpen) {
-
-      this.adminService.getArticles().subscribe(articles => {
+      this.adminService.getArticles().subscribe((articles) => {
         this.articles = articles;
       });
     }
@@ -35,9 +37,11 @@ export class ManageArticleComponent {
 
   selectedImage: File | null = null;
 
-  onImageSelected(event: any) {
-    const selectedFile = event.target.files[0];
-    this.selectedImage = selectedFile;
+  onImageSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.selectedImage = input.files[0];
+    }
   }
 
   deleteArticle(id: string) {
@@ -59,7 +63,6 @@ export class ManageArticleComponent {
     this.newContent = article.content;
     this.isArchived = article.archive;
     this.showUpdateForm = !this.showUpdateForm;
-
   }
 
   saveChanges() {
@@ -71,28 +74,30 @@ export class ManageArticleComponent {
       this.existingArticle.author = this.newAuthor;
       this.existingArticle.tag = this.newTag;
       this.existingArticle.ratings = this.newRating;
-      this.adminService.updateArticle$(this.existingArticle.id, this.existingArticle).subscribe(() => {
-        this.getArticles();
+      this.adminService
+        .updateArticle$(this.existingArticle.id, this.existingArticle)
+        .subscribe(() => {
+          this.getArticles();
 
-        this.toastr.success('Article modifié', 'Modification');
-      });
+          this.toastr.success('Article modifié', 'Modification');
+        });
     }
   }
 
   archivedArticle(article: Article) {
     this.existingArticle = article;
     this.existingArticle.archive = this.isArchived;
-    this.adminService.updateArticle$(this.existingArticle.id, this.existingArticle).subscribe(() => {
-      this.getArticles();
-      this.showArticleForm = !this.showArticleForm;
+    this.adminService
+      .updateArticle$(this.existingArticle.id, this.existingArticle)
+      .subscribe(() => {
+        this.getArticles();
+        this.showArticleForm = !this.showArticleForm;
 
-      this.toastr.success('Article archivé', 'Archivage');
-
-    });
+        this.toastr.success('Article archivé', 'Archivage');
+      });
   }
 
   cancelChanges() {
-
     this.toastr.info('Annulation', 'Annulation');
     this.showArticleForm = !this.showArticleForm;
   }
@@ -104,7 +109,6 @@ export class ManageArticleComponent {
     this.showArticleForm = !this.showArticleForm;
   }
   addArticle() {
-
     const newArticle: Article = {
       id: '',
       title: this.newTitle,
@@ -116,9 +120,8 @@ export class ManageArticleComponent {
       ratings: this.newRating,
       comments: [],
       creation_date: new Date(),
-      edition_date: new Date()
+      edition_date: new Date(),
     };
-
 
     this.showArticleForm = !this.showArticleForm;
 
@@ -126,7 +129,9 @@ export class ManageArticleComponent {
       const newArticleWithID: Article = response;
 
       this.getArticles();
-      this.toastr.success('Article ajouté avec succès. ID de l\'article : ' + newArticleWithID.id);
+      this.toastr.success(
+        "Article ajouté avec succès. ID de l'article : " + newArticleWithID.id
+      );
     });
 
     this.newTitle = '';
@@ -134,5 +139,4 @@ export class ManageArticleComponent {
     this.newContent = '';
     this.isArchived = false;
   }
-
 }

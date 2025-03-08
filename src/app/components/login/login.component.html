@@ -1,38 +1,34 @@
 <div class="login-box">
   <form #myForm="ngForm" (ngSubmit)="myForm.valid && onSubmit()">
     <div class="user-box">
-      <input type="email" #email="ngModel" name="email" required="true" [(ngModel)]="user.email"
-        (input)="checkEmail()" />
+      <input type="email" #email="ngModel" name="email" required [(ngModel)]="user.email" (input)="checkEmail()" />
       <div class="input-title">
         <h3>Email</h3>
       </div>
 
-      <div *ngIf="myForm.submitted && !isEmailValid" class="error">
+      <div *ngIf="myForm.submitted && email.invalid" class="error">
         <span *ngIf="email.errors?.['required']">Email requis</span>
-        <div class="error" *ngIf="myForm.submitted && !isEmailValid">
-          L'email n'est pas valide.
-        </div>
+        <span *ngIf="!isEmailValid">L'email n'est pas valide.</span>
       </div>
     </div>
+
     <div class="user-box">
-      <input type="password" name="password" #password="ngModel" required="true" [(ngModel)]="user.password"
+      <input type="password" name="password" #password="ngModel" required [(ngModel)]="user.password"
         [type]="showPassword ? 'text' : 'password'" />
       <div class="input-title">
         <h3>Mot de passe</h3>
       </div>
-      <div *ngIf="myForm.submitted && password.errors" class="error">
-        <span *ngIf="password.errors?.['required']">Mot de passe requis</span>
 
+      <div *ngIf="myForm.submitted && password.invalid" class="error">
+        <span *ngIf="password.errors?.['required']">Mot de passe requis</span>
       </div>
-      <button title="password-visibility" type="button" class="show-password" (click)="click()"
-        style="color: var(--sun); background-color: white;">
+      <button title="password-visibility" type="button" class="show-password" (click)="click()">
         <div class="eye">
           <i [class]="showPassword ? 'fa fa-eye-slash' : 'fa fa-eye'"></i>
         </div>
       </button>
-
-
     </div>
+
     <div class="button">
       <div class="button-container">
         <button type="submit" class="button">Connexion</button>

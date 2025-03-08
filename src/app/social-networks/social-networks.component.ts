@@ -2,13 +2,12 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-page-not-found',
-  templateUrl: './page-not-found.component.html',
-  styleUrls: ['./page-not-found.component.scss'],
+  selector: 'app-social-networks',
+  templateUrl: './social-networks.component.html',
+  styleUrls: ['./social-networks.component.scss']
 })
-export class PageNotFoundComponent {
+export class SocialNetworksComponent {
   constructor(private router: Router) { }
-
   goToHome(): void {
     this.router.navigate(['/home']);
   }

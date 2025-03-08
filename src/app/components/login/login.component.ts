@@ -21,7 +21,7 @@ export class LoginComponent {
     private http: HttpClient,
     private router: Router,
     private authService: AuthService
-  ) {}
+  ) { }
 
   checkEmail() {
     if (this.user.email !== undefined || this.user.email !== '') {

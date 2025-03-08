@@ -32,7 +32,7 @@ export class RegisterComponent {
   showModal = false;
 
 
-  constructor (private http: HttpClient, private fb: FormBuilder, private userService: UserService, private toastr: ToastrService) {
+  constructor(private http: HttpClient, private fb: FormBuilder, private userService: UserService, private toastr: ToastrService) {
     this.userForm = this.fb.group({
       lastname: ['', Validators.required],
       firstname: ['', Validators.required],
@@ -41,6 +41,7 @@ export class RegisterComponent {
       confirmationPassword: ['']
     });
   }
+
 
   verifyPassword() {
     this.passwordMatch = this.userForm.value.password === this.userForm.value.confirmationPassword;
@@ -111,8 +112,8 @@ export class RegisterComponent {
           submitted: this.formSubmitted,
         });
       },
-      (error) => {
-        console.error(error);
+      () => {
+        console.error("Erreur lors de l'inscription");
         this.registrationStatus.emit({
           success: false,
           submitted: this.formSubmitted,

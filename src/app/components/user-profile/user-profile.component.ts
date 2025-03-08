@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class UserProfileComponent implements OnInit {
   userData: any;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) { }
   ngOnInit() {
     if (localStorage.getItem('auth_token') === null) {
       this.authService.logout();

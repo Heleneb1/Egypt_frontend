@@ -10,7 +10,8 @@ export class ConnectionComponent {
   registrationSuccessful: undefined | boolean = undefined;
   formSubmitted = false;
   registrationPhrase = {
-    success: 'Votre compte a bien été créé',
+    successTitle: 'Bienvenue !',
+    successText: 'Votre compte a bien été créé.',
     failure: 'Une erreur est survenue lors de la création de votre compte',
   };
   errorMessage: string | null = null;

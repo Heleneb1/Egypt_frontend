@@ -1,20 +1,19 @@
 <div class="register-box">
-
   <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-
     <div class="user-box">
-
       <input type="text" formControlName="lastname" required />
       <div class="input-title">
         <h3>Nom</h3>
       </div>
     </div>
+
     <div class="user-box">
       <input type="text" formControlName="firstname" required />
       <div class="input-title">
         <h3>Prénom</h3>
       </div>
     </div>
+
     <div class="user-box">
       <input type="text" formControlName="email" required (input)="checkEmail()" />
       <div class="input-title">
@@ -25,24 +24,23 @@
         L'email n'est pas valide.
       </div>
     </div>
+
     <div class="user-box">
       <input [type]="showPassword ? 'text' : 'password'" formControlName="password" required
         (input)="verifyPasswordStrength(); verifyPassword()" />
       <div class="input-title">
         <h3>Mot de passe</h3>
       </div>
-
       <div class="error"
         *ngIf="formSubmitted && userForm.controls['password'].invalid && (userForm.controls['password'].dirty || userForm.controls['password']?.touched)">
-        Le mot de passe doit comporter au moins 12 caractères, 1 majuscule, 1 caractère spécial parmis &#64;, #, $, %, ^, &,
-        +, = et 1 chiffre, sans espace.</div>
-      <button type="button" class="show-password" (click)="togglePasswordVisibility()"
-        style="color: var(--sun); background-color: white;">
-        <div class="eye">
-          <i [class]="showPassword ? 'fa fa-eye-slash' : 'fa fa-eye'"></i>
-        </div>
+        Le mot de passe doit comporter au moins 12 caractères, 1 majuscule, 1 caractère spécial parmi &#64;, #, $, %, ^,
+        &, +, = et 1 chiffre, sans espace.
+      </div>
+      <button type="button" class="show-password" (click)="togglePasswordVisibility()">
+        <i [class]="showPassword ? 'fa fa-eye-slash' : 'fa fa-eye'"></i>
       </button>
     </div>
+
     <div class="user-box">
       <input [type]="showPassword ? 'text' : 'password'" formControlName="confirmationPassword" required
         (input)="verifyPasswordStrength(); verifyPassword()" />
@@ -52,19 +50,17 @@
       <div class="error" *ngIf="formSubmitted && !passwordMatch">
         Mots de passe différents.
       </div>
-      <button type="button" class="show-password" (click)="togglePasswordVisibility()"
-        style="color: var(--sun); background-color: white;">
-        <div class="eye">
-          <i [class]="showPassword ? 'fa fa-eye-slash' : 'fa fa-eye'"></i>
-        </div>
+      <button type="button" class="show-password" (click)="togglePasswordVisibility()">
+        <i [class]="showPassword ? 'fa fa-eye-slash' : 'fa fa-eye'"></i>
       </button>
     </div>
-    <div *ngIf="isPasswordConfirmed">
 
+    <div *ngIf="isPasswordConfirmed">
       <div class="modal">
         <app-gcu *ngIf="showModal" (isAcceptedChange)="onIsAcceptedChange($event)"></app-gcu>
       </div>
     </div>
+
     <div class="button">
       <div class="button-container">
         <button type="submit" class="button">S'inscrire</button>

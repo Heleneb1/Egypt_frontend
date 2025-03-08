@@ -1,6 +1,6 @@
 .modal-content {
     width: 100vw;
-    height: 100vh;
+    height: 100dvh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -74,7 +74,7 @@
 
 @media screen and (max-width: 768px) {
     .modal-container {
-        height: 100vh;
+        height: 100dvh;
 
         .modal-content {
             width: 20rem;

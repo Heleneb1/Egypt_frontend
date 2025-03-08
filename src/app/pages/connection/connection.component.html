@@ -21,15 +21,12 @@
   <div class="connection-container">
     <div class="info-submitted-validation" *ngIf="formSubmitted || errorMessage">
       <p class="info-submitted-validation-text" [class.info-submitted-validation-valid]="registrationSuccessful"
-        [class.info-submitted-validation-error]="
-          !registrationSuccessful || errorMessage
-        ">
-        {{
-        registrationSuccessful
-        ? registrationPhrase.success
-        : errorMessage || registrationPhrase.failure
-        }}
+        [class.info-submitted-validation-error]="!registrationSuccessful || errorMessage">
+        <span class="success-title" *ngIf="registrationSuccessful">Bienvenue !</span>
+        <span>{{ registrationSuccessful ? registrationPhrase.successText : errorMessage || registrationPhrase.failure
+          }}</span>
       </p>
+
     </div>
     <app-login (loginError)="handleLoginError($event)" class="login-form-container"
       *ngIf="selectedTab === 'login'"></app-login>
@@ -42,7 +39,7 @@
           <img [src]="'assets/images/Gizeah.jpg'" alt="Gizeh" />
         </div>
 
-        <div class="text-container">
+        <div class="text-container" *ngIf="selectedTab !== 'register'">
           Inscrivez-vous et bénéficiez des toutes dernières informations disponibles,
           jouez et gagnez des badges...
         </div>

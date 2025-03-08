@@ -8,15 +8,35 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  cursor:
-    url("../src/assets/images/Ankh-Horus-2.svg") 16 16,
-    auto;
+  cursor: url("../src/assets/images/Ankh-Horus-2.svg") 16 16, auto;
+  display: flex;
+  flex-direction: column;
 }
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  /* s'assure que l'app prend toute la hauteur */
+}
+
+.main-content {
+  flex-grow: 1;
+  /* permet au contenu de se développer et pousse le footer vers le bas */
+}
+
+app-footer {
+  margin-top: auto;
+  /* colle le footer en bas */
+}
+
 
 svg {
   fill: white;
   cursor: pointer;
 }
+
+
 
 h1,
 h2,
@@ -121,7 +141,7 @@ p {
   .container {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    min-height: 100dvh;
   }
 
   .content {
@@ -185,6 +205,8 @@ p {
       display: flex;
       align-items: center;
       justify-content: center;
+
+
     }
   }
 

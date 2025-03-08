@@ -1,9 +1,9 @@
 .footer {
-    background-color: #171717;
-    color: #fff;
+    background-color: var(--blue);
+    color: var(--sun);
     padding: 40px 20px;
     text-align: center;
-
+    border-top: 1px solid var(--sun);
 }
 
 .footer-content {
@@ -31,7 +31,7 @@
 }
 
 .footer-links a {
-    color: #fff;
+    color: var(--sun);
     text-decoration: none;
     font-size: 14px;
 }
@@ -52,17 +52,28 @@
 }
 
 .footer-social a {
-    color: #fff;
+    color: var(--sun);
     font-size: 18px;
     transition: color 0.3s ease;
 }
 
 .footer-social a:hover {
-    color: #ffd700;
-    /* Couleur jaune pour le survol */
+    color: var(--white);
 }
 
-/* Utilisation des icônes Font Awesome */
 .footer-social a i {
     vertical-align: middle;
+}
+
+@media (max-width: 768px) {
+    .footer {
+        display: flex;
+        height: 10rem;
+    }
+
+    .footer-content {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 3rem;
+    }
 }

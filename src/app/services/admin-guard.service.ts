@@ -13,7 +13,7 @@ import { map, tap } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class AdminGuardService implements CanActivate {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) { }
 
   canActivate(
     _route: ActivatedRouteSnapshot,
@@ -21,17 +21,17 @@ export class AdminGuardService implements CanActivate {
   ): Observable<boolean> {
     return this.authService.isLoggedIn()
       ? this.authService.getUserRole().pipe(
-          map((userRole) => {
-            console.log('userRole', userRole);
+        map((userRole) => {
+          console.log('userRole', userRole);
 
-            if (userRole === 'ADMIN') {
-              return true;
-            } else {
-              this.router.navigate(['/authentication']);
-              return false;
-            }
-          })
-        )
+          if (userRole === 'ADMIN') {
+            return true;
+          } else {
+            this.router.navigate(['/authentication']);
+            return false;
+          }
+        })
+      )
       : of(false).pipe(tap(() => this.router.navigate(['/authentication'])));
   }
 }

@@ -1,5 +1,5 @@
 scss .createQuiz {
-  height: 100vh;
+  height: 100dvh;
 }
 
 .all-fields {
@@ -32,6 +32,7 @@ scss .createQuiz {
   display: flex;
   justify-content: center;
   align-items: center;
+
   input {
     margin-left: 0.5rem;
     // border-color: var(--sun);
@@ -60,10 +61,12 @@ scss .createQuiz {
   margin: 2rem;
   // padding: 2rem;
 }
+
 .error-message {
   margin: 1rem;
   color: var(--sun);
 }
+
 .create-questions {
   display: flex;
   border-radius: 0.5rem;
@@ -106,9 +109,11 @@ input#category {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
 input:focus {
   outline: 2px solid var(--sun);
 }
+
 .createdQuestions {
   margin: 1rem;
   font-size: 1.2rem;
@@ -118,20 +123,24 @@ input:focus {
   align-items: center;
   width: max-content;
 }
+
 .createdQuestions-global-style {
   background: antiquewhite;
   width: 44rem;
   border-radius: 0.5rem;
 }
+
 @media screen and (max-width: 768px) {
   .createdQuestions-global-style {
     width: 21rem;
     border-radius: 0.5rem;
     color: #152131;
   }
+
   .input-container {
     width: 100%;
   }
+
   input#question_title {
     border-radius: 0.5rem;
     border: 1px solid var(--blue);
@@ -139,6 +148,7 @@ input:focus {
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
   }
+
   input#category {
     border-radius: 0.5rem;
     border-color: #152131;
@@ -146,6 +156,7 @@ input:focus {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
   }
+
   input#option_1,
   #option_2,
   #option_3,
@@ -155,6 +166,7 @@ input:focus {
     border-bottom: none;
     padding: 0.5rem;
   }
+
   .all-fields {
     display: flex;
     flex-direction: column;
