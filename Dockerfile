@@ -1,9 +1,9 @@
 
 # Stage 1: Build Angular application
-FROM node:lts-slim as builder
+FROM node:lts-slim AS builder
 WORKDIR /usr/src/app
 COPY . .
-ENV PATH ./node_modules/.bin:$PATH
+ENV PATH=./node_modules/.bin:$PATH
 # npm
 RUN npm ci 
 RUN ng cache clean

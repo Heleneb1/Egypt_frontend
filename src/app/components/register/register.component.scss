@@ -39,18 +39,6 @@
 
 }
 
-/* Ajout d'un overlay pour assombrir l'arrière-plan */
-.modal::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100dvh;
-  background: rgba(0, 0, 0, 0.5);
-  /* Assombri l'arrière-plan */
-  z-index: -1;
-}
 
 @media (min-width: 768px) {
   .register-box {
