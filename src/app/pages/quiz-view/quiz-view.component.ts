@@ -17,7 +17,7 @@ export class QuizViewComponent implements OnInit {
   isUserConnected: boolean = false;
 
 
-  constructor (private quizService: QuizService, private router: Router, private authService: AuthService) { }
+  constructor(private quizService: QuizService, private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.authService.getUserConnected().subscribe((user: any) => {
@@ -42,5 +42,6 @@ export class QuizViewComponent implements OnInit {
 
   showRating() {
     this.currentRating = this.quiz.rating;
+    console.log(this.currentRating)
   }
 }

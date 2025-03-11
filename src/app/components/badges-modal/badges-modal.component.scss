@@ -7,9 +7,6 @@
     align-items: center;
 }
 
-.modal {
-    height: 30rem;
-}
 
 .modal-content h2 {
     background-color: var(--sun);
@@ -25,6 +22,7 @@
 .badge-image {
     height: 12rem;
     width: 12rem;
+    object-fit: contain;
     border-radius: 60%;
 }
 
@@ -36,12 +34,9 @@
     color: white;
 }
 
-.modal {
-    height: 20rem;
-}
 
 .modal-container {
-    height: 92vh;
+    height: 100dvh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -78,7 +73,7 @@
 
         .modal-content {
             width: 20rem;
-            height: 20rem;
+            // height: 20rem;
             background-color: var(--sun);
             color: white;
             border-radius: 3%;

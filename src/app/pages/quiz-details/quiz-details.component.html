@@ -4,11 +4,8 @@
     <div class="sub-title">
       <h2>{{ quiz.title }}</h2>
     </div>
-    <app-star-rating
-      [totalStars]="5"
-      [rating]="currentRating"
-      (ratingChanged)="onRatingChanged($event)"
-    ></app-star-rating>
+    <app-star-rating [totalStars]="5" [rating]="currentRating"
+      (ratingChanged)="onRatingChanged($event)"></app-star-rating>
 
     <button class="rating-button" *ngIf="isVoteModified" (click)="saveVote()">
       Enregistrer le vote
@@ -23,46 +20,25 @@
     </div>
 
     <div class="quiz-questions">
-      <div
-        class="question-card"
-        *ngFor="let question of questionsMap; let i = index"
-      >
+      <div class="question-card" *ngFor="let question of questionsMap; let i = index">
         <p>{{ question.content }}</p>
         <div class="options-container">
           <div class="option-column1">
             <div>
-              <input
-                type="checkbox"
-                id="option1-{{ i }}"
-                name="question-{{ i }}"
-                value="{{ question.option_1 }}"
-                (click)="answerQuestion()"
-                (change)="onOptionSelected(question.id, $event)"
-              />
+              <input type="checkbox" id="option1-{{ i }}" name="question-{{ i }}" value="{{ question.option_1 }}"
+                (click)="toggleAnswer(question,$event)" (change)="onOptionSelected(question.id, $event)" />
               <label for="option1-{{ i }}">{{ question.option_1 }}</label>
             </div>
             <div>
-              <input
-                type="checkbox"
-                id="option2-{{ i }}"
-                name="question-{{ i }}"
-                value="{{ question.option_2 }}"
-                (click)="answerQuestion()"
-                (change)="onOptionSelected(question.id, $event)"
-              />
+              <input type="checkbox" id="option2-{{ i }}" name="question-{{ i }}" value="{{ question.option_2 }}"
+                (click)="toggleAnswer(question,$event)" (change)="onOptionSelected(question.id, $event)" />
               <label for="option2-{{ i }}">{{ question.option_2 }}</label>
             </div>
           </div>
           <div class="option-column2">
             <div>
-              <input
-                type="checkbox"
-                id="option3-{{ i }}"
-                name="question-{{ i }}"
-                value="{{ question.option_3 }}"
-                (click)="answerQuestion()"
-                (change)="onOptionSelected(question.id, $event)"
-              />
+              <input type="checkbox" id="option3-{{ i }}" name="question-{{ i }}" value="{{ question.option_3 }}"
+                (click)="toggleAnswer(question,$event)" (change)="onOptionSelected(question.id, $event)" />
               <label for="option3-{{ i }}">{{ question.option_3 }}</label>
             </div>
           </div>
@@ -71,7 +47,7 @@
     </div>
     <div class="progress">
       <div id="progressBarContainer">
-        <div id="progressBar">
+        <div id="progressBar" [style.width]="progress + '%'">
           <i class="fa fa-star progress-star">
             <i class="fa fa-star nested-star"></i>
           </i>
@@ -86,8 +62,4 @@
   </div>
 </div>
 
-<app-badges-modal
-  *ngIf="showModal"
-  [userId]="userId"
-  [badgeId]="quiz.badge?.id"
-></app-badges-modal>
+<app-badges-modal *ngIf="showModal" [userId]="userId" [badgeId]="quiz.badge?.id"></app-badges-modal>

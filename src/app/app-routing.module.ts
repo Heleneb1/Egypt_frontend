@@ -20,6 +20,7 @@ import { GCUComponent } from './components/gcu/gcu.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { SocialNetworksComponent } from './social-networks/social-networks.component';
 
+//TODO lazy loading
 const routes: Routes = [
   {
     path: '',
@@ -99,7 +100,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'top' })],
   exports: [RouterModule],
 })
 export class AppRoutingModule { }

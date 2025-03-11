@@ -19,17 +19,20 @@ export class QuizDetailsComponent {
   quiz: any = [];
   quizId: any;
   userId: any;
+  rating: any
   isVoteModified: boolean = false;
   currentRating: number = 3.5;
   questionsMap: any = [];
   progress: number = 0;
   totalNumberOfQuestions: number = 0;
   numberOfAnsweredQuestions: number = 0;
+  questionRemoved = false;
   showModal: boolean = false;
   badgeId: string = '';
   userConnected: any;
   isLoaded = false;
   creationDate: any = new Date();
+  score!: number;
 
   constructor(
     private quizService: QuizService,
@@ -61,6 +64,7 @@ export class QuizDetailsComponent {
       this.quizId = params.get('id');
       this.quizService.getQuizById(this.quizId).subscribe((quiz) => {
         this.quiz = quiz;
+        this.rating = this.quiz.rating;
 
         this.formatDate(this.quiz.creationDate);
         this.userService.getUsers;
@@ -101,6 +105,29 @@ export class QuizDetailsComponent {
       }
     }
   }
+  removeAnswer(question: any): void {
+    const wasAnswered = !!question.selectedOption; // Vérifie si une réponse existait
+
+    if (wasAnswered) {
+      question.selectedOption = ''; // Annule la réponse
+      this.numberOfAnsweredQuestions--; // Décrémente le compteur des réponses
+      console.info(
+        'Réponse supprimée. Nombre de questions répondues :',
+        this.numberOfAnsweredQuestions
+      );
+    }
+
+    this.progressBarElem(); // Mettre à jour la barre de progression
+  }
+  toggleAnswer(question: any, event: Event) {
+    const isChecked = (event.target as HTMLInputElement).checked;
+
+    if (isChecked) {
+      this.answerQuestion(); // Ajoute la réponse
+    } else {
+      this.removeAnswer(question); // Retire la réponse si décoché
+    }
+  }
 
   saveVote() {
     if (this.currentRating >= 0 && this.currentRating <= 5) {
@@ -125,16 +152,16 @@ export class QuizDetailsComponent {
     this.showModal = false;
   }
   calculateScore() {
-    let score = 0;
+    this.score = 0;
 
     for (const question of this.questionsMap) {
       const userAnswer = question.selectedOption;
-      if (userAnswer === question.answer1 || userAnswer === question.answer2) {
-        score++;
+      if (userAnswer && (userAnswer === question.answer1 || userAnswer === question.answer2)) {
+        this.score++;
       }
     }
 
-    let percentage = (score / this.questionsMap.length) * 100;
+    let percentage = (this.score / this.questionsMap.length) * 100;
     console.info('Pourcentage de bonnes réponses :', percentage + '%');
     if (percentage >= 80) {
       this.toastr.success(
@@ -149,32 +176,45 @@ export class QuizDetailsComponent {
   }
 
   answerQuestion(): void {
-    const userProgress =
-      (this.questionsMap.length / this.totalNumberOfQuestions) * 100;
+    const userProgress = (this.numberOfAnsweredQuestions / this.totalNumberOfQuestions) * 100;
     console.info("Progression de l'utilisateur :", userProgress);
 
-    this.numberOfAnsweredQuestions++;
-    console.info(
-      'Nombre de questions répondues :',
-      this.numberOfAnsweredQuestions
-    );
+    if (!this.questionRemoved) {
+      this.numberOfAnsweredQuestions++;
+      console.info('Nombre de questions répondues :', this.numberOfAnsweredQuestions);
+    }
 
-    this.progress =
-      (this.numberOfAnsweredQuestions / this.totalNumberOfQuestions) * 100;
-    console.info(
-      'Nombre de questions répondues :',
-      this.numberOfAnsweredQuestions
-    );
+    if (this.questionRemoved) {
+      if (this.numberOfAnsweredQuestions > 0) {
+        this.numberOfAnsweredQuestions--;
+        console.info('Nombre de questions répondues après suppression :', this.numberOfAnsweredQuestions);
+      } else {
+        console.warn("Aucune question à retirer !");
+      }
+    }
+    this.progressBarElem();
+  }
+
+  progressBarElem(): void {
+    if (this.totalNumberOfQuestions > 0) {
+      this.progress = (this.numberOfAnsweredQuestions / this.totalNumberOfQuestions) * 100;
+    } else {
+      console.error("Le nombre total de questions est égal à zéro !");
+      this.progress = 0;
+    }
+
+    console.info('Progression calculée :', this.progress);
     console.info('Nombre total de questions :', this.totalNumberOfQuestions);
-    let progressBar = document.getElementById('progressBar') as HTMLElement;
-    progressBar.style.width = this.progress + '%';
   }
 
   awardBadgeToUser() {
-    this.userService
-      .awardBadgeToCurrentUser(this.userId, this.badgeId)
-      .subscribe();
-    console.info('badge aprés', this.badgeId);
-    this.closeModal();
+    if (this.score >= 80) {
+      this.userService
+        .awardBadgeToCurrentUser(this.userId, this.badgeId)
+        .subscribe();
+      console.info('badge après', this.badgeId);
+      this.closeModal();
+    }
   }
 }
+

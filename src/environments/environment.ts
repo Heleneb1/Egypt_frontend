@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  aapiUrl: 'https://egypt-api.lesmysteresdelegypteantique.fr',
+  apiUrl: 'https://egypt-api.lesmysteresdelegypteantique.fr',
 };
