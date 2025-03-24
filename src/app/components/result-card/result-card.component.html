@@ -1,22 +1,26 @@
 <div class="result-all">
-  <div *ngIf="filteredArticle.length > 0" class="result-title">
+  <div *ngIf="filteredArticles.length > 0" class="result-title">
     <h2 class="title">Résultats</h2>
+    <p style="color: honeydew;">Actuellement il y a {{filteredArticles.length}} résultats </p>
   </div>
 
   <div class="result-card">
-    <div class="card" *ngFor="let article of filteredArticle">
+    <div class="card" *ngFor="let article of filteredArticles">
       <div class="result-container">
         <h3 class="result-name">{{ article?.title }}</h3>
         <p class="result-tag">{{ article?.tag }}</p>
-
         <div class="result-image" (click)="toggleDetails(article)">
-          <button class="show-details-button" (click)="goToArticleDetails()">
-            Détails
+          <button class="show-details-button">
+            <a [routerLink]="['/article-details', article.slug]" class="show-details-button">
+              Détails
+            </a>
+
           </button>
         </div>
         <div class="result-rating">
-          <app-star-rating [totalStars]="5" [rating]="article.ratings"></app-star-rating>
+          <app-star-rating [disabled]="true" [rating]="article.averageRating"></app-star-rating>
         </div>
+
       </div>
       <div class="result-image">
         <img [src]="article.image ? article.image : defaultImage" alt="Image du quiz" class="rating" />

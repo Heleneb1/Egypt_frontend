@@ -22,7 +22,7 @@ export class AdminGuardService implements CanActivate {
     return this.authService.isLoggedIn()
       ? this.authService.getUserRole().pipe(
         map((userRole) => {
-          console.log('userRole', userRole);
+
 
           if (userRole === 'ADMIN') {
             return true;

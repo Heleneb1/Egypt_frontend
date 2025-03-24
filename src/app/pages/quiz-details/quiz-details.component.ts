@@ -34,6 +34,7 @@ export class QuizDetailsComponent {
   creationDate: any = new Date();
   score!: number;
 
+
   constructor(
     private quizService: QuizService,
     private articlesService: ArticlesService,
@@ -54,7 +55,7 @@ export class QuizDetailsComponent {
   }
   formatDate(dateString: string | null): void {
     this.creationDate = new Date(this.quiz.creationDate);
-    console.log('Date de création:', this.creationDate);
+    console.info('Date de création:', this.creationDate);
   }
   ngOnInit() {
     setTimeout(() => {
@@ -79,6 +80,7 @@ export class QuizDetailsComponent {
           .subscribe((badge: any) => {
             this.quiz.badge = badge;
           });
+        console.log(this.quiz)
 
         this.quiz.questionsIds.forEach((questionId: string) => {
           this.quizService
@@ -153,24 +155,56 @@ export class QuizDetailsComponent {
   }
   calculateScore() {
     this.score = 0;
+    if (!this.questionsMap || this.questionsMap.length === 0) {
+      this.toastr.warning("Pas de questions à évaluer 🧐!");
+      return;
+    }
 
     for (const question of this.questionsMap) {
-      const userAnswer = question.selectedOption;
-      if (userAnswer && (userAnswer === question.answer1 || userAnswer === question.answer2)) {
+      const userAnswer = question.selectedOption ?? null;
+
+
+      if (
+        userAnswer &&
+        (userAnswer === question.answer1 || userAnswer === question.answer2)
+      ) {
         this.score++;
+        console.log("✅ Bonne réponse !");
+      } else {
+        console.log("❌ Mauvaise réponse ou pas de réponse.");
       }
     }
 
-    let percentage = (this.score / this.questionsMap.length) * 100;
-    console.info('Pourcentage de bonnes réponses :', percentage + '%');
+    console.log("Score final :", this.score);
+
+    if (this.score === 0) {
+      this.toastr.info("Vous n'avez donné aucune bonne réponse 😔 !");
+      return;
+    }
+
+    if (this.questionsMap.length === 0) {
+      console.error("Erreur : division par zéro évitée !");
+      return;
+    }
+
+    let percentage = Math.round((this.score / this.questionsMap.length) * 100);
+
+    console.log("Pourcentage de bonnes réponses :", percentage + "%");
+
+    if (isNaN(percentage) || percentage === 0) {
+      this.toastr.info("Vous n'avez donné aucune bonne réponse 😔 !");
+      return;
+    }
+
     if (percentage >= 80) {
       this.toastr.success(
-        `Félicitations ! Vous avez obtenu un score supérieur à 80%. ${percentage}% de bonnes réponses.`
+        `Félicitations ! Vous avez obtenu un score supérieur à 80% 🎉.\n
+         Votre score : ${percentage}% de bonnes réponses.`
       );
       this.showModal = true;
     } else {
       this.toastr.warning(
-        `Continuez à travailler pour améliorer votre score. ${percentage}% de bonnes réponses.`
+        `Continuez à travailler pour améliorer votre score 😉. ${percentage}% de bonnes réponses.`
       );
     }
   }

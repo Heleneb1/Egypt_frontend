@@ -78,7 +78,7 @@ export class LoginComponent {
           },
           (error) => {
             console.error('Login error:', error);
-            this.loginError.emit('Mauvais identifiants saisis');
+            this.loginError.emit(`Erreur: ${error.statusText}`);
           }
         );
       return;

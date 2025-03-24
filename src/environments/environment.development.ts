@@ -1,4 +1,5 @@
 export const environment = {
   production: false,
-  apiUrl: 'https://egypt-api.lesmysteresdelegypteantique.fr',
+  apiUrl: 'http://localhost:8080',
+
 };

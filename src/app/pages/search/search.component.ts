@@ -30,7 +30,7 @@ export class SearchComponent implements OnInit {
   articleAuthor = '';
   authorOptions!: string[];
 
-  constructor(private articlesService: ArticlesService) {}
+  constructor(private articlesService: ArticlesService) { }
 
   ngOnInit(): void {
     this.loadTags();
@@ -48,11 +48,13 @@ export class SearchComponent implements OnInit {
     this.articles$.subscribe(
       (articles: Article[]) => {
         this.articles = articles;
+        // Ajoute ce log pour vérifier
       },
       (error) => {
         console.error("Une erreur s'est produite :", error);
       }
     );
+
   }
 
   search(term: string) {
@@ -72,6 +74,7 @@ export class SearchComponent implements OnInit {
     this.articlesService.getArticlesByAuthor$(selectedAuthor).subscribe(
       (articles: Article[]) => {
         this.articles = articles;
+
       },
       (error) => {
         console.error("Une erreur s'est produite :", error);
@@ -88,6 +91,7 @@ export class SearchComponent implements OnInit {
     this.articlesService.getArticlesByTag$(selectedTag).subscribe(
       (articles: Article[]) => {
         this.articles = articles;
+
       },
       (error) => {
         console.error(
@@ -149,6 +153,7 @@ export class SearchComponent implements OnInit {
     this.articlesService.getArticlesByTitle$(selectedTitle).subscribe(
       (articles: Article[]) => {
         this.articles = articles;
+
       },
       (error) => {
         console.error("Une erreur s'est produite :", error);

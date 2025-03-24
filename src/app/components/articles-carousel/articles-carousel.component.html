@@ -12,7 +12,7 @@
     </div>
     <div class="article">
         <div class="article-view">
-            <a routerLink="/article/{{ articles[currentIndex]?.id }}">
+            <a routerLink="/article-details/{{ articles[currentIndex]?.slug }}">
                 <img [src]="articles[currentIndex]?.image || defaultImage" alt="article image" />
             </a>
         </div>

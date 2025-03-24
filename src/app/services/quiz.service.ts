@@ -13,7 +13,7 @@ export class QuizService {
   private badgeDataUrl = environment.apiUrl + '/badges';
 
   questionTitles: any = [];
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
 
   getQuizzes() {
     return this.httpClient.get(this.quizDataUrl);
@@ -21,7 +21,7 @@ export class QuizService {
   addRating(quizId: string, userRating: number) {
     const url = `${this.quizDataUrl}/${quizId}/add-rating`;
     this.httpClient.put<any>(url, { rating: userRating }).subscribe(
-      (updatedQuiz) => {},
+      (updatedQuiz) => { },
       (error) => {
         console.error('Erreur lors de la mise à jour du quiz :', error);
       }
@@ -51,6 +51,7 @@ export class QuizService {
   getQuestionContent(questionId: string): Observable<any> {
     return this.getQuestionById(questionId).pipe(
       map((question: any) => {
+        console.log('Question:', question);
         return {
           id: question.id,
           content: question.question_title,

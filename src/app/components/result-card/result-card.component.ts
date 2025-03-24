@@ -9,32 +9,28 @@ import { ArticlesService } from 'src/app/services/articles.service';
   styleUrls: ['./result-card.component.scss']
 })
 export class ResultCardComponent {
-  @Input() filteredArticle: Article[] = [];
+  @Input() filteredArticles: Article[] = [];
   selectedArticle: Article | null = null;
   defaultImage: string = 'assets/images/Gizeh.jpg';
 
-  constructor (private router: Router, private articlesService: ArticlesService) { }
+  constructor(private router: Router, private articlesService: ArticlesService) { }
 
   ngOnInit() {
-
+    console.log('Articles chargés:', this.filteredArticles.length);
   }
 
-  toggleDetails(selectedArticle: Article) {
 
-    if (this.selectedArticle === selectedArticle) {
-      this.selectedArticle = null;
-    } else {
-      this.selectedArticle = selectedArticle;
-    }
-    return this.selectedArticle;
+  toggleDetails(selectedArticle: Article) {
+    console.log('Article sélectionné:', selectedArticle);
+    this.selectedArticle = (this.selectedArticle === selectedArticle) ? null : selectedArticle;
   }
 
   goToArticleDetails() {
-    if (this.selectedArticle) {
-      console.info(this.selectedArticle.id);
-
-      this.router.navigate(['/article', this.selectedArticle.id]);
+    if (this.selectedArticle?.slug) {
+      console.info('Navigation vers :', this.selectedArticle.id, this.selectedArticle.slug);
+      this.router.navigate(['/article-details', this.selectedArticle.slug]);
+    } else {
+      console.error("Impossible d'afficher l'article : slug non défini !");
     }
   }
-
 }

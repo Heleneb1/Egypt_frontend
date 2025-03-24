@@ -10,6 +10,8 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './topics.component.html',
   styleUrls: ['./topics.component.scss'],
 })
+
+
 export class TopicsComponent implements OnInit {
   showCodeOfConduct: boolean = false;
   topics: any[] = [];
@@ -24,7 +26,7 @@ export class TopicsComponent implements OnInit {
   answerMessage: string = '';
   searchQuery: string = '';
   tag: string = '';
-  creationDate: any = new Date();
+  creationDate: any = Date();
 
   constructor(
     private authService: AuthService,
@@ -38,8 +40,8 @@ export class TopicsComponent implements OnInit {
   ngOnInit(): void {
     this.topicsService.getTopics().subscribe((topics: any) => {
       this.topics = topics;
+      console.log(topics)
 
-      this.formatDate(this.topic.creationDate);
       this.topics.forEach((topic: any) => {
         this.userService
           .getUserName(topic.authorId)
@@ -58,6 +60,7 @@ export class TopicsComponent implements OnInit {
       this.userConnected = user;
     });
   }
+
   searchTopics() {
     this.topicsService.getTopicsByTag(this.searchQuery).subscribe(
       (topics: any) => {
@@ -77,9 +80,18 @@ export class TopicsComponent implements OnInit {
   closeCodeOfConductModal() {
     this.showCodeOfConduct = false;
   }
-  formatDate(dateString: string | null): void {
-    this.creationDate = new Date(this.topic.creationDate);
+
+
+  formatDate(creationDate: number[]) {
+    const date = new Date(
+      creationDate[0], // Année
+      creationDate[1] - 1, // Mois (les mois commencent à 0 en JS)
+      creationDate[2] // Jour
+    );
+    return date.toLocaleDateString('fr-FR'); // Format jj/mm/aaaa
   }
+
+
   showCodeOfConductModal() {
     this.showCodeOfConduct = !this.showCodeOfConduct;
   }
@@ -98,6 +110,11 @@ export class TopicsComponent implements OnInit {
   getTopicById(id: string) {
     this.topicsService.getTopicById(id).subscribe((topic: any) => {
       this.selectedTopic = topic;
+      this.userService
+        .getUserName(topic.authorId)
+        .subscribe((authorName: string) => {
+          topic.authorName = authorName;
+        });
       this.getAnswersByTopic(this.selectedTopic.id);
     });
   }
@@ -224,4 +241,11 @@ export class TopicsComponent implements OnInit {
       return authorName;
     });
   }
+}
+interface Topic {
+  id: String,
+  creationDate: Date;
+  message: String;
+  tag: String;
+  authorId: String;
 }

@@ -99,12 +99,14 @@
         shape-outside: margin-box;
         margin: 0 1rem 0.5rem 0;
         float: left;
+        position: relative;
+        transition: transform 0.5s ease-in-out;
     }
 
     img:hover {
         transform: scale(1.5);
-        transition: all 0.5s ease-in-out;
-        cursor: pointer;
+        position: absolute;
+        z-index: 10;
     }
 }
 
@@ -124,6 +126,7 @@ ul {
 }
 
 .suggest-text {
+    padding-left: 2rem;
     display: flex;
     justify-content: flex-start;
     width: 100%;
@@ -162,6 +165,7 @@ ul {
             transform: scale(2.2);
             transition: all 0.5s ease-in-out;
             cursor: pointer;
+            transform-origin: -5rem;
         }
     }
 }

@@ -42,7 +42,7 @@
                 </div>
                 <div class="update-button">
                     <button (click)="editArticle(article)" type="button">Modifier</button>
-                    <button class="delete-button" (click)="deleteArticle(article.id)">Supprimer</button>
+                    <button class="delete-button" (click)="article.id && deleteArticle(article.id)">Supprimer</button>
                     <button (click)="saveChanges()">Enregistrer</button>
                 </div>
             </div>

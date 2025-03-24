@@ -1,34 +1,19 @@
 <div class="comment-container">
   <h2>Commentaire</h2>
   <div class="codeOfconduct">
-    <button
-      title="code-of-conduct"
-      (click)="showCodeOfConductModal()"
-      type="button"
-      class="codeOfConduct-btn"
-    >
+    <button title="code-of-conduct" (click)="showCodeOfConductModal()" type="button" class="codeOfConduct-btn">
       Plus d'informations
     </button>
   </div>
   <div class="showCodeOfConduct" *ngIf="showCodeOfConduct">
     <div class="closeModal">
-      <button
-        title="close"
-        (click)="closeCodeOfConductModal()"
-        type="button"
-        class="close-btn"
-      >
+      <button title="close" (click)="closeCodeOfConductModal()" type="button" class="close-btn">
         <strong>X</strong>
       </button>
     </div>
     <app-code-of-conduct></app-code-of-conduct>
     <div class="closeModal">
-      <button
-        title="close"
-        (click)="closeCodeOfConductModal()"
-        type="button"
-        class="close-btn"
-      >
+      <button title="close" (click)="closeCodeOfConductModal()" type="button" class="close-btn">
         <strong>Fermer</strong>
       </button>
     </div>
@@ -41,13 +26,8 @@
       </button>
       <div *ngIf="editComment">
         <div class="edit">
-          <textarea
-            id="comment"
-            class="form-control"
-            [(ngModel)]="commentContent"
-            name="commentContent"
-            required
-          ></textarea>
+          <textarea id="comment" class="form-control" [(ngModel)]="commentContent" name="commentContent"
+            required></textarea>
           <button type="submit" class="btn-add-comment">
             Ajouter le commentaire
           </button>
@@ -55,10 +35,7 @@
       </div>
     </div>
 
-    <div
-      class="comment-content"
-      *ngIf="showComment && commentList && commentList.length > 0"
-    >
+    <div class="comment-content" *ngIf="showComment && commentList && commentList.length > 0">
       <h2>Commentaires déjà en ligne</h2>
       <ul>
         <li *ngFor="let comment of commentList">
@@ -68,18 +45,11 @@
               <p>Date de création: {{ creationDate | date : "dd/MM/yyyy" }}</p>
             </div>
             <div class="avatar">
-              <img
-                [src]="comment.authorAvatar || defaultAvatarUrl"
-                alt="Avatar de l'auteur du commentaire"
-              />
+              <img [src]="comment.authorAvatar || defaultAvatarUrl" alt="Avatar de l'auteur du commentaire" />
               <p>{{ comment.authorName }}</p>
 
               <div *ngIf="userConnected.id === comment.author">
-                <button
-                  (click)="deleteMyComment(comment.id, comment.author)"
-                  type="button"
-                  class="deleteMyComment"
-                >
+                <button (click)="deleteMyComment(comment.id, comment.author)" type="button" class="deleteMyComment">
                   Supprimer le commentaire
                 </button>
               </div>

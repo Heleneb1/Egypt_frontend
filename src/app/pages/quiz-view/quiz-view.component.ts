@@ -42,6 +42,6 @@ export class QuizViewComponent implements OnInit {
 
   showRating() {
     this.currentRating = this.quiz.rating;
-    console.log(this.currentRating)
+    console.info(this.currentRating)
   }
 }

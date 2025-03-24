@@ -2,32 +2,14 @@
   <div *ngIf="userConnected" class="form-group">
     <form (submit)="createTopic()">
       <label for="topic"></label>
-      <button
-        type="button"
-        title="create-topic-btn"
-        class="topic-btn"
-        (click)="toggleEdit()"
-      >
+      <button type="button" title="create-topic-btn" class="topic-btn" (click)="toggleEdit()">
         Créer un nouveau sujet
       </button>
       <div class="create-topic-form" *ngIf="editTopic">
         <div class="edit">
-          <input
-            type="text"
-            id="topic-tag"
-            placeholder="Thème"
-            [(ngModel)]="tag"
-            name="tag"
-            required
-          />
-          <textarea
-            id="create-topic"
-            placeholder="Votre texte"
-            class="form-control"
-            [(ngModel)]="topicMessage"
-            name="topicMessage"
-            required
-          ></textarea>
+          <input type="text" id="topic-tag" placeholder="Thème" [(ngModel)]="tag" name="tag" required />
+          <textarea id="create-topic" placeholder="Votre texte" class="form-control" [(ngModel)]="topicMessage"
+            name="topicMessage" required></textarea>
           <button type="submit" class="btn-add-topic">
             Ajouter la discussion
           </button>
@@ -36,76 +18,43 @@
     </form>
   </div>
   <div class="codeOfconduct">
-    <button
-      title="code-of-conduct"
-      (click)="showCodeOfConductModal()"
-      type="button"
-      class="codeOfConduct-btn"
-    >
+    <button title="code-of-conduct" (click)="showCodeOfConductModal()" type="button" class="codeOfConduct-btn">
       Plus d'informations
     </button>
   </div>
   <div class="showCodeOfConduct" *ngIf="showCodeOfConduct">
     <div class="closeModal">
-      <button
-        title="close"
-        (click)="closeCodeOfConductModal()"
-        type="button"
-        class="close-btn"
-      >
+      <button title="close" (click)="closeCodeOfConductModal()" type="button" class="close-btn">
         <strong>X</strong>
       </button>
     </div>
     <app-code-of-conduct></app-code-of-conduct>
     <div class="closeModal">
-      <button
-        title="close"
-        (click)="closeCodeOfConductModal()"
-        type="button"
-        class="close-btn"
-      >
+      <button title="close" (click)="closeCodeOfConductModal()" type="button" class="close-btn">
         <strong>Fermer</strong>
       </button>
     </div>
   </div>
   <div *ngIf="userConnected" class="name-search">
     <label for="theme"></label>
-    <input
-      type="text"
-      id="theme"
-      placeholder="Rechercher"
-      [(ngModel)]="searchQuery"
-    />
-    <button
-      type="button"
-      class="searchButton"
-      title="Search"
-      (click)="searchTopics()"
-    >
+    <input type="text" id="theme" placeholder="Rechercher" [(ngModel)]="searchQuery" />
+    <button type="button" class="searchButton" title="Search" (click)="searchTopics()">
       <i class="fa fa-search"></i>
     </button>
   </div>
   <div class="see-topics">
     <ul *ngIf="topics && topics.length > 0; else noTopics">
       <li *ngFor="let topic of topics">
-        <button
-          class="participation"
-          type="button"
-          title="participation"
-          (click)="getTopicById(topic.id)"
-        >
+        <button class="participation" type="button" title="participation" (click)="getTopicById(topic.id)">
           Participer
         </button>
-        <p>Tag: {{ topic.tag }}</p>
-        <p>Par: {{ topic.authorName }}</p>
+        <p>Tag: {{ topic?.tag }}</p>
+        <p>Par: {{ topic?.authorName }}</p>
         <div class="author-avatar">
-          <img
-            [src]="topic.authorAvatar"
-            alt="Avatar de l'auteur du commentaire"
-          />
+          <img [src]="topic.authorAvatar" alt="Avatar de l'auteur du commentaire" />
         </div>
-        <div class="subject">Sujet: {{ topic.message }}</div>
-        <p>Date de création: {{ creationDate | date : "dd/MM/yyyy" }}</p>
+        <div class="subject">Sujet: {{ topic?.message }}</div>
+        <p>Date de création: {{formatDate(topic.creationDate) }}</p>
       </li>
     </ul>
   </div>
@@ -117,7 +66,7 @@
     <h2>Sujet sélectionné</h2>
     <div class="see-answer">
       <p>{{ selectedTopic.message }}</p>
-      <p>Date de création: {{ creationDate | date : "dd/MM/yyyy" }}</p>
+      <p>Date de création: {{ formatDate(selectedTopic.creationDate) }}</p>
       <p>Auteur: {{ selectedTopic.authorName }}</p>
       <p>Tag: {{ selectedTopic.tag }}</p>
     </div>
@@ -125,13 +74,8 @@
 
     <div class="create-answer-form" *ngIf="editAnswer">
       <div class="edit">
-        <textarea
-          id="create-answer"
-          class="form-control"
-          [(ngModel)]="answerMessage"
-          name="answerMessage"
-          required
-        ></textarea>
+        <textarea id="create-answer" class="form-control" [(ngModel)]="answerMessage" name="answerMessage"
+          required></textarea>
         <button type="button" class="btn-add-topic" (click)="createAnswer()">
           Ajouter la réponse
         </button>
@@ -140,10 +84,7 @@
     <ul *ngIf="existingAnswers && existingAnswers.length > 0; else noAnswers">
       <li *ngFor="let answer of existingAnswers">
         <div class="author-avatar">
-          <img
-            [src]="answer.authorAvatar"
-            alt="Avatar de l'auteur du commentaire"
-          />
+          <img [src]="answer?.authorAvatar" alt="Avatar de l'auteur du commentaire" />
         </div>
         <p>Réponse: {{ answer.answer }}</p>
         <p>auteur :{{ answer.authorName }}</p>

@@ -7,13 +7,14 @@ import { Observable, map } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
+
 export class ArticlesService {
   private articlesDataUrl = environment.apiUrl + '/articles';
 
   addRating(articleId: string, userRating: number) {
     const url = `${this.articlesDataUrl}/${articleId}/add-rating`;
     this.httpClient.put<any>(url, { rating: userRating }).subscribe(
-      (updatedArticle) => {},
+      (updatedArticle) => { },
       (error) => {
         console.error('Erreur lors de la mise à jour du quiz :', error);
       }
@@ -22,23 +23,35 @@ export class ArticlesService {
 
   //TODO: convention de nommage sur les observables : https://angular.io/guide/rx-library#naming-conventions-for-observables
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
   getArticles$(): Observable<Article[]> {
     return this.httpClient.get<Article[]>(`${this.articlesDataUrl}`);
   }
   getArticleById(id: string) {
     return this.httpClient.get(`${this.articlesDataUrl}/${id}`);
   }
+  getArticleBySlug(slug: string) {
+    console.log("slug", slug)
+    console.log(`${this.articlesDataUrl}/slug/${slug}`)
+    return this.httpClient.get<Article[]>(`${this.articlesDataUrl}/slug/${slug}`);
+  }
+
   getArticleContent(articleId: string): any {
     return this.getArticleById(articleId).pipe(
       map((article: any) => {
+        console.log("article", article)
         return {
-          title: article.title,
-          id: article.id,
-          archive: article.archive,
-          author: article.author,
-          content: article.content,
-          rating: article.rating,
+          ...Article
+          // title: article.title,
+          // id: article.id,
+          // archive: article.archive,
+          // author: article.author,
+          // content: article.content,
+          // rating: article.rating,
+          // average: article.averageRating,
+          // quizzes: article.quizzes,
+          // tag: article.tag,
+          // slug: article.slug,
         };
       })
     );

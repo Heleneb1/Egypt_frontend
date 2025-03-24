@@ -43,6 +43,12 @@ const routes: Routes = [
     path: 'article/:id',
     component: ArticleDetailsComponent,
   },
+
+  {
+    path: 'article-details/:slug', //pas /:slug directement car angular ne differencie pas les string et ajout de -details 
+    component: ArticleDetailsComponent
+  },
+
   {
     path: 'create-quiz',
     component: CreateQuizComponent,
@@ -94,13 +100,14 @@ const routes: Routes = [
     component: SocialNetworksComponent,
 
   },
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
 
   { path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'top' })],
+  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'top', onSameUrlNavigation: 'reload' })], // onSameUrlNavigation permet de rechager la page même url
   exports: [RouterModule],
 })
 export class AppRoutingModule { }

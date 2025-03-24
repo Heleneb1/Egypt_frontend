@@ -8,7 +8,7 @@ import { StarService } from 'src/app/services/star.service';
   styleUrls: ['./star-rating.component.scss']
 })
 export class StarRatingComponent implements OnInit {
-  constructor (private starService: StarService, private authService: AuthService) { }
+  constructor(private starService: StarService, private authService: AuthService) { }
 
   @Input() totalStars = 5;
   @Input() rating = 3.5;
@@ -20,7 +20,7 @@ export class StarRatingComponent implements OnInit {
   userConnected!: boolean;
 
   @Output() ratingChanged: EventEmitter<number> = new EventEmitter<number>();
-
+  @Input() disabled: boolean = false;
 
   ngOnInit() {
     this.stars = Array.from({ length: this.totalStars }, (_, index) => index + 1);
@@ -34,6 +34,8 @@ export class StarRatingComponent implements OnInit {
   }
 
   rate(star: number) {
+    if (this.disabled) return; // Empêcher l'action si disabled est true
+
     this.rating = star;
     this.isVoteModified = true;
     this.starService.votedRating = this.rating;
@@ -47,7 +49,7 @@ export class StarRatingComponent implements OnInit {
 
   isHalfStarDisplayed(star: number): boolean {
     const floorValue = Math.floor(this.rating);
-    return star === floorValue + 0.5 && this.rating % 1 !== 0;
+    return star === floorValue + 0.1 && this.rating % 1 !== 0;
   }
 
   getStarClass(star: number): string {

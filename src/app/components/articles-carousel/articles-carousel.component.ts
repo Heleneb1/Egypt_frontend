@@ -17,7 +17,7 @@ export class ArticlesCarouselComponent implements OnInit {
   visibleArticle!: Article;
   defaultImage: string = 'assets/images/Gizeah.jpg';
 
-  constructor (private articlesService: ArticlesService, private router: Router) {
+  constructor(private articlesService: ArticlesService, private router: Router) {
 
   }
 
@@ -50,12 +50,20 @@ export class ArticlesCarouselComponent implements OnInit {
   }
 
   nextArticle() {
+    if (this.articles.length === 0) return;
+    console.log('Next article clicked');
+    console.log('Current index before:', this.currentIndex);
     this.currentIndex = (this.currentIndex + 1) % this.articles.length;
+    console.log('Current index after:', this.currentIndex);
     this.updateIndexes();
   }
 
   prevArticle() {
+    if (this.articles.length === 0) return;
+    console.log('Previous article clicked');
+    console.log('Current index before:', this.currentIndex);
     this.currentIndex = (this.currentIndex - 1 + this.articles.length) % this.articles.length;
+    console.log('Current index after:', this.currentIndex);
     this.updateIndexes();
   }
 

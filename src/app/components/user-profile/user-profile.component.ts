@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-user-profile',
@@ -9,9 +10,13 @@ import { AuthService } from 'src/app/services/auth.service';
 export class UserProfileComponent implements OnInit {
   userData: any;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private cookieService: CookieService) { }
+
   ngOnInit() {
-    if (localStorage.getItem('auth_token') === null) {
+
+    const token = this.cookieService.get('auth_token');
+
+    if (token === null) {
       this.authService.logout();
     } else {
       this.authService.getUserConnected().subscribe((data) => {
@@ -19,4 +24,5 @@ export class UserProfileComponent implements OnInit {
       });
     }
   }
+
 }

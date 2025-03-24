@@ -39,15 +39,9 @@ export class AppComponent {
   private noCookieLawSubscription!: Subscription;
 
   ngOnInit() {
+    console.info('NgcCookieConsentService initialized');
     // Delayed initialization of the cookie consent banner
-    setTimeout(() => {
-      const config = this.ccService.getConfig();
-      if (config && config.content) {
-        (config.content.message =
-          "Un petit cookie pour la route?\n Avant de s'immerger dans l'Égypte des Pharaons ?"),
-          this.ccService.init(config); // Initialize the cookie consent banner
-      }
-    }, 5000);
+
     // subscribe to cookieconsent observables to react to main events
     this.popupOpenSubscription = this.ccService.popupOpen$.subscribe(() => {
       // you can use this.ccService.getConfig() to do stuff...

@@ -97,7 +97,7 @@ nav.header-container {
 
 .menu .nav-mobile ul {
   list-style: none;
-  margin: 0 3rem;
+  margin: 0 2rem;
   text-align: center;
 }
 
@@ -166,4 +166,19 @@ nav.header-container {
     padding: 0;
     width: 100%;
   }
+
+  .menu li a {
+
+    font-size: 1.4rem;
+
+  }
+
+  .link {
+    .logout {
+
+      font-size: 1.4rem;
+
+    }
+  }
+
 }

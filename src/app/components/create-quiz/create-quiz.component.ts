@@ -46,7 +46,7 @@ export class CreateQuizComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
   checkFormValidity(): boolean {
     // Vérifiez ici si tous les champs nécessaires sont remplis
     return (
@@ -73,7 +73,7 @@ export class CreateQuizComponent implements OnInit {
 
       this.http.post(url, data).subscribe(
         (response: any) => {
-          console.log('Quiz created', response);
+          console.info('Quiz created', response);
           this.createdQuiz = response; // Sauvegardez le quiz créé
           this.addQuestionsToQuiz(this.category); // Ajoutez les questions au quiz
         },
@@ -132,9 +132,9 @@ export class CreateQuizComponent implements OnInit {
   }
   addQuestionsToQuiz(category: string) {
     if (this.createdQuiz && this.createdQuestions.length > 0) {
-      console.log('quizId', this.createdQuiz.id);
-      console.log('questions', this.createdQuestions);
-      console.log('category', category);
+      console.info('quizId', this.createdQuiz.id);
+      console.info('questions', this.createdQuestions);
+      console.info('category', category);
 
       this.quizService
         .addQuestionByCategoryToQuiz(this.createdQuiz.id, category)

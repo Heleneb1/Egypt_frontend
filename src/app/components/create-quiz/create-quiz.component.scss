@@ -51,6 +51,8 @@ scss .createQuiz {
   justify-content: center;
   align-items: center;
   width: 80%;
+  gap: 5rem;
+
 
   label {
     width: 20%;
@@ -137,6 +139,10 @@ input:focus {
     color: #152131;
   }
 
+  .createdQuestions {
+    width: auto
+  }
+
   .input-container {
     width: 100%;
   }
@@ -174,5 +180,10 @@ input:focus {
     align-items: center;
     width: 100%;
     margin: 0;
+  }
+
+  .quiz {
+    flex-direction: column;
+    gap: 0
   }
 }

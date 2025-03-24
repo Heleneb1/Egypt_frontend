@@ -21,11 +21,12 @@ export class ManageArticleComponent {
   newAuthor: string = '';
   newTag: string = '';
   newRating: number = 3.5;
+  average!: number
 
   constructor(
     private adminService: AdminService,
     private toastr: ToastrService
-  ) {}
+  ) { }
   getArticles() {
     this.articlesOpen = !this.articlesOpen;
     if (this.articlesOpen) {
@@ -59,7 +60,8 @@ export class ManageArticleComponent {
     this.newImage = article.image;
     this.newAuthor = article.author;
     this.newTag = article.tag;
-    this.newRating = article.ratings;
+    this.newRating = article.ratings[0];
+    this.average = article.averageRating;
     this.newContent = article.content;
     this.isArchived = article.archive;
     this.showUpdateForm = !this.showUpdateForm;
@@ -73,28 +75,35 @@ export class ManageArticleComponent {
       this.existingArticle.archive = this.isArchived;
       this.existingArticle.author = this.newAuthor;
       this.existingArticle.tag = this.newTag;
-      this.existingArticle.ratings = this.newRating;
-      this.adminService
-        .updateArticle$(this.existingArticle.id, this.existingArticle)
-        .subscribe(() => {
-          this.getArticles();
+      this.existingArticle.ratings = [this.newRating];
+      if (this.existingArticle.id) {
+        this.adminService
+          .updateArticle$(this.existingArticle.id, this.existingArticle)
+          .subscribe(() => {
+            this.getArticles();
 
-          this.toastr.success('Article modifié', 'Modification');
-        });
+            this.toastr.success('Article modifié', 'Modification');
+          });
+      } else {
+        this.toastr.error('ID de l\'article manquant', 'Erreur');
+      }
     }
   }
 
   archivedArticle(article: Article) {
     this.existingArticle = article;
     this.existingArticle.archive = this.isArchived;
-    this.adminService
-      .updateArticle$(this.existingArticle.id, this.existingArticle)
-      .subscribe(() => {
-        this.getArticles();
-        this.showArticleForm = !this.showArticleForm;
+    if (this.existingArticle.id) {
 
-        this.toastr.success('Article archivé', 'Archivage');
-      });
+      this.adminService
+        .updateArticle$(this.existingArticle.id, this.existingArticle)
+        .subscribe(() => {
+          this.getArticles();
+          this.showArticleForm = !this.showArticleForm;
+
+          this.toastr.success('Article archivé', 'Archivage');
+        });
+    }
   }
 
   cancelChanges() {
@@ -110,20 +119,21 @@ export class ManageArticleComponent {
   }
   addArticle() {
     const newArticle: Article = {
-      id: '',
       title: this.newTitle,
       image: this.newImage,
       content: this.newContent,
       archive: this.isArchived,
       author: this.newAuthor,
       tag: this.newTag,
-      ratings: this.newRating,
+      // rating: this.newRating,
+      ratings: [],
+      averageRating: this.average,
       comments: [],
       creation_date: new Date(),
       edition_date: new Date(),
     };
-
-    this.showArticleForm = !this.showArticleForm;
+    console.log(newArticle)
+    // this.showArticleForm = !this.showArticleForm;
 
     this.adminService.addNewArticle$(newArticle).subscribe((response: any) => {
       const newArticleWithID: Article = response;
@@ -132,11 +142,12 @@ export class ManageArticleComponent {
       this.toastr.success(
         "Article ajouté avec succès. ID de l'article : " + newArticleWithID.id
       );
+
     });
 
-    this.newTitle = '';
-    this.newImage = '';
-    this.newContent = '';
-    this.isArchived = false;
+    // this.newTitle = '';
+    // this.newImage = '';
+    // this.newContent = '';
+    // this.isArchived = false;
   }
 }

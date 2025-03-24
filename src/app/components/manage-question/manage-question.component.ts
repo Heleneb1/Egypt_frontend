@@ -9,7 +9,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./manage-question.component.scss']
 })
 export class ManageQuestionComponent implements OnInit {
-  constructor (private quizService: QuizService, private toastr: ToastrService) { }
+  constructor(private quizService: QuizService, private toastr: ToastrService) { }
   @Output() questionsSelected: EventEmitter<any> = new EventEmitter<any>();
   @Output() categorySelected: EventEmitter<any> = new EventEmitter<any>();
   @Input() quizSelectedId!: string;
