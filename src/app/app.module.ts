@@ -60,8 +60,8 @@ export interface NgcPalette {
 
 const cookieConfig: NgcCookieConsentConfig = {
   cookie: {
-    domain: "localhost",
-    // domain: 'lesmysteresdelegypteantique.fr', // Suppression du 'https://app.' au début
+    // domain: "localhost",
+    domain: 'lesmysteresdelegypteantique.fr', // Suppression du 'https://app.' au début
     name: 'cookieconsent_status', // Nom du cookie pour stocker le statut
     expiryDays: 365, // Durée de validité du cookie en jours
     path: '/' // Chemin où le cookie est valide
@@ -88,10 +88,9 @@ const cookieConfig: NgcCookieConsentConfig = {
     countryCode: 'FR',
   },
   content: {
-    message: "Acceptez-vous un petit cookie pour la route, avant de vous immerger dans l'Égypte des Pharaons ? ",
-    allow: 'Oui, j\'accepte',
-    deny: 'Non, je refuse',
-    link: 'Plus d\'informations',
+    message: "Acceptez-vous un petit cookie 🍪 pour la route, avant de vous immerger dans l'Égypte des Pharaons ? ",
+    allow: 'Oui, j\'accepte ✅',
+    deny: 'Non, je refuse ❌',
     href: 'https://www.cnil.fr/fr/cookies-traceurs-que-dit-la-loi',
     policy: "Notre politique de cookies",
   }
