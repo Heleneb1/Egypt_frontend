@@ -88,11 +88,11 @@ const cookieConfig: NgcCookieConsentConfig = {
     countryCode: 'FR',
   },
   content: {
-    message: "Acceptez-vous un petit cookie 🍪 pour la route, avant de vous immerger dans l'Égypte des Pharaons ? ",
-    allow: 'Oui, j\'accepte ✅',
-    deny: 'Non, je refuse ❌',
+    message: "Acceptez-vous un petit cookie 🍪 pour la route 🛣️, avant de vous immerger dans l'Égypte des Pharaons ? ",
+    allow: 'Oui, j\'accepte ✔️',
+    deny: 'Non, je refuse ✖️',
     href: 'https://www.cnil.fr/fr/cookies-traceurs-que-dit-la-loi',
-    policy: "Notre politique de cookies",
+    policy: "Nos Cookies 🍪",
   }
 };
 
