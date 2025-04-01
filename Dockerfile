@@ -18,8 +18,8 @@ COPY --from=builder /usr/src/app/dist/ /usr/share/nginx/html
 COPY ./default.conf /etc/nginx/conf.d/
 # EXPOSE 4200
 # HEALTHCHECK --interval=30s --timeout=10s --retries=3 CMD curl -f http://localhost:4200/ || exit 1
-EXPOSE 4300
-HEALTHCHECK --interval=30s --timeout=10s --retries=3 CMD curl -f http://localhost:4300/ || exit 1
+EXPOSE 4200
+HEALTHCHECK --interval=30s --timeout=10s --retries=3 CMD curl -f http://localhost:4200/ || exit 1
 
 CMD ["nginx", "-g", "daemon off;"]
 
