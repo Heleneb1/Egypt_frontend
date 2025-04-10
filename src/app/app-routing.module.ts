@@ -45,7 +45,7 @@ const routes: Routes = [
   },
 
   {
-    path: 'article-details/:slug', //pas /:slug directement car angular ne differencie pas les string et ajout de -details 
+    path: 'article-details/:slug', //pas /:slug directement après article/ car il ne différencie pas entre id et slug (les strings)
     component: ArticleDetailsComponent
   },
 

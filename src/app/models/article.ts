@@ -11,8 +11,10 @@ export class Article {
     public image: string,
     public comments: any[],
     public averageRating: number,
-    public quizzes?: string[],
+    public quizzesIds?: any[],
     public slug?: string,// ? pour etre omis lors de la création
     public id?: string,
+    public quizzes?: any[],
   ) { }
+
 }

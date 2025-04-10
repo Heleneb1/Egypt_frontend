@@ -50,6 +50,7 @@ import { CodeOfConductComponent } from './components/code-of-conduct/code-of-con
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SocialNetworksComponent } from './social-networks/social-networks.component';
+import { SafePipe } from './safe.pipe';
 
 export interface NgcPalette {
   background?: string;
@@ -60,8 +61,8 @@ export interface NgcPalette {
 
 const cookieConfig: NgcCookieConsentConfig = {
   cookie: {
-    // domain: "localhost",
-    domain: 'lesmysteresdelegypteantique.fr', // Suppression du 'https://app.' au début
+    domain: window.location.hostname === 'localhost' ? 'localhost' : 'lesmysteresdelegypteantique.fr', // Suppression du 'https://app.' au début
+    // domain: 'lesmysteresdelegypteantique.fr', // Suppression du 'https://app.' au début
     name: 'cookieconsent_status', // Nom du cookie pour stocker le statut
     expiryDays: 365, // Durée de validité du cookie en jours
     path: '/' // Chemin où le cookie est valide
@@ -93,6 +94,7 @@ const cookieConfig: NgcCookieConsentConfig = {
     deny: 'Non, je refuse ✖️',
     href: 'https://www.cnil.fr/fr/cookies-traceurs-que-dit-la-loi',
     policy: "Nos Cookies 🍪",
+    border: '1px solid #fff',
   }
 };
 
@@ -136,6 +138,7 @@ const cookieConfig: NgcCookieConsentConfig = {
     PageNotFoundComponent,
     FooterComponent,
     SocialNetworksComponent,
+    SafePipe,
   ],
   imports: [
     BrowserModule,

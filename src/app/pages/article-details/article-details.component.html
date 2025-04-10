@@ -22,23 +22,27 @@
     </button>
     <article class="content">
       <img [src]="article.image ? article.image : defaultImage" alt="Image par defaut" class="rating" />
-      <p>
-        <span>
-          <h2 class="article-title">{{ article?.title }}</h2>
-        </span>{{ article?.content }}
-      </p>
+      <h2 class="article-title">{{ article?.title }}</h2>
+
+      <div class="article-content" [innerHTML]="articleContent"></div>
+
     </article>
     <div class="author-info">
       <p>Auteur: {{ article?.author }}</p>
+
+      <p>Thème: {{ article?.tag }}</p>
+      <div *ngIf="article.quizzes?.length; else message">
+        <p>Quiz associé : </p>
+        <li *ngFor="let quiz of article.quizzes">
+          <a [routerLink]="['/quiz', quiz.id]">{{ quiz.title }}</a>
+        </li>
+
+      </div>
+      <ng-template #message>
+        <p>Pas de quiz associé, pour le moment</p>
+      </ng-template>
+      <p>Date de création: {{ formatDate(article?.creationDate) }}</p>
     </div>
-    <p>Thème: {{ article?.tag }}</p>
-    <div *ngIf="article.quizzes?.length; else message">
-      <p>Quiz associé: {{ article?.quizzes?.name }}</p>
-    </div>
-    <ng-template #message>
-      <p>Pas de quiz associé, pour le moment</p>
-    </ng-template>
-    <p>Date de création: {{ formatDate(article?.creationDate) }}</p>
   </div>
 
   <div class="suggest-text">

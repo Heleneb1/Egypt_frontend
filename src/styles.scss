@@ -48,7 +48,6 @@ h6 {
 }
 
 p {
-  margin: 0;
   font-family: var(--text);
 }
 
@@ -247,6 +246,7 @@ p {
   .cc-floating.cc-theme-edgeless .cc-btn+.cc-btn {
     margin-left: 0;
     border: 1px solid var(--sun);
+
   }
 
   .cc-color-override-1405961331.cc-revoke {
@@ -255,11 +255,37 @@ p {
     background-color: var(--blue);
   }
 
+  .cc-animate.cc-revoke.cc-bottom {
+    transform: translateY(0);
+    /* ou ce que tu veux */
+  }
+
+  @keyframes appear {
+    0% {
+      opacity: 0;
+      transform: translateY(-100%);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .cc-color-override-124423810.cc-revoke {
+    color: rgb(255, 255, 255);
+    background-color: var(--blue);
+    border: 1px var(--sun) solid;
+  }
+
   .cc-color-override-124423810.cc-window {
     color: rgb(255, 255, 255);
     background-color: var(--blue);
     border: var(--sun) 1px solid;
     border-radius: 0.5rem;
+    width: 20rem;
+    // animation-delay: 10s;
+    // animation: appear 5s;
   }
 
   .codeOfConduct-btn {

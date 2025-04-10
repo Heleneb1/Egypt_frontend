@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Article } from 'src/app/models/article';
 import { AdminService } from 'src/app/services/admin.service';
 import { ToastrService } from 'ngx-toastr';
+import { QuizService } from 'src/app/services/quiz.service';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-manage-article',
@@ -22,20 +24,47 @@ export class ManageArticleComponent {
   newTag: string = '';
   newRating: number = 3.5;
   average!: number
+  newQuizzes: any[] = [];
+  allQuizzes: any;
+  selectedQuizId: string = '';
 
   constructor(
     private adminService: AdminService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private quizService: QuizService
   ) { }
-  getArticles() {
-    this.articlesOpen = !this.articlesOpen;
-    if (this.articlesOpen) {
-      this.adminService.getArticles().subscribe((articles) => {
-        this.articles = articles;
-      });
-    }
+
+  ngOnInit() {
+    this.loadAllQuizzes();
   }
 
+  loadAllQuizzes() {
+    this.quizService.getQuizzes().subscribe((quizzes: any) => {
+      this.allQuizzes = quizzes;
+    });
+  }
+  getArticles() {
+    this.adminService.getArticles().subscribe((articles: any[]) => {
+      this.articles = articles;
+
+      // Pour chaque article, charger ses quiz associés
+      this.articles.forEach(article => {
+        if (article.quizzesIds && article.quizzesIds.length > 0) {
+          const quizRequests = article.quizzesIds.map(id =>
+            this.quizService.getQuizById(id)
+          );
+
+          forkJoin(quizRequests).subscribe(quizzes => {
+            article.quizzes = quizzes;  // Stocker les quiz complets dans une nouvelle propriété
+          });
+        } else {
+          article.quizzes = [];
+        }
+      });
+
+      this.articlesOpen = true;
+    });
+  }
   selectedImage: File | null = null;
 
   onImageSelected(event: Event) {
@@ -56,14 +85,18 @@ export class ManageArticleComponent {
 
   editArticle(article: Article) {
     this.existingArticle = article;
-    this.newTitle = article.title;
-    this.newImage = article.image;
-    this.newAuthor = article.author;
-    this.newTag = article.tag;
-    this.newRating = article.ratings[0];
-    this.average = article.averageRating;
-    this.newContent = article.content;
-    this.isArchived = article.archive;
+    if (article.quizzesIds && article.quizzesIds.length > 0) {
+      const quizRequests = article.quizzesIds.map(id => this.quizService.getQuizById(id));
+
+      forkJoin(quizRequests).subscribe((quizzes) => {
+        console.log(quizzes);
+        this.newQuizzes = quizzes;
+
+      });
+    } else {
+      this.newQuizzes = [];
+    }
+
     this.showUpdateForm = !this.showUpdateForm;
   }
 
@@ -125,7 +158,6 @@ export class ManageArticleComponent {
       archive: this.isArchived,
       author: this.newAuthor,
       tag: this.newTag,
-      // rating: this.newRating,
       ratings: [],
       averageRating: this.average,
       comments: [],
@@ -144,10 +176,35 @@ export class ManageArticleComponent {
       );
 
     });
-
-    // this.newTitle = '';
-    // this.newImage = '';
-    // this.newContent = '';
-    // this.isArchived = false;
   }
+  addQuizToArticle(articleId: string, quizId: string) {
+    if (!articleId || !quizId) {
+      this.toastr.error('ID manquant', 'Erreur');
+      return;
+    }
+    this.adminService.addQuizToArticle$(articleId, quizId).subscribe(() => {
+      this.toastr.success('Quiz ajouté à l\'article', 'Ajout de Quiz');
+      this.getArticles();
+    });
+  }
+
+  removeQuizFromArticle(articleId: string | undefined, quizId: string) {
+
+    if (!articleId) {
+      this.toastr.error('ID de l\'article manquant', 'Erreur');
+      return;
+    }
+
+    if (!confirm('Êtes-vous sûr de vouloir supprimer ce quiz de l\'article ?')) {
+      return;
+    }
+
+
+    console.log(articleId, quizId);
+    this.adminService.removeQuizFromArticle$(articleId, quizId).subscribe(() => {
+      this.toastr.success('Quiz supprimé de l\'article', 'Suppression de Quiz');
+      this.getArticles();
+    });
+  }
+
 }

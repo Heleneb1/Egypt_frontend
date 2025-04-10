@@ -1,6 +1,6 @@
 <div class="all">
     <div class="articles-carousel">
-        <button (click)="prevArticle()"><i class="fa fa-chevron-left"></i></button>
+        <button (click)="prevArticle()" (touchstart)="prevArticle()"><i class="fa fa-chevron-left"></i></button>
         <div class="previous">
             <img [src]="articles[leftIndex]?.image || defaultImage" alt="article image" />
         </div>
@@ -8,7 +8,7 @@
         <div class="next">
             <img [src]="articles[rightIndex]?.image || defaultImage" alt="article image" />
         </div>
-        <button (click)="nextArticle()"><i class="fa fa-chevron-right"></i></button>
+        <button (click)="nextArticle()" (touchstart)="nextArticle()"><i class="fa fa-chevron-right"></i></button>
     </div>
     <div class="article">
         <div class="article-view">
@@ -21,3 +21,18 @@
         </div>
     </div>
 </div>
+<script>
+    addEventListener("DOMContentLoaded", function () {
+        const articlesCarousel = document.querySelector(".articles-carousel");
+        const articleView = document.querySelector(".article-view");
+        const title = document.querySelector(".title");
+
+        articlesCarousel.addEventListener("click", function (event) {
+            if (event.target.tagName === "BUTTON") {
+                event.preventDefault();
+                articleView.classList.toggle("active");
+                title.classList.toggle("active");
+            }
+        });
+    });
+</script>

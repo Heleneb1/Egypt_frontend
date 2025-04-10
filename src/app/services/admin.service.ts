@@ -16,7 +16,7 @@ export class AdminService {
     private articleservice: ArticlesService,
     private userService: UserService,
     private httpClient: HttpClient
-  ) {}
+  ) { }
   getArticles() {
     return this.articleservice.getArticles$();
   }
@@ -41,5 +41,14 @@ export class AdminService {
       `${this.dataUrl}/articles/create`,
       article
     );
+  }
+  //@PatchMapping("/{id}/quizzes/{quizId}/add-quiz")
+  addQuizToArticle$(articleId: string, quizId: string): Observable<any> {
+    const url = `${this.dataUrl}/articles/${articleId}/quizzes/${quizId}/add-quiz`;
+    return this.httpClient.patch(url, {});
+  }
+  removeQuizFromArticle$(articleId: string, quizId: string): Observable<any> {
+    const url = `${this.dataUrl}/articles/${articleId}/quizzes/${quizId}/remove-quiz`;
+    return this.httpClient.delete(url);
   }
 }

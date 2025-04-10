@@ -1,32 +1,49 @@
 <div class="update-articles">
     <button class="all-articles" (click)="getArticles()" type="button">Tous les articles</button>
-    <div *ngIf="articlesOpen">
-        <div class="articles-container" *ngFor="let article of articles">
+    <div class="articles-container" *ngIf="articlesOpen">
+        <div class="article-container" *ngFor="let article of articles">
             <div class="title">
                 <h2>{{ article.title }}</h2>
-                <input type="text" id="editTitle" [(ngModel)]="newTitle"
+                <input type="text" id="editTitle" [(ngModel)]="article.title"
                     *ngIf="showUpdateForm && existingArticle === article" />
             </div>
             <div class="author">
                 <p>Par {{ article.author }}</p>
-                <input type="text" id="editAuthor" [(ngModel)]="newAuthor"
+                <input type="text" id="editAuthor" [(ngModel)]="article.author"
                     *ngIf="showUpdateForm && existingArticle === article" />
             </div>
             <div class="tag">
                 <p>Thème: {{ article.tag }}</p>
-                <input type="text" id="editTag" [(ngModel)]="newTag"
+                <input type="text" id="editTag" [(ngModel)]="article.tag"
                     *ngIf="showUpdateForm && existingArticle === article" />
             </div>
+            <div *ngIf="article.quizzes && article.quizzes.length > 0">
+                <h4>Quiz associés :</h4>
+                <ul>
+                    <li *ngFor="let quiz of article.quizzes">{{ quiz.title }} <button class="btn btn-delete"
+                            (click)="removeQuizFromArticle(article.id, quiz.id)">Supprimer</button></li>
 
-            <div class="content">
-                <p>{{ article.content }}</p>
-                <textarea id="editContent" [(ngModel)]="newContent"
-                    *ngIf="showUpdateForm && existingArticle === article"></textarea>
+                </ul>
             </div>
+            <div *ngIf="showUpdateForm && existingArticle === article">
+                <h4>Ajouter un quiz à cet article :</h4>
+                <select [(ngModel)]="selectedQuizId">
+                    <option value="">Sélectionner un quiz</option>
+                    <option *ngFor="let quiz of allQuizzes" [value]="quiz.id">{{ quiz.title }}</option>
+                </select>
+                <button class="btn btn-update" *ngIf="article.id" (click)="addQuizToArticle(article.id, selectedQuizId)"
+                    [disabled]="!selectedQuizId">Ajouter</button>
+
+            </div>
+            <div *ngIf="!article.quizzes || article.quizzes.length === 0">
+                <p>Aucun quiz associé</p>
+            </div>
+
             <div class="archived">
                 <div class="archived">
                     <p>État: {{ article.archive ? 'Archivé' : 'Non archivé' }}</p>
                 </div>
+
 
                 <div class="arviched">
                     <input type="radio" id="archiveYes" name="archive_{{article.id}}" [(ngModel)]="isArchived"
@@ -41,9 +58,9 @@
                         *ngIf="showUpdateForm && existingArticle === article" />
                 </div>
                 <div class="update-button">
-                    <button (click)="editArticle(article)" type="button">Modifier</button>
-                    <button class="delete-button" (click)="article.id && deleteArticle(article.id)">Supprimer</button>
-                    <button (click)="saveChanges()">Enregistrer</button>
+                    <button class="btn btn-update" (click)="editArticle(article)" type="button">Modifier</button>
+                    <button class="btn btn-delete" (click)="article.id && deleteArticle(article.id)">Supprimer</button>
+                    <button class="btn btn-update" (click)="saveChanges()">Enregistrer</button>
                 </div>
             </div>
         </div>

@@ -7,6 +7,7 @@ import { ArticlesService } from 'src/app/services/articles.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { Article } from 'src/app/models/article';
 import { SlugService } from 'src/app/services/slug.service';
+import { FormatArticleService } from 'src/app/services/format-article';
 // import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -26,10 +27,11 @@ export class ArticleDetailsComponent {
   isConnected: boolean = false;
   showComment: boolean = false;
   commentList: any[] = [];
-  // articleCommentId: any;
+  articleContent: string = '';
   rating: any;
   editionDate: any = new Date();
   articleSlug!: string;
+  articleQuizzes: any;
 
   constructor(
     private articlesService: ArticlesService,
@@ -39,7 +41,7 @@ export class ArticleDetailsComponent {
     private authService: AuthService,
     // private slugService: SlugService,
     // private router: Router,
-
+    private formatService: FormatArticleService
   ) { }
   formatDate(creationDate: number[] | undefined) {
     if (!creationDate || creationDate.length < 3) {
@@ -55,19 +57,23 @@ export class ArticleDetailsComponent {
   }
 
   ngOnInit() {
+
     this.route.paramMap.subscribe((params) => {
       this.articleId = params.get('id'); // UUID, donc pas de conversion en number
 
       this.articleSlug = params.get('slug') || '';
       console.info("Slug récupéré :", this.articleSlug);
 
-
+      //TODO revoir l'affichage des quizzes dans le détail de l'article
       if (this.articleSlug) {
         this.articlesService.getArticleBySlug(this.articleSlug).subscribe((article) => {
           this.article = article;
           this.commentList = this.article.comments;
           this.rating = this.article.rating;
-          this.articleId = this.article.id
+          this.articleId = this.article.id;
+          this.articleQuizzes = this.article.quizzes;
+          this.articleContent = this.formatService.formatArticle(this.article.content);
+          console.log("Article récupéré :", this.article);
         });
       }
 

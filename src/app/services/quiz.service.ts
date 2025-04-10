@@ -31,6 +31,8 @@ export class QuizService {
   getQuizById(quizId: string) {
     return this.httpClient.get(`${this.quizDataUrl}/${quizId}`);
   }
+
+
   getQuizByTitle(title: string) {
     return this.httpClient.get(`${this.quizDataUrl}/title/${title}`);
   }
