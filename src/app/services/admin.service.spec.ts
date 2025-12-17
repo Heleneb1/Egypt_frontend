@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
-
 import { AdminService } from './admin.service';
+import { configureTestModule } from 'src/app/testing/config';
 
 describe('AdminService', () => {
   let service: AdminService;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
+  beforeEach(async () => {
+    await configureTestModule();
     service = TestBed.inject(AdminService);
   });
 

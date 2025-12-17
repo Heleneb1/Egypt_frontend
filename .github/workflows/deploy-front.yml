@@ -1,0 +1,50 @@
+name: Deploy Egypt-frontend
+
+on: 
+  push:
+    branches:
+    - main
+
+jobs:
+  check-secrets:
+    runs-on: ubuntu-latest
+    
+    outputs:
+      caprover-server: ${{ steps.caprover-server.outputs.defined }}
+    steps:
+    
+      - name: check CAPROVER_SERVER secret
+        id: caprover-server
+        run: |
+          if [ "${{ secrets.CAPROVER_SERVER }}" != '' ]; then
+
+            echo "defined=true" >> $GITHUB_OUTPUT
+          else
+            echo "defined=false" >> $GITHUB_OUTPUT
+          fi 
+
+  deploy:
+    if: needs.check-secrets.outputs.caprover-server == 'true'
+    runs-on: ubuntu-latest
+    needs: check-secrets
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+
+      - name: Install dependencies
+        run: npm install -g caprover
+
+      - name: Create archive
+        run: tar -czf deploy.tar.gz --exclude='.git' --exclude='node_modules' .
+          
+      - name: Deploy to CapRover
+        env:
+            NODE_TLS_REJECT_UNAUTHORIZED: 0
+        run: |
+          caprover deploy \
+            -h "${{ secrets.CAPROVER_SERVER }}" \
+            -p "${{ secrets.CAPROVER_PASSWORD }}" \
+            -a "${{ secrets.CAPROVER_FRONT_APPNAME }}" \
+            -t ./deploy.tar.gz

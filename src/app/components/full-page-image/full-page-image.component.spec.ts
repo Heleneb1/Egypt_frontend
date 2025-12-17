@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing'
 
 import { FullPageImageComponent } from './full-page-image.component';
 
@@ -8,7 +9,8 @@ describe('FullPageImageComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [FullPageImageComponent]
+      declarations: [FullPageImageComponent],
+      imports: [HttpClientTestingModule],
     });
     fixture = TestBed.createComponent(FullPageImageComponent);
     component = fixture.componentInstance;

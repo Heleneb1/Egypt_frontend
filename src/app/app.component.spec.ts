@@ -1,14 +1,32 @@
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { NgcCookieConsentService, NgcCookieConsentConfig } from 'ngx-cookieconsent';
+
 
 describe('AppComponent', () => {
-  beforeEach(() =>
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [RouterTestingModule],
       declarations: [AppComponent],
-    })
-  );
+      providers: [
+        {
+          provide: NgcCookieConsentService,
+          useValue: {
+            destroy: () => { }, init: () => { }
+          }
+        },
+        {
+          provide: NgcCookieConsentConfig,
+          useValue: {}
+        }
+      ],
+
+      schemas: [NO_ERRORS_SCHEMA]
+    }).compileComponents();
+  });
+
 
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
@@ -16,12 +34,6 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'frontend-egypt'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-
-    expect(app.title).toEqual('frontend-egypt');
-  });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);

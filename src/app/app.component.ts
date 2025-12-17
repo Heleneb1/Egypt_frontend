@@ -42,6 +42,7 @@ export class AppComponent {
     console.info('NgcCookieConsentService initialized');
     // Delayed initialization of the cookie consent banner
 
+
     // subscribe to cookieconsent observables to react to main events
     this.popupOpenSubscription = this.ccService.popupOpen$.subscribe(() => {
       // you can use this.ccService.getConfig() to do stuff...
@@ -97,13 +98,15 @@ export class AppComponent {
 
   ngOnDestroy() {
     // unsubscribe to cookieconsent observables to prevent memory leaks
-    this.popupOpenSubscription.unsubscribe();
-    this.popupCloseSubscription.unsubscribe();
-    this.initializingSubscription.unsubscribe();
-    this.initializedSubscription.unsubscribe();
-    this.initializationErrorSubscription.unsubscribe();
-    this.statusChangeSubscription.unsubscribe();
-    this.revokeChoiceSubscription.unsubscribe();
-    this.noCookieLawSubscription.unsubscribe();
+
+    this.popupOpenSubscription?.unsubscribe();
+    this.popupCloseSubscription?.unsubscribe();
+    this.initializingSubscription?.unsubscribe();
+    this.initializedSubscription?.unsubscribe();
+    this.initializationErrorSubscription?.unsubscribe();
+    this.statusChangeSubscription?.unsubscribe();
+    this.revokeChoiceSubscription?.unsubscribe();
+    this.noCookieLawSubscription?.unsubscribe();
+
   }
 }

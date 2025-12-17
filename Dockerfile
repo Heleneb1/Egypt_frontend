@@ -17,3 +17,4 @@ CMD ["nginx", "-g", "daemon off;"]
 
 # docker build -t mon-app .
 # docker run -p 4200:4200 mon-app
+# docker run -d --name front --network app-network -p 4200:80 mon-app
