@@ -1,3 +1,7 @@
+<a href="https://app.lesmysteresdelegypteantique.fr/" target="_blank">
+  <img src="https://github.com/Heleneb1/MyPortFolio/blob/dev/src/assets/Projets/egypt.png" alt="Les Mystères de l'Egypte antique" />
+</a>
+
 # 🏛️ Les Mystères de l'Égypte Antique
 
 Application web interactive qui plonge l'utilisateur dans l'univers fascinant de l'Égypte Antique à travers des images, des quiz et des récits immersifs.
