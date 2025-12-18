@@ -5,14 +5,14 @@
 
 .header-all {
   margin-bottom: 8rem;
-  width: 100vw;
+  width: 100%;
 }
 
 nav.header-container {
   height: 3rem;
   position: fixed;
   top: 0;
-  width: 99%;
+  // width: 100%;
   padding: 10px;
   border-bottom: #fc9900 1px solid;
   background-color: var(--blue);
@@ -154,7 +154,7 @@ nav.header-container {
   }
 
   .nav-mobile {
-    width: 97vw;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;

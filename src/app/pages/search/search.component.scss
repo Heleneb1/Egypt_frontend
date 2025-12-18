@@ -8,25 +8,6 @@
   font-weight: bold;
 }
 
-// .search-image {
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   flex-direction: column;
-//   width: 100%;
-//   .image {
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-//     flex-direction: column;
-//     width: 99%;
-//     overflow: hidden;
-//     img {
-//       width: 100vw;
-//       height: 50vh;
-//       object-fit: cover;
-//     }
-//   }
 .text-container {
   padding: 2rem;
   width: 50%;
@@ -127,6 +108,12 @@ input[type="text"]::placeholder {
 .transition-right {
   transform: translateX(0rem, 100%);
   animation: appear2 3s forwards;
+}
+
+.main-image {
+  .image img {
+    width: 97vw;
+  }
 }
 
 @keyframes appear2 {

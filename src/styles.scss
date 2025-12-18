@@ -1,9 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter+Tight&display=swap");
 
+
+
 html,
 body {
   height: 100%;
+  width: 100%;
   background-color: var(--blue);
   margin: 0;
   padding: 0;
@@ -11,7 +14,7 @@ body {
   cursor: url("../src/assets/images/Ankh-Horus-2.svg") 16 16, auto;
   display: flex;
   flex-direction: column;
-  overflow-x: hidden;
+  // overflow-x: hidden;
 }
 
 .app-container {
@@ -84,7 +87,7 @@ p {
   .fa-spin {
     animation: fa-spin 2s infinite linear;
     filter: none;
-    /* Define the 'filter' property for compatibility */
+
   }
 
   .button {
@@ -189,7 +192,7 @@ p {
     margin-top: 6rem;
 
     .image img {
-      width: 100vw;
+      width: 97vw;
       height: 50vh;
       object-fit: cover;
     }
@@ -325,11 +328,6 @@ p {
     cursor: pointer;
   }
 
-  .scroll-home {
-    display: flex;
-    justify-content: flex-end;
-    margin: 2rem;
-  }
 
   .name-search {
     margin: 2rem 0.5rem;
