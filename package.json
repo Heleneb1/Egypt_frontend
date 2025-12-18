@@ -27,6 +27,7 @@
     "ngx-cookieconsent": "^4.0.2",
     "ngx-toastr": "^17.0.2",
     "rxjs": "~7.8.0",
+    "serve": "^14.2.5",
     "three": "^0.158.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"

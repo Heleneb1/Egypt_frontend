@@ -48,7 +48,7 @@ export class CreateQuizComponent implements OnInit {
 
   ngOnInit(): void { }
   checkFormValidity(): boolean {
-    // Vérifiez ici si tous les champs nécessaires sont remplis
+    // Vérifier ici si tous les champs nécessaires sont remplis
     return (
       !!this.textValue &&
       !!this.tag &&

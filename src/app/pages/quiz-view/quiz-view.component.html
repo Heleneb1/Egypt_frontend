@@ -1,16 +1,13 @@
 <div class="sub-title">
     <h2>Les Mystères de l’Égypte Antique</h2>
 </div>
-<div class="quiz-main-image">
+<div class="main-image">
     <div class="image">
         <img [src]="'assets/images/Gizeah.jpg'" alt="Gizeh" />
     </div>
-</div>
-<div class="text">
-    <div *ngIf="isUserConnected; else noCourses">
-        <div class="text-container">
-            Répondez aux questions et gagnez des badges.
-        </div>
+
+    <div *ngIf="isUserConnected; else noCourses" class="text-container">
+        Répondez aux questions et gagnez des badges.
     </div>
 
     <ng-template #noCourses>
@@ -19,6 +16,7 @@
         </div>
     </ng-template>
 </div>
+
 <div class="no-connected">
     <div class="button" *ngIf="!isUserConnected">
         <div class="button-container">
@@ -36,11 +34,10 @@
         </p>
     </div>
     <div class="create-quiz" *ngIf="isUserConnected">
-        <button>
-            <a class="create-quiz-button" [routerLink]="['/create-quiz']">
-                <p>Créez un quiz</p>
-            </a>
+        <button class="create-quiz-button" [routerLink]="['/create-quiz']">
+            Créez un quiz
         </button>
+
     </div>
     <div class="quiz-card-container">
         <div class="quiz-card" *ngFor="let quiz of quizzes">

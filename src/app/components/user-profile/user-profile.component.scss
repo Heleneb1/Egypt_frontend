@@ -3,8 +3,34 @@
     font-size: 2rem;
     font-weight: bold;
     font-family: var(--title);
-    color: white;
+    color: var(--sun);
     display: flex;
     justify-content: center;
     align-items: center;
+    font-style: italic;
+    flex-direction: column;
+    text-align: center;
+    animation: colorPulse 2s ease-in-out infinite;
+}
+
+@keyframes colorPulse {
+    0% {
+        color: var(--white);
+    }
+
+    25% {
+        color: var(--sun);
+    }
+
+    50% {
+        color: var(--blue);
+    }
+
+    75% {
+        color: var(--sun);
+    }
+
+    100% {
+        color: var(--white);
+    }
 }

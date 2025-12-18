@@ -1,4 +1,8 @@
 <div class="all-topics">
+  <div class="sub-title">
+    <h2>Les Mystères de l’Égypte Antique</h2>
+  </div>
+
   <div *ngIf="userConnected" class="form-group">
     <form (submit)="createTopic()">
       <label for="topic"></label>
@@ -59,7 +63,14 @@
     </ul>
   </div>
   <ng-template #noTopics>
-    <p class="noTopics">Veuillez vous inscrire ou vous connecter...</p>
+    <div class="main-image">
+      <div class="image">
+        <img [src]="'assets/images/Gizeah.jpg'" alt="Gizeh" />
+      </div>
+      <div class="text-container">
+        Veuillez vous inscrire ou vous connecter pour discuter avec d'autres passionnés
+      </div>
+    </div>
   </ng-template>
 
   <div class="answer" *ngIf="selectedTopic">

@@ -69,8 +69,7 @@ jobs:
         run: tar -czf /tmp/deploy.tar.gz dist/ default.conf Dockerfile.static captain-definition
           
       - name: Deploy to CapRover
-        env:
-          NODE_TLS_REJECT_UNAUTHORIZED: 0
+
         run: |
           caprover deploy \
             -h "${{ secrets.CAPROVER_SERVER }}" \

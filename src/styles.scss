@@ -11,6 +11,7 @@ body {
   cursor: url("../src/assets/images/Ankh-Horus-2.svg") 16 16, auto;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
 }
 
 .app-container {
@@ -23,6 +24,11 @@ body {
 .main-content {
   flex-grow: 1;
   /* permet au contenu de se développer et pousse le footer vers le bas */
+}
+
+.content-wrapper {
+  position: relative;
+  margin-bottom: 2rem;
 }
 
 app-footer {
@@ -174,6 +180,7 @@ p {
   }
 
   .main-image {
+    position: relative;
     height: 50vh;
     display: flex;
     align-items: center;
@@ -182,7 +189,6 @@ p {
     margin-top: 6rem;
 
     .image img {
-      margin-top: 14rem;
       width: 100vw;
       height: 50vh;
       object-fit: cover;
@@ -192,8 +198,8 @@ p {
       margin: 2rem;
       padding: 2rem;
       width: 50%;
-      position: relative;
-      bottom: 20rem;
+      position: absolute;
+      bottom: 2rem;
       height: 12rem;
       background: rgba(0, 0, 0, 0.48);
       color: #fdfdfd;
@@ -284,8 +290,7 @@ p {
     border: var(--sun) 1px solid;
     border-radius: 0.5rem;
     width: 20rem;
-    // animation-delay: 10s;
-    // animation: appear 5s;
+
   }
 
   .codeOfConduct-btn {

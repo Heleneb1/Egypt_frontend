@@ -11,11 +11,11 @@
 }
 
 .text-container {
+    width: 50%;
     margin: 2rem;
     padding: 2rem;
-    position: relative;
-    bottom: 11rem;
-    min-width: 42rem;
+    position: absolute;
+    // bottom: 11rem;
     height: 12rem;
     background: rgba(0, 0, 0, 0.48);
     color: #fdfdfd;
@@ -26,10 +26,10 @@
     @extend .center;
 }
 
-.view {
-    position: relative;
-    bottom: 11rem;
-}
+// .view {
+//     position: relative;
+//     bottom: 11rem;
+// }
 
 .loader-container {
     @extend .center;
@@ -76,10 +76,11 @@
     button {
         background-color: var(--sun);
         font-family: var(--title);
-        font-size: 1.3rem;
+        font-size: 1.2rem;
         text-shadow: 1px 1px 1px #000000;
         color: white;
         width: 10rem;
+        align-items: center;
         height: 3rem;
         border-radius: 4rem;
         cursor: pointer;
@@ -90,11 +91,16 @@
         background-color: var(--sun);
         font-family: var(--title);
         text-shadow: 1px 1px 1px #000000;
+        align-items: center;
         font-size: 1.3rem;
         color: white;
         border-radius: 4rem;
         cursor: pointer;
         text-decoration: none;
+
+        a {
+            font-size: 1.1rem;
+        }
     }
 }
 
@@ -209,8 +215,8 @@
 }
 
 @media screen and (max-width: 768px) {
-    .text-container {
-        min-width: 12rem;
-        height: 12rem;
-    }
+    // .text-container {
+    //     min-width: 12rem;
+    //     height: 12rem;
+    // }
 }

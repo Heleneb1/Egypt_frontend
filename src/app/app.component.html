@@ -3,8 +3,7 @@
     <div *ngIf="showHeader">
       <app-header></app-header>
     </div>
-    <main class="main-content" role="main">
-      <router-outlet></router-outlet>
+    <main [@routeAnimations]="o.isActivated ? o.activatedRoute : ''"> <router-outlet #o="outlet"></router-outlet>
     </main>
   </div>
   <app-footer *ngIf="showHeader"></app-footer>

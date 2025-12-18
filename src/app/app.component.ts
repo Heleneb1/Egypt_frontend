@@ -1,3 +1,4 @@
+import { trigger, transition, style, animate } from '@angular/animations';
 import { Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import {
@@ -13,6 +14,7 @@ import { Subscription } from 'rxjs';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  animations: [trigger('routeAnimations', [transition('* <=> *', [style({ opacity: 0 }), animate('500ms ease-in-out', style({ opacity: 1 }))])])]
 })
 export class AppComponent {
   title = "Les Mystères de l'Égypte Antique ";
