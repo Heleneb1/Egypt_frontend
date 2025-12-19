@@ -12,7 +12,7 @@ nav.header-container {
   height: 3rem;
   position: fixed;
   top: 0;
-  // width: 100%;
+  width: 100%;
   padding: 10px;
   border-bottom: #fc9900 1px solid;
   background-color: var(--blue);
@@ -130,9 +130,10 @@ nav.header-container {
     margin: 0;
   }
 
-  nav.header-container {
+  .header-container {
     position: relative;
     height: 8rem;
+    width: 100%;
   }
 
   .menu-burger {

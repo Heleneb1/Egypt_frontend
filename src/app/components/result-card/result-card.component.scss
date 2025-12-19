@@ -2,45 +2,53 @@
   justify-content: center;
   display: flex;
 }
+
 .result {
   padding: 1rem;
   margin: 2rem;
   display: flex;
 }
+
 .result-container {
-  width: 40rem;
+  width: 100%;
   background-color: white;
   border-color: transparent;
   @extend .global;
   align-items: center;
   flex-direction: column;
 }
+
 .result-image {
   @extend .global;
   width: 8rem;
   border-radius: 0.3rem;
   border-color: transparent;
   cursor: pointer;
+
   img {
     height: 100%;
   }
 }
+
 .result-tag {
   margin: 0.5rem;
   font-family: var(--text);
   font-size: 1.2rem;
 }
+
 .card {
   @extend .global;
   flex-direction: row-reverse;
   margin: 2.5rem 1.5rem;
   gap: 0.4rem;
+
   img {
     width: 9rem;
     height: 12rem;
     object-fit: cover;
   }
 }
+
 .title {
   @extend .global;
   font-size: 1.5rem;
@@ -50,6 +58,7 @@
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   justify-content: center;
 }
+
 .result-name {
   font-family: var(--title);
   color: var(--blue);
@@ -63,6 +72,7 @@
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
+
 .result-content {
   font-family: var(--inter);
   font-size: 1.3rem;
@@ -71,21 +81,30 @@
   margin-top: 0.5rem;
   @extend .global;
 }
+
 .result-rating {
   width: 90%;
   display: flex;
   justify-content: flex-end;
   padding: 0 1rem;
 }
+
 .transition-bottom {
   transform: translateY(-100%);
   animation: appear 5s forwards;
 }
+
 .transition-right {
   transform: translateX(0rem, 100%);
   animation: appear2 3s forwards;
 }
+
 @media screen and (min-width: 768px) {
+
+  .result-container {
+    width: 60%;
+  }
+
   .result-content {
     font-family: var(--text);
     font-size: 0.8rem;
@@ -93,10 +112,12 @@
     display: flex;
     justify-content: center;
   }
+
   .result-image {
     width: 25%;
     height: auto;
   }
+
   .card {
     img {
       min-width: 100%;
@@ -105,6 +126,7 @@
     }
   }
 }
+
 .result-name {
   text-align: center;
   width: 15rem;
@@ -114,10 +136,12 @@
   white-space: nowrap;
   display: block;
 }
+
 h3 {
   @extend .global;
   align-items: center;
 }
+
 .show-details-button {
   background-color: var(--sun);
   font-family: var(--title);
