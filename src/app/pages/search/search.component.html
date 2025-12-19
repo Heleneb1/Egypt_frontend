@@ -14,7 +14,7 @@
     <label for="tagSearh"></label>
 
     <select aria-label="searchTag" class="option" [(ngModel)]="articleTag" (change)="onTagSearchChange(articleTag)">
-      <option value="">Tag</option>
+      <option value="">Thème</option>
       <option class="filter-option" *ngFor="let tag of tagOptions" [value]="tag">
         {{ tag }}
       </option>
