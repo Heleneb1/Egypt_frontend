@@ -24,7 +24,7 @@ $lineHeight: 1.5;
 .home {
   text-align: center;
   min-height: 100dvh;
-  width: 100vw;
+  width: 100%;
   display: flex;
   flex-direction: column;
 
@@ -189,9 +189,6 @@ $lineHeight: 1.5;
 
 @media (max-width: 768px) {
   .home {
-    // .home-title h1 {
-    //   font-size: 1.6rem;
-    // }
 
     .content {
       margin: 0;

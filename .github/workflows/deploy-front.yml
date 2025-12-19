@@ -5,6 +5,11 @@ on:
     branches:
       - main
 
+
+  pull_request:
+    branches:
+      - main
+
 jobs:
   check-secrets:
     runs-on: ubuntu-latest

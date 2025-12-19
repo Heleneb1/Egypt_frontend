@@ -14,7 +14,7 @@
     <label for="tagSearh"></label>
 
     <select aria-label="searchTag" class="option" [(ngModel)]="articleTag" (change)="onTagSearchChange(articleTag)">
-      <option value="">Tag</option>
+      <option value="">Thème</option>
       <option class="filter-option" *ngFor="let tag of tagOptions" [value]="tag">
         {{ tag }}
       </option>
@@ -42,7 +42,8 @@
   <div class="Search-all">
     <div class="main-image">
       <div class="image">
-        <img [src]="'assets/images/Gizeah.jpg'" alt="" />
+        <img src="assets/images/Gizeah.jpg" alt="Gizeh" />
+
         <app-scroll-to-top></app-scroll-to-top>
       </div>
       <div class="text-container">

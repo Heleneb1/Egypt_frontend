@@ -1,9 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter+Tight&display=swap");
 
+
+
 html,
 body {
   height: 100%;
+  width: 100%;
   background-color: var(--blue);
   margin: 0;
   padding: 0;
@@ -11,7 +14,7 @@ body {
   cursor: url("../src/assets/images/Ankh-Horus-2.svg") 16 16, auto;
   display: flex;
   flex-direction: column;
-  overflow-x: hidden;
+  // overflow-x: hidden;
 }
 
 .app-container {
@@ -51,11 +54,16 @@ h4,
 h5,
 h6 {
   margin: 8px 0;
+
+  // font-size: clamp(24px, 4vw, 42px);
 }
 
 p {
+  font-size: clamp(16px, 2vw, 18px);
   font-family: var(--text);
 }
+
+
 
 :root {
   --blue: #152131;
@@ -84,7 +92,7 @@ p {
   .fa-spin {
     animation: fa-spin 2s infinite linear;
     filter: none;
-    /* Define the 'filter' property for compatibility */
+
   }
 
   .button {
@@ -197,10 +205,10 @@ p {
     .text-container {
       margin: 2rem;
       padding: 2rem;
-      width: 50%;
+      width: 60%;
       position: absolute;
       bottom: 2rem;
-      height: 12rem;
+      height: 16rem;
       background: rgba(0, 0, 0, 0.48);
       color: #fdfdfd;
       text-align: center;
@@ -210,8 +218,6 @@ p {
       display: flex;
       align-items: center;
       justify-content: center;
-
-
     }
   }
 
@@ -325,11 +331,6 @@ p {
     cursor: pointer;
   }
 
-  .scroll-home {
-    display: flex;
-    justify-content: flex-end;
-    margin: 2rem;
-  }
 
   .name-search {
     margin: 2rem 0.5rem;
@@ -346,7 +347,7 @@ p {
     padding-left: 2rem;
     font-size: 1.5rem;
     font-weight: bold;
-    height: 2.2rem;
+    height: 3.2rem;
     width: 45rem;
   }
 
@@ -385,4 +386,16 @@ p {
     padding: 0.5rem 2rem;
     font-weight: bold;
   }
+}
+
+//TEST
+// * {
+//   border: 1px solid red;
+// }
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+
 }
