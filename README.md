@@ -152,7 +152,7 @@ Ce projet est la propriété exclusive de son auteur. Toute reproduction, distri
 
 ## 📧 Contact
 
-Pour toute question concernant ce projet : [votre-email@example.com]
+Pour toute question concernant ce projet : [Linkedin](https://www.linkedin.com/in/helene-blanche/)
 
 ---
 
