@@ -43,7 +43,7 @@ option {
 }
 
 .filter-container select {
-  width: 16rem;
+  width: 15rem;
   height: 3rem;
   background: white;
   color: var(--blue);
@@ -77,6 +77,7 @@ input[type="text"]::placeholder {
 
 .filter-container select {
   @extend .select-style;
+  padding-left: 0.8rem;
 }
 
 .filter-container select:last-child {
@@ -113,7 +114,7 @@ input[type="text"]::placeholder {
 
 .main-image {
   .image img {
-    width: 97vw;
+    width: 100vw;
   }
 }
 
@@ -135,8 +136,8 @@ input[type="text"]::placeholder {
   }
 
   #theme {
-    width: 90%;
-    height: 2rem;
+    width: 98%;
+    height: 2.5rem;
   }
 
   .filter-container select {

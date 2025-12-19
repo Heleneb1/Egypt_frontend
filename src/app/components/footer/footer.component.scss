@@ -70,6 +70,8 @@
     .footer {
         display: flex;
         height: 10rem;
+        flex-direction: column;
+        gap: 2rem;
     }
 
     .footer-content {

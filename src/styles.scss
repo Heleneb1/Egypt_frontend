@@ -197,7 +197,7 @@ p {
     margin-top: 6rem;
 
     .image img {
-      width: 97vw;
+      width: 100vw;
       height: 50vh;
       object-fit: cover;
     }
@@ -205,10 +205,10 @@ p {
     .text-container {
       margin: 2rem;
       padding: 2rem;
-      width: 50%;
+      width: 60%;
       position: absolute;
       bottom: 2rem;
-      height: 12rem;
+      height: 16rem;
       background: rgba(0, 0, 0, 0.48);
       color: #fdfdfd;
       text-align: center;
@@ -218,8 +218,6 @@ p {
       display: flex;
       align-items: center;
       justify-content: center;
-
-
     }
   }
 
@@ -349,7 +347,7 @@ p {
     padding-left: 2rem;
     font-size: 1.5rem;
     font-weight: bold;
-    height: 2.2rem;
+    height: 3.2rem;
     width: 45rem;
   }
 
@@ -390,6 +388,14 @@ p {
   }
 }
 
+//TEST
 // * {
 //   border: 1px solid red;
 // }
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+
+}
