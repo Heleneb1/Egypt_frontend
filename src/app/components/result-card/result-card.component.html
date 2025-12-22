@@ -1,7 +1,8 @@
 <div class="result-all">
   <div *ngIf="filteredArticles.length > 0" class="result-title">
     <h2 class="title">Résultats</h2>
-    <p style="color: honeydew;">Actuellement il y a {{filteredArticles.length}} résultats </p>
+    <p style="color: honeydew;">Actuellement il y a <span class="number">{{filteredArticles.length}}</span> résultats
+    </p>
   </div>
 
   <div class="result-card">

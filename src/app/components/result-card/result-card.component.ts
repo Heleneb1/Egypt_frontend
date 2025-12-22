@@ -16,7 +16,6 @@ export class ResultCardComponent {
   constructor(private router: Router, private articlesService: ArticlesService) { }
 
   ngOnInit() {
-    console.log('Articles chargés:', this.filteredArticles.length);
   }
 
 

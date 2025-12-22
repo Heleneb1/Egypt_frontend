@@ -1,11 +1,7 @@
 <div class="header-all">
   <nav class="header-container">
     <div class="header-content">
-      <div
-        class="menu-burger"
-        [ngClass]="{ open: isMenuOpen }"
-        (click)="toggleMenu()"
-      >
+      <div class="menu-burger" [ngClass]="{ open: isMenuOpen }" (click)="toggleMenu()">
         <div class="line"></div>
         <div class="line"></div>
         <div class="line"></div>
@@ -18,7 +14,7 @@
               <li><a routerLink="/home">Accueil</a></li>
               <li><a routerLink="/article">Articles</a></li>
               <li><a routerLink="/quiz">Quiz</a></li>
-              <li><a routerLink="/profile">Profil</a></li>
+              <li *ngIf="isConnected"><a routerLink="/profile">Profil</a></li>
               <li *ngIf="!isConnected; else disConnect">
                 <a routerLink="/authentication">Connexion</a>
               </li>

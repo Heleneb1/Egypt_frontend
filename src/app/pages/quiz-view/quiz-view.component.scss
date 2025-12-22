@@ -11,11 +11,9 @@
 }
 
 .text-container {
-    width: 50%;
     margin: 2rem;
     padding: 2rem;
     position: absolute;
-    // bottom: 11rem;
     height: 12rem;
     background: rgba(0, 0, 0, 0.48);
     color: #fdfdfd;
@@ -26,10 +24,6 @@
     @extend .center;
 }
 
-// .view {
-//     position: relative;
-//     bottom: 11rem;
-// }
 
 .loader-container {
     @extend .center;
@@ -63,12 +57,9 @@
     justify-content: center;
     padding: 2rem;
 
-    .number {
-        font-family: var(--title);
-        color: var(--sun);
-        padding-right: 5px;
-    }
 }
+
+
 
 .create-quiz {
     @extend .center;
@@ -214,9 +205,4 @@
     margin: 2rem;
 }
 
-@media screen and (max-width: 768px) {
-    // .text-container {
-    //     min-width: 12rem;
-    //     height: 12rem;
-    // }
-}
+@media screen and (max-width: 768px) {}

@@ -52,7 +52,6 @@ export class CommentsComponent implements OnInit {
   }
   formatDate(dateString: string | null): void {
     this.creationDate = new Date(this.comment.creationDate);
-    console.info('Date de création:', this.creationDate);
   }
 
   ngOnInit() {

@@ -18,7 +18,7 @@
     margin: 2rem;
     position: relative;
     margin-top: 4rem;
-    justify-items: center;
+    justify-content: center;
 }
 
 .monument-card {
@@ -122,18 +122,6 @@
     opacity: 1;
 }
 
-.quiz-main-image {
-    height: 50vh;
-    @extend .center;
-    flex-direction: column;
-
-    .image img {
-        width: 100vw;
-        height: 50vh;
-        aspect-ratio: 1/1;
-        object-fit: cover;
-    }
-}
 
 
 .text-sorry {
@@ -154,10 +142,4 @@
         flex-direction: row;
     }
 
-    .text-container {
-        bottom: 23rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
 }

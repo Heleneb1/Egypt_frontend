@@ -1,18 +1,18 @@
 <div class="sub-title">
   <h2>Les Mystères de l’Égypte Antique</h2>
 </div>
-<div class="text-container">
-  Votre article...<br />
-  <p>{{ article?.title }}</p>
-</div>
-<div class="article-main-image">
-
-  <div class="image">
-    <img [src]="'assets/images/Gizeah.jpg'" alt="Gizeh" />
-  </div>
-</div>
 
 <div class="articles-details-container">
+  <div class="main-image">
+    <div class="image">
+      <img [src]="'assets/images/Gizeah.jpg'" alt="Gizeh" />
+    </div>
+    <div class="text-container">
+      Votre article : <br />
+      {{ article?.title }}
+    </div>
+  </div>
+
   <div class="article-details">
     <app-star-rating [totalStars]="5" [rating]="article?.averageRating"
       (ratingChanged)="onRatingChanged($event)"></app-star-rating>
