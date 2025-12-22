@@ -19,10 +19,8 @@ export class ArticleDetailsComponent {
   articles: Article[] = [];
   article: any = [];
   articleId: any;
-  // userId: any;
   isVoteModified: boolean = false;
   currentRating!: number;
-  // authorName: any;
   defaultImage: string = 'assets/images/Gizeh.jpg';
   isConnected: boolean = false;
   showComment: boolean = false;
@@ -37,10 +35,7 @@ export class ArticleDetailsComponent {
     private articlesService: ArticlesService,
     private toastr: ToastrService,
     private route: ActivatedRoute,
-    // private activatedRoute: ActivatedRoute,
     private authService: AuthService,
-    // private slugService: SlugService,
-    // private router: Router,
     private formatService: FormatArticleService
   ) { }
   formatDate(creationDate: number[] | undefined) {
@@ -64,7 +59,6 @@ export class ArticleDetailsComponent {
       this.articleSlug = params.get('slug') || '';
       console.info("Slug récupéré :", this.articleSlug);
 
-      //TODO revoir l'affichage des quizzes dans le détail de l'article
       if (this.articleSlug) {
         this.articlesService.getArticleBySlug(this.articleSlug).subscribe((article) => {
           this.article = article;
@@ -73,7 +67,7 @@ export class ArticleDetailsComponent {
           this.articleId = this.article.id;
           this.articleQuizzes = this.article.quizzes;
           this.articleContent = this.formatService.formatArticle(this.article.content);
-          console.log("Article récupéré :", this.article);
+
         });
       }
 

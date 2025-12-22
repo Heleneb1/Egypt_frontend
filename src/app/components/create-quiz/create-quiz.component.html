@@ -19,59 +19,31 @@
     <div class="quiz">
       <div class="label-style">
         <label for="title">Titre:</label>
-        <input
-          type="text"
-          id="title"
-          name="title"
-          [(ngModel)]="textValue"
-          placeholder="Entrez le titre du quiz"
-        />
+        <input type="text" id="title" name="title" [(ngModel)]="textValue" placeholder="ex: Les Déesses" />
       </div>
     </div>
     <div class="quiz">
       <div class="label-style">
-        <label for="tag">Tag:</label>
-        <input
-          type="text"
-          id="tag"
-          name="tag"
-          [(ngModel)]="tag"
-          placeholder="Entrez le tag du quiz"
-        />
+        <label for="tag">Thème:</label>
+        <input type="text" id="tag" name="tag" [(ngModel)]="tag" placeholder="ex: Déesses " />
       </div>
     </div>
     <div class="quiz">
       <div class="label-style">
         <label for="difficulty">Niveau:</label>
-        <input
-          type="text"
-          id="difficulty"
-          name="difficulty"
-          [(ngModel)]="difficulty"
-          placeholder="Entrez le niveau du quiz"
-        />
+        <input type="text" id="difficulty" name="difficulty" [(ngModel)]="difficulty" placeholder="ex: Facile" />
       </div>
     </div>
     <div class="quiz">
       <div class="label-style">
         <label for="image">Image:</label>
-        <input
-          type="text"
-          id="image"
-          name="image"
-          [(ngModel)]="picture"
-          placeholder="Entrez le lien de l'image"
-        />
+        <input type="text" id="image" name="image" [(ngModel)]="picture"
+          placeholder="ex: https://encrypted-tbn0.gstatic.com/images..." />
       </div>
       <div class="label-style">
-        <label for="image">Description:</label>
-        <input
-          type="text"
-          id="content"
-          name="content"
-          [(ngModel)]="descriptionText"
-          placeholder="Un petit résumé du quiz"
-        />
+        <label for="image">Résumé:</label>
+        <input type="text" id="content" name="content" [(ngModel)]="descriptionText"
+          placeholder="Description du quiz" />
       </div>
     </div>
     <div class="create-questions">
@@ -80,56 +52,21 @@
           <h2>Créer une question</h2>
         </div>
         <div class="input-container">
-          <input
-            placeholder="Question ?"
-            id="question_title"
-            [(ngModel)]="question_title"
-            name="question_title"
-          />
-          <input
-            placeholder="Option 1"
-            id="option_1"
-            [(ngModel)]="option_1"
-            name="option_1"
-          />
-          <input
-            placeholder="Option 2"
-            id="option_2"
-            [(ngModel)]="option_2"
-            name="option_2"
-          />
-          <input
-            placeholder="Option 3"
-            id="option_3"
-            [(ngModel)]="option_3"
-            name="option_3"
-          />
-          <input
-            placeholder="Bonne réponse"
-            id="right_answer"
-            [(ngModel)]="right_answer"
-            name="right_answer"
-          />
-          <input
-            placeholder="Catégorie"
-            type="text"
-            id="category"
-            [(ngModel)]="category"
-            name="category"
-          />
+          <input placeholder="Question ?" id="question_title" [(ngModel)]="question_title" name="question_title" />
+          <input placeholder="Option 1" id="option_1" [(ngModel)]="option_1" name="option_1" />
+          <input placeholder="Option 2" id="option_2" [(ngModel)]="option_2" name="option_2" />
+          <input placeholder="Option 3" id="option_3" [(ngModel)]="option_3" name="option_3" />
+          <input placeholder="Bonne réponse" id="right_answer" [(ngModel)]="right_answer" name="right_answer" />
+          <input placeholder="Catégorie" type="text" id="category" [(ngModel)]="category" name="category" />
 
           <div *ngIf="!category" class="error-message">
-            <p>La catégorie ne peut pas être vide.</p>
+            <p><span>La catégorie ne peut pas être vide.</span></p>
           </div>
         </div>
 
         <div class="create-button">
           <div class="button">
-            <button
-              class="participation"
-              type="submit"
-              title="add-new-question"
-            >
+            <button class="participation" type="submit" title="add-new-question">
               Ajouter
             </button>
           </div>
@@ -137,17 +74,11 @@
       </form>
     </div>
 
-    <div
-      class="createdQuestions-global-style"
-      *ngIf="createdQuestions.length > 0"
-    >
+    <div class="createdQuestions-global-style" *ngIf="createdQuestions.length > 0">
       <div class="sub-title">
         <h2>Questions Créées</h2>
       </div>
-      <div
-        class="createdQuestions"
-        *ngFor="let question of createdQuestions; let i = index"
-      >
+      <div class="createdQuestions" *ngFor="let question of createdQuestions; let i = index">
         <div class="question">
           <p>Question {{ i + 1 }}: {{ question.question_title }}</p>
           <p>Option 1: {{ question.option_1 }}</p>
@@ -163,12 +94,7 @@
         <div *ngIf="createdQuestions.length > 0" class="error-message">
           <p>Vous devez créer au moins 5 questions.</p>
           <div class="button-container">
-            <button
-              title="create-quiz-with-questions"
-              type="submit"
-              class="button"
-              (click)="createQuiz()"
-            >
+            <button title="create-quiz-with-questions" type="submit" class="button" (click)="createQuiz()">
               Soumettre
             </button>
           </div>

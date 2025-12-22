@@ -12,7 +12,7 @@ nav.header-container {
   height: 4rem;
   position: fixed;
   top: 0;
-  width: 100%;
+  width: 100svw;
   padding: 10px;
   border-bottom: #fc9900 1px solid;
   background-color: var(--blue);
@@ -90,7 +90,6 @@ nav.header-container {
   top: 0;
   left: 0;
   height: 100vh;
-  // width: 100%;
   background-color: var(--blue);
   z-index: 1;
 }
@@ -132,6 +131,7 @@ nav.header-container {
   }
 
   nav.header-container {
+    width: 100%;
     position: relative;
     height: 10rem;
   }
@@ -155,7 +155,6 @@ nav.header-container {
   }
 
   .nav-mobile {
-    // width: 100vw;
     display: flex;
     align-items: center;
     justify-content: space-between;

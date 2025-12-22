@@ -31,7 +31,7 @@ export class QuizViewComponent implements OnInit {
   getQuizzes(): void {
     this.quizService.getQuizzes().subscribe((quizzes: any) => {
       this.quizzes = quizzes.filter((quiz: any) => quiz.archive !== true);
-      console.info(this.quizzes);
+
     });
   }
 

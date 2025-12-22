@@ -72,10 +72,15 @@ export class AuthService {
   }
 
   logout() {
+    try {
+      this.cookieConsentService?.destroy?.();
+    } catch (e) {
+      console.warn("CookieConsent déjà détruit ou invalide");
+    }
+
     localStorage.removeItem('auth_token');
     localStorage.removeItem('user');
     this.cookieService.delete('auth_token');
-    this.cookieConsentService.destroy();
     this.isLoggedInSubject.next(false);
   }
 

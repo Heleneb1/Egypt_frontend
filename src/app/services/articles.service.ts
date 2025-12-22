@@ -39,19 +39,9 @@ export class ArticlesService {
   getArticleContent(articleId: string): any {
     return this.getArticleById(articleId).pipe(
       map((article: any) => {
-        console.log("article", article)
+
         return {
           ...Article
-          // title: article.title,
-          // id: article.id,
-          // archive: article.archive,
-          // author: article.author,
-          // content: article.content,
-          // rating: article.rating,
-          // average: article.averageRating,
-          // quizzes: article.quizzes,
-          // tag: article.tag,
-          // slug: article.slug,
         };
       })
     );
